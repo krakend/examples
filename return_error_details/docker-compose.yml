@@ -1,0 +1,31 @@
+version: "3"
+services:
+  fake_api_1:
+    image: php:8-apache
+    volumes:
+      - ./index.php:/var/www/html/index.php
+    ports:
+      - "8001:80"
+  fake_api_2:
+    image: php:8-apache
+    volumes:
+      - ./index.php:/var/www/html/index.php
+    ports:
+      - "8002:80"
+  fake_api_3:
+    image: php:8-apache
+    volumes:
+      - ./index.php:/var/www/html/index.php
+    ports:
+      - "8003:80"
+  krakend:
+    image: devopsfaith/krakend:2.0
+    volumes:
+      - ./krakend.json:/etc/krakend/krakend.json
+    command: ["run", "-c", "krakend.json", "-d"]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - fake_api_1
+      - fake_api_2
+      - fake_api_3

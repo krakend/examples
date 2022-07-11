@@ -1,0 +1,18 @@
+{
+    "profile": [
+        {
+            "endpoint": "test-1",
+            "method": "GET",
+            "backend_url_pattern": "/_debug",
+            "backend_method": "GET",
+            "backend_host": "https://localhost:8080"
+        },
+        {
+            "endpoint": "test-2",
+            "method": "GET",
+            "backend_url_pattern": "/_debug",
+            "backend_method": "GET",
+            "backend_host": "https://localhost:8080"
+        }
+    ]
+}

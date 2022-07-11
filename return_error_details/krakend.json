@@ -1,0 +1,54 @@
+{
+  "name": "KrakenD API Gateway",
+  "version": 3,
+  "port": 8080,
+  "endpoints": [
+    {
+      "endpoint": "/",
+      "backend": [
+        {
+          "host": [
+            "http://fake_api_1"
+          ],
+          "url_pattern": "/index.php",
+          "extra_config": {
+            "validation/cel": [
+              {
+                "check_expr": "'fake_api_1' in req_headers.Cookie['backend']"
+              }
+            ]
+          }
+        },
+        {
+          "host": [
+            "http://fake_api_2"
+          ],
+          "url_pattern": "/index.php",
+          "extra_config": {
+            "validation/cel": [
+              {
+                "check_expr": "'fake_api_2' in req_headers.Cookie['backend']"
+              }
+            ]
+          }
+        },
+        {
+          "host": [
+            "http://fake_api_3"
+          ],
+          "url_pattern": "/index.php",
+          "extra_config": {
+            "validation/cel": [
+              {
+                "check_expr": "'fake_api_3' in req_headers.Cookie['backend']"
+              }
+            ]
+          }
+        }
+      ],
+      "input_headers": [
+        "Cookie"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+	"port": 8080,
+	"name": "PROD",
+	"timeout": "3s",
+	"cache_ttl": "3s",
+	"output_encoding": "json",
+	"extra_config": []
+}

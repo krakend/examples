@@ -1,0 +1,63 @@
+{
+  "name": "KrakenD API Gateway",
+  "version": 3,
+  "port": 8080,
+  "endpoints": [
+    {
+      "endpoint": "/",
+      "backend": [
+        {
+          "host": ["http://fake_api"],
+          "url_pattern": "/index.php"
+        }
+      ]
+    },
+    {
+      "endpoint": "/rate-limit",
+      "backend": [
+        {
+          "host": ["http://fake_api"],
+          "url_pattern": "/index.php"
+        }
+      ],
+      "extra_config": {
+        "qos/ratelimit/router": {
+          "max_rate": 1
+        }
+      }
+    },
+    {
+      "endpoint": "/circuit-breaker",
+      "backend": [
+        {
+          "host": ["http://fake_api"],
+          "url_pattern": "/index.php",
+          "group": "backend1",
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 5,
+              "timeout": 2,
+              "max_errors": 1,
+              "name": "test-circuit-breaker",
+              "log_status_change": true
+            }
+          }
+        },
+        {
+          "host": ["http://fake_api"],
+          "url_pattern": "/index.php?return_error=true",
+          "group": "backend2",
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 5,
+              "timeout": 2,
+              "max_errors": 1,
+              "name": "test-circuit-breaker",
+              "log_status_change": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
