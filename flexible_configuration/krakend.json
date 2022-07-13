@@ -1,7 +1,7 @@
 {
   "version": 3,
+  "name": "{{ env "SERVICE_NAME" }} ({{ .service.environment }})",
   "port": {{ .service.port }},
-  "name": "{{ .service.name }}",
   "timeout": "{{ .service.timeout }}",
   "cache_ttl":  "{{ .service.cache_ttl }}",
   "output_encoding": "{{ .service.output_encoding }}",

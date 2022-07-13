@@ -21,8 +21,9 @@ $ docker run \
 -v "$PWD:/etc/krakend" \
 -e FC_ENABLE=1 \
 -e FC_SETTINGS=settings \
--e FC_PARTIALS=partial \
+-e FC_PARTIALS=partials \
 -e FC_OUT=out.json \
+-e SERVICE_NAME="KrakenD API Gateway" \
 devopsfaith/krakend check -t -d -c "krakend.json"
 ```
 
@@ -33,6 +34,7 @@ FC_ENABLE=1 \
 FC_SETTINGS=settings \
 FC_PARTIALS=partials \
 FC_OUT=out.json \
+SERVICE_NAME="KrakenD API Gateway" \
 krakend check -t -d -c "krakend.json"
 ```
 
