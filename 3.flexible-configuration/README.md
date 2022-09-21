@@ -1,5 +1,12 @@
 # KrakenD Flexible Configuration
 
+<div align="center">
+
+| <a href="https://youtu.be/U1LHoKWy0HU"><img src="https://i.ytimg.com/vi/U1LHoKWy0HU/maxresdefault.jpg" width="300" heigth="300"></a><br>[Video in English](https://youtu.be/U1LHoKWy0HU) | <a href="https://youtu.be/qeTeLPLnkIY"><img src="https://i.ytimg.com/vi/qeTeLPLnkIY/maxresdefault.jpg" width="300" heigth="300"></a><br>[Video in Spanish](https://youtu.be/qeTeLPLnkIY) |
+|---|---|
+
+</div>
+
 Test environment to check [Flexible configuration](https://www.krakend.io/docs/configuration/flexible-config/) feature.
 
 This repo contains a basic implementation for flexible configuration, including the use of variables, templates, code snippets and some basic logic to iterate over multiple endpoints.
@@ -26,6 +33,14 @@ $ docker run \
 -e SERVICE_NAME="KrakenD API Gateway" \
 devopsfaith/krakend check -t -d -c "krakend.json"
 ```
+
+```shell
+FC_ENABLE=1 \
+FC_SETTINGS=settings \
+FC_PARTIALS=partials \
+FC_OUT=out.json \
+SERVICE_NAME="KrakenD API Gateway" \
+krakend check -tdc "krakend.json" ```
 
 ### Using the binary locally
 
