@@ -40,7 +40,8 @@ FC_SETTINGS=settings \
 FC_PARTIALS=partials \
 FC_OUT=out.json \
 SERVICE_NAME="KrakenD API Gateway" \
-krakend check -tdc "krakend.json" ```
+krakend check -tdc "krakend.json"
+```
 
 ### Using the binary locally
 
