@@ -27,22 +27,40 @@ $ docker run \
 --rm -it -p "8080:8080" \
 -v "$PWD:/etc/krakend" \
 -e FC_ENABLE=1 \
--e FC_SETTINGS=settings \
--e FC_PARTIALS=partials \
+-e FC_SETTINGS=config/settings/prod \
+-e FC_PARTIALS=config/partials \
+-e FC_TEMPLATES=config/templates \
 -e FC_OUT=out.json \
 -e SERVICE_NAME="KrakenD API Gateway" \
-devopsfaith/krakend check -t -d -c "krakend.json"
+devopsfaith/krakend check -t -d -c "krakend.tmpl"
 ```
 
 ### Using the binary locally
 
 ```shell
-FC_ENABLE=1 \
-FC_SETTINGS=settings \
-FC_PARTIALS=partials \
+$ FC_ENABLE=1 \
+FC_SETTINGS=config/settings/prod \
+FC_PARTIALS=config/partials \
+FC_TEMPLATES=config/templates \
 FC_OUT=out.json \
 SERVICE_NAME="KrakenD API Gateway" \
-krakend check -tdc "krakend.json"
+krakend check -tdc "krakend.tmpl"
 ```
 
-Note: both alternatives will output a `out.json` file with the compiled version of the config file, useful for debugging purposes.
+Note: both above alternatives will output a `out.json` file with the compiled version of the config file, useful for debugging purposes.
+
+### Building an immutable Docker artifact
+
+If you use containers, the recommended approach is to write your own Dockerfile and deploy an immutable artifact (embedding the config).
+
+```shell
+$ docker build --build-arg ENV=prod -t mykrakend . 
+```
+
+This will generate a ready-to-use container named `mykrakend` with the configuration already compiled, checked and validated using the linter (based on the  [Dockerfile](Dockerfile) included in this repo).
+
+To run this new container, you just need to execute:
+
+```shell
+$ docker run -p 8080:8080 mykrakend run -dc krakend.json
+```
