@@ -34,15 +34,6 @@ $ docker run \
 devopsfaith/krakend check -t -d -c "krakend.json"
 ```
 
-```shell
-FC_ENABLE=1 \
-FC_SETTINGS=settings \
-FC_PARTIALS=partials \
-FC_OUT=out.json \
-SERVICE_NAME="KrakenD API Gateway" \
-krakend check -tdc "krakend.json"
-```
-
 ### Using the binary locally
 
 ```shell
@@ -51,7 +42,7 @@ FC_SETTINGS=settings \
 FC_PARTIALS=partials \
 FC_OUT=out.json \
 SERVICE_NAME="KrakenD API Gateway" \
-krakend check -t -d -c "krakend.json"
+krakend check -tdc "krakend.json"
 ```
 
 Note: both alternatives will output a `out.json` file with the compiled version of the config file, useful for debugging purposes.
