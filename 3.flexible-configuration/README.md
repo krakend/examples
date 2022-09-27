@@ -13,10 +13,13 @@ This repo contains a basic implementation for flexible configuration, including 
 
 ### Contents:
 
-- `krakend.json`: the base file, including calls to the variables, iteration over available endpoints and some code snippets.
-- `partials/rate_limit_backend.tmlp`: a code snippet referenced from base file
-- `settings/endpoint`: a collection of endpoints
-- `settings/service.json`: basic configuration parameters for the service
+- `krakend.tmpl`: the base file, including calls to the variables, iteration over available endpoints and some code snippets.
+- `Dockerfile`: A docker definition to build an immutable container with KrakenD
+- `docker-compose.yml` an example docker compose definition file to be able to execute KrakenD enabling Flexible Configuration.
+- `config/partials/*`: some code snippets referenced from base file
+- `config/templates/*`: a template referenced from base file
+- `config/settings/{dev|prod}/endpoint.json`: a collection of endpoints
+- `config/settings/{dev|prod}/service.json`: basic configuration parameters for the service
 
 ## Running this test
 
@@ -33,6 +36,14 @@ $ docker run \
 -e FC_OUT=out.json \
 -e SERVICE_NAME="KrakenD API Gateway" \
 devopsfaith/krakend check -t -d -c "krakend.tmpl"
+```
+
+### Using Docker Compose
+
+Based on the definition included in the [docker-compose.yml](docker-compose.yml) definition.
+
+```shell
+$ docker-compose up
 ```
 
 ### Using the binary locally

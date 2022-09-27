@@ -1,0 +1,16 @@
+version: "3"
+services:
+  krakend:
+    image: devopsfaith/krakend
+    volumes:
+      - .:/etc/krakend
+    ports:
+      - "8080:8080"
+    environment:
+      - FC_ENABLE=1
+      - FC_SETTINGS=config/settings/prod
+      - FC_PARTIALS=config/partials
+      - FC_TEMPLATES=config/templates
+      - FC_OUT=out.json
+      - SERVICE_NAME=KrakenD API Gateway
+    command: [ "run", "-dc", "krakend.tmpl", "" ]
