@@ -1,0 +1,44 @@
+{
+  "$id": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My first API Gateway - KrakenD",
+  "port": 8080,
+  "host": ["http://fake_api:8080"],
+  "endpoints": [
+    {
+      "endpoint": "/encodings.json",
+      "backend": [
+        {
+          "url_pattern": "/response.json",
+          "encoding": "json",
+          "group": "json"
+        },
+        {
+          "url_pattern": "/response.xml",
+          "encoding": "xml",
+          "group": "xml"
+        },
+        {
+          "url_pattern": "/response-rss.xml",
+          "encoding": "rss",
+          "group": "rss"
+        },
+        {
+          "url_pattern": "/response.txt",
+          "encoding": "string",
+          "group": "string"
+        }
+      ]
+    },
+    {
+      "endpoint": "/encodings.xml",
+      "backend": [
+        {
+          "host": ["http://localhost:8080"],
+          "url_pattern": "/encodings.json"
+        }
+      ],
+      "output_encoding": "xml"
+    }
+  ]
+}

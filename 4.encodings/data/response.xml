@@ -1,0 +1,4 @@
+<response>
+    <message>I'm an XML response</message>
+    <status>OK</status>
+</response>
