@@ -1,0 +1,36 @@
+{
+  "$id": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My first API Gateway - KrakenD",
+  "port": 8080,
+  "host": [
+    "http://fake_api:8080"
+  ],
+  "endpoints": [
+    {
+      "endpoint": "/test-basic-auth-ko",
+      "backend": [
+        {
+          "url_pattern": "/protected-response.json"
+        }
+      ]
+    },
+    {
+      "endpoint": "/test-basic-auth-ok",
+      "backend": [
+        {
+          "url_pattern": "/protected-response.json",
+          "extra_config": {
+            "modifier/martian": {
+              "header.Modifier": {
+                "scope": ["request"],
+                "name": "Authorization",
+                "value": "Basic a3Jha2VuZDpwYXNzd29yZA=="
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
