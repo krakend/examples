@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json');
+
 $message = [
     "message" => "Hello world"
 ];

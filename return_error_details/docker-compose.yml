@@ -19,10 +19,10 @@ services:
     ports:
       - "8003:80"
   krakend:
-    image: devopsfaith/krakend:2.0
+    image: devopsfaith/krakend:watch
     volumes:
-      - ./krakend.tmpl:/etc/krakend/krakend.tmpl
-    command: ["run", "-c", "krakend.tmpl", "-d"]
+      - ./:/etc/krakend/
+    command: ["run", "-c", "krakend.json", "-d"]
     ports:
       - "8080:8080"
     depends_on:

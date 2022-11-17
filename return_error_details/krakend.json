@@ -4,50 +4,53 @@
   "port": 8080,
   "endpoints": [
     {
-      "endpoint": "/",
+      "endpoint": "/ok",
       "backend": [
         {
-          "host": [
-            "http://fake_api_1"
-          ],
+          "host": ["http://fake_api_1"],
           "url_pattern": "/index.php",
+          "group": "a",
           "extra_config": {
-            "validation/cel": [
-              {
-                "check_expr": "'fake_api_1' in req_headers.Cookie['backend']"
-              }
-            ]
+            "backend/http": {
+              "return_error_details": "a"
+            }
           }
         },
         {
-          "host": [
-            "http://fake_api_2"
-          ],
+          "host": ["http://fake_api_2"],
           "url_pattern": "/index.php",
+          "group": "b",
           "extra_config": {
-            "validation/cel": [
-              {
-                "check_expr": "'fake_api_2' in req_headers.Cookie['backend']"
-              }
-            ]
-          }
-        },
-        {
-          "host": [
-            "http://fake_api_3"
-          ],
-          "url_pattern": "/index.php",
-          "extra_config": {
-            "validation/cel": [
-              {
-                "check_expr": "'fake_api_3' in req_headers.Cookie['backend']"
-              }
-            ]
+            "backend/http": {
+              "return_error_details": "b"
+            }
           }
         }
-      ],
-      "input_headers": [
-        "Cookie"
+      ]
+    },
+    {
+      "endpoint": "/ko",
+      "backend": [
+        {
+          "host": ["http://fake_api_1"],
+          "url_pattern": "/index.php",
+          "group": "a",
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "a"
+            }
+          }
+        },
+        {
+          "host": ["http://fake_api_2"],
+          "url_pattern": "/index.php?return_error=true",
+          "group": "b",
+          "extra_config": {
+            "backend/http": {
+              "return_error_details": "b"
+            }
+          }
+        }
       ]
     }
   ]
