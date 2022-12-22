@@ -1,0 +1,23 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My first API Gateway - KrakenD",
+  "port": 8080,
+  "host": ["http://my_service:8080"],
+  "endpoints": [
+    {
+      "endpoint": "/dashboard",
+      "backend": [
+        {
+          "url_pattern": "/customer.json"
+        },
+        {
+          "url_pattern": "/sales.json"
+        },
+        {
+          "url_pattern": "/inventory.json"
+        }
+      ]
+    }
+  ]
+}

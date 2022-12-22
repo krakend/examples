@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "product_id": 1,
+      "name": "27\" LED Screen"
+    },
+    {
+      "product_id": 2,
+      "name": "Keyboard"
+    }
+  ]
+}
