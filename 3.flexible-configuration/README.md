@@ -35,7 +35,7 @@ $ docker run \
 -e FC_TEMPLATES=config/templates \
 -e FC_OUT=out.json \
 -e SERVICE_NAME="KrakenD API Gateway" \
-devopsfaith/krakend check -t -d -c "krakend.tmpl"
+devopsfaith/krakend check -tdc "krakend.tmpl"
 ```
 
 ### Using Docker Compose
@@ -75,3 +75,9 @@ To run this new container, you just need to execute:
 ```shell
 $ docker run -p 8080:8080 mykrakend run -dc krakend.json
 ```
+
+---
+
+| 💡 Bonus Track - Invoking a Dynamic List of Endpoints from the Main Configuration                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Go template functions do not allow the use of dynamic values as paths to templates, which means you cannot iterate a dynamic list of template paths and invoke them from your `krakend.tmpl`.<br/><br/>However, you can easily overcome this limitation by generating a nesting template with a simple bash command, such as:<br/><code>tree -J -I "endpoints.tmpl" &#124; jq -r ' ( .[0].contents[].name &#124; "{{ template \\"\\(.)\\" . }}," )' &#124; sed '$s/,$//' > endpoints.tmpl</code><br/><br/>Executing this command from the config/templates folder will generate a new endpoints.tmpl, which will invoke all available templates, comma-separated. You can then simply invoke that endpoints.tmpl from your main configuration. You will only need to execute that command again whenever you add new endpoints to the templates folder. |

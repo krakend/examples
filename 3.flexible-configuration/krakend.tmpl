@@ -7,10 +7,8 @@
   "cache_ttl":  "{{ .service.cache_ttl }}",
   "output_encoding": "{{ .service.output_encoding }}",
   "extra_config": {{ marshal .service.extra_config }},
-  "endpoints": [
-    {{ range $idx, $endpoint := .endpoint.profile }}
-    {{if $idx}},{{end}}
-      {
+  "endpoints": [{{ range $idx, $endpoint := .endpoints.endpoints }}{{if $idx}},{{end}}
+    {
         "endpoint": "{{ $endpoint.endpoint }}",
         "method": "{{ $endpoint.method }}",
         "backend": [
@@ -25,8 +23,7 @@
               }
             }
         ]
-    }
-    {{ end }}
-    {{ template "sample_template.tmpl" .}}
-  ]
+    }{{ end }},
+    {{ template "endpoints.tmpl" . }}
+ ]
 }

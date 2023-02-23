@@ -1,16 +1,16 @@
 {
-    "profile": [
+    "endpoints": [
         {
             "endpoint": "/test-1",
             "method": "GET",
-            "backend_url_pattern": "/__debug/prod",
+            "backend_url_pattern": "/__debug/dev",
             "backend_method": "GET",
             "backend_host": "http://localhost:8080"
         },
         {
             "endpoint": "/test-2",
             "method": "GET",
-            "backend_url_pattern": "/__debug/prod",
+            "backend_url_pattern": "/__debug/dev",
             "backend_method": "GET",
             "backend_host": "http://localhost:8080"
         }
