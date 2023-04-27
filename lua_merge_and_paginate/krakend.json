@@ -1,0 +1,65 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My KrakenD API Gateway",
+  "port": 8080,
+  "host": [
+    "http://my_service:8080"
+  ],
+  "plugin": {
+    "pattern": ".so",
+    "folder": "/opt/krakend/plugins/"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/list/{page}",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "host": ["http://localhost:8080"],
+          "url_pattern": "/__internal-endpoint-list",
+          "encoding": "no-op"
+        }
+      ],
+      "extra_config": {
+        "modifier/lua-proxy": {
+          "allow_open_libs": true,
+          "sources": [
+            "./merge-and-paginate.lua"
+          ],
+          "live": true,
+          "post": "local req = request.load(); local resp = response.load(); resp:body(merge_users_and_paginate(req, resp))"
+        }
+      }
+    },
+    {
+      "endpoint": "/__internal-endpoint-list",
+      "backend": [
+        {
+          "url_pattern": "/agents.json",
+          "mapping": {
+            "data": "agents"
+          }
+        },
+        {
+          "url_pattern": "/users.json",
+          "mapping": {
+            "data": "users"
+          }
+        }
+      ],
+      "extra_config": {
+        "modifier/jmespath": {
+          "expr": "[agents,users][] | { users_list: @ }"
+        },
+        "plugin/req-resp-modifier": {
+          "name": ["ip-filter"],
+          "ip-filter": {
+            "allow": false,
+            "CIDR": ["127.0.0.1"]
+          }
+        }
+      }
+    }
+  ]
+}
