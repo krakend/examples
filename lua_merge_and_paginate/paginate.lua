@@ -31,7 +31,7 @@ local function parse_json_list(json_string, list_name)
     return items
 end
 
-function merge_users_and_paginate(req, resp)
+function paginate(req, resp)
     local page = tonumber(req:params('Page')) or 1
     local items_per_page = 10
 
