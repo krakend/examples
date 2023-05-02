@@ -1,0 +1,71 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My KrakenD API Gateway",
+  "port": 8080,
+  "host": ["http://webservices.oorsprong.org"],
+  "plugin": {
+    "pattern": ".so",
+    "folder": "/opt/krakend/plugins/"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/continents.json",
+      "backend": [
+        {
+          "url_pattern": "/websamples.countryinfo/CountryInfoService.wso",
+          "encoding": "xml",
+          "method": "POST",
+          "extra_config": {
+            "modifier/jmespath": {
+              "expr": "Envelope.Body.ListOfContinentsByNameResponse.ListOfContinentsByNameResult.tContinent[*].{code: sCode, name: sName} | { continent: @ }"
+            },
+            "backend/soap": {
+              "path": "soap_request.tmpl.xml"
+            }
+          }
+        }
+      ],
+      "output_encoding": "json-collection",
+      "extra_config": {
+        "modifier/jmespath": {
+          "expr": "continent[]"
+        }
+      }
+    },
+    {
+      "endpoint": "/continents.xml",
+      "output_encoding": "xml",
+      "backend": [
+        {
+          "host": ["http://localhost:8080"],
+          "url_pattern": "/continents.json",
+          "is_collection": true
+        }
+      ],
+      "extra_config": {
+        "modifier/jmespath": {
+          "expr": "collection | {continents: {continent: @} }"
+        }
+      }
+    },
+    {
+      "endpoint": "/continents.csv",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "host": ["http://localhost:8080"],
+          "url_pattern": "/continents.json"
+        }
+      ],
+      "extra_config": {
+        "modifier/lua-proxy": {
+          "allow_open_libs": true,
+          "sources": ["./json-to-csv.lua"],
+          "live": true,
+          "post": "local resp=response.load(); resp:body(json_to_csv(resp:body())); resp:headers('Content-Type', 'text/csv')"
+        }
+      }
+    }
+  ]
+}
