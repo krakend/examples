@@ -1,4 +1,4 @@
-function json_to_csv(json_string)
+function json_to_csv(resp)
     -- Alternative JSON parsing function
     local function parse_json(json_string)
         local json = {}
@@ -29,7 +29,7 @@ function json_to_csv(json_string)
     end
 
     -- Parse JSON string
-    local json = parse_json(json_string)
+    local json = parse_json(resp:body())
 
     if type(json) ~= "table" or #json == 0 then
         error("Invalid JSON data. Expecting an array of objects.")
@@ -54,5 +54,6 @@ function json_to_csv(json_string)
         csv = csv .. table.concat(row, ";") .. "\n"
     end
 
-    return csv
+    resp:body(csv)
+    resp:headers('Content-Type', 'text/csv')
 end

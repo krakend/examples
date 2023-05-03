@@ -63,7 +63,7 @@
           "allow_open_libs": true,
           "sources": ["./json-to-csv.lua"],
           "live": true,
-          "post": "local resp=response.load(); resp:body(json_to_csv(resp:body())); resp:headers('Content-Type', 'text/csv')"
+          "post": "json_to_csv(response.load());"
         }
       }
     }
