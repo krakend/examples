@@ -1,0 +1,57 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My KrakenD API Gateway",
+  "port": 8080,
+  "host": ["http://my_service:8080"],
+  "plugin": {
+    "pattern": ".so",
+    "folder": "/opt/krakend/plugins/"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/components",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "host": ["http://localhost:8080"],
+          "url_pattern": "/__internal-endpoint-raw-components",
+          "encoding": "no-op"
+        }
+      ],
+      "extra_config": {
+        "modifier/lua-proxy": {
+          "allow_open_libs": true,
+          "sources": ["./groupby.lua"],
+          "live": true,
+          "post": "groupby(response.load())"
+        }
+      }
+    },
+    {
+      "endpoint": "/__internal-endpoint-raw-components",
+      "output_encoding": "json-collection",
+      "backend": [
+        {
+          "url_pattern": "/bom.json",
+          "is_collection": true,
+          "mapping": {
+            "collection": "bom"
+          }
+        },
+        {
+          "url_pattern": "/component.json",
+          "is_collection": true,
+          "mapping": {
+            "collection": "component"
+          }
+        }
+      ],
+      "extra_config": {
+        "modifier/jmespath": {
+          "expr": "[bom,component][]"
+        }
+      }
+    }
+  ]
+}

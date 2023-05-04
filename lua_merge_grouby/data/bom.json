@@ -1,0 +1,22 @@
+[
+  {
+    "Bill Sequence": 1,
+    "Component No": 1234,
+    "Level": 1
+  },
+  {
+    "Bill Sequence": 2,
+    "Component No": 1235,
+    "Level": 1
+  },
+  {
+    "Bill Sequence": 3,
+    "Component No": 1236,
+    "Level": 2
+  },
+  {
+    "Bill Sequence": 4,
+    "Component No": 1237,
+    "Level": 3
+  }
+]
