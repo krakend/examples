@@ -41,5 +41,5 @@ function paginate(req, resp)
 
     local paged_users = get_items_from_page(users_list, page, items_per_page)
 
-    return "[" .. table.concat(paged_users, ",") .. "]"
+    resp:body("[" .. table.concat(paged_users, ",") .. "]")
 end

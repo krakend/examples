@@ -28,7 +28,7 @@
             "./paginate.lua"
           ],
           "live": true,
-          "post": "local req = request.load(); local resp = response.load(); resp:body(paginate(req, resp))"
+          "post": "paginate(request.load(), response.load())"
         }
       }
     },
