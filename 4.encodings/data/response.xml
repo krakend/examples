@@ -1,4 +1,5 @@
 <response>
     <message>I'm an XML response</message>
+    <data>One value &amp; another value</data>
     <status>OK</status>
 </response>
