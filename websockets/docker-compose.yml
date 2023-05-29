@@ -1,0 +1,17 @@
+version: "3"
+services:
+  krakend:
+    image: krakend/krakend-ee:watch
+    volumes:
+      - .:/etc/krakend
+    ports:
+      - "8080:8080"
+    command: [ "run", "-dc", "krakend.json", "" ]
+    depends_on:
+      - ws_service
+  ws_service:
+    build: ./websocket_server/
+    volumes:
+      - ./websocket_server/server.cjs:/app/server.cjs
+    ports:
+      - "5678:5678"

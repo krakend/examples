@@ -1,0 +1,41 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "KrakenD Enterprise API Gateway",
+  "port": 8080,
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "debug_endpoint": true,
+  "plugin": {
+    "pattern": ".so",
+    "folder": "/opt/krakend/plugins/"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/ws",
+      "backend": [
+        {
+          "url_pattern": "/",
+          "disable_host_sanitize": true,
+          "host": ["ws://ws_service:5678"]
+        }
+      ],
+      "extra_config": {
+        "websocket": {
+          "connect_event": true,
+          "disconnect_event": true,
+          "backoff_strategy": "exponential",
+          "max_retries": 2
+        }
+      }
+    }
+  ],
+  "extra_config": {
+    "telemetry/logging": {
+      "level": "DEBUG",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true
+    }
+  }
+}
