@@ -1,0 +1,3923 @@
+{
+  "bomCount": "175",
+  "bomList": "300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106915335%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106550511%2C300000106686523%2C300000106686523%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106679117%2C300000106679117%2C300000106679117%2C300000106679117%2C300000106679117%2C300000106679117%2C300000106679117%2C300000106679117%2C300000106679117%2C300000106819990%2C300000106821926%2C300000106821926%2C300000106807974%2C300000106821926%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106819990%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000127072375%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686380%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106875571%2C300000106920522%2C300000106920522%2C300000106920522%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106814685%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106614316%2C300000106614316%2C300000107079828%2C300000107079828%2C300000106686523%2C300000106818588%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523%2C300000106686523",
+  "componentCount": "175",
+  "componentList": "100000007824741%2C100000007491887%2C100000007515773%2C100000007602276%2C100000007602345%2C100000007506861%2C100000007615063%2C100000007621490%2C100000007622871%2C100000007499011%2C100000007657061%2C100000007679774%2C100000007571373%2C100000007599018%2C100000007709989%2C100000007953874%2C100000007955269%2C100000007957423%2C100000008093538%2C100000008097503%2C100000008102979%2C100000008145418%2C100000007590368%2C100000007591030%2C100000007591048%2C100000007657403%2C100000008139086%2C100000008283025%2C100000008290785%2C100000008456902%2C100000008515878%2C100000008155493%2C100000007501240%2C100000008135139%2C100000007501240%2C100000008315939%2C100000008183334%2C100000008184107%2C100000008188229%2C100000008189976%2C100000008190960%2C100000008191155%2C100000008191774%2C100000008192970%2C100000008343381%2C100000007704576%2C100000007704909%2C100000007709989%2C100000007710566%2C100000007748764%2C100000008083032%2C100000008085343%2C100000008088259%2C100000008099214%2C100000008102524%2C100000008155568%2C100000007415280%2C100000007585630%2C100000007585849%2C100000007586416%2C100000007586560%2C100000007586719%2C100000007586980%2C100000007588676%2C100000007588853%2C100000007589056%2C100000007589969%2C100000007590048%2C100000007591030%2C100000007591276%2C100000007591471%2C100000007591657%2C100000007608826%2C100000007611469%2C100000007613200%2C100000007636236%2C100000007636261%2C100000007636344%2C100000007640843%2C100000007641158%2C100000007650828%2C100000007705415%2C100000007721143%2C100000007765227%2C100000007767316%2C100000007767570%2C100000007768385%2C100000007768709%2C100000007771242%2C100000007772432%2C100000007778791%2C100000007778998%2C100000007783061%2C100000007784940%2C100000007786256%2C100000007787251%2C100000007956152%2C100000007956610%2C100000008089283%2C100000008139593%2C100000008186571%2C100000008282730%2C100000008282757%2C100000008282839%2C100000008282931%2C100000008283025%2C100000008283059%2C100000008283115%2C100000008283643%2C100000008284008%2C100000008285341%2C100000008285837%2C100000008286284%2C100000008286414%2C100000008287408%2C100000008287476%2C100000008288052%2C100000008288272%2C100000008288582%2C100000008289730%2C100000008290690%2C100000008291153%2C100000008292171%2C100000008292417%2C100000008292665%2C100000008292669%2C300000127072234%2C100000008292703%2C100000008292886%2C100000008293356%2C100000008293630%2C100000008293631%2C100000008293723%2C100000008294187%2C100000008294437%2C100000008294701%2C100000008296057%2C100000008346789%2C100000008361748%2C100000008361850%2C100000008361895%2C100000008167643%2C100000008167778%2C100000008182326%2C100000008182690%2C100000008190238%2C100000008082202%2C100000008180226%2C100000008374860%2C100000008183841%2C100000008184240%2C100000008184833%2C100000007500535%2C100000008184954%2C100000008186572%2C100000008186883%2C100000008187806%2C100000008188481%2C100000007439474%2C100000008187438%2C100000007439474%2C100000008180104%2C100000008190586%2C100000007500535%2C100000008192393%2C100000008192451%2C100000008192627%2C100000008220964%2C100000008226129%2C100000008230975%2C100000008327826%2C100000008341904%2C100000008347580%2C100000008363469%2C100000008435247",
+  "expandedBom": [
+    {
+      "componentSequenceId": 0,
+      "itemId": "100000007824741",
+      "itemSequence": null,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 0
+    },
+    {
+      "componentSequenceId": 300000109022854,
+      "itemId": "100000007491887",
+      "itemSequence": 1031,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022812,
+      "itemId": "100000007515773",
+      "itemSequence": 10044,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022764,
+      "itemId": "100000007602276",
+      "itemSequence": 1036,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022907,
+      "itemId": "100000007602345",
+      "itemSequence": 1033,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109625398,
+      "itemId": "100000007506861",
+      "itemSequence": 10001,
+      "parentBillSequenceId": "300000106915335",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109022744,
+      "itemId": "100000007615063",
+      "itemSequence": 1025,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022894,
+      "itemId": "100000007621490",
+      "itemSequence": 1041,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022845,
+      "itemId": "100000007622871",
+      "itemSequence": 1042,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000107702087,
+      "itemId": "100000007499011",
+      "itemSequence": 10001,
+      "parentBillSequenceId": "300000106550511",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109022785,
+      "itemId": "100000007657061",
+      "itemSequence": 1014,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022866,
+      "itemId": "100000007679774",
+      "itemSequence": 1001,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000108084904,
+      "itemId": "100000007571373",
+      "itemSequence": 1019,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084910,
+      "itemId": "100000007599018",
+      "itemSequence": 1017,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084862,
+      "itemId": "100000007709989",
+      "itemSequence": 1011,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084913,
+      "itemId": "100000007953874",
+      "itemSequence": 1006,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084901,
+      "itemId": "100000007955269",
+      "itemSequence": 1009,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084868,
+      "itemId": "100000007957423",
+      "itemSequence": 1007,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084859,
+      "itemId": "100000008093538",
+      "itemSequence": 1008,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084856,
+      "itemId": "100000008097503",
+      "itemSequence": 1003,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084871,
+      "itemId": "100000008102979",
+      "itemSequence": 1004,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084880,
+      "itemId": "100000008145418",
+      "itemSequence": 1000,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108010109,
+      "itemId": "100000007590368",
+      "itemSequence": 1004,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010132,
+      "itemId": "100000007591030",
+      "itemSequence": 1003,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010120,
+      "itemId": "100000007591048",
+      "itemSequence": 1002,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010142,
+      "itemId": "100000007657403",
+      "itemSequence": 1010,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010156,
+      "itemId": "100000008139086",
+      "itemSequence": 1000,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010093,
+      "itemId": "100000008283025",
+      "itemSequence": 1006,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010163,
+      "itemId": "100000008290785",
+      "itemSequence": 1005,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010149,
+      "itemId": "100000008456902",
+      "itemSequence": 1009,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108010166,
+      "itemId": "100000008515878",
+      "itemSequence": 1007,
+      "parentBillSequenceId": "300000106679117",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108084884,
+      "itemId": "100000008155493",
+      "itemSequence": 1016,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108072228,
+      "itemId": "100000007501240",
+      "itemSequence": 10003,
+      "parentBillSequenceId": "300000106821926",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108072216,
+      "itemId": "100000008135139",
+      "itemSequence": 1000,
+      "parentBillSequenceId": "300000106821926",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108099293,
+      "itemId": "100000007501240",
+      "itemSequence": 10001,
+      "parentBillSequenceId": "300000106807974",
+      "planLevel": 4
+    },
+    {
+      "componentSequenceId": 300000108072221,
+      "itemId": "100000008315939",
+      "itemSequence": 1001,
+      "parentBillSequenceId": "300000106821926",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108084865,
+      "itemId": "100000008183334",
+      "itemSequence": 1015,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084916,
+      "itemId": "100000008184107",
+      "itemSequence": 1005,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084887,
+      "itemId": "100000008188229",
+      "itemSequence": 1014,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084896,
+      "itemId": "100000008189976",
+      "itemSequence": 1002,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084899,
+      "itemId": "100000008190960",
+      "itemSequence": 1010,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084876,
+      "itemId": "100000008191155",
+      "itemSequence": 1001,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084893,
+      "itemId": "100000008191774",
+      "itemSequence": 1012,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084890,
+      "itemId": "100000008192970",
+      "itemSequence": 1013,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108084907,
+      "itemId": "100000008343381",
+      "itemSequence": 1018,
+      "parentBillSequenceId": "300000106819990",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109022874,
+      "itemId": "100000007704576",
+      "itemSequence": 1024,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022877,
+      "itemId": "100000007704909",
+      "itemSequence": 1022,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022820,
+      "itemId": "100000007709989",
+      "itemSequence": 1021,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022863,
+      "itemId": "100000007710566",
+      "itemSequence": 1023,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022881,
+      "itemId": "100000007748764",
+      "itemSequence": 1018,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022870,
+      "itemId": "100000008083032",
+      "itemSequence": 1026,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022739,
+      "itemId": "100000008085343",
+      "itemSequence": 1027,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022774,
+      "itemId": "100000008088259",
+      "itemSequence": 1020,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022731,
+      "itemId": "100000008099214",
+      "itemSequence": 1016,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022779,
+      "itemId": "100000008102524",
+      "itemSequence": 1017,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022807,
+      "itemId": "100000008155568",
+      "itemSequence": 1000,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000108034450,
+      "itemId": "100000007415280",
+      "itemSequence": 1065,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034268,
+      "itemId": "100000007585630",
+      "itemSequence": 1026,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034425,
+      "itemId": "100000007585849",
+      "itemSequence": 1095,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034440,
+      "itemId": "100000007586416",
+      "itemSequence": 1086,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034146,
+      "itemId": "100000007586560",
+      "itemSequence": 1023,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034111,
+      "itemId": "100000007586719",
+      "itemSequence": 1022,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034131,
+      "itemId": "100000007586980",
+      "itemSequence": 1072,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034351,
+      "itemId": "100000007588676",
+      "itemSequence": 1066,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034510,
+      "itemId": "100000007588853",
+      "itemSequence": 1075,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034318,
+      "itemId": "100000007589056",
+      "itemSequence": 1030,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034066,
+      "itemId": "100000007589969",
+      "itemSequence": 1073,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034481,
+      "itemId": "100000007590048",
+      "itemSequence": 1031,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034371,
+      "itemId": "100000007591030",
+      "itemSequence": 1021,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034072,
+      "itemId": "100000007591276",
+      "itemSequence": 1028,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034506,
+      "itemId": "100000007591471",
+      "itemSequence": 1087,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034485,
+      "itemId": "100000007591657",
+      "itemSequence": 1020,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034284,
+      "itemId": "100000007608826",
+      "itemSequence": 1084,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034489,
+      "itemId": "100000007611469",
+      "itemSequence": 1019,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034165,
+      "itemId": "100000007613200",
+      "itemSequence": 1014,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034075,
+      "itemId": "100000007636236",
+      "itemSequence": 1015,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034338,
+      "itemId": "100000007636261",
+      "itemSequence": 1071,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034155,
+      "itemId": "100000007636344",
+      "itemSequence": 1016,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034330,
+      "itemId": "100000007640843",
+      "itemSequence": 1099,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034058,
+      "itemId": "100000007641158",
+      "itemSequence": 1091,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034302,
+      "itemId": "100000007650828",
+      "itemSequence": 1064,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034497,
+      "itemId": "100000007705415",
+      "itemSequence": 1094,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034086,
+      "itemId": "100000007721143",
+      "itemSequence": 1103,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034116,
+      "itemId": "100000007765227",
+      "itemSequence": 1010,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034094,
+      "itemId": "100000007767316",
+      "itemSequence": 1090,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034274,
+      "itemId": "100000007767570",
+      "itemSequence": 1006,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034176,
+      "itemId": "100000007768385",
+      "itemSequence": 1008,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034390,
+      "itemId": "100000007768709",
+      "itemSequence": 1009,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034059,
+      "itemId": "100000007771242",
+      "itemSequence": 1085,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034187,
+      "itemId": "100000007772432",
+      "itemSequence": 1005,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034121,
+      "itemId": "100000007778791",
+      "itemSequence": 1002,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034083,
+      "itemId": "100000007778998",
+      "itemSequence": 1003,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034401,
+      "itemId": "100000007783061",
+      "itemSequence": 1001,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034395,
+      "itemId": "100000007784940",
+      "itemSequence": 1007,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034384,
+      "itemId": "100000007786256",
+      "itemSequence": 1017,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034378,
+      "itemId": "100000007787251",
+      "itemSequence": 1018,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034406,
+      "itemId": "100000007956152",
+      "itemSequence": 1102,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034124,
+      "itemId": "100000007956610",
+      "itemSequence": 1101,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034502,
+      "itemId": "100000008089283",
+      "itemSequence": 1089,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034323,
+      "itemId": "100000008139593",
+      "itemSequence": 1000,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034412,
+      "itemId": "100000008186571",
+      "itemSequence": 1100,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034108,
+      "itemId": "100000008282730",
+      "itemSequence": 1038,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034088,
+      "itemId": "100000008282757",
+      "itemSequence": 1097,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034105,
+      "itemId": "100000008282839",
+      "itemSequence": 1041,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034296,
+      "itemId": "100000008282931",
+      "itemSequence": 1067,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034245,
+      "itemId": "100000008283025",
+      "itemSequence": 1043,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034308,
+      "itemId": "100000008283059",
+      "itemSequence": 1053,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034256,
+      "itemId": "100000008283115",
+      "itemSequence": 1034,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034313,
+      "itemId": "100000008283643",
+      "itemSequence": 1051,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034226,
+      "itemId": "100000008284008",
+      "itemSequence": 1050,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034236,
+      "itemId": "100000008285341",
+      "itemSequence": 1044,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034137,
+      "itemId": "100000008285837",
+      "itemSequence": 1057,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034493,
+      "itemId": "100000008286284",
+      "itemSequence": 1104,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034464,
+      "itemId": "100000008286414",
+      "itemSequence": 1040,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034213,
+      "itemId": "100000008287408",
+      "itemSequence": 1056,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034469,
+      "itemId": "100000008287476",
+      "itemSequence": 1039,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034445,
+      "itemId": "100000008288052",
+      "itemSequence": 1077,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034057,
+      "itemId": "100000008288272",
+      "itemSequence": 1046,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034062,
+      "itemId": "100000008288582",
+      "itemSequence": 1079,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034474,
+      "itemId": "100000008289730",
+      "itemSequence": 1036,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034358,
+      "itemId": "100000008290690",
+      "itemSequence": 1042,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034364,
+      "itemId": "100000008291153",
+      "itemSequence": 1037,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034091,
+      "itemId": "100000008292171",
+      "itemSequence": 1093,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034068,
+      "itemId": "100000008292417",
+      "itemSequence": 1063,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034455,
+      "itemId": "100000008292665",
+      "itemSequence": 1061,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034064,
+      "itemId": "100000008292669",
+      "itemSequence": 1076,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000127072376,
+      "itemId": "300000127072234",
+      "itemSequence": 30,
+      "parentBillSequenceId": "300000127072375",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000108034460,
+      "itemId": "100000008292703",
+      "itemSequence": 1049,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034417,
+      "itemId": "100000008292886",
+      "itemSequence": 1096,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034060,
+      "itemId": "100000008293356",
+      "itemSequence": 1080,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034478,
+      "itemId": "100000008293630",
+      "itemSequence": 1035,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034101,
+      "itemId": "100000008293631",
+      "itemSequence": 1048,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034346,
+      "itemId": "100000008293723",
+      "itemSequence": 1068,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034070,
+      "itemId": "100000008294187",
+      "itemSequence": 1047,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034434,
+      "itemId": "100000008294437",
+      "itemSequence": 1088,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034097,
+      "itemId": "100000008294701",
+      "itemSequence": 1069,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034202,
+      "itemId": "100000008296057",
+      "itemSequence": 1092,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034290,
+      "itemId": "100000008346789",
+      "itemSequence": 1083,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034077,
+      "itemId": "100000008361748",
+      "itemSequence": 1012,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034079,
+      "itemId": "100000008361850",
+      "itemSequence": 1011,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000108034113,
+      "itemId": "100000008361895",
+      "itemSequence": 1013,
+      "parentBillSequenceId": "300000106686380",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109022816,
+      "itemId": "100000008167643",
+      "itemSequence": 1043,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022769,
+      "itemId": "100000008167778",
+      "itemSequence": 1035,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022885,
+      "itemId": "100000008182326",
+      "itemSequence": 1011,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022849,
+      "itemId": "100000008182690",
+      "itemSequence": 1032,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000108413076,
+      "itemId": "100000008190238",
+      "itemSequence": 1,
+      "parentBillSequenceId": "300000106875571",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109602228,
+      "itemId": "100000008082202",
+      "itemSequence": 2,
+      "parentBillSequenceId": "300000106920522",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000109602229,
+      "itemId": "100000008180226",
+      "itemSequence": 1,
+      "parentBillSequenceId": "300000106920522",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000109602227,
+      "itemId": "100000008374860",
+      "itemSequence": 10,
+      "parentBillSequenceId": "300000106920522",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000109022749,
+      "itemId": "100000008183841",
+      "itemSequence": 1010,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022796,
+      "itemId": "100000008184240",
+      "itemSequence": 1006,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022789,
+      "itemId": "100000008184833",
+      "itemSequence": 1012,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000107965833,
+      "itemId": "100000007500535",
+      "itemSequence": 10001,
+      "parentBillSequenceId": "300000106814685",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109022802,
+      "itemId": "100000008184954",
+      "itemSequence": 1004,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022829,
+      "itemId": "100000008186572",
+      "itemSequence": 1005,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022754,
+      "itemId": "100000008186883",
+      "itemSequence": 1009,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022915,
+      "itemId": "100000008187806",
+      "itemSequence": 1002,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022841,
+      "itemId": "100000008188481",
+      "itemSequence": 1044,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000107619127,
+      "itemId": "100000007439474",
+      "itemSequence": 10002,
+      "parentBillSequenceId": "300000106614316",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000107619135,
+      "itemId": "100000008187438",
+      "itemSequence": 1,
+      "parentBillSequenceId": "300000106614316",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109545881,
+      "itemId": "100000007439474",
+      "itemSequence": 10002,
+      "parentBillSequenceId": "300000107079828",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000109545879,
+      "itemId": "100000008180104",
+      "itemSequence": 1,
+      "parentBillSequenceId": "300000107079828",
+      "planLevel": 3
+    },
+    {
+      "componentSequenceId": 300000109022902,
+      "itemId": "100000008190586",
+      "itemSequence": 1013,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000108111708,
+      "itemId": "100000007500535",
+      "itemSequence": 10001,
+      "parentBillSequenceId": "300000106818588",
+      "planLevel": 2
+    },
+    {
+      "componentSequenceId": 300000109022858,
+      "itemId": "100000008192393",
+      "itemSequence": 1007,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022823,
+      "itemId": "100000008192451",
+      "itemSequence": 1008,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022833,
+      "itemId": "100000008192627",
+      "itemSequence": 1003,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022727,
+      "itemId": "100000008220964",
+      "itemSequence": 1034,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022759,
+      "itemId": "100000008226129",
+      "itemSequence": 1040,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022837,
+      "itemId": "100000008230975",
+      "itemSequence": 2,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022889,
+      "itemId": "100000008327826",
+      "itemSequence": 998,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022912,
+      "itemId": "100000008341904",
+      "itemSequence": 1019,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022722,
+      "itemId": "100000008347580",
+      "itemSequence": 1,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022898,
+      "itemId": "100000008363469",
+      "itemSequence": 1028,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    },
+    {
+      "componentSequenceId": 300000109022735,
+      "itemId": "100000008435247",
+      "itemSequence": 1029,
+      "parentBillSequenceId": "300000106686523",
+      "planLevel": 1
+    }
+  ],
+  "itemCount": 169,
+  "items": [
+    {
+      "itemClass": "Audio Transducer",
+      "itemDescription": "AUDIO TRANSDUCER,MAGNETIC,SOUNDER,2.7KHZ,1.5V,TOP PORT,12MM RND",
+      "itemId": 100000007415280,
+      "itemNumber": "4081455",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Diagrams & Drawings",
+      "itemDescription": "FLUKE 867-2007    ,FASTENER,ACCESS DOOR",
+      "itemId": 100000007439474,
+      "itemNumber": "D1004962",
+      "itemStatus": "Document-Active",
+      "itemType": null,
+      "revisionCode": "105"
+    },
+    {
+      "itemClass": "Battery",
+      "itemDescription": "BATTERY,PRIMARY,ZN-MNO2,1.5V,2.24AH,15A,LR6,ALKALINE,AA,14X50MM,BULK",
+      "itemId": 100000007491887,
+      "itemNumber": "376756",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "012"
+    },
+    {
+      "itemClass": "Diagrams & Drawings",
+      "itemDescription": "FLUKE-318-8007, LENS PROTECTOR",
+      "itemId": 100000007499011,
+      "itemNumber": "D1093401",
+      "itemStatus": "Document-Active",
+      "itemType": null,
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Diagrams & Drawings",
+      "itemDescription": "INPUT INSULATOR RED",
+      "itemId": 100000007500535,
+      "itemNumber": "D2025821",
+      "itemStatus": "Document-Active",
+      "itemType": null,
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Diagrams & Drawings",
+      "itemDescription": "FLEX STRIP CIRCUIT ASSEMBLY",
+      "itemId": 100000007501240,
+      "itemNumber": "D2025873",
+      "itemStatus": "Document-Active",
+      "itemType": null,
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Diagrams & Drawings",
+      "itemDescription": "TPAK80-4-8001     ,STRAP 9",
+      "itemId": 100000007506861,
+      "itemNumber": "D1056118",
+      "itemStatus": "Document-Active",
+      "itemType": null,
+      "revisionCode": "101"
+    },
+    {
+      "itemClass": "Diagrams & Drawings",
+      "itemDescription": "200 AMP TRUE RMS AC/DC DIGITAL CLAMP METER WITH BACKLIGHT",
+      "itemId": 100000007515773,
+      "itemNumber": "D2025648",
+      "itemStatus": "Document-Active",
+      "itemType": null,
+      "revisionCode": "017"
+    },
+    {
+      "itemClass": "Cable Assembly",
+      "itemDescription": "CABLE ASSEMBLY, FLUKE-365",
+      "itemId": 100000007571373,
+      "itemNumber": "3928084",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,ELECTROLYTIC,TANTALUM,33UF,+-20%,10V,3528,TAPE",
+      "itemId": 100000007585630,
+      "itemNumber": "2280324",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,390PF,+-10%,50V,X7R,0805,TAPE",
+      "itemId": 100000007585849,
+      "itemNumber": "605318",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "049"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,220PF,+-5%,50V,C0G,0603,TAPE",
+      "itemId": 100000007586416,
+      "itemNumber": "1555365",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,ELECTROLYTIC,TANTALUM,10UF,+-10%,10V,3216,TAPE",
+      "itemId": 100000007586560,
+      "itemNumber": "1664362",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,0.1UF,+-20%,16V,X7R,0603,TAPE",
+      "itemId": 100000007586719,
+      "itemNumber": "1579869",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "009"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,1000PF,+-10%,50V,X7R,0603,TAPE",
+      "itemId": 100000007586980,
+      "itemNumber": "605342",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,2200PF,+-5%,50V,C0G,0805,TAPE",
+      "itemId": 100000007588676,
+      "itemNumber": "942524",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "060"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,8.2PF,+-5%,50V,C0G,0603,TAPE",
+      "itemId": 100000007588853,
+      "itemNumber": "2099218",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,10UF,+-20%,10V,X5R,1210,TAPE",
+      "itemId": 100000007589056,
+      "itemNumber": "1589417",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "008"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,1UF,+-10%,50V,X7R,1206,TAPE",
+      "itemId": 100000007589969,
+      "itemNumber": "2630935",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,100PF,+-10%,50V,C0G,0603,TAPE",
+      "itemId": 100000007590048,
+      "itemNumber": "605359",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "013"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,10 UF,+-10%,6.3V,X5R,0805,TAPE",
+      "itemId": 100000007590368,
+      "itemNumber": "2131344",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "009"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,0.01UF,+-10%,50V,X7R,0603,TAPE",
+      "itemId": 100000007591030,
+      "itemNumber": "644838",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "008"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,390PF,+-5%,50V,C0G,0603,TAPE",
+      "itemId": 100000007591048,
+      "itemNumber": "2275085",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,0.22UF,+-10%,10V,X7R,0603,TAPE",
+      "itemId": 100000007591276,
+      "itemNumber": "2275036",
+      "itemStatus": "Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,CERAMIC,1800PF,+-5%,50V,C0G,0805,TAPE",
+      "itemId": 100000007591471,
+      "itemNumber": "1550306",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "008"
+    },
+    {
+      "itemClass": "Capacitor",
+      "itemDescription": "CAPACITOR,ELECTROLYTIC,TANTALUM,33UF,+-20%,16V,6032,TAPE",
+      "itemId": 100000007591657,
+      "itemNumber": "691151",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "028"
+    },
+    {
+      "itemClass": "Chemical",
+      "itemDescription": "SEALANT,RTV,SILICONE ELASTOMER,TRANSLUCENT",
+      "itemId": 100000007599018,
+      "itemNumber": "2134911",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Case",
+      "itemDescription": "SOFT CASE,BLACK/YELLOW,FLUKE-365",
+      "itemId": 100000007602276,
+      "itemNumber": "3858245",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Case",
+      "itemDescription": "TPAK80-4-8001     ,STRAP 9 INCHES",
+      "itemId": 100000007602345,
+      "itemNumber": "669960",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "101"
+    },
+    {
+      "itemClass": "Circuit Protection",
+      "itemDescription": "VARISTOR,910,+-10%,1.0MA,5MM RADIAL,TAPE",
+      "itemId": 100000007608826,
+      "itemNumber": "876193",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "013"
+    },
+    {
+      "itemClass": "Crystal & Resonator",
+      "itemDescription": "CRYSTAL,32.768KHZ,20/-148PPM,7PF,1.5X5.2MM SMD CAN",
+      "itemId": 100000007611469,
+      "itemNumber": "4106875",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Diode & Rectifier",
+      "itemDescription": "DIODE,GF1B     SMR,DIODE,SI,100V,1A,DO-214",
+      "itemId": 100000007613200,
+      "itemNumber": "912451",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Decals And Labels",
+      "itemDescription": "FLUKE-365-8005,DECAL, CASE TOP",
+      "itemId": 100000007615063,
+      "itemNumber": "3839633",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Decals And Labels",
+      "itemDescription": "LABEL,CALIBRATION SEAL,F362/365",
+      "itemId": 100000007621490,
+      "itemNumber": "3890706",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Decals And Labels",
+      "itemDescription": "FLUKE-318-8007,LENS, PROTECTOR, (314,316 & 318)",
+      "itemId": 100000007622871,
+      "itemNumber": "1990617",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Diode & Rectifier",
+      "itemDescription": "DIODE,SI,PN,BAV199,70V,160MA,3US,DUAL,SERIES,SOT-23,TAPE",
+      "itemId": 100000007636236,
+      "itemNumber": "605805",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Diode & Rectifier",
+      "itemDescription": "DIODE,BAT54    SMR,DIODE,SI,SCHOTTKY,30V,200MA,SOT-23",
+      "itemId": 100000007636261,
+      "itemNumber": "876529",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Diode & Rectifier",
+      "itemDescription": "DIODE,SI,SCHOTTKY,RB521S30,30V,200MA,SOD-523,TAPE",
+      "itemId": 100000007636344,
+      "itemNumber": "2275013",
+      "itemStatus": "Pre-Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Display",
+      "itemDescription": "LCD BACKLIGHT,FLUKE-365",
+      "itemId": 100000007640843,
+      "itemNumber": "3858277",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Display",
+      "itemDescription": "LCD,TN,4-DIGIT,3.3V,TRANSFLECTIVE,1/4-DUTY,1/3-BIAS,6 O CLOCK, FUWA",
+      "itemId": 100000007641158,
+      "itemNumber": "3612130",
+      "itemStatus": "Pre-Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Electrical Connector",
+      "itemDescription": "CONNECTOR,SOCKET,1 ROW,1.25MMCTR,30-26AWG WIRE TERMINAL,5 POS,BULK",
+      "itemId": 100000007650828,
+      "itemNumber": "2670097",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Electrical Connector",
+      "itemDescription": "BUPENG-2017,SUPPORT,HOUSING RSOB",
+      "itemId": 100000007657061,
+      "itemNumber": "2396822",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Electrical Connector",
+      "itemDescription": "CONNECTOR,FLAT-FLEX,RECEPTACLE,1.0MMCRT, RT ANG SMD,8 POS,TAPE",
+      "itemId": 100000007657403,
+      "itemNumber": "3824330",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Electrical Module Assembly",
+      "itemDescription": "FLUKE-365-4201,JAW ASSEMBLY",
+      "itemId": 100000007679774,
+      "itemNumber": "3837126",
+      "itemStatus": "Active",
+      "itemType": "Subassembly",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Fastener",
+      "itemDescription": "SCREW,M2.2X0.8,8MM,PAN,PHILLIPS,STEEL,ZINC-BLACK CHROMATE,THD FORM",
+      "itemId": 100000007704576,
+      "itemNumber": "1991287",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Fastener",
+      "itemDescription": "SCREW,M3,13.5MM,PAN,PHILLIPS,STEEL,ZINC-BLACK CHROMATE,THREAD FORM",
+      "itemId": 100000007704909,
+      "itemNumber": "2388382",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Fastener",
+      "itemDescription": "SCREW,M3X0.5,5MM,PAN,PHILLIPS,STEEL,NICKEL PLATED,NYLON PATCH LOCK",
+      "itemId": 100000007705415,
+      "itemNumber": "4134196",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Fastener",
+      "itemDescription": "SCREW,M1.7X0.5,4MM,PAN,PHILLIPS,STEEL,ZINC-BLACK CHROMATE,THD FORM",
+      "itemId": 100000007709989,
+      "itemNumber": "3360231",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Fastener",
+      "itemDescription": "SCREW,M2.2X0.8,5MM,PAN,PHILLIPS,STEEL,ZINC-CLEAR,THREAD FORMING",
+      "itemId": 100000007710566,
+      "itemNumber": "2032777",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Firmware & Software",
+      "itemDescription": "FLUKE-365-9001,FIREWARE,MSP430FE427",
+      "itemId": 100000007721143,
+      "itemNumber": "3930259",
+      "itemStatus": "Pre-Active",
+      "itemType": "Reference Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Hardware",
+      "itemDescription": "BALL,CHROME STEEL,3MM DIA",
+      "itemId": 100000007748764,
+      "itemNumber": "2388499",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "IC Amplifier",
+      "itemDescription": "IC,OP AMP,TLV2252A,2.7-8V,850UV OFFSET,187KHZ,LOW PWR,R/R,SINGLE SUP,SO8",
+      "itemId": 100000007765227,
+      "itemNumber": "3537926",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "IC Analog Switch",
+      "itemDescription": "IC,ANALOG SWITCH,MAX4053A,3-16V,100 OHMS,TRIPPLE,SPDT,SO16,TAPE",
+      "itemId": 100000007767316,
+      "itemNumber": "2559455",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "IC Analog Switch",
+      "itemDescription": "CMOS 74HC4053  SMR,IC,CMOS,TRIPLE 2-1 LINE ANLG MUX,SOIC",
+      "itemId": 100000007767570,
+      "itemNumber": "929013",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "IC Amplifier",
+      "itemDescription": "IC,OP AMP,OPA348,2.1V TO 5.5V,5MV OFFSET,1 MHZ,R/R,S/S,SOT-23-5,TAPE",
+      "itemId": 100000007768385,
+      "itemNumber": "2743152",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "IC Amplifier",
+      "itemDescription": "CMOS 7101      SMR,IC,OP AMP,RAIL-RAIL,LOW PWR,SOT23-5",
+      "itemId": 100000007768709,
+      "itemNumber": "641537",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "102"
+    },
+    {
+      "itemClass": "IC Logic",
+      "itemDescription": "CMOS 4069      SMR,IC,CMOS,HEX INVERTER,SOIC",
+      "itemId": 100000007771242,
+      "itemNumber": "838375",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "013"
+    },
+    {
+      "itemClass": "IC Logic",
+      "itemDescription": "IC,LOGIC,74HC4094,2V-6V,8-BIT SHIFT REGISTER,3-STATE,TSSOP16,TAPE",
+      "itemId": 100000007772432,
+      "itemNumber": "2796809",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "IC Power Management",
+      "itemDescription": "IC,VOLTAGE REGULATOR,LINEAR,LP2985,1.8V,150MA,LDO,LOW POWER,SOT-23-5",
+      "itemId": 100000007778791,
+      "itemNumber": "3537915",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "IC Power Management",
+      "itemDescription": "IC,VOLTAGE REGULATOR,CHARGE PUMP,60403,1.6-5.5V,INVERTER,250KHZ,SOT-23-5,TAPE",
+      "itemId": 100000007778998,
+      "itemNumber": "3349852",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "IC Microcontroller",
+      "itemDescription": "IC,MICROCONTROLLER,MSP430FE427,16 BIT,1.8-3.6V,8.4MHZ,FLASH,PQFP64,TAPE",
+      "itemId": 100000007783061,
+      "itemNumber": "2741716",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "IC Voltage Reference",
+      "itemDescription": "IC,VOLTAGE REFERENCE,LM385,1.2V,SOT-23",
+      "itemId": 100000007784940,
+      "itemNumber": "1744822",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "102"
+    },
+    {
+      "itemClass": "Inductor",
+      "itemDescription": "INDUCTOR,CHOKE,COMMON MODE,90 OHM@100MHZ,370MADC,300MOHM,1206",
+      "itemId": 100000007786256,
+      "itemNumber": "3408039",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Inductor",
+      "itemDescription": "INDUCTOR,BEAD,50 OHMS@100MHZ,6ADC,10MOHM,1806",
+      "itemId": 100000007787251,
+      "itemNumber": "944645",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Instrument",
+      "itemDescription": "FLUKE-365, DETACHABLE 200A TRMS AC/DC CLAMP",
+      "itemId": 100000007824741,
+      "itemNumber": "3620217",
+      "itemStatus": "Active",
+      "itemType": "Outsourced FG",
+      "revisionCode": "017"
+    },
+    {
+      "itemClass": "Insulation Material",
+      "itemDescription": "FLUKE-362-8015,SHIELD MYLAR BOTTOM RIGHT JAW",
+      "itemId": 100000007953874,
+      "itemNumber": "3765765",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Insulation Material",
+      "itemDescription": "FLUKE-362-8017,SPACE SILICONE 8X8X3",
+      "itemId": 100000007955269,
+      "itemNumber": "3765783",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Insulation Material",
+      "itemDescription": "FLUKE-365-8002,SUPPORT, ELASTOMERIC, 8.2MM HT, 1.5MM THICK, 21.5MM L, BULK",
+      "itemId": 100000007956152,
+      "itemNumber": "3835663",
+      "itemStatus": "Pre-Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Insulation Material",
+      "itemDescription": "FLUKE-365-8001,CONNECTOR, ELASTOMERIC, 0.8MM CTR, 9.7MM H, 2MM T, 42MM L, BULK",
+      "itemId": 100000007956610,
+      "itemNumber": "3835656",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Insulation Material",
+      "itemDescription": "FLUKE-362-8019,SHIELD MYLAR TOP RIGHT JAW",
+      "itemId": 100000007957423,
+      "itemNumber": "3851904",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Magnetic Material",
+      "itemDescription": "MAGNETIC MATERIAL,MAGNET,NEODYMIUM,12KGAUSS,PLATED,1 X 0.187 INCHES,DISC,BULK",
+      "itemId": 100000008082202,
+      "itemNumber": "801164",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Keyboard Keypad",
+      "itemDescription": "FLUKE-365-8006,KEYPAD",
+      "itemId": 100000008083032,
+      "itemNumber": "3839745",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "LED",
+      "itemDescription": "LED,WHITE,2250MCD,20MA,3.6V,40 DEG VA,3MM,RADIAL",
+      "itemId": 100000008085343,
+      "itemNumber": "2795712",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Metal Fabricated",
+      "itemDescription": "FLUKE-381-8002,RSOB CNCT",
+      "itemId": 100000008088259,
+      "itemNumber": "3625552",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Metal Fabricated",
+      "itemDescription": "FLUKE-381-8007,INPUT POST",
+      "itemId": 100000008089283,
+      "itemNumber": "3625223",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Metal Fabricated",
+      "itemDescription": "FLUKE-362-8014,LEAF SPRING JAW",
+      "itemId": 100000008093538,
+      "itemNumber": "3765752",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Metal Fabricated",
+      "itemDescription": "FLUKE-362-8005,FUWA_CORE_3*8",
+      "itemId": 100000008097503,
+      "itemNumber": "3621540",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Metal Fabricated",
+      "itemDescription": "FLUKE-365-8004,CONTACT, SINGLE, BATTERY",
+      "itemId": 100000008099214,
+      "itemNumber": "3839625",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Metal Fabricated",
+      "itemDescription": "FLUKE 89-4-8012   ,BATTERY CONTACT, DUAL",
+      "itemId": 100000008102524,
+      "itemNumber": "666435",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "106"
+    },
+    {
+      "itemClass": "Metal Fabricated",
+      "itemDescription": "FLUKE-362-8006,JAW SPRING",
+      "itemId": 100000008102979,
+      "itemNumber": "3621557",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "PCB",
+      "itemDescription": "FLUKE-365-3004,FLEX STRIP CIRCUIT",
+      "itemId": 100000008135139,
+      "itemNumber": "3664919",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "PCB",
+      "itemDescription": "FLUKE-365-3003,PCB,EXCLUSIVE,JAW BOARD",
+      "itemId": 100000008139086,
+      "itemNumber": "3593107",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "007"
+    },
+    {
+      "itemClass": "PCB",
+      "itemDescription": "FLUKE-365-3001,PCB,EXCLUSIVE,MAIN BOARD",
+      "itemId": 100000008139593,
+      "itemNumber": "3565963",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "008"
+    },
+    {
+      "itemClass": "PCA",
+      "itemDescription": "FLUKE-365-4003,PCA,EXCLUSIVE,JAW BOARD",
+      "itemId": 100000008145418,
+      "itemNumber": "3593081",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "008"
+    },
+    {
+      "itemClass": "PCA",
+      "itemDescription": "FLUKE-365-4004,FLEX STRIP CIRCUIT ASSEMBLY",
+      "itemId": 100000008155493,
+      "itemNumber": "3664928",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "PCA",
+      "itemDescription": "FLUKE-365-4001,PCA,EXCLUSIVE,MAIN BOARD",
+      "itemId": 100000008155568,
+      "itemNumber": "3565942",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "011"
+    },
+    {
+      "itemClass": "Packaging",
+      "itemDescription": "SHIPPING BOX,REGULAR SLOTTED CARTON,KRAFT,32 LB B FLUTE,550MM,400MM,225MM",
+      "itemId": 100000008167643,
+      "itemNumber": "3929807",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Packaging",
+      "itemDescription": "PACKAGE,DISPLAY CONTAINER, FLUKE-365",
+      "itemId": 100000008167778,
+      "itemNumber": "3836302",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Plastic Resin",
+      "itemDescription": "INJ MLD CMPD ,BLK PC, MEDIUM VISCOSITY (096-120-001)",
+      "itemId": 100000008180104,
+      "itemNumber": "446393",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "020"
+    },
+    {
+      "itemClass": "Plastic Resin",
+      "itemDescription": "RESIN,TPE OVERMOLD,THERMOLAST TC8MLZ-9995,BLACK,MUNSELL N 0.5",
+      "itemId": 100000008180226,
+      "itemNumber": "5166000",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2014,KNOB ,RSOB",
+      "itemId": 100000008182326,
+      "itemNumber": "3839616",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "TPAK80-4-2002C,MAGNET STRAP, 669952, CHINA ONLY",
+      "itemId": 100000008182690,
+      "itemNumber": "4329190",
+      "itemStatus": "Active",
+      "itemType": "Finished Good",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2004,CASEBTM, JAW, LEFT,TRIGER",
+      "itemId": 100000008183334,
+      "itemNumber": "3837167",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2013,LENS, SPOTLIGHT, CASE, TOP",
+      "itemId": 100000008183841,
+      "itemNumber": "3837253",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-362-8012,SHIELD MYLAR LEFT JAW",
+      "itemId": 100000008184107,
+      "itemNumber": "3621617",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2009,BRAKET, RSOB",
+      "itemId": 100000008184240,
+      "itemNumber": "3928623",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-381-2015,INPUT INSULATOR RED",
+      "itemId": 100000008184833,
+      "itemNumber": "3625431",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2007,INPUT MODULE",
+      "itemId": 100000008184954,
+      "itemNumber": "3837198",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-8003,LCD FRAME",
+      "itemId": 100000008186571,
+      "itemNumber": "3837115",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2008,BATT DOOR",
+      "itemId": 100000008186572,
+      "itemNumber": "3837209",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2012,COVER, CASE,BOTTOM",
+      "itemId": 100000008186883,
+      "itemNumber": "3837248",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE 867-2007    ,FASTENER,ACCESS DOOR",
+      "itemId": 100000008187438,
+      "itemNumber": "948609",
+      "itemStatus": "Active",
+      "itemType": "Subassembly",
+      "revisionCode": "105"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2005,CASE, TOP",
+      "itemId": 100000008187806,
+      "itemNumber": "3837171",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2003,CASETOP, JAW, LEFT,TRIGER",
+      "itemId": 100000008188229,
+      "itemNumber": "3837159",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-867-2007-OSP,948609,FASTENER,ACCESS DOOR",
+      "itemId": 100000008188481,
+      "itemNumber": "2438126",
+      "itemStatus": "Active",
+      "itemType": "Finished Good",
+      "revisionCode": "105"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-362-2013,SENSOR CAP JAW BTM",
+      "itemId": 100000008189976,
+      "itemNumber": "3621475",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "TPAK80-4-2002     ,MAGNET STRAP",
+      "itemId": 100000008190238,
+      "itemNumber": "669952",
+      "itemStatus": "Active",
+      "itemType": "Subassembly",
+      "revisionCode": "103"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-381-2015-01,INPUT INSULATOR BLACK",
+      "itemId": 100000008190586,
+      "itemNumber": "3625446",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-771-8003,FLUKE-771-8003- PIVOT, JAW",
+      "itemId": 100000008190960,
+      "itemNumber": "2722998",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-362-2012,SENSOR CAP JAW TOP",
+      "itemId": 100000008191155,
+      "itemNumber": "3621466",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2001,CASETOP, JAW, RIGHT,W/OVERMOLD",
+      "itemId": 100000008191774,
+      "itemNumber": "3837132",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2010,HOUSING, RSOB CONTACT",
+      "itemId": 100000008192393,
+      "itemNumber": "3837227",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2011,COVER, CASE,TOP",
+      "itemId": 100000008192451,
+      "itemNumber": "3837230",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2006,CASE, BOTTOM",
+      "itemId": 100000008192627,
+      "itemNumber": "3837180",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Plastic Component",
+      "itemDescription": "FLUKE-365-2002,CASEBTM, JAW, RIGHT,W/OVERMOLD",
+      "itemId": 100000008192970,
+      "itemNumber": "3837144",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Publications",
+      "itemDescription": "MANUAL,USER MANUAL, FLUKE-365",
+      "itemId": 100000008220964,
+      "itemNumber": "3622684",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Publications",
+      "itemDescription": "CARD,MAGNET CAUTION CARD",
+      "itemId": 100000008226129,
+      "itemNumber": "3851366",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Publications",
+      "itemDescription": "CARD,IEC-61010 COMPLIANT STATEMENT CARD, DUAL RATED W/CAP",
+      "itemId": 100000008230975,
+      "itemNumber": "3995524",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,100K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008282730,
+      "itemNumber": "643863",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "021"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,36.5K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008282757,
+      "itemNumber": "1715430",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "106"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,METAL FILM,1M,+-1%,1W,100PPM,AXIAL,BULK",
+      "itemId": 100000008282839,
+      "itemNumber": "2416671",
+      "itemStatus": "Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,METAL FILM,68.1K,+-0.1%,0.1W,25PPM,0805,TAPE",
+      "itemId": 100000008282931,
+      "itemNumber": "2635131",
+      "itemStatus": "Pre-Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,1K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008283025,
+      "itemNumber": "649720",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "019"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,2.8K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008283059,
+      "itemNumber": "688572",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "018"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,301,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008283115,
+      "itemNumber": "1585205",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,4.99K,+-1%,0.125W,100PPM,0805,TAPE",
+      "itemId": 100000008283643,
+      "itemNumber": "928767",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "033"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,100,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008284008,
+      "itemNumber": "642196",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "018"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,3.32,+-1%,0.1W,200PPM,0603",
+      "itemId": 100000008285341,
+      "itemNumber": "2278391",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,2M,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008285837,
+      "itemNumber": "2151561",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,75K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008286284,
+      "itemNumber": "643939",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "016"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,511K,+-1%,0.1W,100PPM,0805,TAPE",
+      "itemId": 100000008286414,
+      "itemNumber": "943352",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "031"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,2K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008287408,
+      "itemNumber": "605086",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "018"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,47K,+-5%,0.1W,200PPM,0603,TAPE",
+      "itemId": 100000008287476,
+      "itemNumber": "641313",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "008"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,619,+-1%,0.1W,100PPM,0805,TAPE",
+      "itemId": 100000008288052,
+      "itemNumber": "2040616",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "007"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,5.6K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008288272,
+      "itemNumber": "3051900",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "003"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR       SMR,RES,CERM,18.2K,+-1%,0.1W,100PPM,0805",
+      "itemId": 100000008288582,
+      "itemNumber": "930177",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "032"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,10K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008289730,
+      "itemNumber": "605052",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "021"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,5.62K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008290690,
+      "itemNumber": "2278384",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,402,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008290785,
+      "itemNumber": "2278624",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,69.8K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008291153,
+      "itemNumber": "642360",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "018"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,10M,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008292171,
+      "itemNumber": "2452646",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,1M,+-5%,0.1W,200PPM,0603,TAPE",
+      "itemId": 100000008292417,
+      "itemNumber": "604998",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "008"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,681K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008292665,
+      "itemNumber": "2158936",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "007"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET COMPOSITION,1K,+-10%,1W,-1300+-300PPM,0.800 IN/20.32MM PREP,BULK",
+      "itemId": 100000008292669,
+      "itemNumber": "1612548",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "007"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,1M,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008292703,
+      "itemNumber": "643848",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "019"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,20K,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008292886,
+      "itemNumber": "1555198",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "010"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,249K,+-1%,0.125W,100PPM,0805,TAPE",
+      "itemId": 100000008293356,
+      "itemNumber": "3326143",
+      "itemStatus": "Pre-Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,10,+-1%,0.1W,100PPM,0603,TAPE",
+      "itemId": 100000008293630,
+      "itemNumber": "1540992",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "007"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,METAL FILM,1K,+-1%,0.063W,25PPM,0603,TAPE",
+      "itemId": 100000008293631,
+      "itemNumber": "3092122",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,METAL FILM,22.1K,+-0.1%,0.1W,25PPM,0805,TAPE",
+      "itemId": 100000008293723,
+      "itemNumber": "802683",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "016"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,499,+-1%,0.125W,100PPM,0805,TAPE",
+      "itemId": 100000008294187,
+      "itemNumber": "928978",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "033"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,CERMET,JUMPER,0,+0.05 MAX,0.125W,0805,TAPE",
+      "itemId": 100000008294437,
+      "itemNumber": "928705",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,METAL FILM,1K,+-0.1%,0.1W,25PPM,0805,TAPE",
+      "itemId": 100000008294701,
+      "itemNumber": "603966",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "014"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR,METAL FILM,3.6K,+-0.1%,0.1W,25PPM,0805,TAPE",
+      "itemId": 100000008296057,
+      "itemNumber": "3778490",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Sensor",
+      "itemDescription": "IC,HALL EFFECT,HG166A,12V MAX,1500 OHM INPUT,102MV HALLV,4 LEAD SMT,TAPE",
+      "itemId": 100000008315939,
+      "itemNumber": "3366833",
+      "itemStatus": "Pre-Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Services",
+      "itemDescription": "FACTORY BASE WARRANTY, 3 YEAR",
+      "itemId": 100000008327826,
+      "itemNumber": "1259780",
+      "itemStatus": "Active",
+      "itemType": "Service Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Switch",
+      "itemDescription": "BUPENG-8019,SPRING OF SWITCH",
+      "itemId": 100000008341904,
+      "itemNumber": "2390675",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Tape",
+      "itemDescription": "TAPE,POLYESTER FILM,FLAME RETARDANT,130C,25UM THICK,4MM WIDE,BLACK",
+      "itemId": 100000008343381,
+      "itemNumber": "3928341",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Thermistor",
+      "itemDescription": "THERMISTOR,POSITIVE,1.1K,+-20%,COATED,7.6MM RADIAL LS,TAPE",
+      "itemId": 100000008346789,
+      "itemNumber": "3237750",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Test Lead",
+      "itemDescription": "TL75-4201/CN,TEST LEADS WITH TWO CAPS",
+      "itemId": 100000008347580,
+      "itemNumber": "4306653",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "004"
+    },
+    {
+      "itemClass": "Transistor, Bipolar",
+      "itemDescription": "TRANSISTOR,SI,NPN,MMBT4401,60V,600MA,250MHZ,225MW,SOT-23,TAPE",
+      "itemId": 100000008361748,
+      "itemNumber": "942818",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "007"
+    },
+    {
+      "itemClass": "Transistor, Bipolar",
+      "itemDescription": "TRANSISTOR,SI,NPN,MMBT3904,40V,200MA,300MHZ,350MW,SOT-23",
+      "itemId": 100000008361850,
+      "itemNumber": "742676",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "010"
+    },
+    {
+      "itemClass": "Transistor, Bipolar",
+      "itemDescription": "TRANSISTOR,SI,PNP,MMBT3906,40V,200MA,250MHZ,225MW,SOT-23",
+      "itemId": 100000008361895,
+      "itemNumber": "742684",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "010"
+    },
+    {
+      "itemClass": "Wire",
+      "itemDescription": "WIRE,ETFE,UL10086,26AWG,BLK,40MM,STRIP/TIN, EA END,BULK",
+      "itemId": 100000008363469,
+      "itemNumber": "3951602",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "UNCLASSIFIED",
+      "itemDescription": "TOOL-M-2374,TPAK80-4-2002, MAGNET STRAP, CAVITY 4",
+      "itemId": 100000008374860,
+      "itemNumber": "5322664",
+      "itemStatus": "Pre-Active",
+      "itemType": "Reference Item",
+      "revisionCode": "001"
+    },
+    {
+      "itemClass": "Wire",
+      "itemDescription": "WIRE,ETFE,UL10086,26AWG,RED,40MM,STRIP/TIN, EA END,BULK",
+      "itemId": 100000008435247,
+      "itemNumber": "3951616",
+      "itemStatus": "Active",
+      "itemType": "Purchased Item",
+      "revisionCode": "002"
+    },
+    {
+      "itemClass": "Zener Diode",
+      "itemDescription": "TVS DIODE,SMAJ5.0CA,5V,5%,BIPOLAR,SMA,TAPE",
+      "itemId": 100000008456902,
+      "itemNumber": "2073208",
+      "itemStatus": "Service",
+      "itemType": "Purchased Item",
+      "revisionCode": "005"
+    },
+    {
+      "itemClass": "Resistor, Variable",
+      "itemDescription": "RESISTOR,VARIABLE,CERMET,1K,+-25%,0.15W,250PPM,3MM SMD,TAPE",
+      "itemId": 100000008515878,
+      "itemNumber": "2091948",
+      "itemStatus": "Active",
+      "itemType": "Disclosure Item",
+      "revisionCode": "006"
+    },
+    {
+      "itemClass": "Resistor",
+      "itemDescription": "RESISTOR",
+      "itemId": 300000127072234,
+      "itemNumber": "6006971",
+      "itemStatus": "New",
+      "itemType": null,
+      "revisionCode": "000"
+    }
+  ],
+  "referenceDesignators": [
+    {
+      "billSequenceId": 300000106550511,
+      "componentSequenceId": 300000107702087,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106614316,
+      "componentSequenceId": 300000107619127,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106614316,
+      "componentSequenceId": 300000107619135,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010093,
+      "referenceDesignator": [
+        "R034",
+        "R035"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010109,
+      "referenceDesignator": [
+        "C092"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010120,
+      "referenceDesignator": [
+        "C005",
+        "C006",
+        "C015",
+        "C016",
+        "C031"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010132,
+      "referenceDesignator": [
+        "C022",
+        "C038",
+        "C043",
+        "C067",
+        "C069"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010142,
+      "referenceDesignator": [
+        "J001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010149,
+      "referenceDesignator": [
+        "CR001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010156,
+      "referenceDesignator": [
+        "MP001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010163,
+      "referenceDesignator": [
+        "R025",
+        "R026"
+      ]
+    },
+    {
+      "billSequenceId": 300000106679117,
+      "componentSequenceId": 300000108010166,
+      "referenceDesignator": [
+        "R036"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034057,
+      "referenceDesignator": [
+        "R023"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034058,
+      "referenceDesignator": [
+        "U015"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034059,
+      "referenceDesignator": [
+        "U004"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034060,
+      "referenceDesignator": [
+        "R062",
+        "R064"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034062,
+      "referenceDesignator": [
+        "R059",
+        "R061"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034064,
+      "referenceDesignator": [
+        "R001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034066,
+      "referenceDesignator": [
+        "C074",
+        "C075",
+        "C077",
+        "C088"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034068,
+      "referenceDesignator": [
+        "R006",
+        "R077"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034070,
+      "referenceDesignator": [
+        "R033"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034072,
+      "referenceDesignator": [
+        "C035",
+        "C036"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034075,
+      "referenceDesignator": [
+        "CR002",
+        "CR004"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034077,
+      "referenceDesignator": [
+        "Q009"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034079,
+      "referenceDesignator": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q013"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034083,
+      "referenceDesignator": [
+        "U003",
+        "U007"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034086,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034088,
+      "referenceDesignator": [
+        "R003"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034091,
+      "referenceDesignator": [
+        "R090"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034094,
+      "referenceDesignator": [
+        "U008"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034097,
+      "referenceDesignator": [
+        "R050"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034101,
+      "referenceDesignator": [
+        "R037"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034105,
+      "referenceDesignator": [
+        "R011"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034108,
+      "referenceDesignator": [
+        "R044",
+        "R051",
+        "R054",
+        "R060",
+        "R067",
+        "R069",
+        "R092"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034111,
+      "referenceDesignator": [
+        "C002",
+        "C003",
+        "C004",
+        "C005",
+        "C006",
+        "C009",
+        "C010",
+        "C013",
+        "C014",
+        "C019",
+        "C021",
+        "C023",
+        "C026",
+        "C028",
+        "C029",
+        "C032",
+        "C034",
+        "C042",
+        "C044",
+        "C045",
+        "C046",
+        "C048",
+        "C051",
+        "C054",
+        "C055",
+        "C056",
+        "C064",
+        "C066",
+        "C071",
+        "C072",
+        "C073",
+        "C078",
+        "C081"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034113,
+      "referenceDesignator": [
+        "Q002",
+        "Q010",
+        "Q011"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034116,
+      "referenceDesignator": [
+        "U017"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034121,
+      "referenceDesignator": [
+        "U002",
+        "U012"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034124,
+      "referenceDesignator": [
+        "MP103"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034131,
+      "referenceDesignator": [
+        "C025"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034137,
+      "referenceDesignator": [
+        "R058"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034146,
+      "referenceDesignator": [
+        "C007",
+        "C008",
+        "C012",
+        "C047",
+        "C070",
+        "C080",
+        "C086",
+        "C087"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034155,
+      "referenceDesignator": [
+        "CR006"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034165,
+      "referenceDesignator": [
+        "CR001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034176,
+      "referenceDesignator": [
+        "U010",
+        "U011",
+        "U019"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034187,
+      "referenceDesignator": [
+        "U005"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034202,
+      "referenceDesignator": [
+        "R053"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034213,
+      "referenceDesignator": [
+        "R057"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034226,
+      "referenceDesignator": [
+        "R045",
+        "R063",
+        "R065"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034236,
+      "referenceDesignator": [
+        "R018",
+        "R085"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034245,
+      "referenceDesignator": [
+        "R016",
+        "R021"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034256,
+      "referenceDesignator": [
+        "R002",
+        "R038"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034268,
+      "referenceDesignator": [
+        "C024"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034274,
+      "referenceDesignator": [
+        "U006"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034284,
+      "referenceDesignator": [
+        "RV001",
+        "RV002"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034290,
+      "referenceDesignator": [
+        "RT001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034296,
+      "referenceDesignator": [
+        "R073"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034302,
+      "referenceDesignator": [
+        "J003"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034308,
+      "referenceDesignator": [
+        "R052"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034313,
+      "referenceDesignator": [
+        "R049"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034318,
+      "referenceDesignator": [
+        "C039",
+        "C040",
+        "C041"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034323,
+      "referenceDesignator": [
+        "MP001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034330,
+      "referenceDesignator": [
+        "MP101"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034338,
+      "referenceDesignator": [
+        "CR007"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034346,
+      "referenceDesignator": [
+        "R074"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034351,
+      "referenceDesignator": [
+        "C076"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034358,
+      "referenceDesignator": [
+        "R056",
+        "R100"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034364,
+      "referenceDesignator": [
+        "R005",
+        "R008",
+        "R010",
+        "R022"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034371,
+      "referenceDesignator": [
+        "C020",
+        "C057",
+        "C058",
+        "C060",
+        "C063",
+        "C068",
+        "C083",
+        "C084"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034378,
+      "referenceDesignator": [
+        "L001",
+        "L002"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034384,
+      "referenceDesignator": [
+        "T001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034390,
+      "referenceDesignator": [
+        "U014"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034395,
+      "referenceDesignator": [
+        "U009"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034401,
+      "referenceDesignator": [
+        "U001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034406,
+      "referenceDesignator": [
+        "MP104"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034412,
+      "referenceDesignator": [
+        "MP102"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034417,
+      "referenceDesignator": [
+        "R019"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034425,
+      "referenceDesignator": [
+        "C089"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034434,
+      "referenceDesignator": [
+        "R076"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034440,
+      "referenceDesignator": [
+        "C011",
+        "C079"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034445,
+      "referenceDesignator": [
+        "R020"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034450,
+      "referenceDesignator": [
+        "LS001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034455,
+      "referenceDesignator": [
+        "R075"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034460,
+      "referenceDesignator": [
+        "R039"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034464,
+      "referenceDesignator": [
+        "R009"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034469,
+      "referenceDesignator": [
+        "R007"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034474,
+      "referenceDesignator": [
+        "R004",
+        "R014",
+        "R015",
+        "R024",
+        "R027",
+        "R028",
+        "R042",
+        "R043",
+        "R066",
+        "R091"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034478,
+      "referenceDesignator": [
+        "R012",
+        "R013",
+        "R072",
+        "R102"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034481,
+      "referenceDesignator": [
+        "C017",
+        "C018",
+        "C062"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034485,
+      "referenceDesignator": [
+        "C001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034489,
+      "referenceDesignator": [
+        "Y001"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034493,
+      "referenceDesignator": [
+        "R055"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034497,
+      "referenceDesignator": [
+        "MP002",
+        "MP003"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034502,
+      "referenceDesignator": [
+        "J001",
+        "J002"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034506,
+      "referenceDesignator": [
+        "C037"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686380,
+      "componentSequenceId": 300000108034510,
+      "referenceDesignator": [
+        "C095"
+      ]
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022722,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022727,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022731,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022735,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022739,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022744,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022749,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022754,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022759,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022764,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022769,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022774,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022779,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022785,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022789,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022796,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022802,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022807,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022812,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022816,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022820,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022823,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022829,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022833,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022837,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022841,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022845,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022849,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022854,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022858,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022863,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022866,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022870,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022874,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022877,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022881,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022885,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022889,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022894,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022898,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022902,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022907,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022912,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106686523,
+      "componentSequenceId": 300000109022915,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106807974,
+      "componentSequenceId": 300000108099293,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106814685,
+      "componentSequenceId": 300000107965833,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106818588,
+      "componentSequenceId": 300000108111708,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084856,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084859,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084862,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084865,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084868,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084871,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084876,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084880,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084884,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084887,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084890,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084893,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084896,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084899,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084901,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084904,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084907,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084910,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084913,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106819990,
+      "componentSequenceId": 300000108084916,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106821926,
+      "componentSequenceId": 300000108072216,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106821926,
+      "componentSequenceId": 300000108072221,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106821926,
+      "componentSequenceId": 300000108072228,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106875571,
+      "componentSequenceId": 300000108413076,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106915335,
+      "componentSequenceId": 300000109625398,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106920522,
+      "componentSequenceId": 300000109602227,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106920522,
+      "componentSequenceId": 300000109602228,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000106920522,
+      "componentSequenceId": 300000109602229,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000107079828,
+      "componentSequenceId": 300000109545879,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000107079828,
+      "componentSequenceId": 300000109545881,
+      "referenceDesignator": []
+    },
+    {
+      "billSequenceId": 300000127072375,
+      "componentSequenceId": 300000127072376,
+      "referenceDesignator": []
+    }
+  ]
+}
