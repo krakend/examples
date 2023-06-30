@@ -1,0 +1,68 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "Multiple POST example with SOAP backends - KrakenD",
+  "port": 8080,
+  "host": ["http://webservices.oorsprong.org"],
+  "endpoints": [
+    {
+      "endpoint": "/test",
+      "backend": [
+        {
+          "url_pattern": "/websamples.countryinfo/CountryInfoService.wso",
+          "encoding": "xml",
+          "method": "POST",
+          "target": "Envelope.Body.CapitalCityResponse",
+          "deny": ["-m"],
+          "mapping": {"CapitalCityResult": "capital"},
+          "extra_config": {
+            "modifier/martian": {
+              "body.Modifier": {
+                "scope": ["request"],
+                "contentType": "text/xml; charset=utf-8",
+                "@comment": "The body should be base64-encoded",
+                "body": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHNvYXA6RW52ZWxvcGUgeG1sbnM6c29hcD0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iPgogIDxzb2FwOkJvZHk+CiAgICA8Q2FwaXRhbENpdHkgeG1sbnM9Imh0dHA6Ly93d3cub29yc3Byb25nLm9yZy93ZWJzYW1wbGVzLmNvdW50cnlpbmZvIj4KICAgICAgPHNDb3VudHJ5SVNPQ29kZT5BVTwvc0NvdW50cnlJU09Db2RlPgogICAgPC9DYXBpdGFsQ2l0eT4KICA8L3NvYXA6Qm9keT4KPC9zb2FwOkVudmVsb3BlPg=="
+              }
+            }
+          }
+        },
+        {
+          "url_pattern": "/websamples.countryinfo/CountryInfoService.wso",
+          "encoding": "xml",
+          "method": "POST",
+          "target": "Envelope.Body.CountryCurrencyResponse.CountryCurrencyResult",
+          "deny": ["-m"],
+          "mapping": {"sISOCode": "currency_symbol","sName": "currency_name"},
+          "extra_config": {
+            "modifier/martian": {
+              "body.Modifier": {
+                "scope": ["request"],
+                "contentType": "text/xml; charset=utf-8",
+                "@comment": "The body should be base64-encoded",
+                "body": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHNvYXA6RW52ZWxvcGUgeG1sbnM6c29hcD0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iPgogIDxzb2FwOkJvZHk+CiAgICA8Q291bnRyeUN1cnJlbmN5IHhtbG5zPSJodHRwOi8vd3d3Lm9vcnNwcm9uZy5vcmcvd2Vic2FtcGxlcy5jb3VudHJ5aW5mbyI+CiAgICAgIDxzQ291bnRyeUlTT0NvZGU+QVU8L3NDb3VudHJ5SVNPQ29kZT4KICAgIDwvQ291bnRyeUN1cnJlbmN5PgogIDwvc29hcDpCb2R5Pgo8L3NvYXA6RW52ZWxvcGU+"
+              }
+            }
+          }
+        },
+        {
+          "url_pattern": "/websamples.countryinfo/CountryInfoService.wso",
+          "encoding": "xml",
+          "method": "POST",
+          "target": "Envelope.Body.CountryFlagResponse",
+          "deny": ["-m"],
+          "mapping": {"CountryFlagResult": "flag"},
+          "extra_config": {
+            "modifier/martian": {
+              "body.Modifier": {
+                "scope": ["request"],
+                "contentType": "text/xml; charset=utf-8",
+                "@comment": "The body should be base64-encoded",
+                "body": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHNvYXA6RW52ZWxvcGUgeG1sbnM6c29hcD0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iPgogIDxzb2FwOkJvZHk+CiAgICA8Q291bnRyeUZsYWcgeG1sbnM9Imh0dHA6Ly93d3cub29yc3Byb25nLm9yZy93ZWJzYW1wbGVzLmNvdW50cnlpbmZvIj4KICAgICAgPHNDb3VudHJ5SVNPQ29kZT5BVTwvc0NvdW50cnlJU09Db2RlPgogICAgPC9Db3VudHJ5RmxhZz4KICA8L3NvYXA6Qm9keT4KPC9zb2FwOkVudmVsb3BlPg=="
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
