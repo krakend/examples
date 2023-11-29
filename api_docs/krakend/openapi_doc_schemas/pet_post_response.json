@@ -1,0 +1,17 @@
+{
+    "404": {
+        "content_type": "application/json",
+        "description": "Page not found",
+        "example": {
+            "status": "failed"
+        }
+    },
+    "200": {
+        "content_type": "application/json",
+        "description": "Request worked",
+        "example": {
+            "status": "ok",
+            "message": "Yay, the request worked!"
+        }
+    }
+}

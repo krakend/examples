@@ -1,0 +1,448 @@
+{
+    "$schema": "https://www.krakend.io/schema/v2.5/krakend.json",
+    "version": 3,
+    "extra_config": {
+        "@comment": "The $ref attribute works when Extended Flexible Config is enabled",
+        "documentation/openapi": {
+            "version": "1.0.0",
+            "host": "my.api.com",
+            "base_path": "/",
+            "terms_of_service": "http://url.to/tos",
+            "contact_name": "The wonderful API department",
+            "contact_email": "contact@example.com",
+            "contact_url": "https://your.company/developers",
+            "license_name": "Apache 2.0",
+            "license_url": "http://www.apache.org/licenses/LICENSE-2.0.html",
+            "tags": [
+                "pet management",
+                "adoptions",
+                "adopter"
+            ],
+            "schemes": [
+                "http",
+                "https"
+            ],
+            "description": {{ include "intro.md" | toJson}}
+        }
+    },
+    "endpoints": [
+        {
+            "@comment": "This endpoint serves the documentation under /docs/",
+            "endpoint": "/docs/*",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "extra_config": {
+                        "backend/static-filesystem": {
+                            "path": "./docs/"
+                        }
+                    },
+                    "url_pattern": "/",
+                    "host": [
+                        "http://leave-this-value"
+                    ]
+                }
+            ]
+        },
+        {
+            "endpoint": "/pet",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/pet"
+                }
+            ],
+            "extra_config": {
+                "validation/json-schema": {
+                    "@comment": "You can move this to 'request_definition' under the documentation/api below, but as a validator the gateway enforces the format to the user",
+                    "$ref": "./openapi_doc_schemas/pet_post_request.json"
+                },
+                "documentation/openapi": {
+                    "summary": "Add a new pet to the shelter",
+                    "tags": [
+                        "pet management"
+                    ],
+                    "response_definition": {
+                        "$ref": "./openapi_doc_schemas/pet_post_response.json"
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "/pet",
+            "method": "PUT",
+            "backend": [
+                {
+                    "method": "PUT",
+                    "url_pattern": "/pet"
+                }
+            ],
+            "extra_config": {
+                "validation/json-schema": {
+                    "$ref": "./openapi_doc_schemas/pet_post_request.json"
+                },
+                "documentation/openapi": {
+                    "summary": "Update an existing pet",
+                    "tags": [
+                        "pet management"
+                    ],
+                    "response_definition": {
+                        "$ref": "./openapi_doc_schemas/pet_post_response.json"
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "/pet/findByStatus",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/pet/findByStatus"
+                }
+            ],
+            "input_query_strings": [
+                "status"
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "Multiple status values can be provided with comma separated strings",
+                    "summary": "Finds Pets by status",
+                    "tags": [
+                        "pet management"
+                    ],
+                    "response_definition": {
+                        "200": {
+                        "status": "OK"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "/pet/findByTags",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/pet/findByTags"
+                }
+            ],
+            "input_query_strings": [
+                "tags"
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                    "summary": "Finds Pets by tags",
+                    "tags": [
+                        "pet management"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/pet/{petId}",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/pet/{petId}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "Returns a single pet",
+                    "summary": "Find pet by ID",
+                    "tags": [
+                        "pet management"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/pet/{petId}",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/pet/{petId}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Updates a pet in the shelter with form data",
+                    "tags": [
+                        "pet management"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/pet/{petId}",
+            "method": "DELETE",
+            "backend": [
+                {
+                    "method": "DELETE",
+                    "url_pattern": "/pet/{petId}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Deletes a pet",
+                    "tags": [
+                        "pet management"
+                    ]
+                }
+            },
+            "input_headers": [
+                "api_key"
+            ]
+        },
+        {
+            "endpoint": "/pet/{petId}/uploadImage",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/pet/{petId}/uploadImage"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "uploads an image",
+                    "tags": [
+                        "pet management"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/shelter/inventory",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/shelter/inventory"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "Returns a map of status codes to quantities",
+                    "summary": "Returns pet inventories by status",
+                    "tags": [
+                        "adoptions"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/shelter/adoption",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/shelter/adoption"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Place an adoption for a pet",
+                    "tags": [
+                        "adoptions"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/shelter/adoption/{adoptionId}",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/shelter/adoption/{adoptionId}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "For valid response try integer IDs with value \u003e= 1 and \u003c= 10. Other values will generated exceptions",
+                    "summary": "Find adoption by ID",
+                    "tags": [
+                        "adoptions"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/shelter/adoption/{adoptionId}",
+            "method": "DELETE",
+            "backend": [
+                {
+                    "method": "DELETE",
+                    "url_pattern": "/shelter/adoption/{adoptionId}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors",
+                    "summary": "Delete adoption by ID",
+                    "tags": [
+                        "adoptions"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/user"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "This can only be done by the logged in user.",
+                    "summary": "Create user",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user/createWithArray",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/user/createWithArray"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Creates list of users with given input array",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user/createWithList",
+            "method": "POST",
+            "backend": [
+                {
+                    "method": "POST",
+                    "url_pattern": "/user/createWithList"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Creates list of users with given input array",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user/login",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/user/login"
+                }
+            ],
+            "input_query_strings": [
+                "username",
+                "password"
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Logs user into the system",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user/logout",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/user/logout"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Logs out current logged in user session",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user/{username}",
+            "method": "GET",
+            "backend": [
+                {
+                    "method": "GET",
+                    "url_pattern": "/user/{username}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "summary": "Get user by user name",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user/{username}",
+            "method": "PUT",
+            "backend": [
+                {
+                    "method": "PUT",
+                    "url_pattern": "/user/{username}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "This can only be done by the logged in user.",
+                    "summary": "Updated user",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        },
+        {
+            "endpoint": "/user/{username}",
+            "method": "DELETE",
+            "backend": [
+                {
+                    "method": "DELETE",
+                    "url_pattern": "/user/{username}"
+                }
+            ],
+            "extra_config": {
+                "documentation/openapi": {
+                    "description": "This can only be done by the logged in user.",
+                    "summary": "Delete user",
+                    "tags": [
+                        "adopter"
+                    ]
+                }
+            }
+        }
+    ]
+}

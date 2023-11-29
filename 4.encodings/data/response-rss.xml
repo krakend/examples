@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Example RSS file</title>
-        <link>https://github.com/krakendio/examples</link>
+        <link>https://github.com/krakend/examples</link>
         <description>This is an example RSS</description>
         <generator>Manually generated file</generator>
         <copyright>KrakenD</copyright>
@@ -11,9 +11,9 @@
         <lastBuildDate>Wed, 16 Nov 2022 00:00:00 +0000</lastBuildDate>
         <item>
             <title>Test title</title>
-            <link>https://github.com/krakendio/examples/tree/main/4.encodings</link>
+            <link>https://github.com/krakend/examples/tree/main/4.encodings</link>
             <pubDate>Wed, 16 Nov 2022 00:00:00 +0000</pubDate>
-            <guid>https://github.com/krakendio/examples/tree/main/4.encodings</guid>
+            <guid>https://github.com/krakend/examples/tree/main/4.encodings</guid>
             <description>Some example description.</description>
         </item>
     </channel>

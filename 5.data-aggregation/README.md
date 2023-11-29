@@ -18,7 +18,7 @@ To get started with the example code, you will need to have KrakenD installed on
 Once you have KrakenD installed, you can clone this repository to your local machine and navigate to the examples directory.
 
 ```bash
-$ git clone https://github.com/krakendio/examples.git
+$ git clone https://github.com/krakend/examples.git
 $ cd 5.data-aggregation
 ```
 

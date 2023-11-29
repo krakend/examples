@@ -11,14 +11,12 @@
 
 ## KrakenD Demo environment with Docker Compose
 
-The [KrakenD Playground](https://github.com/krakendio/playground-community) is a complete demo environment, built with Docker Compose, that puts together the necessary pieces to get you started with our API Gateway, using tens of example use-cases and integrations, including multiple monitoring solutions, authentication integration with Auth0 and some internal APIs for testing. 
+The [KrakenD Playground](https://github.com/krakend/playground-community) is a complete demo environment, built with Docker Compose, that puts together the necessary pieces to get you started with our API Gateway, using tens of example use-cases and integrations, including multiple monitoring solutions, authentication integration with Auth0 and some internal APIs for testing.
 
 You can download the Playground to your laptop with a `git clone`:
 
 ```shell
-$ git clone https://github.com/krakendio/playground-community.git .
+$ git clone https://github.com/krakend/playground-community.git .
 ```
 
 After that, you just need to execute a `make start` from the root folder to get all the stack up & running.
-
-

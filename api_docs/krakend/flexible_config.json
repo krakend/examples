@@ -1,0 +1,11 @@
+{
+    "$schema": "https://www.krakend.io/schema/v2.5/flexible_config.json",
+    "partials": {
+        "paths": [
+            "openapi_markdown"
+        ]
+    },
+    "meta_key": "meta",
+    "out": "/tmp/krakend.json",
+    "debug": false
+}

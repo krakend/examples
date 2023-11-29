@@ -38,7 +38,7 @@ To use this repository, follow these steps:
 
 ```
 bash
-$ git clone https://github.com/krakendio/examples
+$ git clone https://github.com/krakend/examples
 $ cd websockets
 $ docker-compose up
 

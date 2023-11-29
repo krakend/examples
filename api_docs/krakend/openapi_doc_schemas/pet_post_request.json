@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "title": "Pet name",
+            "description": "The pet name as called by the adopting family",
+            "type": "string",
+            "examples": ["Larry the Dog"]
+        },
+        "type": {
+            "title": "Pet type",
+            "description": "The type of pet you want to adopt",
+            "type": "string",
+            "enum": ["dog","cat","rabbit"],
+            "examples": ["dog","cat"]
+        }
+    }
+}
