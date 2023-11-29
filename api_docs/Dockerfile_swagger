@@ -1,0 +1,27 @@
+FROM krakend/krakend-ee AS builder
+# This is an Enterprise feature, make sure to have the LICENSE in the krakend dir
+COPY krakend /etc/krakend
+
+RUN FC_DEBUG=true krakend check -d -t -c "krakend.json"
+# The flexible_config.json has an "out" pointing to /tmp/krakend.json
+RUN krakend openapi export -c /tmp/krakend.json -o /tmp/swagger.json
+
+
+# Swagger UI download
+FROM alpine as swagger
+# Clone the Swagger UI
+RUN apk add git
+RUN git clone https://github.com/swagger-api/swagger-ui.git
+# Replace the demo URL with yours: /docs/
+RUN sed -i "s@https://petstore.swagger.io/v2/@/docs/@" swagger-ui/dist/swagger-initializer.js
+RUN mv swagger-ui/dist /docs
+
+
+# Final clean image
+FROM krakend/krakend-ee AS production
+COPY krakend/LICENSE /etc/krakend/LICENSE
+# Copy the final configuration and the documentation
+# which will be served from KrakenD itself under /docs/
+COPY --from=builder /tmp/krakend.json /etc/krakend/krakend.json
+COPY --from=swagger /docs /etc/krakend/docs/
+COPY --from=builder /tmp/swagger.json /etc/krakend/docs/swagger.json
