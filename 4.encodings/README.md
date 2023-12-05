@@ -15,6 +15,12 @@ One of the main objectives of an API Gateway is help up to deal with complexity 
 
 In this example you find a fake API that implements responses in multiple formats, running a LWAN server in a docker compose. KrakenD will expose two endpoints that will aggregate all that responses, one consolidating the answer in JSON and another consolidating in XML.
 
+Just run the included docker-compose and try the endpoints below:
+
+```bash
+$ docker-compose up
+```
+
 ### Fake API Endpoints
 
 | Response format | Endpoint                                                                           |

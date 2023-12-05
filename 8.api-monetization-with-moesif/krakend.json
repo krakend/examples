@@ -1,0 +1,27 @@
+{
+  "@$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "host": ["http://localhost:8080"],
+  "debug_endpoint": true,
+  "echo_endpoint": true,
+  "extra_config": {
+    "telemetry/moesif": {
+      "application_id": "[YOUR_APP_ID]",
+      "user_id_headers": ["X-Tenant"],
+      "identify_company": {
+        "header": "X-Company"
+      },
+      "debug": true,
+      "log_body": true,
+      "event_queue_size": 1000,
+      "batch_size": 100,
+      "timer_wake_up_seconds": 1
+    }},
+  "endpoints": [{
+    "endpoint": "/test",
+    "backend": [{
+      "url_pattern": "/__debug/test"
+    }]
+
+  }]
+}
