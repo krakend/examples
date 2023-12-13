@@ -1,0 +1,25 @@
+{
+  "$schema": "https://www.krakend.io/schema/v2.3/krakend.json",
+  "version": 3,
+  "name": "My KrakenD API Gateway",
+  "port": 8080,
+  "host": ["http://localhost:8080"],
+  "echo_endpoint": true,
+  "endpoints": [
+    {
+      "endpoint": "/test",
+      "input_headers": ["Camera"],
+      "backend": [
+        {
+          "url_pattern": "/__echo/"
+        }
+      ],
+      "extra_config": {
+        "modifier/lua-endpoint": {
+          "allow_open_libs": true,
+          "pre": "local c = ctx.load(); c:headers('Camera', c:host():match('([^%.]+)') or 'unknown')"
+        }
+      }
+    }
+  ]
+}
