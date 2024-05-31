@@ -1,6 +1,6 @@
 # KrakenD Version
 VERSION := latest
-PLUGINAME := plugin
+PLUGINAME := plugins/modifier
 
 # Build KrakenD plugin using the KrakenD docker builder (for running inside docker)
 amd64:

@@ -86,7 +86,7 @@ func (registerer) RegisterLogger(v interface{}) {
 		return
 	}
 	logger = l
-	logger.Debug(fmt.Sprintf("[PLUGIN: %s] Logger loaded", pluginName))
+	logger.Debug(fmt.Sprintf("[PLUGIN: %s] Example handler plugin loaded", pluginName))
 }
 
 type Logger interface {
