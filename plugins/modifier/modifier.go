@@ -121,7 +121,7 @@ type config struct {
 }
 
 // parseConfig parses the configuration marshaling and unmarshaling into a struct.
-// you can also manually check for fields in the extra conffig map
+// you can also manually check for fields in the extra config map
 func parseConfig(namespace string, extra map[string]interface{}) (*config, error) {
 	ns := fmt.Sprintf("%s-%s", pluginName, namespace)
 	cfgRaw, ok := extra[ns].(map[string]interface{})
@@ -222,7 +222,7 @@ func (registerer) RegisterLogger(v interface{}) {
 		return
 	}
 	logger = l
-	logger.Debug(fmt.Sprintf("[PLUGIN: %s] Logger loaded", pluginName))
+	logger.Debug(fmt.Sprintf("[PLUGIN: %s] Example modifier plugin loaded", pluginName))
 }
 
 type Logger interface {

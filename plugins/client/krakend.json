@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "plugin": {
+    "pattern": ".so",
+    "folder": "/etc/krakend/plugins"
+  },
+  "host": ["http://localhost:8080/"],
+  "debug_endpoint": true,
+  "endpoints": [
+    {
+      "endpoint": "/example",
+      "backend": [
+        {
+          "url_pattern": "/__debug/",
+          "extra_config": {
+            "plugin/http-client": {
+              "name": "my-client-plugin",
+              "my-client-plugin": {
+                "option": "/some-path"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
