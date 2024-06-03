@@ -1,0 +1,41 @@
+{
+  "$schema": "https://www.krakend.io/schema/v2.5/krakend.json",
+  "name": "KrakenD API Gateway",
+  "version": 3,
+  "port": 8080,
+  "host": ["http://fake_api"],
+  "endpoints": [
+    {
+      "endpoint": "/user-and-reviews/{username}",
+      "backend": [
+        {
+          "method": "POST",
+          "url_pattern": "/index.php/user?whatever={username}",
+          "extra_config": {
+            "modifier/body-generator": {
+              "path": "users_post_body.tmpl",
+              "debug": true,
+              "content_type": "application/x-www-form-urlencoded"
+            }
+          }
+        },
+        {
+          "method": "POST",
+          "url_pattern": "/index.php/reviews?whatever={resp0_user_data.user_id}",
+          "extra_config": {
+            "modifier/body-generator": {
+              "path": "reviews_post_body.tmpl",
+              "debug": true,
+              "content_type": "application/x-www-form-urlencoded"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "proxy": {
+          "sequential": true
+        }
+      }
+    }
+  ]
+}
