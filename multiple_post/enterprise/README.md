@@ -2,6 +2,11 @@
 
 This example demonstrates how to use KrakenD to implement multiple POST calls in a sequential proxy, dynamically transform data from a GET request into a POST call, inject data from one service's response into another POST request, and aggregate the responses.
 
+
+| Note                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **⚠️&nbsp; Chained calls are considered an anti-pattern**<br><br>Using sequential calls is considered an anti-pattern because when you make a network service dependent on the other, you are increasing the latency, decreasing the performance, and eventually augmenting the error rate. <br/><br/>[Read more here &raquo;](https://www.krakend.io/docs/endpoints/sequential-proxy/#do-you-really-need-a-sequential-proxy) |
+
 ### Use Case
 
 We have two services:
