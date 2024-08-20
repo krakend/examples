@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1f9ead6d-e3eb-4f08-98a6-f30ab41a36f4",
+    "userId": "f4555bb0-c743-44f6-92a3-376e0f90df06",
+    "productId": "8d5f5b10-6f34-4421-a9ee-7a3a0e5a5be8",
+    "rating": 4.5,
+    "comment": "It's amazing"
+  },
+  {
+    "id": "3a0591e2-e762-4427-97d8-65f6fc7cc1fc",
+    "userId": "3e35e2c6-f58b-4752-a41f-9b77bc0b7a02",
+    "productId": "8d5f5b10-6f34-4421-a9ee-7a3a0e5a5be8",
+    "rating": 3.5,
+    "comment": "Not the best I've used."
+  },
+  {
+    "id": "c43e5a07-3add-40b3-8b46-8b6454938a72",
+    "userId": "7e685cd9-1195-4bb8-ab10-02d4c5c36960",
+    "productId": "8d5f5b10-6f34-4421-a9ee-7a3a0e5a5be8",
+    "rating": 5,
+    "comment": "Lovely!"
+  }
+]

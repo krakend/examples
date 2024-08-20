@@ -1,0 +1,31 @@
+{
+	"version": 3,
+	"name": "ecommerce-gateway",
+	"port": 8080,
+	"host": ["http://my_service"],
+	"endpoints": [
+		{
+			"endpoint": "/full-product-data/{id}",
+			"backend": [
+				{
+					"url_pattern": "/products.json?product_id={id}"
+				},
+				{
+					"url_pattern": "/product_reviews.json?product_id={id}",
+					"is_collection": true,
+					"mapping": {
+						"collection": "reviews"
+					},
+					"extra_config": {
+						"modifier/lua-backend": {
+							"allow_open_libs": true,
+							"sources": ["./json.lua","./merge_reviewers.lua"],
+							"live": true,
+							"post": "merge_reviewers(response.load())"
+						}
+					}
+				}
+			]
+		}
+	]
+}

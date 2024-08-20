@@ -1,0 +1,20 @@
+[
+  {
+    "id": "f4555bb0-c743-44f6-92a3-376e0f90df06",
+    "name": "John Doe",
+    "email": "john@doe.com",
+    "profilePicture": "https://example.com/profile1.jpg"
+  },
+  {
+    "id": "3e35e2c6-f58b-4752-a41f-9b77bc0b7a02",
+    "name": "Unknown Guy",
+    "email": "guy@unknown.com",
+    "profilePicture": "https://example.com/profile2.jpg"
+  },
+  {
+    "id": "7e685cd9-1195-4bb8-ab10-02d4c5c36960",
+    "name": "Molly",
+    "email": "molly@email.com",
+    "profilePicture": "https://example.com/profile3.jpg"
+  }
+]

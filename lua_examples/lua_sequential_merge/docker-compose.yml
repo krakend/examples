@@ -1,0 +1,18 @@
+version: "3"
+services:
+  krakend:
+    image: devopsfaith/krakend:watch
+    volumes:
+      - .:/etc/krakend
+    ports:
+      - "8080:8080"
+    command: [ "run", "-dc", "krakend.json", "" ]
+    depends_on:
+      - my_service
+  my_service:
+    image: busybox:latest
+    volumes:
+      - ./data:/var/www/
+    ports:
+      - "8000:80"
+    command: httpd -f -h /var/www/
