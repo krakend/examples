@@ -60,8 +60,11 @@ This creates a configuration with the defaults (check this endpoint under `out.j
     "jwt": ["admin","user","editor"],
     "custom_host": "http://custom-host.example.com"
 }
+```
+
 ## Code organization
 The code tree has the following meaning:
+
 ```
 ├── environment
 │   ├── common <-- contains all settings for all environments
