@@ -1,0 +1,17 @@
+{
+    "version": 3,
+    "name": "Your KrakenD API",
+    "timeout": "3s",
+    "endpoints": [
+      {{ $global_settings := . }}
+      {{ range $team_name, $team_endpoints := .endpoints }}
+        {{ range $idx, $endpoint := index $team_endpoints }}
+          {{ template "teams_endpoints.tmpl" ( merge $endpoint (dict "team" $team_name "global_settings" $global_settings)) }},
+        {{end}}
+      {{end}}
+      {{ template "infra_endpoints.tmpl" . }}
+    ],
+    "extra_config": {
+      "$ref": "settings/service_extra_config.json"
+    }
+}

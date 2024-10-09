@@ -1,0 +1,19 @@
+{
+    "endpoint": "/MA-Barackus",
+    "description": "Former member of US Army Special Forces unit. Tried by court martial for a crime he had not committed and convicted and sentenced to serve terms in a military prison. Later on, he escaped to Los Angeles and began working as soldier of fortune",
+    "method": "POST",
+    "payload": {
+        "type": "object",
+        "required": [
+            "rings",
+            "gold_chain"
+        ],
+        "properties": {
+            "gold_chain": {
+                "type": "string"
+            }
+        }
+    },
+    "jwt": false,
+    "custom_host": "http://custom-host.example.com"
+}

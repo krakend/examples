@@ -1,0 +1,5 @@
+---
+# Override the hosts array for development environment
+hosts:
+  A-team: http://A-team-development.example.com
+  Knight-Rider: http://knight-rider-development.example.com

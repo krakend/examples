@@ -1,0 +1,6 @@
+{{ if .}}
+"validation/json-schema": {{ . | toJson }}
+{{else}}
+    "@payload": "This endpoint does not validate payload with JSON schema"
+{{end}}
+

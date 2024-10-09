@@ -1,0 +1,12 @@
+{{if .}}
+    "auth/validator": {
+        "alg": "RS256",
+        "audience": ["http://api.example.com"],
+        "roles_key": "http://api.example.com/custom/roles",
+        "roles": {{ . | toJson }},
+        "jwk_url": "https://albert-test.auth0.com/.well-known/jwks.json",
+        "cache": true
+    }
+{{else}}
+    "@jwt": "This endpoint is public"
+{{end}}

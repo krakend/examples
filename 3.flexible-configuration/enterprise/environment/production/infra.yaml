@@ -1,0 +1,3 @@
+# This settings overrides specific values present under commonf/infra.yml, leaving the rest of the values as they appear in its parent.
+circuit_breaker:
+  consecutive_errors: 10

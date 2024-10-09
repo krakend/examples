@@ -1,0 +1,13 @@
+---
+# All the infrastructure values go here
+hosts:
+  # The template requires the hosts key to match exactly the folder name under endpoints
+  A-team: http://A-team-production-environment-unset.example.com
+  Knight-Rider: http://knight-rider-environment-unset.example.com
+circuit_breaker:
+  consecutive_errors: 10
+  log: true
+rate_limit:
+  max_rate_per_second: 5
+prometheus:
+  port: 9090

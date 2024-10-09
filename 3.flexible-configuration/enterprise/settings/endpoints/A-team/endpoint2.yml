@@ -1,0 +1,10 @@
+---
+endpoint: "/murdock"
+url_pattern: /__echo/MA
+method: POST
+payload: false
+jwt:
+- member
+- provider
+- admin
+custom_host: false

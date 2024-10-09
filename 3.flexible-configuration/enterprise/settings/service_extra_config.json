@@ -1,0 +1,38 @@
+{
+    "$schema": "https://www.krakend.io/schema/v2.7/service_extra_config.json",
+    "security/cors": {
+        "allow_methods": [
+            "POST",
+            "GET"
+        ],
+        "allow_origins": [
+            "http://foobar.com"
+        ],
+        "max_age": "12h"
+    },
+    "qos/ratelimit/service": {
+        "client_max_rate": {{ .infra.rate_limit.max_rate_per_second }},
+        "every": "1s",
+        "strategy": "header",
+        "key": "Authorization"
+      },
+    "telemetry/logging": {
+        "format": "default",
+        "level": "DEBUG",
+        "syslog": false,
+        "stdout": true
+    },
+    "telemetry/opentelemetry": {
+        "service_name": "krakend_prometheus_service",
+        "exporters": {
+            "prometheus": [
+                {
+                    "listen_ip": "0.0.0.0",
+                    "name": "local_prometheus",
+                    "port": {{ .infra.prometheus.port }},
+                    "process_metrics": true
+                }
+            ]
+        }
+    }
+}

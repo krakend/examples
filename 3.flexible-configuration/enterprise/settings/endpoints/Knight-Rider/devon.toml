@@ -1,0 +1,4 @@
+endpoint = "/devon-miles"
+method = "POST"
+jwt = false
+custom_host = "http://another-host.example.com"

@@ -1,0 +1,40 @@
+{
+     "endpoint": "/{{.team}}{{ .endpoint }}",
+     {{ if hasKey . "method" }}
+     "method": "{{.method }}",
+    {{end}}
+    {{ if hasKey . "description" }}
+    {{/* A good use of a description could be OpenAPI auto generation */}}
+     "@description": "{{.description }}",
+    {{end}}
+    "extra_config": {
+        {{ if hasKey . "jwt" }}
+            {{template "jwt_validation.tmpl" .jwt }},
+        {{end}}
+        {{ if hasKey . "payload" }}
+            {{template "payload_validation.tmpl" .payload }},
+        {{end}}
+        "@comment": "Endpoint from team {{ .team }}"
+    },
+    "backend": [
+        {
+            {{ if hasKey . "url_pattern" }}
+            "url_pattern": "{{ .url_pattern }}",
+            {{ end }}
+            {{ if hasKey . "custom_host" }}
+            "host": ["{{ .custom_host }}"]
+            {{else}}
+            "host": ["{{ index .global_settings.infra.hosts .team }}"]
+            {{end}},
+            "extra_config": {
+                "qos/circuit-breaker": {
+                    "interval": 60,
+                    "timeout": 10,
+                    "max_errors": {{ .global_settings.infra.circuit_breaker.consecutive_errors }},
+                    "name": "cb-{{.team}}{{ .endpoint }}",
+                    "log_status_change": {{ .global_settings.infra.circuit_breaker.log }}
+                }
+            }
+        }
+    ]
+}
