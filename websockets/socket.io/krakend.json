@@ -1,0 +1,48 @@
+{
+	"version": 3,
+	"port": 8080,
+	"endpoints": [{
+		"endpoint": "/",
+		"output_encoding": "no-op",
+		"backend": [{
+			"url_pattern": "/",
+			"host": ["localhost:3000"],
+			"encoding": "no-op"
+		}]
+	}, {
+		"endpoint": "/socket.io/socket.io.js",
+		"output_encoding": "no-op",
+		"backend": [{
+			"url_pattern": "/socket.io/socket.io.js",
+			"host": ["localhost:3000"],
+			"encoding": "no-op"
+		}]
+	}, {
+		"endpoint": "/socket.io/",
+		"input_query_strings": ["*"],
+		"input_headers": ["*"],
+		"backend": [{
+			"url_pattern": "/socket.io/?EIO=4&transport=websocket",
+			"disable_host_sanitize": true,
+			"host": [
+				"ws://localhost:3000"
+			]
+		}],
+		"extra_config": {
+			"websocket": {
+				"read_buffer_size": 4096,
+				"write_buffer_size": 4096,
+				"message_buffer_size": 4096,
+				"max_message_size": 3200000,
+				"write_wait": "10s",
+				"pong_wait": "60s",
+				"ping_period": "54s",
+				"max_retries": 0,
+				"backoff_strategy": "exponential",
+				"enable_direct_communication": true,
+				"disable_otel_metrics": true
+			}
+		}
+
+	}]
+}
