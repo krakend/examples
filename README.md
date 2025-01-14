@@ -4,47 +4,47 @@ Welcome to the KrakenD Examples repository. This repository contains various exa
 
 ## Examples
 
-### [0.krakend-docker](./0.krakend-docker/)
+### [krakend-docker](./krakend-docker/)
 - **Description:** Provides a minimal configuration file and instructions to run KrakenD using Docker.
 - **Key Features:** Basic configuration, single endpoint setup, Docker commands.
 
-### [1.playground](./1.playground/)
+### [playground](./playground/)
 - **Description:** A complete demo environment built with Docker Compose, featuring multiple use-cases and integrations.
 - **Key Features:** Demo setup, monitoring solutions, authentication integration, internal APIs for testing.
 
-### [2.debug](./2.debug/)
+### [debug](./debug/)
 - **Description:** Demonstrates how to use the KrakenD debug endpoint to get detailed request and response logs.
 - **Key Features:** Debugging service, parameter forwarding, detailed logs.
 
-### [3.flexible-configuration](./3.flexible-configuration/)
+### [flexible-configuration](./flexible-configuration/)
 - **Description:** Example implementation of flexible configuration, including variables, templates, code snippets, and basic logic.
 - **Key Features:** Docker setup, environment-based settings, immutable Docker artifact.
 
-### [4.encodings](./4.encodings/)
+### [encodings](./encodings/)
 - **Description:** Illustrates how to handle multiple response encodings and consolidate them using KrakenD.
 - **Key Features:** Aggregating responses, encoding consolidation.
 
-### [5.data-aggregation](./5.data-aggregation/)
+### [data-aggregation](./data-aggregation/)
 - **Description:** Shows how to use KrakenD to aggregate data from multiple sources into a single endpoint.
 - **Key Features:** Data aggregation, configuration examples.
 
-### [6.traffic-throttling](./6.traffic-throttling/)
+### [traffic-throttling](./traffic-throttling/)
 - **Description:** Demonstrates traffic throttling features of KrakenD, including rate limiting and circuit breaker patterns.
 - **Key Features:** Rate limiting, circuit breakers.
 
-### [7.backends-with-basic-auth](./7.backends-with-basic-auth/)
+### [backends-with-basic-auth](./backends-with-basic-auth/)
 - **Description:** Example of connecting KrakenD with backends that require Basic Authentication.
 - **Key Features:** Basic Authentication, backend configuration.
 
-### [8.api-monetization-with-moesif](./8.api-monetization-with-moesif/)
+### [api-monetization-with-moesif](./api-monetization-with-moesif/)
 - **Description:** Integration with Moesif for API analytics and monetization.
 - **Key Features:** API event tracking, subscription management, usage-based billing.
 
-### [9.rate-limits-per-tier](./9.rate-limits-per-tier/)
+### [rate-limits-per-tier](./rate-limits-per-tier/)
 - **Description:** Proof of concept for custom rate limits based on user tiers using API keys and Lua scripting.
 - **Key Features:** Custom rate limits, Lua scripting, API key authentication.
 
-### [10.api-docs-with-redocly](./10.api-docs-with-redocly/)
+### [api-docs-with-redocly](./api-docs-with-redocly/)
 - **Description:** Generates API documentation using Redocly and includes configuration examples.
 - **Key Features:** API documentation generation.
 
