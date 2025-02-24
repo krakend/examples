@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "lib/pagination.proto";
+import "lib/location.proto";
+import "lib/time_range.proto";
+
+package flight_finder;
+
+option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/flights";
+
+service Flights {
+    rpc FindFlight(FindFlightRequest) returns (FindFlightResponse) {}
+    rpc BookFlight(BookFlightRequest) returns (BookFlightResponse) {}
+}
+
+enum Class {
+    NO_CLASS = 0;
+    ECONOMY = 1;
+    BUSINESS = 2;
+}
+
+message FindFlightRequest {
+    pagination.Page page = 1;
+    krakend_playground.Location origin = 2;
+    krakend_playground.Location destination = 3;
+    krakend_playground.TimeRange departure = 4;
+    krakend_playground.TimeRange arrival = 5;
+    repeated Class classes = 6;
+    oneof discount {
+        int32 min_percentage_discount = 7;
+        int32 min_amount_discount = 8;
+    }
+}
+
+message Discount { 
+    string expires = 1;
+    oneof discount_type {
+        int32 percent = 2;
+        int32 absolute = 3;
+    }
+}
+
+message FlightInfo {
+    krakend_playground.Location origin = 1;
+    krakend_playground.Location destination = 2;
+    google.protobuf.Timestamp departure = 3;
+    google.protobuf.Timestamp arrival = 4;
+    map<string, Discount> discounts = 5;
+    string flight_id = 6;
+}
+
+message FindFlightResponse {
+    pagination.Page page = 1;
+    repeated FlightInfo flights = 2;
+}
+
+message Passenger {
+    string full_name = 1;
+    map<string, Discount> discounts = 2;
+}
+
+message BookFlightRequest {
+    string flight_id = 1;
+    repeated Passenger passengers = 2;
+    Passenger main_passenger = 3;
+}
+
+message BookFlightResponse {
+    string confirmation_id = 1;
+}

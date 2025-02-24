@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package krakend_playground;
+
+option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/lib";
+
+message TimeRange {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}

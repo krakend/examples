@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "lib/pagination.proto";
+import "lib/location.proto";
+
+package train_finder;
+
+option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/trains";
+
+service Trains {
+    rpc FindTrains(FindTrainRequest) returns (FindTrainResponse) {}
+    rpc GetTrainClasses(google.protobuf.Empty) returns (TrainClasses) {}
+}
+
+enum Class { 
+    ANY = 0;
+    REGIONAL = 1;
+    NATIONAL = 2;
+    INTERNATIONAL = 3;
+}
+
+message Date {
+    optional int32 year = 1;
+    optional int32 month = 2;
+    optional int32 day = 3;
+}
+
+message FindTrainRequest {
+    optional pagination.Page page = 1;
+    // required is problematic, so we put it here to test it
+    // (https://protobuf.dev/programming-guides/proto2/#specifying-rules)
+    required krakend_playground.Location origin = 2;
+    optional krakend_playground.Location destination = 3;
+    optional Date departure = 4;
+    optional Date arrival = 5;
+    repeated Class classes = 6;
+}
+
+message TrainInfo {
+    required krakend_playground.Location origin = 1;
+    required krakend_playground.Location destination = 2;
+    required google.protobuf.Timestamp departure = 3;
+    required google.protobuf.Timestamp arrival = 4;
+    optional int32 stopovers = 5;
+    optional Class class = 6 [default = INTERNATIONAL];
+    optional int32 wagons = 7 [default = 3];
+}
+
+message TrainClasses {
+    repeated Class classes = 1;
+    optional group Perks = 2 {
+        optional bool meal_included = 1;
+        optional bool preferent_onboard = 2;
+    }
+}
+
+message FindTrainResponse {
+    optional pagination.Page page = 1;
+    repeated TrainInfo trains = 2;
+}

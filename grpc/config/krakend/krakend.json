@@ -1,0 +1,107 @@
+{
+    "$schema": "https://www.krakend.io/schema/krakend.json",
+    "version": 3,
+    "name": "KrakenD Enterprise API Gateway",
+    "port": 8080,
+    "host": ["http://localhost:8080"],
+    "extra_config": {
+        "grpc": {
+            "catalog": [
+                "/etc/krakend/grpc_catalog"
+            ]
+        },
+        "server": {
+            "services": [
+                {
+                    "name": "flight_finder.Flights",
+                    "methods": [
+                        {
+                            "name": "FindFlight",
+                            "input_headers": [
+                                "x-my-custom-header"
+                            ],
+                            "payload_params": {
+                                "page.cursor": "cursor"
+                            },
+                            "backend": [
+                                {
+                                    "host": [ "http://localhost:8080" ],
+                                    "url_pattern": "/__debug/{cursor}/"
+                                },
+                                {
+                                  "host": [
+                                    "grpc_flights:4242"
+                                  ],
+                                  "url_pattern": "/flight_finder.Flights/FindFlight",
+                                  "extra_config": {
+                                    "backend/grpc": {
+                                      "use_request_body": true
+                                    }
+                                  }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "endpoints": [
+        {
+            "@comment": "/grpc/travel/search",
+            "input_query_strings": [
+                "lat",
+                "lon",
+                "tm"
+            ],
+            "endpoint": "/grpc/travel",
+            "backend": [
+                {
+                    "host": [
+                        "grpc_flights:4242"
+                    ],
+                    "url_pattern": "/flight_finder.Flights/FindFlight",
+                    "extra_config": {
+                        "backend/grpc": {
+                            "input_mapping": {
+                                "lat": "origin.position.latitude",
+                                "lon": "origin.position.longitude",
+                                "tm": "departure.start"
+                            },
+                            "response_naming_convention": "camelCase",
+                            "output_enum_as_string": true,
+                            "output_timestamp_as_string": true,
+                            "output_duration_as_string": true
+                        }
+                    }
+                },
+                {
+                    
+                    "host" : [
+                        "grpc_trains:4243"
+                    ],
+                    "group": "trains",
+                    "url_pattern": "/train_finder.Trains/FindTrains",
+                    "extra_config": {
+                        "backend/grpc": {
+                            "input_mapping": {
+                                "lat": "origin.position.latitude",
+                                "lon": "origin.position.longitude",
+                                "tm": "departure.start"
+                            },
+                            "response_naming_convention": "camelCase",
+                            "output_enum_as_string": true,
+                            "output_timestamp_as_string": true,
+                            "output_duration_as_string": true
+                        }
+                    }
+                },
+                {
+                    "group": "hotels",
+                    "host": ["fakeapi:8088"],
+                    "url_pattern": "/hotels"
+                }
+            ]
+        }
+    ]
+}

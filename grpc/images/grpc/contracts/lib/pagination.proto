@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package pagination;
+
+option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/lib";
+
+message Page {
+    int32 size = 1;
+    string cursor = 2;
+}
+
