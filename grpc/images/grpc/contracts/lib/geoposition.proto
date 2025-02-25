@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package krakend_playground;
+package krakend_lib;
 
-option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/lib";
+option go_package = "github.com/krakend/examples/grpc/images/grpc/genlibs/lib";
 
 message GeoPosition {
     float latitude = 1;

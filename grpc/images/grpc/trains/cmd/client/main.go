@@ -12,8 +12,8 @@ import (
 	"google.golang.org/grpc/credentials"
 	// "google.golang.org/grpc/credentials/insecure"
 
-	libpb "github.com/krakendio/playground-enterprise/images/grpc/genlib/lib"
-	trainspb "github.com/krakendio/playground-enterprise/images/grpc/genlib/trains"
+	libpb "github.com/krakend/examples/grpc/images/grpc/genlibs/lib"
+	trainspb "github.com/krakend/examples/grpc/images/grpc/genlibs/trains"
 )
 
 func main() {
@@ -80,7 +80,7 @@ func loadCredentials() credentials.TransportCredentials {
 	}
 
 	tlsConfig := &tls.Config{
-		RootCAs:      capool,
+		RootCAs: capool,
 	}
 	return credentials.NewTLS(tlsConfig)
 }

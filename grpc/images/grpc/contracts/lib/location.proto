@@ -2,9 +2,9 @@ syntax = "proto3";
 
 import "lib/geoposition.proto";
 
-package krakend_playground;
+package krakend_lib;
 
-option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/lib";
+option go_package = "github.com/krakend/examples/grpc/images/grpc/genlibs/lib";
 
 message Address {
     string country_code = 1;
@@ -14,5 +14,5 @@ message Address {
 
 message Location {
     Address address = 1;
-    krakend_playground.GeoPosition position  = 2;
+    krakend_lib.GeoPosition position  = 2;
 }

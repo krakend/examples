@@ -7,7 +7,7 @@ import "lib/time_range.proto";
 
 package flight_finder;
 
-option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/flights";
+option go_package = "github.com/krakend/examples/grpc/images/grpc/genlibs/flights";
 
 service Flights {
     rpc FindFlight(FindFlightRequest) returns (FindFlightResponse) {}
@@ -22,10 +22,10 @@ enum Class {
 
 message FindFlightRequest {
     pagination.Page page = 1;
-    krakend_playground.Location origin = 2;
-    krakend_playground.Location destination = 3;
-    krakend_playground.TimeRange departure = 4;
-    krakend_playground.TimeRange arrival = 5;
+    krakend_lib.Location origin = 2;
+    krakend_lib.Location destination = 3;
+    krakend_lib.TimeRange departure = 4;
+    krakend_lib.TimeRange arrival = 5;
     repeated Class classes = 6;
     oneof discount {
         int32 min_percentage_discount = 7;
@@ -42,8 +42,8 @@ message Discount {
 }
 
 message FlightInfo {
-    krakend_playground.Location origin = 1;
-    krakend_playground.Location destination = 2;
+    krakend_lib.Location origin = 1;
+    krakend_lib.Location destination = 2;
     google.protobuf.Timestamp departure = 3;
     google.protobuf.Timestamp arrival = 4;
     map<string, Discount> discounts = 5;

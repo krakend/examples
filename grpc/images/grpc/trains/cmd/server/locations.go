@@ -1,7 +1,7 @@
 package main
 
 import (
-	libpb "github.com/krakendio/playground-enterprise/images/grpc/genlib/lib"
+	libpb "github.com/krakend/examples/grpc/images/grpc/genlibs/lib"
 )
 
 var trainStations = []libpb.Location{

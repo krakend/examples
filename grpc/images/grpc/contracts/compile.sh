@@ -8,4 +8,3 @@ do
     fname=$(echo "${reldir}/${fname%.proto}.pb")
     protoc --descriptor_set_out=$fname $pfile
 done
-

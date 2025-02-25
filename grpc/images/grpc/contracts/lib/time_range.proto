@@ -2,9 +2,9 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
-package krakend_playground;
+package krakend_lib;
 
-option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/lib";
+option go_package = "github.com/krakend/examples/grpc/images/grpc/genlibs/lib";
 
 message TimeRange {
     google.protobuf.Timestamp start = 1;

@@ -12,7 +12,7 @@ import (
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/peer"
 
-	trainspb "github.com/krakendio/playground-enterprise/images/grpc/genlib/trains"
+	trainspb "github.com/krakend/examples/grpc/images/grpc/genlibs/trains"
 )
 
 func main() {

@@ -7,7 +7,7 @@ import "lib/location.proto";
 
 package train_finder;
 
-option go_package = "github.com/krakendio/playground-enterprise/images/grpc/genlib/trains";
+option go_package = "github.com/krakend/examples/grpc/images/grpc/genlibs/trains";
 
 service Trains {
     rpc FindTrains(FindTrainRequest) returns (FindTrainResponse) {}
@@ -31,16 +31,16 @@ message FindTrainRequest {
     optional pagination.Page page = 1;
     // required is problematic, so we put it here to test it
     // (https://protobuf.dev/programming-guides/proto2/#specifying-rules)
-    required krakend_playground.Location origin = 2;
-    optional krakend_playground.Location destination = 3;
+    required krakend_lib.Location origin = 2;
+    optional krakend_lib.Location destination = 3;
     optional Date departure = 4;
     optional Date arrival = 5;
     repeated Class classes = 6;
 }
 
 message TrainInfo {
-    required krakend_playground.Location origin = 1;
-    required krakend_playground.Location destination = 2;
+    required krakend_lib.Location origin = 1;
+    required krakend_lib.Location destination = 2;
     required google.protobuf.Timestamp departure = 3;
     required google.protobuf.Timestamp arrival = 4;
     optional int32 stopovers = 5;
