@@ -1,0 +1,78 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My first API Gateway - KrakenD",
+  "port": 8081,
+  "host": ["http://fakeapi:8088"],
+  "debug_endpoint": true,
+  "extra_config": { 
+    "telemetry/opentelemetry": {
+      "service_name": "krakend_prometheus_service",
+      "metric_reporting_period": 5,
+      "trace_sample_rate": 1,
+      "exporters": {
+        "otlp": [
+          {
+            "name": "datadog_five_seconds",
+            "disable_metrics": false,
+            "disable_traces": false,
+            "host": "http://localhost",
+            "port": 4317,
+            "use_http": false
+          },
+          {
+            "disable_metrics": false,
+            "disable_traces": true,
+            "host": "localhost",
+            "name": "eleven_seconds",
+            "port": 5011,
+            "use_http": true,
+            "custom_metric_reporting_period": 11,
+            "custom_reporting_period": 11
+          }
+        ]
+      },
+      "layers": {
+        "global": {
+          "disable_metrics": false,
+          "disable_propagation": false,
+          "disable_traces": false,
+          "report_headers": true
+        },
+        "proxy": {
+          "disable_metrics": false,
+          "disable_traces": false,
+          "report_headers": true
+        },
+        "backend": {
+          "metrics": {
+            "detailed_connection": true,
+            "disable_stage": false,
+            "read_payload": true,
+            "round_trip": true
+          },
+          "traces": {
+            "detailed_connection": true,
+            "disable_stage": false,
+            "read_payload": true,
+            "report_headers": true,
+            "round_trip": true
+          }
+        }
+      }
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/dashboard",
+      "backend": [
+        {
+          "url_pattern": "/customer.json"
+        },
+        {
+          "url_pattern": "/sales.json"
+        }
+      ]
+    }
+  ]
+}

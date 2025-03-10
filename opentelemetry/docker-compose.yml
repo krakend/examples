@@ -1,0 +1,18 @@
+services:
+  # krakend_ee:
+  #   image: krakend/krakend-ee:2.9.1-watch
+  #   volumes:
+  #     - ./config/krakend:/etc/krakend
+  #   ports:
+  #     - "1234:1234"
+  #     - "8080:8080"
+  #   command: ["run", "-d", "-c", "krakend.json"]
+  fakeapi:
+    image: dhontecillas/reqstatsrv:v0.3
+    ports:
+      - "8088:8088"
+    command:
+      - "/reqstatsrv"
+      - "/etc/reqstatsrv/config/config.json"
+    volumes:
+      - ./config/fakehttpapi:/etc/reqstatsrv/config
