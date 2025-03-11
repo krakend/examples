@@ -1,3 +1,4 @@
+# Using OTEL Collector to send metrics and traces to DataDog
 
 
 - [Extensive example of collector config for datadog](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/datadogexporter/examples/collector.yaml)

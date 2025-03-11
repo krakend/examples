@@ -1,7 +1,6 @@
 #!/bin/bash
 
-export BASE_URL="localhost:7979"
-
+export BASE_URL="localhost:8080"
 
 req_paths=(
   "/dashboard"

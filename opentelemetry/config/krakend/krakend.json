@@ -2,7 +2,7 @@
   "$schema": "https://www.krakend.io/schema/v3.json",
   "version": 3,
   "name": "My first API Gateway - KrakenD",
-  "port": 8081,
+  "port": 8080,
   "host": ["http://fakeapi:8088"],
   "debug_endpoint": true,
   "extra_config": { 
@@ -16,7 +16,7 @@
             "name": "datadog_five_seconds",
             "disable_metrics": false,
             "disable_traces": false,
-            "host": "http://localhost",
+            "host": "http://ddcollector",
             "port": 4317,
             "use_http": false
           },
