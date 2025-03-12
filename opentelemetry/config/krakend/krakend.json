@@ -5,7 +5,17 @@
   "port": 8080,
   "host": ["http://fakeapi:8088"],
   "debug_endpoint": true,
+  "plugin": {
+     "pattern": ".so",
+     "folder": "/etc/krakend/plugins"
+  },
   "extra_config": { 
+    "plugin/http-server": {
+        "name": ["otel-handler"],
+        "otel-handler": {
+            "foo": "bar"
+        }
+    },
     "telemetry/opentelemetry": {
       "service_name": "krakend_prometheus_service",
       "metric_reporting_period": 5,
@@ -14,19 +24,19 @@
         "otlp": [
           {
             "name": "datadog_five_seconds",
-            "disable_metrics": false,
-            "disable_traces": false,
             "host": "http://ddcollector",
             "port": 4317,
+            "disable_metrics": false,
+            "disable_traces": false,
             "use_http": false
           },
           {
-            "disable_metrics": false,
-            "disable_traces": true,
-            "host": "localhost",
             "name": "eleven_seconds",
-            "port": 5011,
-            "use_http": true,
+            "host": "jaeger",
+            "port": 4317,
+            "disable_metrics": true,
+            "disable_traces": false,
+            "use_http": false,
             "custom_metric_reporting_period": 11,
             "custom_reporting_period": 11
           }

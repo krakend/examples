@@ -21,3 +21,12 @@ services:
     image: otel/opentelemetry-collector-contrib
     volumes:
       - ./config/datadog/collector/collector.yaml:/etc/otelcol-contrib/config.yaml
+  jaeger:
+    image: jaegertracing/all-in-one:1
+    environment:
+      - "COLLECTOR_OTLP_ENABLED=true"
+    ports:
+      - "16686:16686" # web interface
+      - "14268:14268"
+      - "64317:4317" # otlp grpc
+      - "64318:4318" # otlp http
