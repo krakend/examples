@@ -6,10 +6,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"net/http"
 
 	"github.com/krakend/krakend-otel/state"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -31,17 +33,6 @@ func (r registerer) RegisterHandlers(f func(
 }
 
 func (r registerer) registerHandlers(_ context.Context, extra map[string]interface{}, h http.Handler) (http.Handler, error) {
-	// If the plugin requires some configuration, it should be under the name of the plugin. E.g.:
-	/*
-	   "extra_config":{
-	       "plugin/http-server":{
-	           "name":["my-handler-plugin"],
-	           "my-handler-plugin":{
-	               "someOption": "some-value"
-	           }
-	       }
-	   }
-	*/
 	// The config variable contains all the keys you have defined in the configuration
 	// if the key doesn't exists or is not a map the plugin returns an error and the default handler
 	config, err := parseConfig(extra)
@@ -51,28 +42,49 @@ func (r registerer) registerHandlers(_ context.Context, extra map[string]interfa
 		return h, errRegistererNotFound
 	}
 
+	// Get Access to the Global Open Telemetry config:
 	otelConf := state.GlobalConfig()
-	otelState := otelConf.OTEL() // get the global configured settings
+	otelState := otelConf.OTEL() // get the global configured state
+	tracer := otelState.Tracer()
+	meter := otelState.Meter()
 
-	// return the actual handler wrapping or your custom logic so it can be used as a replacement for the default http handler
+	instrumentName := "handler_plugin.default.duration"
+	if config.Opt != "" {
+		instrumentName = "handler_plugin." + config.Opt + ".duration"
+	}
+	fakeDurationInstrument, err := meter.Float64Histogram(instrumentName,
+		metric.WithExplicitBucketBoundaries(0.010, 0.050, 0.100, 0.150))
+
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		tracer := otelState.Tracer()
 		rCtx := req.Context()
 		span := trace.SpanFromContext(rCtx)
 
-		// TODO: try adding attributes to current span
-		span.SetAttributes(attribute.Key("my_plugin_key").String("my_plugin_value"))
-		spanName := "my_plugin_name"
+		// set attributes to current span
+		myValue := "my_plugin_value"
+		if config.Opt != "" {
+			myValue = config.Opt
+		}
+		logger.Warning(fmt.Sprintf("[PLUGIN: %s] setting attr 'pluginvalue' = %s",
+			pluginName, myValue))
+		span.SetAttributes(attribute.Key("pluginvalue").String(myValue))
 
-		logger.Warning("starting new span")
+		// create a new span
+		spanName := fmt.Sprintf("plugin-%s", pluginName)
+		logger.Info(fmt.Sprintf("[PLUGIN: %s] starting new span: %s", pluginName, spanName))
 		ctx, newSpan := tracer.Start(rCtx, spanName)
 		req = req.WithContext(ctx)
-		h.ServeHTTP(w, req)
-		newSpan.End()
-		fmt.Printf("DBG: ending span %s", req.URL.String())
-		logger.Warning("ending span", req.URL.String(), config.Opt)
 
-		//logger.Warning("config value option: %s", config.Opt)
+		// fake doing something:
+		rnd := rand.New(rand.NewSource(time.Now().UnixMicro()))
+		fakeDoSomethingDurationInstrument.Record(ctx, 
+            ((5 + (rnd.Int63() % 150)) * time.Millisecond)
+
+		h.ServeHTTP(w, req)
+
+		// end new span
+		newSpan.End()
+		logger.Info(fmt.Sprintf("[PLUGIN: %s] ending new span: %s", pluginName, spanName))
+
 	}), nil
 }
 

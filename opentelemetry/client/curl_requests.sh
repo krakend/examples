@@ -2,10 +2,15 @@
 
 export BASE_URL="localhost:8080"
 
+# req_paths=(
+#   "/dashboard"
+#   "/dashboard/"
+#   "/foo"
+# )
 req_paths=(
-  "/dashboard"
-  "/dashboard/"
-  "/foo"
+    "/dashboard?foo=3&bar=10"
+    "/dashboard?mytext=something"
+    "/dashboard?a=b"
 )
 
 for i in {1..100}

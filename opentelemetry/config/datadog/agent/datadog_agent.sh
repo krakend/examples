@@ -39,18 +39,3 @@ docker run --name dd-agent --rm \
     -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
     -v /var/lib/docker/containers:/var/lib/docker/containers:ro \
   gcr.io/datadoghq/agent:7
-
-
-# docker run --name dd-agent --rm \
-#     -e DD_SITE="datadoghq.com" \
-#     -e DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_GRPC_ENDPOINT="0.0.0.0:4317" \
-#     -e DD_OTLP_CONFIG_RECEIVER_PROTOCOLS_HTTP_ENDPOINT="0.0.0.0:4318" \
-#     -e DD_API_KEY=$DD_API_KEY \
-#     -e DD_APM_ENABLED=true \
-#     -p 14317:4317 \
-#     -p 14318:4318 \
-#     -v /var/run/docker.sock:/var/run/docker.sock:ro \
-#     -v /proc/:/host/proc/:ro \
-#     -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
-#     -v /var/lib/docker/containers:/var/lib/docker/containers:ro \
-#     gcr.io/datadoghq/agent:7

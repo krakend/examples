@@ -13,11 +13,11 @@
     "plugin/http-server": {
         "name": ["otel-handler"],
         "otel-handler": {
-            "foo": "bar"
+            "option": "server_option"
         }
     },
     "telemetry/opentelemetry": {
-      "service_name": "krakend_prometheus_service",
+      "service_name": "krakend_my_service",
       "metric_reporting_period": 5,
       "trace_sample_rate": 1,
       "exporters": {
@@ -75,9 +75,27 @@
   "endpoints": [
     {
       "endpoint": "/dashboard",
+      "input_headers": ["*"],
+      "input_query_strings": ["*"],
+      "extra_config": {
+        "plugin/req-resp-modifier": {
+            "name": ["otel-modifier-request"],
+            "otel-modifier-request": {
+                "option": "endpoint_option"
+            }
+        }
+      },
       "backend": [
         {
-          "url_pattern": "/customer.json"
+          "url_pattern": "/customer.json",
+          "extra_config": {
+            "plugin/req-resp-modifier": {
+                "name": ["otel-modifier-response"],
+                "otel-modifier-response": {
+                    "option": "backend_option"
+                }
+            }
+          }
         },
         {
           "url_pattern": "/sales.json"
