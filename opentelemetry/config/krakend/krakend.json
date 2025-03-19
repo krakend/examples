@@ -77,6 +77,15 @@
       "endpoint": "/dashboard",
       "input_headers": ["*"],
       "input_query_strings": ["*"],
+      "backend": [
+        { "url_pattern": "/customer.json" },
+        { "url_pattern": "/sales.json" }
+      ]
+    },
+    {
+      "endpoint": "/otelplugins",
+      "input_headers": ["*"],
+      "input_query_strings": ["*"],
       "extra_config": {
         "plugin/req-resp-modifier": {
             "name": ["otel-modifier-request"],
