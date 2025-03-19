@@ -5,6 +5,9 @@
 Place your license file under the `config/krakend` directory before starting 
 docker compose.
 
+You must have installed the [Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation/) 
+to have `protoc` command available.
+
 Then run:
 
 ```
@@ -44,7 +47,7 @@ prevails).
 In the backends we use `/flight_finder.Flights/FindFlights` and 
 `/train_finder.Trains/FindTrains`. 
 
-## gRPC servicees
+## gRPC services
 
 ### `flight_finder.Flights`
 
