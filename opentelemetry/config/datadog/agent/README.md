@@ -11,4 +11,3 @@ Or execute the script with:
 ```
 $ DD_API_KEY="YOUR_API_KEY" ./datadog_agent.sh
 ```
-

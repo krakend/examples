@@ -1,5 +1,9 @@
 # Using OTEL Collector to send metrics and traces to DataDog
 
+In order to generate a config with your DataDog API Key, you
+must setup a `DD_API_KEY` and have `envsubst` installed, and
+just run `./run.sh`
+
 
 - [Extensive example of collector config for datadog](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/datadogexporter/examples/collector.yaml)
 
