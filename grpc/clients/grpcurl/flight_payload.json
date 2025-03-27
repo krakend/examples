@@ -1,0 +1,37 @@
+{
+    "page": {
+        "size": 10,
+        "cursor": "2"
+    },
+    "origin": {
+        "address": {
+            "country_code": "ES",
+            "city": "Barcelona",
+            "address_line": "Diagonal 501"
+        },
+        "position": {
+            "latitude": 41.391,
+            "longitude": 2.14
+        }
+    },
+    "destination": {
+        "address": {
+            "country_code": "FI",
+            "city": "Helsinki",
+            "address_line": "Helsinki Airport"
+        },
+        "position": {
+            "latitude": 60.31,
+            "longitude": 24.96
+        }
+    },
+    "departure": {
+        "start": "2023-05-25T00:10:01.100666177-02:00",
+        "end": "2023-05-29T00:10:01.100666177-02:00"
+    },
+    "arrival": {
+        "start": "2023-05-25T00:10:01.100666177-02:00",
+        "end": "2023-05-29T00:10:01.100666177-02:00"
+    },
+    "min_percentage_discount": 5
+}

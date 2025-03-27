@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "lib/geoposition.proto";
+
+package krakend_lib;
+
+option go_package = "github.com/krakend/examples/grpc/images/grpc/genlibs/lib";
+
+message Address {
+    string country_code = 1;
+    string city = 2;
+    string address_line = 3;
+}
+
+message Location {
+    Address address = 1;
+    krakend_lib.GeoPosition position  = 2;
+}
