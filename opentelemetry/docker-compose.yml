@@ -1,0 +1,32 @@
+services:
+  krakend_ee:
+    image: krakend/krakend-ee:2.10.0-alpha1
+    volumes:
+      - ./config/krakend:/etc/krakend
+    ports:
+      - "1234:1234"
+      - "8080:8080"
+    command: ["run", "-d", "-c", "krakend.json"]
+  fakeapi:
+    image: dhontecillas/reqstatsrv:v0.3
+    ports:
+      - "8088:8088"
+    command:
+      - "/reqstatsrv"
+      - "/etc/reqstatsrv/config/config.json"
+    volumes:
+      - ./config/fakehttpapi:/etc/reqstatsrv/config
+  ddcollector:
+    hostname: ddcollector
+    image: otel/opentelemetry-collector-contrib
+    volumes:
+      - ./config/datadog/collector/collector.yaml:/etc/otelcol-contrib/config.yaml
+  jaeger:
+    image: jaegertracing/all-in-one:1
+    environment:
+      - "COLLECTOR_OTLP_ENABLED=true"
+    ports:
+      - "16686:16686" # web interface
+      - "14268:14268"
+      - "64317:4317" # otlp grpc
+      - "64318:4318" # otlp http
