@@ -111,6 +111,11 @@ func (r registerer) response(
 
 		logger.Debug("status code:", resp.StatusCode())
 
+		req, ok := resp.Request().(RequestWrapper)
+		if ok {
+			logger.Debug("original headers:", req.Headers())
+		}
+
 		// Return input directly if you don't modify the response
 		return input, nil
 	}
@@ -186,6 +191,7 @@ type ResponseWrapper interface {
 	IsComplete() bool
 	StatusCode() int
 	Headers() map[string][]string
+	Request() interface{}
 }
 
 type metadataWrapper struct {
@@ -212,6 +218,7 @@ func (r responseWrapper) IsComplete() bool             { return r.isComplete }
 func (r responseWrapper) Io() io.Reader                { return r.io }
 func (r responseWrapper) Headers() map[string][]string { return r.metadata.headers }
 func (r responseWrapper) StatusCode() int              { return r.metadata.statusCode }
+func (r responseWrapper) Request() interface{}         { return r.request }
 
 // This logger is replaced by the RegisterLogger method to load the one from KrakenD
 var logger Logger = noopLogger{}
