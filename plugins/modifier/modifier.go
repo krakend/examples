@@ -74,7 +74,7 @@ func (r registerer) request(
 		fmt.Println("query:", req.Query())
 		fmt.Println("path:", req.Path())
 
-		// Return input directly if you don't modify the response
+		// Return input directly if you don't modify the request
 		return input, nil
 	}
 }
@@ -218,7 +218,6 @@ func (r responseWrapper) IsComplete() bool             { return r.isComplete }
 func (r responseWrapper) Io() io.Reader                { return r.io }
 func (r responseWrapper) Headers() map[string][]string { return r.metadata.headers }
 func (r responseWrapper) StatusCode() int              { return r.metadata.statusCode }
-func (r responseWrapper) Request() interface{}         { return r.request }
 
 // This logger is replaced by the RegisterLogger method to load the one from KrakenD
 var logger Logger = noopLogger{}
@@ -250,5 +249,14 @@ func (n noopLogger) Warning(_ ...interface{})  {}
 func (n noopLogger) Error(_ ...interface{})    {}
 func (n noopLogger) Critical(_ ...interface{}) {}
 func (n noopLogger) Fatal(_ ...interface{})    {}
+
+var ctx = context.Background()
+
+// RegisterContext saves the KrakenD application context so KrakenD can inject
+// the context like we do with the logger
+func (registerer) RegisterContext(c context.Context) {
+	ctx = c
+	logger.Debug(fmt.Sprintf("[PLUGIN: %s] Context loaded", ModifierRegisterer))
+}
 
 func main() {}
