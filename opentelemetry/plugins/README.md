@@ -20,6 +20,13 @@ These examples cover two types of plugins: Handler/Server, and Request/Response 
 
 There are two main directories, each containing a specific type of plugin:
 
+### 1. Client Plugin
+
+Shows an example for using your own logic in a client, while maintaining
+the full trace and having metrics (only for HTTP requests).
+
+**More details and instructions can be found in the [`client` README](./client/README.md).**
+
 ### 2. Handler/Server Plugin
 
 The handler/server plugin shows how to create a custom HTTP handler, that sets
