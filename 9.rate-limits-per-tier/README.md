@@ -1,7 +1,7 @@
 # KrakenD API Gateway - Custom Rate Limiting PoC
 
 ## Overview
-This repo tries to implement custom rate limits for different user tiers in the KrakenD API Gateway, using API keys. The KrakenD configuration file demonstrates the usage of tiered ratelimits introduced int the [2.7 enterprise version](https://krakend.io/blog/krakend-ee-2.7-release-notes).
+This repo tries to implement custom rate limits for different user tiers in the KrakenD API Gateway, using API keys. The KrakenD configuration file demonstrates the usage of tiered ratelimits introduced in the [2.7 enterprise version](https://krakend.io/blog/krakend-ee-2.7-release-notes).
 
 ### Configuration File Description
 The KrakenD configuration file, `krakend.json`, is tailored for applying different rate limits based on user tiers (gold and silver) when using API keys.
