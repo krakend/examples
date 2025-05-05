@@ -1,17 +1,21 @@
 # KrakenD API Gateway - Custom Rate Limiting PoC
 
 ## Overview
-This repo tries to implement custom rate limits for different user tiers in the KrakenD API Gateway, using API keys. The KrakenD configuration file demonstrates a possible method, using Lua and internal endpoints, to achieve this functionality.
+This repo tries to implement custom rate limits for different user tiers in the KrakenD API Gateway, using API keys. The KrakenD configuration file demonstrates the usage of tiered ratelimits introduced int the [2.7 enterprise version](https://krakend.io/blog/krakend-ee-2.7-release-notes).
 
 ### Configuration File Description
 The KrakenD configuration file, `krakend.json`, is tailored for applying different rate limits based on user tiers (gold and silver) when using API keys.
 
 #### Key Components:
-- **auth/API-Keys**: Defines API keys for gold and silver user tiers.
-- **endpoints**: Configures the main endpoint `/test` and two internal endpoints for gold and silver tiers.
 
-#### Method for Implementing Custom Rate Limits:
-**URL Modification with Lua Scripting**: Involves modifying the URL by appending the user tier at the end using Lua scripting at the backend level.
+- **auth/API-Keys**: Defines API keys for gold and silver user tiers (roles).
+- `qos/ratelimit/tiered`: to define the ratelimit to apply to each defined tier.
+- **endpoints**: Configures the main endpoint `/test` and the `qos/ratelimit/tiered`.
+
+#### Notes:
+
+Take into account that the role will be the first that matches the list of provided roles 
+inside the endpoint's `extra_config` -> `auth/api-keys`. 
 
 ### Setup Instructions
 1. **Install & Run KrakenD using Docker**:
@@ -34,3 +38,10 @@ To test the rate limiting, use the following curl commands:
   ```
 
 Observe the rate limiting behavior based on the user tier.
+
+#### Us the `hey` tool to use parallel requests
+
+Download the [hey tool from github](https://github.com/rakyll/hey) and edit the `hey.sh`
+bash script to update the env var with the path of the `hey` executable.
+
+Then run the hey script to execute requests in parallel.

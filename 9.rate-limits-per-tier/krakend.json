@@ -7,6 +7,7 @@
   "echo_endpoint": true,
   "extra_config": {
     "auth/api-keys": {
+      "propagate_role": "X-Krakend-Role",
       "keys": [
         {
           "key": "gold-4d2c61e1-34c4-e96c-9456-15bd983c50",
@@ -22,49 +23,42 @@
   "endpoints": [
     {
       "endpoint": "/test",
-      "input_headers": ["Authorization"],
+      "input_headers": ["Authorization", "X-Krakend-Role"],
       "backend": [
         {
-          "url_pattern": "/__internal/test",
-          "extra_config": {
-            "modifier/lua-backend": {
-              "@comment": "Modify the current URL adding the tier at the end.",
-              "pre": "local r=request.load();local api_key=r:headers('Authorization');local tier=api_key:match('Bearer%s+(%w+)-');local url=r:url();r:url( url..'-'..tier);",
-              "allow_open_libs": true,
-              "live": true
-            }
-          }
+          "url_pattern": "/__debug"
         }
       ],
       "extra_config": {
         "auth/api-keys": {
-          "roles": ["user"]
-        }
-      }
-    },
-    {
-      "@comment": "Internal endpoint, just to configure client max rate to 3, for gold users.",
-      "endpoint": "/__internal/test-gold",
-      "backend": [
-        {"url_pattern": "/__debug/"}
-      ],
-      "extra_config": {
-        "auth/api-keys": {
-          "roles": ["gold"],
-          "client_max_rate": 3
-        }
-      }
-    },
-    {
-      "@comment": "Internal endpoint, just to configure client max rate to 1, for silver users.",
-      "endpoint": "/__internal/test-silver",
-      "backend": [
-        {"url_pattern": "/__debug/"}
-      ],
-      "extra_config": {
-        "auth/api-keys": {
-          "roles": ["silver"],
-          "client_max_rate": 1
+          "roles": ["gold", "silver"]
+        },
+        "qos/ratelimit/tiered": {
+            "tier_key": "X-Krakend-Role",
+            "tiers": [
+                {
+                    "tier_value": "gold",
+                    "tier_value_as": "literal",
+                    "ratelimit": {
+                        "client_max_rate": 10,
+                        "client_capacity": 10,
+                        "every": "10s",
+                        "strategy": "header",
+                        "key": "Authorization"
+                    }
+                },
+                {
+                    "tier_value": "value.matches('silver.*')",
+                    "tier_value_as": "policy",
+                    "ratelimit": {
+                        "client_max_rate": 5,
+                        "client_capacity": 5,
+                        "every": "10s",
+                        "strategy": "header",
+                        "key": "Authorization"
+                    }
+                }
+            ]
         }
       }
     }
