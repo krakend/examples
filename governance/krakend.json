@@ -1,0 +1,163 @@
+{
+  "@$schema": "https://www.krakend.io/schema/krakend.json",
+  "name": "KrakenD",
+  "version": 3,
+  "host": ["http://localhost:8080"],
+  "debug_endpoint": true,
+  "echo_endpoint": true,
+  "extra_config": {
+    "auth/api-keys": {
+      "propagate_role": "X-Krakend-Role",
+      "keys": [
+        {
+          "key": "sonic-010203",
+          "roles": ["user","sega"]
+        },
+        {
+          "key": "mario-040506",
+          "roles": ["user","nintendo"]
+        }
+      ]
+    },
+    "redis": {
+        "connection_pools": [
+            {
+                "name": "single_redis",
+                "address": "127.0.0.1:7000"
+            }
+        ],
+        "clusters": [
+            {
+                "name": "redis_cluster",
+                "addresses": [
+                    "127.0.0.1:7001",
+                    "127.0.0.1:7002",
+                    "127.0.0.1:7003"
+                ]
+            }
+        ]
+    },
+    "governance/processors": {
+        "quotas": [
+            {
+                "name": "rings",
+                "connection_name": "single_redis",
+                "on_failure_allow": false,
+                "rejecter_cache": {
+                    "N": 10000000,
+                    "P": 1e-8,
+                    "hash_name": "optimal"
+                },
+                "rules": [ 
+                    {
+                        "name": "shadow_generations",
+                        "limits": [
+                            { "amount": 10, "unit": "minute" },
+                            { "amount": 100, "unit": "hour"  }
+                        ]
+                    },
+                    {
+                        "name": "superstars",
+                        "limits": [
+                            { "amount": 5, "unit": "minute" },
+                            { "amount": 25, "unit": "hour" }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "mushrooms",
+                "connection_name": "single_redis",
+                "on_failure_allow": true,
+                "rejecter_cache": {
+                    "N": 10000000,
+                    "P": 1e-8,
+                    "hash_name": "optimal"
+                },
+                "rules": [ 
+                    {
+                        "name": "mario_world",
+                        "limits": [
+                            { "amount": 3, "unit": "minute" },
+                            { "amount": 20, "unit": "hour"  }
+                        ]
+                    },
+                    {
+                        "name": "mario_kart",
+                        "limits": [
+                            { "amount": 5, "unit": "minute" },
+                            { "amount": 50, "unit": "hour" }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "lifes",
+                "connection_name": "redis_cluster",
+                "hash_keys": false,
+                "on_failure_allow": false,
+                "rejecter_cache": {
+                    "N": 10000000,
+                    "P": 1e-8,
+                    "hash_name": "optimal"
+                },
+                "rules": [ 
+                    {
+                        "name": "max_lifes",
+                        "limits": [
+                            { "amount": 5, "unit": "minute" },
+                            { "amount": 15, "unit": "hour"  }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/test",
+      "input_headers": ["Authorization", "X-Krakend-Role"],
+      "backend": [
+        {
+          "url_pattern": "/__debug"
+        }
+      ],
+      "extra_config": {
+        "auth/api-keys": {
+          "roles": ["sega", "nintendo"]
+        },
+        "governance/quota": {
+            "quota_name": "max_rings",
+            "tier_key": "X-Krakend-Role",
+            "weight_key": "foo",
+            "weight_strategy": "body",
+            "tiers": [
+                {
+                    "tier_value": "gold",
+                    "tier_value_as": "literal",
+                    "ratelimit": {
+                        "client_max_rate": 10,
+                        "client_capacity": 10,
+                        "every": "10s",
+                        "strategy": "header",
+                        "key": "Authorization"
+                    }
+                },
+                {
+                    "tier_value": "value.matches('silver.*')",
+                    "tier_value_as": "policy",
+                    "ratelimit": {
+                        "client_max_rate": 5,
+                        "client_capacity": 5,
+                        "every": "10s",
+                        "strategy": "header",
+                        "key": "Authorization"
+                    }
+                }
+            ]
+        }
+      }
+    }
+  ]
+}

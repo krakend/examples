@@ -1,0 +1,23 @@
+services:
+  redis:
+    image: "redis:7"
+    ports:
+      - "7000:6379"
+  redis001:
+    image: "redis:7"
+    network_mode: "host"
+    volumes:
+      - "./config/redis001/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis002:
+    image: "redis:7"
+    network_mode: "host"
+    volumes:
+      - "./config/redis002/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis003:
+    image: "redis:7"
+    network_mode: "host"
+    volumes:
+      - "./config/redis003/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
