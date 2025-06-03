@@ -19,10 +19,6 @@ QUOTAS_GAME=galaga
 # QUOTAS_GAME=space_harrier
 # QUOTAS_GAME=r_type
 
-QUOTAS_GAME=galaga
-# QUOTAS_GAME=space_harrier
-# QUOTAS_GAME=r_type
-
 echo "Making ${NUM_REQUESTS} request(s), showing headers..."
 
 for i in $(seq 1 ${NUM_REQUESTS});

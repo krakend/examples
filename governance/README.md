@@ -38,3 +38,23 @@ have two players : `bart` and `homer` (that we use as authorization keys).
 In order to identify what game is using each player, we user an additional
 header `X-Game` (that can have one of these values: `galaga`, `space_harrier`
 or `r_type`).
+
+## Usage
+
+In order to run, we need to spawn a redis cluster and a standalone redis instance.
+There is a script under the `./redis` dir, called `start.sh` that spawns 
+redis instances with host network, and then executes a command to create a cluster.
+
+Once redis is in place, place your `LICENSE` in the current dir and run:
+
+```
+krakend run -c krakend.json
+```
+
+In the `clients` dir there is a `curl.sh` script, that you can edit to
+tweak the variables before making a request:
+
+- NUM_REQUESTS: number of sequential requests to make
+- QUOTAS_ENDPOINT: endpoint to call
+- QUOTAS_USER: the player to use
+- QUOTAS_GAME: the game to play
