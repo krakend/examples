@@ -2,7 +2,9 @@
   "@$schema": "https://www.krakend.io/schema/krakend.json",
   "name": "KrakenD",
   "version": 3,
-  "host": ["http://localhost:8080"],
+  "host": [
+    "http://localhost:8080"
+  ],
   "debug_endpoint": true,
   "echo_endpoint": true,
   "extra_config": {
@@ -11,123 +13,163 @@
       "keys": [
         {
           "key": "bart",
-          "roles": ["premium"]
+          "roles": [
+            "premium"
+          ]
         },
         {
           "key": "homer",
-          "roles": ["freemium"]
+          "roles": [
+            "freemium"
+          ]
         }
       ]
     },
     "redis": {
-        "connection_pools": [
-            {
-                "name": "my_single_redis",
-                "address": "127.0.0.1:7000"
-            }
-        ],
-        "clusters": [
-            {
-                "name": "my_redis_cluster",
-                "addresses": [
-                    "127.0.0.1:7001",
-                    "127.0.0.1:7002",
-                    "127.0.0.1:7003"
-                ]
-            }
-        ]
+      "connection_pools": [
+        {
+          "name": "my_single_redis",
+          "address": "127.0.0.1:7000"
+        }
+      ],
+      "clusters": [
+        {
+          "name": "my_redis_cluster",
+          "addresses": [
+            "127.0.0.1:7001",
+            "127.0.0.1:7002",
+            "127.0.0.1:7003"
+          ]
+        }
+      ]
     },
     "governance/processors": {
-        "quotas": [
+      "quotas": [
+        {
+          "name": "weapon_power_up",
+          "connection_name": "my_single_redis",
+          "on_failure_allow": false,
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1E-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
             {
-                "name": "weapon_power_up",
-                "connection_name": "my_single_redis",
-                "on_failure_allow": false,
-                "rejecter_cache": {
-                    "N": 10000000,
-                    "P": 1e-8,
-                    "hash_name": "optimal"
+              "name": "easy",
+              "limits": [
+                {
+                  "amount": 3,
+                  "unit": "hour"
                 },
-                "rules": [ 
-                    {
-                        "name": "easy",
-                        "limits": [
-                            { "amount": 3, "unit": "hour" },
-                            { "amount": 9, "unit": "day"  }
-                        ]
-                    },
-                    {
-                        "name": "hard",
-                        "limits": [
-                            { "amount": 1, "unit": "hour" },
-                            { "amount": 5, "unit": "day" }
-                        ]
-                    }
-                ]
+                {
+                  "amount": 9,
+                  "unit": "day"
+                }
+              ]
             },
             {
-                "name": "squad_call",
-                "connection_name": "my_single_redis",
-                "on_failure_allow": true,
-                "rejecter_cache": {
-                    "N": 10000000,
-                    "P": 1e-8,
-                    "hash_name": "optimal"
+              "name": "hard",
+              "limits": [
+                {
+                  "amount": 1,
+                  "unit": "hour"
                 },
-                "rules": [ 
-                    {
-                        "name": "easy",
-                        "limits": [
-                            { "amount": 4, "unit": "hour" },
-                            { "amount": 8, "unit": "day"  }
-                        ]
-                    },
-                    {
-                        "name": "hard",
-                        "limits": [
-                            { "amount": 2, "unit": "hour" },
-                            { "amount": 4, "unit": "day" }
-                        ]
-                    }
-                ]
-            },
-            {
-                "name": "lifes",
-                "connection_name": "my_redis_cluster",
-                "hash_keys": true,
-                "on_failure_allow": false,
-                "rejecter_cache": {
-                    "N": 10000000,
-                    "P": 1e-8,
-                    "hash_name": "optimal"
-                },
-                "rules": [ 
-                    {
-                        "name": "paid",
-                        "limits": [
-                            { "amount": 10, "unit": "hour" },
-                            { "amount": 150, "unit": "day"  }
-                        ]
-                    },
-                    {
-                        "name": "free",
-                        "limits": [
-                            { "amount": 5, "unit": "hour" },
-                            { "amount": 15, "unit": "day"  }
-                        ]
-                    }
-                ]
+                {
+                  "amount": 5,
+                  "unit": "day"
+                }
+              ]
             }
-        ]
+          ]
+        },
+        {
+          "name": "squad_call",
+          "connection_name": "my_single_redis",
+          "on_failure_allow": true,
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1E-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
+            {
+              "name": "easy",
+              "limits": [
+                {
+                  "amount": 4,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 8,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "hard",
+              "limits": [
+                {
+                  "amount": 2,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 4,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "lifes",
+          "connection_name": "my_redis_cluster",
+          "hash_keys": true,
+          "on_failure_allow": false,
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1E-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
+            {
+              "name": "paid",
+              "limits": [
+                {
+                  "amount": 10,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 150,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "free",
+              "limits": [
+                {
+                  "amount": 5,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 15,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   },
   "endpoints": [
     {
       "endpoint": "/request_weapon_power_up",
       "input_headers": [
-          "Authorization", 
-          "X-Krakend-Role",
-          "X-Game"
+        "Authorization",
+        "X-Krakend-Role",
+        "X-Game"
       ],
       "backend": [
         {
@@ -136,76 +178,91 @@
       ],
       "extra_config": {
         "auth/api-keys": {
-          "roles": ["freemium", "premium"]
+          "roles": [
+            "freemium",
+            "premium"
+          ]
         },
         "governance/quota": {
-            "quota_name": "weapon_power_up",
-            "tier_key": "X-Game",
-            "tiers": [
-                {
-                    "rule_name": "easy", 
-                    "tier_value": "galaga",
-                    "tier_value_as": "literal",
-                    "strategy": "header",
-                    "key": "Authorization"
-                },
-                {
-                    "rule_name": "hard",
-                    "tier_value": "value.matches('.*')",
-                    "tier_value_as": "policy",
-                    "strategy": "header",
-                    "key": "Authorization"
-                }
-            ]
+          "quota_name": "weapon_power_up",
+          "tier_key": "X-Game",
+          "tiers": [
+            {
+              "rule_name": "easy",
+              "tier_value": "galaga",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "hard",
+              "tier_value": "value.matches('.*')",
+              "tier_value_as": "policy",
+              "strategy": "header",
+              "key": "Authorization"
+            }
+          ]
         }
       }
     },
     {
       "endpoint": "/request_squad_call",
       "input_headers": [
-          "Authorization", 
-          "X-Krakend-Role",
-          "X-Game"
+        "Authorization",
+        "X-Krakend-Role",
+        "X-Game"
       ],
       "backend": [
         {
           "host": [
-              "http://localhost:9876"
+            "http://localhost:9876"
           ],
-          "url_pattern": "/consume"
+          "url_pattern": "/consume.json",
+          "encoding": "json",
+          "extra_config": {
+            "backend/static-filesystem": {
+              "path": "./fake_backend/data"
+            }
+          }
         }
       ],
       "extra_config": {
         "auth/api-keys": {
-          "roles": ["freemium", "premium"]
+          "roles": [
+            "freemium",
+            "premium"
+          ]
         },
         "governance/quota": {
-            "quota_name": "squad_call",
-            "tier_key": "X-Game",
-            "weight_key": "consumed",
-            "weight_strategy": "body",
-            "tiers": [
-                {
-                    "rule_name": "hard", 
-                    "tier_value": "galaga",
-                    "tier_value_as": "literal",
-                    "strategy": "header",
-                    "key": "Authorization"
-                },
-                {
-                    "rule_name": "easy",
-                    "tier_value": "value.matches('.*')",
-                    "tier_value_as": "policy",
-                    "strategy": "header",
-                    "key": "Authorization"
-                }
-            ]
+          "quota_name": "squad_call",
+          "tier_key": "X-Game",
+          "weight_key": "consumed",
+          "weight_strategy": "body",
+          "tiers": [
+            {
+              "rule_name": "hard",
+              "tier_value": "galaga",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "easy",
+              "tier_value": "value.matches('.*')",
+              "tier_value_as": "policy",
+              "strategy": "header",
+              "key": "Authorization"
+            }
+          ]
         }
       }
     },
     {
       "endpoint": "/consume_life",
-      "input_headers": ["Authorization", "X-Krakend-Role"],
+      "input_headers": [
+        "Authorization",
+        "X-Krakend-Role"
+      ],
       "backend": [
         {
           "url_pattern": "/__debug/dbg_consume_life/"
@@ -213,27 +270,30 @@
       ],
       "extra_config": {
         "auth/api-keys": {
-          "roles": ["premium", "freemium"]
+          "roles": [
+            "premium",
+            "freemium"
+          ]
         },
         "governance/quota": {
-            "quota_name": "lifes",
-            "tier_key": "X-Krakend-Role",
-            "tiers": [
-                {
-                    "rule_name": "paid", 
-                    "tier_value": "premium",
-                    "tier_value_as": "literal",
-                    "strategy": "header",
-                    "key": "Authorization"
-                },
-                {
-                    "rule_name": "free",
-                    "tier_value": "value.matches('free.*')",
-                    "tier_value_as": "policy",
-                    "strategy": "header",
-                    "key": "Authorization"
-                }
-            ]
+          "quota_name": "lifes",
+          "tier_key": "X-Krakend-Role",
+          "tiers": [
+            {
+              "rule_name": "paid",
+              "tier_value": "premium",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "free",
+              "tier_value": "value.matches('free.*')",
+              "tier_value_as": "policy",
+              "strategy": "header",
+              "key": "Authorization"
+            }
+          ]
         }
       }
     }
