@@ -122,7 +122,7 @@
           ]
         },
         {
-          "name": "lifes",
+          "name": "credits",
           "connection_name": "my_redis_cluster",
           "hash_keys": true,
           "on_failure_allow": false,
@@ -215,7 +215,7 @@
       "backend": [
         {
           "host": [
-            "http://localhost:9876"
+            "http://localhost:8080"
           ],
           "url_pattern": "/consume.json",
           "encoding": "json",
@@ -258,14 +258,14 @@
       }
     },
     {
-      "endpoint": "/consume_life",
+      "endpoint": "/consume_credit",
       "input_headers": [
         "Authorization",
         "X-Krakend-Role"
       ],
       "backend": [
         {
-          "url_pattern": "/__debug/dbg_consume_life/"
+          "url_pattern": "/__debug/dbg_consume_credit/"
         }
       ],
       "extra_config": {
@@ -276,7 +276,7 @@
           ]
         },
         "governance/quota": {
-          "quota_name": "lifes",
+          "quota_name": "credits",
           "tier_key": "X-Krakend-Role",
           "tiers": [
             {

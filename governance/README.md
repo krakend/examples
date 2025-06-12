@@ -1,9 +1,11 @@
 # Quotas example
 
-Lets imagine we have several games, that share common mechanics, so we
-have a single place to limit access to resources.
+Imagine we are game company with a catalog of games that share common mechanics,
+and we want to have different limits to the resources to tweak game difficulty. 
 
-Lets say those games are: 
+We want single place to limit access to those resources.
+
+Lets give some names to the games: 
 
 - Galaga (`galaga`)
 - Space Harrier (`space_harrier`)
@@ -12,14 +14,18 @@ Lets say those games are:
 Every game has the following limited resources:
 
 - **weapon_power_up**: This a simple power up, that will update a 
-    backend service with the powerup.
+    backend service with the weapon power up consumed.
 
 - **squad_call**: A request to the server will invoke a squad to help the
     main player. The **number of members that will come to help 
     depend on a backend call**, that will determine how many of this
     resource is consumed.
 
-- **lives**: A call to lives consumes adds a new live to the game
+We also want to charge per credit (as if it was a virtual arcade), so
+all games will have:
+
+- **credits**: A call to credits consumes a credit for a each game. Credits
+    can be consumed for any game.
 
 
 For the players, we have two tiers:
@@ -27,8 +33,8 @@ For the players, we have two tiers:
 - `freemium`
 - `premium` 
   
-The `premium` users have more **lives** to play each day / and hour (because
-are paying users). Since this is tied to our earnings, we are going to
+The `premium` users have more **credits** to play each day / and hour (because
+they are paying users). Since this is tied to our earnings, we are going to
 user a **redis cluster** to limit this resource.
 
 The tier for a player is extracted from its api key, using the roles feature,

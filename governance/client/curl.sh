@@ -7,12 +7,12 @@ NUM_REQUESTS=1
 
 # Endpoint to call
 # QUOTAS_ENDPOINT='/request_weapon_power_up'
-QUOTAS_ENDPOINT='/request_squad_call'
-# QUOTAS_ENDPOINT='/consume_life'
+# QUOTAS_ENDPOINT='/request_squad_call'
+QUOTAS_ENDPOINT='/consume_credit'
 
 # Player to use
-QUOTAS_USER=bart
-# QOTAS_USER=homer
+# QUOTAS_USER=bart
+QUOTAS_USER=homer
 
 # Select the game to use;
 QUOTAS_GAME=galaga
