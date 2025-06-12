@@ -1,0 +1,19 @@
+{
+    "output": 
+    [
+        {{ if gt (len .resp_body.candidates) 0 }}
+        {{ $candidate := index .resp_body.candidates 0 }}
+        {
+            "type": "text",
+            "role": "{{ $candidate.content.role }}",
+            "contents": [
+                {{ range $index, $part := $candidate.content.parts }}
+                {{ if $index }},{{ end }}
+                {{ $part.text | toJson }}
+                {{ end }}
+            ]
+        }
+        {{ end }}
+    ],
+    "usage": "{{ .resp_body.usageMetadata.totalTokenCount }}"
+}

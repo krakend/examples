@@ -1,0 +1,178 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD Enterprise AI Gateway",
+  "port": 8080,
+  "host": [
+    "http://172.17.0.1:9000"
+  ],
+  "timeout": "60000ms",
+  "endpoints": [
+    {
+      "endpoint": "/",
+      "method": "POST",
+      "input_headers": [
+        "Content-Type",
+        "X-Position",
+        "X-Name",
+        "X-Roles",
+        "X-User-Id",
+        "X-Locale"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v1beta/models/gemini-2.0-flash:generateContent?key=",
+          "#url_pattern": "/ai/gemini",
+          "method": "POST",
+          "host": [
+            "https://generativelanguage.googleapis.com/"
+          ],
+          "extra_config": {
+            "validation/cel": [
+              {
+                "check_expr": "req_headers['X-Position'][0] == 'developer'"
+              }
+            ],
+            "modifier/request-body-generator": {
+              "content_type": "application/json",
+              "path": "/etc/krakend/body-wrappers/gemini/request.go.tmpl"
+            },
+            "modifier/response-body-generator": {
+              "content_type": "application/json",
+              "path": "/etc/krakend/body-wrappers/gemini/response.go.tmpl"
+            },
+            "telemetry/logging": {
+              "custom_format": "{\"ts\":\"%{time:rfc3339}\", \"tokenUsage\": %{resp.usageMetadata.totalTokenCount}}\n"
+            }
+          }
+        },
+        {
+          "url_pattern": "/ai/openai",
+          "method": "POST",
+          "extra_config": {
+            "validation/cel": [
+              {
+                "check_expr": "req_headers['X-Position'][0] == 'support'"
+              }
+            ]
+          }
+        }
+      ],
+      "extra_config": {
+        "governance/quota": {
+          "quota_name": "llm",
+          "tier_key": "X-Roles",
+          "weight_key": "usage",
+          "weight_strategy": "body",
+          "tiers": [
+            {
+              "tier_value": "admin,user",
+              "rule_name": "poweruser",
+              "key": "X-User-Id",
+              "strategy": "header"
+            },
+            {
+              "tier_value": "user",
+              "rule_name": "user",
+              "key": "X-User-Id",
+              "strategy": "header"
+            }
+          ]
+        },
+        "validation/json-schema": {
+          "type": "object",
+          "required": [
+            "contents"
+          ],
+          "properties": {
+            "instructions": {
+              "type": "string"
+            },
+            "contents": {
+              "type": "string"
+            }
+          }
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": [
+            "playground"
+          ],
+          "jwk_url": "http://keycloak:8080/realms/krakend/protocol/openid-connect/certs",
+          "disable_jwk_security": true,
+          "propagate_claims": [
+            [
+              "email",
+              "X-User-Id"
+            ],
+            [
+              "position",
+              "X-Position"
+            ],
+            [
+              "given_name",
+              "X-Name"
+            ],
+                        [
+              "locale",
+              "X-Locale"
+            ],
+            [
+              "resource_access.playground.roles",
+              "X-Roles"
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "extra_config": {
+    "telemetry/logging": {
+      "access_log_format": "json",
+      "level": "DEBUG",
+      "format": "logstash",
+      "stdout": true
+    },
+    "redis": {
+      "connection_pools": [
+        {
+          "name": "default",
+          "address": "redis:6379"
+        }
+      ]
+    },
+    "governance/processors": {
+      "quotas": [
+        {
+          "name": "llm",
+          "connection_name": "default",
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1e-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
+            {
+              "name": "poweruser",
+              "limits": [
+                {
+                  "amount": 10000,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "user",
+              "limits": [
+                {
+                  "amount": 5000,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
