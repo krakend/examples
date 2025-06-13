@@ -3,9 +3,6 @@
   "version": 3,
   "name": "KrakenD Enterprise AI Gateway",
   "port": 8080,
-  "host": [
-    "http://172.17.0.1:9000"
-  ],
   "timeout": "60000ms",
   "endpoints": [
     {
@@ -31,13 +28,14 @@
           "weight_strategy": "body",
           "tiers": [
             {
-              "tier_value": "admin,user",
+              "tier_value": "value.matches('admin')",
+              "tier_value_as": "policy",
               "rule_name": "poweruser",
               "key": "X-User-Id",
               "strategy": "header"
             },
             {
-              "tier_value": "user",
+              "tier_value_as": "*",
               "rule_name": "user",
               "key": "X-User-Id",
               "strategy": "header"
