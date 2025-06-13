@@ -6,9 +6,11 @@ services:
       - /home/dae/work/krakend/configs/LICENSE:/LICENSE
     environment:
       - KRAKEND_LICENSE_PATH=/LICENSE
+    env_file:
+      - ./config/krakend/.env
     ports:
       - "8080:8080"
-    command: ["run", "-d", "-c", "krakend.json"]
+    command: ["run", "-d", "-c", "krakend.tmpl"]
   keycloak:
     image: quay.io/keycloak/keycloak:26.2
     ports:

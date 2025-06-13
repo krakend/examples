@@ -1,0 +1,28 @@
+{
+    "$schema": "https://www.krakend.io/schema/v2.10/flexible_config.json",
+    "settings": {
+        "paths": [
+            "./settings"
+        ],
+        "allow_overwrite": true,
+        "dir_field_prefix": "",
+        "allowed_suffixes": [
+            ".yaml",
+            ".json",
+            ".toml"
+        ]
+    },
+    "partials": {
+        "paths": [
+            "./partials"
+        ]
+    },
+    "templates": {
+        "paths": [
+            "./templates/vendors"
+        ]
+    },
+    "meta_key": "meta",
+    "out": "out.json",
+    "keys_naming_rules": "strict"
+}

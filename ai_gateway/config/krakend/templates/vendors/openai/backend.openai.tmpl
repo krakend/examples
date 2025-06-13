@@ -1,0 +1,34 @@
+{
+    "url_pattern": "/v1/responses",
+    "method": "POST",
+    "host": [
+        "https://api.openai.com/"
+    ],
+    "extra_config": {
+        "modifier/martian": {
+            "header.Append": {
+                "scope": [
+                    "request"
+                ],
+                "name": "Authorization",
+                "value": "Bearer {{ env "OPENAI_API_KEY" }}"
+            }
+        },
+        "validation/cel": [
+            {
+                "check_expr": {{ . | toJson }}
+            }
+        ],
+        "modifier/request-body-generator": {
+            "content_type": "application/json",
+            "path": "/etc/krakend/templates/vendors/openai/request.openai.go.tmpl"
+        },
+        "modifier/response-body-generator": {
+            "content_type": "application/json",
+            "path": "/etc/krakend/templates/vendors/openai/response.openai.go.tmpl"
+        },
+        "telemetry/logging": {
+            "custom_format": "{\"ts\":\"%{time:rfc3339}\", \"vendor\": \"openai\", \"tokenUsage\": %{resp.usage.total_tokens}}\n"
+        }
+    }
+}

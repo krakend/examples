@@ -20,43 +20,8 @@
         "X-Locale"
       ],
       "backend": [
-        {
-          "url_pattern": "/v1beta/models/gemini-2.0-flash:generateContent?key=",
-          "#url_pattern": "/ai/gemini",
-          "method": "POST",
-          "host": [
-            "https://generativelanguage.googleapis.com/"
-          ],
-          "extra_config": {
-            "validation/cel": [
-              {
-                "check_expr": "req_headers['X-Position'][0] == 'developer'"
-              }
-            ],
-            "modifier/request-body-generator": {
-              "content_type": "application/json",
-              "path": "/etc/krakend/body-wrappers/gemini/request.go.tmpl"
-            },
-            "modifier/response-body-generator": {
-              "content_type": "application/json",
-              "path": "/etc/krakend/body-wrappers/gemini/response.go.tmpl"
-            },
-            "telemetry/logging": {
-              "custom_format": "{\"ts\":\"%{time:rfc3339}\", \"tokenUsage\": %{resp.usageMetadata.totalTokenCount}}\n"
-            }
-          }
-        },
-        {
-          "url_pattern": "/ai/openai",
-          "method": "POST",
-          "extra_config": {
-            "validation/cel": [
-              {
-                "check_expr": "req_headers['X-Position'][0] == 'support'"
-              }
-            ]
-          }
-        }
+        {{ template "backend.gemini.tmpl" "req_headers['X-Position'][0] == 'developer'" }},
+        {{ template "backend.openai.tmpl" "req_headers['X-Position'][0] == 'support'" }}
       ],
       "extra_config": {
         "governance/quota": {
@@ -113,7 +78,7 @@
               "given_name",
               "X-Name"
             ],
-                        [
+            [
               "locale",
               "X-Locale"
             ],
@@ -129,7 +94,7 @@
   "extra_config": {
     "telemetry/logging": {
       "access_log_format": "json",
-      "level": "DEBUG",
+      "level": "WARNING",
       "format": "logstash",
       "stdout": true
     },

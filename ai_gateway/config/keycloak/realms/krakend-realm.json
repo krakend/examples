@@ -414,6 +414,96 @@
   "webAuthnPolicyPasswordlessAcceptableAaguids" : [ ],
   "webAuthnPolicyPasswordlessExtraOrigins" : [ ],
   "users" : [ {
+    "id" : "a2bd2a47-f792-48f0-9e9a-44dce12bf114",
+    "username" : "ana",
+    "firstName" : "Ana",
+    "lastName" : "Armendariz",
+    "email" : "ana@example.com",
+    "emailVerified" : true,
+    "attributes" : {
+      "loc" : [ "es_MX" ],
+      "position" : [ "developer" ]
+    },
+    "createdTimestamp" : 1749728763690,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "37c34b4d-a6f6-4aae-8199-f4d5623859d5",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1749728770589,
+      "secretData" : "{\"value\":\"eK8EVC3mamRTTdux9S/p7MSocrI1miZxLcwYAXgc8lU=\",\"salt\":\"cFFO4qvJnq+0TySbuxu8kg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-krakend" ],
+    "clientRoles" : {
+      "playground" : [ "user" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "4fd8e875-6a84-4225-b7d8-e9707bbdd313",
+    "username" : "daisi",
+    "firstName" : "Daisi",
+    "lastName" : "Varieur",
+    "email" : "daisi@example.com",
+    "emailVerified" : true,
+    "attributes" : {
+      "loc" : [ "fr_FR" ],
+      "position" : [ "developer" ]
+    },
+    "createdTimestamp" : 1749728857572,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "1819c67f-c72c-4fa6-bb21-a881632048ec",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1749728865976,
+      "secretData" : "{\"value\":\"jjKIXbcbWfArEZ7QUmVNoUULUYkN6CDne4oU0oBxkbw=\",\"salt\":\"5SLhi8L4DmlLXpcon1Xkqg==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-krakend" ],
+    "clientRoles" : {
+      "playground" : [ "user", "admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "7f3d8a74-f917-483e-837f-75d9afc4d857",
+    "username" : "holly",
+    "firstName" : "Holly",
+    "lastName" : "Golightly",
+    "email" : "holly@example.com",
+    "emailVerified" : true,
+    "attributes" : {
+      "loc" : [ "en_GB" ],
+      "position" : [ "support" ]
+    },
+    "createdTimestamp" : 1749728597479,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "8b2ac55c-a69c-4765-8ddc-881b44627651",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1749728609742,
+      "secretData" : "{\"value\":\"qEMKPVyG3Ly9qicl8kbHYn7Ew3lzsqt4px5FtWkGMxc=\",\"salt\":\"ZA5/YzN1Ubvgok7vw8uj7w==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-krakend" ],
+    "clientRoles" : {
+      "playground" : [ "user", "admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "457cc437-a79a-4184-b52e-64e8f08f3ba0",
     "username" : "john",
     "firstName" : "John",
@@ -421,6 +511,7 @@
     "email" : "john@example.com",
     "emailVerified" : true,
     "attributes" : {
+      "loc" : [ "es_ES" ],
       "position" : [ "support" ]
     },
     "createdTimestamp" : 1749563985175,
@@ -439,6 +530,36 @@
     "realmRoles" : [ "default-roles-krakend" ],
     "clientRoles" : {
       "playground" : [ "user" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "df494fd7-ade9-4507-b424-b4e167a33aa6",
+    "username" : "matteo",
+    "firstName" : "Matteo",
+    "lastName" : "Rossi",
+    "email" : "matteo@example.com",
+    "emailVerified" : true,
+    "attributes" : {
+      "loc" : [ "it_IT" ],
+      "position" : [ "support" ]
+    },
+    "createdTimestamp" : 1749728658164,
+    "enabled" : true,
+    "totp" : false,
+    "credentials" : [ {
+      "id" : "b6aedb02-22a4-4c6a-bf39-7034eb8d0d9d",
+      "type" : "password",
+      "userLabel" : "My password",
+      "createdDate" : 1749728672753,
+      "secretData" : "{\"value\":\"k0e6RI/yW7jVs8h5bBkqQGSnmhNfTCREJF3v39Cz/Ko=\",\"salt\":\"QHuxh6oQQdSunCnIfnxV/Q==\",\"additionalParameters\":{}}",
+      "credentialData" : "{\"hashIterations\":5,\"algorithm\":\"argon2\",\"additionalParameters\":{\"hashLength\":[\"32\"],\"memory\":[\"7168\"],\"type\":[\"id\"],\"version\":[\"1.3\"],\"parallelism\":[\"1\"]}}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "default-roles-krakend" ],
+    "clientRoles" : {
+      "playground" : [ "user", "admin" ]
     },
     "notBefore" : 0,
     "groups" : [ ]
@@ -467,6 +588,7 @@
     "email" : "tony@example.com",
     "emailVerified" : true,
     "attributes" : {
+      "loc" : [ "en_US" ],
       "position" : [ "developer" ]
     },
     "createdTimestamp" : 1749564019237,
@@ -484,7 +606,7 @@
     "requiredActions" : [ ],
     "realmRoles" : [ "default-roles-krakend" ],
     "clientRoles" : {
-      "playground" : [ "user", "admin" ]
+      "playground" : [ "user" ]
     },
     "notBefore" : 0,
     "groups" : [ ]
@@ -714,6 +836,22 @@
         "claim.name" : "clientAddress",
         "jsonType.label" : "String",
         "access.tokenResponse.claim" : "false"
+      }
+    }, {
+      "id" : "ede2f3a5-4787-4011-8e02-4f300c07ff91",
+      "name" : "locale",
+      "protocol" : "openid-connect",
+      "protocolMapper" : "oidc-usermodel-attribute-mapper",
+      "consentRequired" : false,
+      "config" : {
+        "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "false",
+        "user.attribute" : "loc",
+        "id.token.claim" : "false",
+        "lightweight.claim" : "false",
+        "access.token.claim" : "true",
+        "claim.name" : "locale",
+        "jsonType.label" : "String"
       }
     }, {
       "id" : "496911d0-8fdf-45a6-a656-7be3cc0456ab",
@@ -1221,8 +1359,9 @@
       "consentRequired" : false,
       "config" : {
         "user.session.note" : "client_id",
-        "id.token.claim" : "true",
         "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "true",
+        "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "client_id",
         "jsonType.label" : "String"
@@ -1235,8 +1374,9 @@
       "consentRequired" : false,
       "config" : {
         "user.session.note" : "clientHost",
-        "id.token.claim" : "true",
         "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "true",
+        "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "clientHost",
         "jsonType.label" : "String"
@@ -1249,8 +1389,9 @@
       "consentRequired" : false,
       "config" : {
         "user.session.note" : "clientAddress",
-        "id.token.claim" : "true",
         "introspection.token.claim" : "true",
+        "userinfo.token.claim" : "true",
+        "id.token.claim" : "true",
         "access.token.claim" : "true",
         "claim.name" : "clientAddress",
         "jsonType.label" : "String"
@@ -1504,7 +1645,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "saml-user-property-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-full-name-mapper", "oidc-address-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper", "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-address-mapper" ]
       }
     }, {
       "id" : "ebc4f4a8-c78d-4536-8296-048c8cb706a4",
@@ -1546,7 +1687,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-usermodel-attribute-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-role-list-mapper", "oidc-full-name-mapper", "saml-user-attribute-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper", "oidc-usermodel-attribute-mapper", "saml-role-list-mapper", "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper" ]
       }
     }, {
       "id" : "168f7771-6616-4373-a5e1-1a9ac6b8aea1",
@@ -1563,7 +1704,7 @@
       "providerId" : "declarative-user-profile",
       "subComponents" : { },
       "config" : {
-        "kc.user.profile.config" : [ "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"position\",\"displayName\":\"Position\",\"validations\":{},\"annotations\":{},\"permissions\":{\"view\":[],\"edit\":[\"admin\"]},\"multivalued\":false}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}]}" ]
+        "kc.user.profile.config" : [ "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"position\",\"displayName\":\"Position\",\"validations\":{},\"annotations\":{},\"permissions\":{\"view\":[],\"edit\":[\"admin\"]},\"multivalued\":false},{\"name\":\"loc\",\"displayName\":\"Locale\",\"validations\":{},\"annotations\":{},\"permissions\":{\"view\":[],\"edit\":[\"admin\"]},\"multivalued\":false}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}]}" ]
       }
     } ],
     "org.keycloak.keys.KeyProvider" : [ {

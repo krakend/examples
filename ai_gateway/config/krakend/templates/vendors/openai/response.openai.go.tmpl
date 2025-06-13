@@ -1,0 +1,19 @@
+{
+    "output": 
+    [
+        {{ if gt (len .resp_body.output) 0 }}
+        {{ $output := index .resp_body.output 0 }}
+        {
+            "type": "text",
+            "role": "{{ $output.role }}",
+            "contents": [
+                {{ range $index, $part := $output.content }}
+                {{ if $index }},{{ end }}
+                {{ $part.text | toJson }}
+                {{ end }}
+            ]
+        }
+        {{ end }}
+    ],
+    "usage": "{{ .resp_body.usage.total_tokens }}"
+}
