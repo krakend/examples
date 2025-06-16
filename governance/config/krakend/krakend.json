@@ -29,16 +29,16 @@
       "connection_pools": [
         {
           "name": "my_single_redis",
-          "address": "127.0.0.1:7000"
+          "address": "redis:6379"
         }
       ],
       "clusters": [
         {
           "name": "my_redis_cluster",
           "addresses": [
-            "127.0.0.1:7001",
-            "127.0.0.1:7002",
-            "127.0.0.1:7003"
+            "redis001:7001",
+            "redis002:7002",
+            "redis003:7003"
           ]
         }
       ]
@@ -124,6 +124,7 @@
         {
           "name": "credits",
           "connection_name": "my_redis_cluster",
+          "@connection_name": "my_single_redis",
           "hash_keys": true,
           "on_failure_allow": false,
           "rejecter_cache": {
@@ -221,7 +222,7 @@
           "encoding": "json",
           "extra_config": {
             "backend/static-filesystem": {
-              "path": "./fake_backend/data"
+              "path": "/etc/krakend/fake_backend/data"
             }
           }
         }
