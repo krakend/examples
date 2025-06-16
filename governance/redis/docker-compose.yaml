@@ -5,19 +5,41 @@ services:
       - "7000:6379"
   redis001:
     image: "redis:7"
-    network_mode: "host"
     volumes:
       - "./config/redis001/redis.conf:/usr/local/etc/redis/redis.conf"
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
   redis002:
     image: "redis:7"
-    network_mode: "host"
     volumes:
       - "./config/redis002/redis.conf:/usr/local/etc/redis/redis.conf"
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
   redis003:
     image: "redis:7"
-    network_mode: "host"
     volumes:
       - "./config/redis003/redis.conf:/usr/local/etc/redis/redis.conf"
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis-cluster-creator:
+    image: "redis:7"
+    command: [
+      "redis-cli", "--cluster" , "create", 
+      "redis001:7001",
+      "redis002:7002",
+      "redis003:7003",
+      "--cluster-yes"
+    ]
+    depends_on:
+      - redis001
+      - redis002
+      - redis003
+  redis-haproxy:
+    image: "haproxytech/haproxy-alpine"
+    depends_on:
+      - redis001
+      - redis002
+      - redis003
+    ports:
+      - "8404:8404"
+      - "7001-7003:9001-9003"
+    volumes:
+      - "./config/haproxy:/usr/local/etc/haproxy:ro"
+

@@ -1,7 +1,6 @@
 services:
   krakend:
     image: krakend/krakend-ee:2.10.0
-    network_mode: host
     volumes:
       - .:/etc/krakend
     ports:
