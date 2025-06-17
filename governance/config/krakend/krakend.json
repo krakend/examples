@@ -56,7 +56,7 @@
           },
           "rules": [
             {
-              "name": "easy",
+              "name": "ultra",
               "limits": [
                 {
                   "amount": 3,
@@ -69,7 +69,20 @@
               ]
             },
             {
-              "name": "hard",
+              "name": "regular",
+              "limits": [
+                {
+                  "amount": 2,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 6,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "low",
               "limits": [
                 {
                   "amount": 1,
@@ -84,7 +97,7 @@
           ]
         },
         {
-          "name": "squad_call",
+          "name": "bomb_reload",
           "connection_name": "my_single_redis",
           "on_failure_allow": true,
           "rejecter_cache": {
@@ -170,7 +183,7 @@
       "input_headers": [
         "Authorization",
         "X-Krakend-Role",
-        "X-Game"
+        "X-Ship"
       ],
       "backend": [
         {
@@ -186,17 +199,24 @@
         },
         "governance/quota": {
           "quota_name": "weapon_power_up",
-          "tier_key": "X-Game",
+          "tier_key": "X-Ship",
           "tiers": [
             {
-              "rule_name": "easy",
-              "tier_value": "galaga",
+              "rule_name": "ultra",
+              "tier_value": "thunder",
               "tier_value_as": "literal",
               "strategy": "header",
               "key": "Authorization"
             },
             {
-              "rule_name": "hard",
+              "rule_name": "low",
+              "tier_value": "lightning",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "regular",
               "tier_value": "value.matches('.*')",
               "tier_value_as": "policy",
               "strategy": "header",
@@ -207,11 +227,11 @@
       }
     },
     {
-      "endpoint": "/request_squad_call",
+      "endpoint": "/request_bomb_reload",
       "input_headers": [
         "Authorization",
         "X-Krakend-Role",
-        "X-Game"
+        "X-Ship"
       ],
       "backend": [
         {
@@ -235,14 +255,14 @@
           ]
         },
         "governance/quota": {
-          "quota_name": "squad_call",
-          "tier_key": "X-Game",
+          "quota_name": "bomb_reload",
+          "tier_key": "X-Ship",
           "weight_key": "consumed",
           "weight_strategy": "body",
           "tiers": [
             {
               "rule_name": "hard",
-              "tier_value": "galaga",
+              "tier_value": "thunder",
               "tier_value_as": "literal",
               "strategy": "header",
               "key": "Authorization"
