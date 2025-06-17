@@ -41,7 +41,7 @@ services:
       - "8404:8404"
       - "7001-7003:9001-9003"
     volumes:
-      - "./config/redis/haproxy:/usr/local/etc/haproxy:ro"
+      - "./config/haproxy:/usr/local/etc/haproxy:ro"
   krakend:
     image: krakend/krakend-ee:2.10.0
     depends_on:
