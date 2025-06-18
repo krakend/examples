@@ -90,6 +90,24 @@
     }
   ],
   "extra_config": {
+    "security/cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "allow_methods": [
+        "POST",
+        "GET"
+      ],
+      "allow_headers": [
+        "Origin",
+        "Authorization",
+        "Content-Type"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h"
+    },
     "telemetry/logging": {
       "access_log_format": "json",
       "level": "WARNING",

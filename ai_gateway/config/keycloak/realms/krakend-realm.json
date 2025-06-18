@@ -844,8 +844,10 @@
       "protocolMapper" : "oidc-usermodel-attribute-mapper",
       "consentRequired" : false,
       "config" : {
+        "aggregate.attrs" : "false",
         "introspection.token.claim" : "true",
-        "userinfo.token.claim" : "false",
+        "multivalued" : "false",
+        "userinfo.token.claim" : "true",
         "user.attribute" : "loc",
         "id.token.claim" : "false",
         "lightweight.claim" : "false",
@@ -875,8 +877,10 @@
       "protocolMapper" : "oidc-usermodel-attribute-mapper",
       "consentRequired" : false,
       "config" : {
+        "aggregate.attrs" : "false",
         "introspection.token.claim" : "true",
-        "userinfo.token.claim" : "false",
+        "multivalued" : "false",
+        "userinfo.token.claim" : "true",
         "user.attribute" : "position",
         "id.token.claim" : "false",
         "lightweight.claim" : "false",
@@ -1645,7 +1649,7 @@
       "subType" : "authenticated",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-usermodel-attribute-mapper", "oidc-usermodel-property-mapper", "oidc-full-name-mapper", "saml-role-list-mapper", "saml-user-attribute-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-user-property-mapper", "oidc-address-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-address-mapper", "oidc-full-name-mapper", "oidc-usermodel-attribute-mapper", "saml-user-attribute-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "oidc-sha256-pairwise-sub-mapper", "saml-role-list-mapper" ]
       }
     }, {
       "id" : "ebc4f4a8-c78d-4536-8296-048c8cb706a4",
@@ -1687,7 +1691,7 @@
       "subType" : "anonymous",
       "subComponents" : { },
       "config" : {
-        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "saml-user-attribute-mapper", "oidc-usermodel-property-mapper", "saml-user-property-mapper", "oidc-usermodel-attribute-mapper", "saml-role-list-mapper", "oidc-address-mapper", "oidc-sha256-pairwise-sub-mapper" ]
+        "allowed-protocol-mapper-types" : [ "oidc-full-name-mapper", "saml-user-attribute-mapper", "saml-user-property-mapper", "oidc-usermodel-property-mapper", "saml-role-list-mapper", "oidc-usermodel-attribute-mapper", "oidc-sha256-pairwise-sub-mapper", "oidc-address-mapper" ]
       }
     }, {
       "id" : "168f7771-6616-4373-a5e1-1a9ac6b8aea1",
