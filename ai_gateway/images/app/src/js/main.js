@@ -88,7 +88,9 @@ window.addEventListener('DOMContentLoaded', async function () {
                 const output = res.output[0] || []
                 const contents = output.contents.join('\n\n')
                 
+                errorContent.innerHTML = JSON.stringify(res, null, 4)
                 responseContent.innerHTML = marked.parse(contents)
+                show(errorBlock)
                 show(responseBlock)
             } else {
                 errorContent.innerHTML = `Error (${req.status}): ${await req.text()}`
