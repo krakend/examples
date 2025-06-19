@@ -1,0 +1,19 @@
+{
+    "model": "models/text-embedding-004",
+    "requests": [
+    {{- range $index, $part := .req_body.documents -}}
+        {{ if $index }},{{ end }}
+        {
+            "model": "models/text-embedding-004",
+            "content": {
+                "parts": [
+                    {
+                        "text": {{ $part.text | toJson }}
+                    }
+                ],
+                "role": "user"
+            }
+        }
+    {{- end -}}
+    ]
+}

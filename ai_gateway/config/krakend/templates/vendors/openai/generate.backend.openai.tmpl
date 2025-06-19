@@ -21,11 +21,11 @@
         ],
         "modifier/request-body-generator": {
             "content_type": "application/json",
-            "path": "/etc/krakend/templates/vendors/openai/request.openai.go.tmpl"
+            "path": "/etc/krakend/templates/vendors/openai/generate.request.openai.tmpl"
         },
         "modifier/response-body-generator": {
             "content_type": "application/json",
-            "path": "/etc/krakend/templates/vendors/openai/response.openai.go.tmpl"
+            "path": "/etc/krakend/templates/vendors/openai/generate.response.openai.tmpl"
         },
         "telemetry/logging": {
             "custom_format": "{\"ts\":\"%{time:rfc3339}\", \"vendor\": \"openai\", \"tokenUsage\": %{resp.usage.total_tokens}}\n"
