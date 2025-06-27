@@ -1,6 +1,6 @@
 services:
   krakend_ee:
-    image: krakend/krakend-ee:2.10.1-alpha1
+    image: krakend/krakend-ee:2.10.2-watch
     volumes:
       - ./config/krakend:/etc/krakend
       - /home/dae/work/krakend/configs/LICENSE:/LICENSE

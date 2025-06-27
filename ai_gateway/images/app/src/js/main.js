@@ -58,13 +58,16 @@ window.addEventListener('DOMContentLoaded', async function () {
         const btnInner = submitBtn.getElementsByTagName('span')[0]
         submitBtn.disabled = true
         btnInner.innerHTML = 'Loading...'
-        const errorBlock = document.querySelector('#__call-response > pre')
-        const errorContent = document.querySelector('#__call-response > pre > code')
+        const errorBlock = document.getElementById('__call-response-res')
+        const errorContent = document.querySelector('#__call-response-res > code')
+        const reqBlock = document.getElementById('__call-response-req')
+        const reqContent = document.querySelector('#__call-response-req > code')
         const responseBlock = document.querySelector('#__call-response > div')
         const responseContent = document.querySelector('#__call-response > div > div')
         show(callResponseSection)
         try {
             hide(errorBlock)
+            hide(reqBlock)
             hide(responseBlock)
             errorContent.innerHTML = ''
             responseContent.innerHTML = ''
@@ -85,12 +88,14 @@ window.addEventListener('DOMContentLoaded', async function () {
             })
             if (req.ok) {
                 const res = await req.json()
-                const output = res.output[0] || []
+                const output = res.ai_gateway_response[0] || []
                 const contents = output.contents.join('\n\n')
                 
+                reqContent.innerHTML = JSON.stringify({ contents: question, instructions: instructions || undefined }, null, 4)
                 errorContent.innerHTML = JSON.stringify(res, null, 4)
                 responseContent.innerHTML = marked.parse(contents)
                 show(errorBlock)
+                show(reqBlock)
                 show(responseBlock)
             } else {
                 errorContent.innerHTML = `Error (${req.status}): ${await req.text()}`

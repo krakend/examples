@@ -17,8 +17,8 @@
         "X-Locale"
       ],
       "backend": [
-        {{ template "generate.backend.gemini.tmpl""req_headers['X-Position'][0] == 'developer'" }},
-        {{ template "generate.backend.openai.tmpl""req_headers['X-Position'][0] == 'support'" }}
+        {{ template "generate.backend.gemini.tmpl" "req_headers['X-Position'][0] == 'developer'" }},
+        {{ template "generate.backend.openai.tmpl" "req_headers['X-Position'][0] == 'support'" }}
       ],
       "extra_config": {
         "governance/quota": {

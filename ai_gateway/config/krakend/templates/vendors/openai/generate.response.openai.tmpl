@@ -1,11 +1,9 @@
 {
-    "output": 
+    "ai_gateway_response": 
     [
         {{ if gt (len .resp_body.output) 0 }}
         {{ $output := index .resp_body.output 0 }}
         {
-            "type": "text",
-            "role": "{{ $output.role }}",
             "contents": [
                 {{ range $index, $part := $output.content }}
                 {{ if $index }},{{ end }}
