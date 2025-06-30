@@ -37,6 +37,8 @@ OPENAI_API_KEY=your_openai_api_key
 docker-compose up -d
 ```
 
+**Important: It may take up to 2 minutes for all the services to properly start**
+
 4. Open http://localhost:3000
 
 ### Test Users
