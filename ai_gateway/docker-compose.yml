@@ -3,7 +3,7 @@ services:
     image: krakend/krakend-ee:2.10.2-watch
     volumes:
       - ./config/krakend:/etc/krakend
-      - /home/dae/work/krakend/configs/LICENSE:/LICENSE
+      - ./LICENSE:/LICENSE
     environment:
       - KRAKEND_LICENSE_PATH=/LICENSE
     env_file:
