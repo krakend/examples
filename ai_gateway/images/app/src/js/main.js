@@ -31,6 +31,8 @@ window.addEventListener('DOMContentLoaded', async function () {
     const callResponseSection = this.document.getElementById('__call-response')
     const aiSection = this.document.getElementById('__section-ai')
     const profileSection = this.document.getElementById('__section-profile')
+    const instructionsTextarea = this.document.getElementById('__ai-instructions')
+    const positionDisplay = this.document.getElementById('__menu-position')
     loginBtn.addEventListener('click', async () => {
         await keycloak.login()
     })
@@ -52,6 +54,27 @@ window.addEventListener('DOMContentLoaded', async function () {
         }
         hide(aiSection)
         Prism.highlightAll();
+    })
+
+    instructionsTextarea.addEventListener('click', () => {
+        if (instructionsTextarea.readOnly) {
+            instructionsTextarea.readOnly = false
+            instructionsTextarea.rows = 3
+            instructionsTextarea.placeholder = 'Enter custom instructions for the AI...'
+            instructionsTextarea.classList.remove('opacity-50', 'cursor-pointer')
+            instructionsTextarea.classList.add('cursor-text')
+            instructionsTextarea.focus()
+        }
+    })
+
+    instructionsTextarea.addEventListener('blur', () => {
+        if (instructionsTextarea.value.trim() === '') {
+            instructionsTextarea.readOnly = true
+            instructionsTextarea.rows = 1
+            instructionsTextarea.placeholder = 'Click here to add custom instructions...'
+            instructionsTextarea.classList.add('opacity-50', 'cursor-pointer')
+            instructionsTextarea.classList.remove('cursor-text')
+        }
     })
 
     submitBtn.addEventListener('click', async () => {
@@ -91,9 +114,15 @@ window.addEventListener('DOMContentLoaded', async function () {
                 const output = res.ai_gateway_response[0] || []
                 const contents = output.contents.join('\n\n')
                 
+                const info = await keycloak.loadUserInfo()
+                const aiModel = info.position === 'developer' ? 'Google Gemini AI' : 'OpenAI'
+                const modelBadge = `<div class="mb-4 inline-block px-3 py-1 text-xs font-semibold rounded-full ${
+                    info.position === 'developer' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'
+                }">Processed by: ${aiModel}</div>`
+                
                 reqContent.innerHTML = JSON.stringify({ contents: question, instructions: instructions || undefined }, null, 4)
                 errorContent.innerHTML = JSON.stringify(res, null, 4)
-                responseContent.innerHTML = marked.parse(contents)
+                responseContent.innerHTML = modelBadge + marked.parse(contents)
                 show(errorBlock)
                 show(reqBlock)
                 show(responseBlock)
@@ -120,6 +149,11 @@ window.addEventListener('DOMContentLoaded', async function () {
 
         const info = await keycloak.loadUserInfo()
         this.document.getElementById('__menu-profile-username').innerHTML = info.name
+        
+        const aiModel = info.position === 'developer' ? 'Gemini AI' : 'OpenAI'
+        positionDisplay.innerHTML = `${info.position} → ${aiModel}`
+        positionDisplay.className = info.position === 'developer' ? 
+            'text-green-200 font-semibold' : 'text-blue-200 font-semibold'
         const table = this.document.querySelector('#__section-profile > table > tbody')
 
         const tableMapping = { sub: "ID", email: "Email", name: "Name", preferred_username: "Username", position: "Position", locale: "Locale" }

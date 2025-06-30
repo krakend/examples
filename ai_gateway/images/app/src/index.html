@@ -60,8 +60,10 @@
                             clip-rule="evenodd" />
                     </svg>
                     <a id="__menu-profile" href="#profile" class="hover:underline no-underline text-white font-bold">
-                        <span id="__menu-profile-username">{{ username }}</span></a> <span
-                        class="text-blue-100">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                        <span id="__menu-profile-username">{{ username }}</span></a>
+                    <span class="text-blue-100">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                    <span id="__menu-position" class="text-green-200 font-semibold"></span>
+                    <span class="text-blue-100">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
                     <a id="__menu-logout" href="#" class="text-red-200 hover:underline no-underline">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                             class="inline align-middle h-4 w-4">
@@ -76,11 +78,26 @@
     </nav>
 
     <div class="container mx-auto py-4 px-3">
-        <div class="w-full" id="__alert-not-logged-in">
-            <div class="rounded-md bg-yellow-50 p-4 my-4">
+        <div id="__section-info" class="w-full mb-8">
+            <div class="rounded-md bg-gray-800 p-4">
                 <div class="flex">
                     <div class="shrink-0">
-                        <svg class="size-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                        <svg class="size-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-300">This demo showcases KrakenD's AI Gateway with role-based routing - your user position determines which AI model processes requests.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full" id="__alert-not-logged-in">
+            <div class="rounded-md bg-gray-800 p-4 my-4">
+                <div class="flex">
+                    <div class="shrink-0">
+                        <svg class="size-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
                             data-slot="icon">
                             <path fill-rule="evenodd"
                                 d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
@@ -88,10 +105,30 @@
                         </svg>
                     </div>
                     <div class="ml-3">
-                        <p class="text-sm text-yellow-700"><strong>You are not logged in!</strong> Please <a
-                                id="__section-login" href="#" class="underline">log in</a> to interact with the AI
+                        <p class="text-sm text-gray-200"><strong>You are not logged in!</strong> Please <a
+                                id="__section-login" href="#" class="underline text-orange-300 hover:text-orange-200">log in</a> to interact with the AI
                             Gateway.</p>
-                        <p class="mt-4 text-sm text-yellow-700">Check README for pre-generated users</p>
+                        <div class="mt-4 text-sm text-gray-300">
+                            <p class="font-semibold mb-2 text-gray-200">Available Test Users:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="font-medium text-green-400">Developer Users → Gemini AI:</p>
+                                    <ul class="list-disc list-inside ml-2 space-y-1">
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">ana</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">ana</code> - Ana Armendariz</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">daisi</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">daisi</code> - Daisi Varieur</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">tony</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">tony</code> - Tony Stark</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-blue-400">Support Users → OpenAI:</p>
+                                    <ul class="list-disc list-inside ml-2 space-y-1">
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">holly</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">holly</code> - Holly Golightly</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">john</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">john</code> - John Doe</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">matteo</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">matteo</code> - Matteo Rossi</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,16 +138,16 @@
             <h3 class="text-lg font-semibold mb-3">AI Interaction</h3>
             <div class="space-y-4">
                 <div>
-                    <label for="instructions" class="block text-sm font-medium mb-2">Instructions (optional)</label>
-                    <textarea id="__ai-instructions" rows="3"
-                        class="w-full rounded-md bg-gray-800 border-gray-700 text-white p-2"
-                        placeholder="Enter instructions..."></textarea>
-                </div>
-                <div>
                     <label for="question" class="block text-sm font-medium mb-2">Question</label>
                     <textarea id="__ai-question" rows="3"
                         class="w-full rounded-md bg-gray-800 border-gray-700 text-white p-2"
                         placeholder="Enter your question..."></textarea>
+                </div>
+                <div>
+                    <label for="instructions" class="block text-sm font-medium mb-2">Instructions (optional)</label>
+                    <textarea id="__ai-instructions" rows="1" readonly
+                        class="w-full rounded-md bg-gray-800 border-gray-700 text-white p-2 opacity-50 cursor-pointer"
+                        placeholder="Click here to add custom instructions..."></textarea>
                 </div>
                 <button id="__btn-submit-ai"
                     class="bg-gradient-to-r from-violet-500 to-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
