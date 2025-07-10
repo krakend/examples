@@ -1,0 +1,71 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "My first API Gateway - KrakenD",
+  "port": 8080,
+  "host": ["http://fakeapi:8088"],
+  "echo_endpoint": true,
+  "debug_endpoint": true,
+  "endpoints": [
+    {
+      "endpoint": "/sequential_workflow",
+      "input_headers": ["*"],
+      "input_query_strings": [
+          "customer",
+          "profile"
+      ],
+      "extra_config": {
+        "proxy": {
+            "sequential": true
+        }
+      },
+      "backend": [
+        { 
+            "url_pattern": "/__workflow/streaming_dashboard",
+            "extra_config": {
+                "workflow": {
+                    "endpoint": "/__workflow_impl/streaming_dashboard",
+                    "ignore_errors": true,
+                    "backend": [
+                        {
+                            "url_pattern": "/recently_added.json",
+                            "group": "recent"
+                        },
+                        {
+                            "url_pattern": "/__workflow/customized_content/",
+                            "extra_config": {
+                                "workflow": {
+                                    "endpoint": "/__workflow_impl/customized_content/",
+                                    "sequential": true,
+                                    "ignore_errors": true,
+                                    "backend": [
+                                        {
+                                            "url_pattern": "/default_profile",
+                                            "extra_config": {
+                                                "validation/cel": [
+                                                    {
+                                                        "check_expr": "('profile' in req_querystring) == false || size(req_querystring.profile) == 0 || size(req_querystring.profile[0]) == 0"
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "url_pattern": "/customized_content",
+                                            "group": "recommended"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+          "url_pattern": "/footer_promoted_movies",
+          "group": "our_suggestions"
+        }
+      ]
+    }
+  ]
+}
