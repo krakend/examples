@@ -15,22 +15,15 @@
           "profile"
       ],
       "backend": [
-        {
-            "url_pattern": "/header_banner",
-            "group": "header"
-        },
         { 
-            "url_pattern": "/__workflow/customized_dashboard",
+            "url_pattern": "/__workflow/customized_dashboard/{req_querystring.profile}",
             "group": "custom_content",
             "extra_config": {
-                "proxy": {
-                    "sequential": true
-                },
                 "workflow": {
-                    "endpoint": "/__workflow_impl/customized_dashboard",
+                    "endpoint": "/__workflow_impl/customized_dashboard/{req_querystring.profile}",
                     "ignore_errors": true,
                     "extra_config": {
-                        "sequential": true
+                        "proxy": { "sequential": true} 
                     },
                     "backend": [
                         {
@@ -44,7 +37,7 @@
                             }
                         },
                         {
-                            "url_pattern": "/__workflow/for_profile_content",
+                            "url_pattern": "/__workflow/for_profile_content/?q={resp0_profile.profile_id}",
                             "group": "recommended",
                             "extra_config": {
                                 "workflow": {
@@ -63,10 +56,6 @@
                     ]
                 }
             }
-        },
-        {
-          "url_pattern": "/footer_promoted_movies",
-          "group": "our_suggestions"
         }
       ]
     }
