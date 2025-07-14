@@ -16,14 +16,21 @@
       ],
       "backend": [
         { 
-            "url_pattern": "/__workflow/customized_dashboard/{req_querystring.profile}",
+            "url_pattern": "/__workflow/customized_dashboard/",
             "group": "custom_content",
             "extra_config": {
                 "workflow": {
-                    "endpoint": "/__workflow_impl/customized_dashboard/{req_querystring.profile}",
+                    "endpoint": "/__workflow_impl/customized_dashboard/",
+      "input_query_strings": [
+          "customer",
+          "profile"
+      ],
                     "ignore_errors": true,
                     "extra_config": {
-                        "proxy": { "sequential": true} 
+                        "proxy": { 
+                            "sequential": true, 
+                            "sequential_propagated_params": ["resp0_profile"]
+                        } 
                     },
                     "backend": [
                         {
@@ -37,14 +44,18 @@
                             }
                         },
                         {
-                            "url_pattern": "/__workflow/for_profile_content/?q={resp0_profile.profile_id}",
+                            "url_pattern": "/__workflow/for_profile_content/{resp0_profile.profile_id}",
                             "group": "recommended",
                             "extra_config": {
                                 "workflow": {
-                                    "endpoint": "/__workflow_impl/for_profile_content",
+                                    "endpoint": "/__workflow_impl/for_profile_content/{resp0_profile.profile_id}",
                                     "backend": [
                                         {
-                                            "url_pattern": "/profile_recommended_movies"
+                                            "host": ["http://localhost:8080"],
+                                            "url_pattern": "/__debug/{resp0_profile.profile_id}"
+                                        },
+                                        {
+                                            "url_pattern": "/profile_recommended_movies?q={resp0_profile.profile_id}"
                                         },
                                         {
                                             "url_pattern": "/profile_recommended_actors"
