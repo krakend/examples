@@ -21,6 +21,7 @@
                 "source": "directory",
                 "config": {
                     "dir": "/etc/reqstatsrv/config/data",
+                    "dunder_querystrings": true,
                     "attempt_extensions": [
                         "json"
                     ]
@@ -35,6 +36,7 @@
                 "source": "directory",
                 "config": {
                     "dir": "/etc/reqstatsrv/config/data",
+                    "dunder_querystrings": true,
                     "attempt_extensions": [
                         "json"
                     ]
@@ -49,6 +51,7 @@
                 "source": "directory",
                 "config": {
                     "dir": "/etc/reqstatsrv/config/data",
+                    "dunder_querystrings": true,
                     "attempt_extensions": [
                         "json"
                     ]

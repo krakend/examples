@@ -21,10 +21,10 @@
             "extra_config": {
                 "workflow": {
                     "endpoint": "/__workflow_impl/customized_dashboard/",
-      "input_query_strings": [
-          "customer",
-          "profile"
-      ],
+                                  "input_query_strings": [
+                                      "customer",
+                                      "profile"
+                                  ],
                     "ignore_errors": true,
                     "extra_config": {
                         "proxy": { 
@@ -33,6 +33,10 @@
                         } 
                     },
                     "backend": [
+                        {
+                            "host": ["http://localhost:8080"],
+                            "url_pattern": "/__debug/workflow/"
+                        },
                         {
                             "url_pattern": "/default_profile",
                             "extra_config": {
