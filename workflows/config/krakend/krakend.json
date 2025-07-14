@@ -8,50 +8,53 @@
   "debug_endpoint": true,
   "endpoints": [
     {
-      "endpoint": "/sequential_workflow",
+      "endpoint": "/home_dashboard",
       "input_headers": ["*"],
       "input_query_strings": [
           "customer",
           "profile"
       ],
-      "extra_config": {
-        "proxy": {
-            "sequential": true
-        }
-      },
       "backend": [
+        {
+            "url_pattern": "/header_banner",
+            "group": "header"
+        },
         { 
-            "url_pattern": "/__workflow/streaming_dashboard",
+            "url_pattern": "/__workflow/customized_dashboard",
+            "group": "custom_content",
             "extra_config": {
+                "proxy": {
+                    "sequential": true
+                },
                 "workflow": {
-                    "endpoint": "/__workflow_impl/streaming_dashboard",
+                    "endpoint": "/__workflow_impl/customized_dashboard",
                     "ignore_errors": true,
+                    "extra_config": {
+                        "sequential": true
+                    },
                     "backend": [
                         {
-                            "url_pattern": "/recently_added.json",
-                            "group": "recent"
+                            "url_pattern": "/default_profile",
+                            "extra_config": {
+                                "validation/cel": [
+                                    {
+                                        "check_expr": "('profile' in req_querystring) == false || size(req_querystring.profile) == 0 || size(req_querystring.profile[0]) == 0"
+                                    }
+                                ]
+                            }
                         },
                         {
-                            "url_pattern": "/__workflow/customized_content/",
+                            "url_pattern": "/__workflow/for_profile_content",
+                            "group": "recommended",
                             "extra_config": {
                                 "workflow": {
-                                    "endpoint": "/__workflow_impl/customized_content/",
-                                    "sequential": true,
-                                    "ignore_errors": true,
+                                    "endpoint": "/__workflow_impl/for_profile_content",
                                     "backend": [
                                         {
-                                            "url_pattern": "/default_profile",
-                                            "extra_config": {
-                                                "validation/cel": [
-                                                    {
-                                                        "check_expr": "('profile' in req_querystring) == false || size(req_querystring.profile) == 0 || size(req_querystring.profile[0]) == 0"
-                                                    }
-                                                ]
-                                            }
+                                            "url_pattern": "/profile_recommended_movies"
                                         },
                                         {
-                                            "url_pattern": "/customized_content",
-                                            "group": "recommended"
+                                            "url_pattern": "/profile_recommended_actors"
                                         }
                                     ]
                                 }
