@@ -37,8 +37,7 @@
             "disable_metrics": true,
             "disable_traces": false,
             "use_http": false,
-            "custom_metric_reporting_period": 11,
-            "custom_reporting_period": 11
+            "custom_metric_reporting_period": 11
           }
         ]
       },
