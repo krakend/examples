@@ -1,0 +1,25 @@
+{
+    "url_pattern": "/v1beta/models/gemini-2.0-flash:generateContent?key={{ env "GEMINI_API_KEY" }}",
+    "method": "POST",
+    "host": [
+        "https://generativelanguage.googleapis.com/"
+    ],
+    "extra_config": {
+        "validation/cel": [
+            {
+                "check_expr": {{ . | toJson }}
+            }
+        ],
+        "modifier/request-body-generator": {
+            "content_type": "application/json",
+            "path": "/etc/krakend/templates/vendors/gemini/generate.request.gemini.tmpl"
+        },
+        "modifier/response-body-generator": {
+            "content_type": "application/json",
+            "path": "/etc/krakend/templates/vendors/gemini/generate.response.gemini.tmpl"
+        },
+        "telemetry/logging": {
+            "custom_format": "{\"ts\":\"%{time:rfc3339}\", \"vendor\": \"gemini\", \"tokenUsage\": %{resp.usageMetadata.totalTokenCount}}\n"
+        }
+    }
+}

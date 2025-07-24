@@ -1,0 +1,9 @@
+{{- $name := (index (index .req_headers "X-Name") 0) -}}
+{{- $locale := (index (index .req_headers "X-Locale") 0) -}}
+{{- $position := (index (index .req_headers "X-Position") 0) -}}
+{{- $defaultInstruction := (print "Your name is GarsIA. The user name is " $name ", always start a response presenting yourself and with a hearty greeting. User locale is " $locale ", regardless the language of the input, the responses must be always written in the language of the locale") -}}
+{
+    "model": "gpt-4.1-mini",
+    "instructions": {{ (dig "instructions" $defaultInstruction .req_body) | toJson }},
+    "input": {{ .req_body.contents | toJson }}
+}

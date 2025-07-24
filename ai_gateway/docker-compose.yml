@@ -1,0 +1,51 @@
+services:
+  krakend_ee:
+    image: krakend/krakend-ee:2.10.2-watch
+    init: true
+    volumes:
+      - ./config/krakend:/etc/krakend
+      - ./LICENSE:/LICENSE
+    environment:
+      - KRAKEND_LICENSE_PATH=/LICENSE
+    env_file:
+      - ./config/krakend/.env
+    ports:
+      - "8080:8080"
+    command: ["run", "-d", "-c", "krakend.tmpl"]
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2
+    ports:
+      - "8085:8080"
+    volumes:
+      - ./config/keycloak/realms:/opt/keycloak/data/import
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: ["start-dev", "--import-realm"]
+  redis:  
+    image: "redis:7"
+    ports:
+      - "6379:6379"
+  web:
+    build:
+      context: images/app
+    ports:
+      - "3000:3000"
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '9035'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:1.30.8
+    ports:
+    - 9035:9035
+    - 50051:50051
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      CLUSTER_HOSTNAME: 'node1'
