@@ -79,7 +79,11 @@
       "input_query_strings": ["*"],
       "backend": [
         { "url_pattern": "/customer.json" },
-        { "url_pattern": "/sales.json" }
+        { "url_pattern": "/sales.json" },
+        { 
+            "host": ["http://localhost:8080"],
+            "url_pattern": "/__debug" 
+        }
       ]
     },
     {
