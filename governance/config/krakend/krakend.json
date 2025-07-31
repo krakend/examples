@@ -203,14 +203,14 @@
           "tiers": [
             {
               "rule_name": "ultra",
-              "tier_value": "thunder",
+              "tier_value": "ala-x",
               "tier_value_as": "literal",
               "strategy": "header",
               "key": "Authorization"
             },
             {
               "rule_name": "low",
-              "tier_value": "lightning",
+              "tier_value": "ala-b",
               "tier_value_as": "literal",
               "strategy": "header",
               "key": "Authorization"
@@ -262,7 +262,7 @@
           "tiers": [
             {
               "rule_name": "hard",
-              "tier_value": "thunder",
+              "tier_value": "ala-x",
               "tier_value_as": "literal",
               "strategy": "header",
               "key": "Authorization"

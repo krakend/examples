@@ -5,11 +5,11 @@ and we want to have different limits for the game resources.
 
 In **Earth vs Aliens** the player can choose one of this ships to play:
 
-- Thunder (`thunder`): a ship with fast fire weapons with several power ups,
+- Ala-X (`ala-x`): a ship with fast fire weapons with several power ups,
     but that has only capacity to transport a **single bomb**.
-- Spirit (`spirit`): a balanced ship, that can transport up to **two bombs**,
+- Ala-Y (`ala-y`): a balanced ship, that can transport up to **two bombs**,
     and has a fer power ups for its fast weapons.
-- Lightning (`lightning`): a bombardier ship that has capacity for **4 bombs**
+- Ala-B (`ala-b`): a bombardier ship that has capacity for **4 bombs**
     but with less main weapon power ups.
 
 So we define the following limited resources:
@@ -43,8 +43,8 @@ so the request will use the `Authorization` header. For this example, we
 have two players : `bart` and `homer` (that we use as authorization keys).
 
 In order to identify what game is using each player, we user an additional
-header `X-Ship` (that can have one of these values: `thunder`, `spirit`
-or `lightning`).
+header `X-Ship` (that can have one of these values: `ala-x`, `ala-y`
+or `ala-b`).
 
 ## The Config file
 

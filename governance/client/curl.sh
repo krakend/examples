@@ -15,9 +15,9 @@ QUOTAS_ENDPOINT='/request_bomb_reload'
 QUOTAS_USER=homer
 
 # Select the game to use;
-QUOTAS_GAME_SHIP=thunder
-# QUOTAS_GAME_SHIP=spirit
-# QUOTAS_GAME_SHIP=lighting
+QUOTAS_GAME_SHIP=ala-x
+# QUOTAS_GAME_SHIP=ala-y
+# QUOTAS_GAME_SHIP=ala-b
 
 echo "Making ${NUM_REQUESTS} request(s), showing headers..."
 
