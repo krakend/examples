@@ -1,6 +1,6 @@
 services:
   krakend_ee:
-    image: krakend/krakend-ee:2.10.3-watch
+    image: krakend/krakend-ee:2.10.2-watch
     volumes:
       - ./config/krakend:/etc/krakend
     ports:
