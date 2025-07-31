@@ -1,9 +1,8 @@
 # Workflows example
 
 This example simulates a backend for frontend example for a streaming 
-platforme like could be Nerdflix, or Rainforest Prime Video.
+platforme like could be NerdFilms, or Rainforest Top Video.
 
-A customer can have several profiles. 
 
 ## Endpoints
 

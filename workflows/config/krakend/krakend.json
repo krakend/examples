@@ -3,97 +3,109 @@
   "version": 3,
   "name": "My first API Gateway - KrakenD",
   "port": 8080,
-  "host": ["http://fakeapi:8088"],
+  "host": [
+    "http://fakeapi:8088"
+  ],
   "echo_endpoint": true,
   "debug_endpoint": true,
   "endpoints": [
     {
       "endpoint": "/home_dashboard",
-      "input_headers": ["*"],
+      "input_headers": [
+        "*"
+      ],
       "input_query_strings": [
-          "customer",
-          "profile"
+        "customer",
+        "profile"
       ],
       "backend": [
-        { 
-            "url_pattern": "/__workflow/customized_dashboard/",
-            "group": "custom_content",
-            "extra_config": {
-                "workflow": {
-                    "endpoint": "/__workflow_impl/customized_dashboard/",
-                                  "input_query_strings": [
-                                      "customer",
-                                      "profile"
-                                  ],
-                    "ignore_errors": true,
-                    "extra_config": {
-                        "proxy": { 
-                            "sequential": true, 
-                            "sequential_propagated_params": ["resp0_profile"]
-                        } 
-                    },
-                    "backend": [
-                        {
-                            "host": ["http://localhost:8080"],
-                            "url_pattern": "/__debug/workflow/"
-                        },
-                        {
-                            "url_pattern": "/__workflow/find_profile_id",
-                            "extra_config": {
-                                "workflow": {
-                                    "endpoint": "/__workflow_impl/find_profile_id",
-                                    "encoding": "no-op",
-                                    "ignore_errors": true,
-                                    "backend": [
-                                        {
-                                            "url_pattern": "/default_profile",
-                                            "extra_config": {
-                                                "validation/cel": [
-                                                    {
-                                                        "check_expr": "('profile' in req_querystring) == false || size(req_querystring.profile) == 0 || size(req_querystring.profile[0]) == 0"
-                                                    }
-                                                ]
-                                            }
-                                        },
-                                        {
-                                            "host": ["http://localhost:8080"],
-                                            "url_pattern": "/__debug/profile_from_query_param/",
-                                            "extra_config": {
-                                                "modifier/response-body-generator": {
-                                                    "content_type": "application/json",
-                                                    "debug": true,
-                                                    "path": "./profile_id.tmpl"
-                                                }
-                                            }
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        {
-                            "url_pattern": "/__workflow/for_profile_content/{resp0_profile.profile_id}",
-                            "group": "recommended",
-                            "extra_config": {
-                                "workflow": {
-                                    "endpoint": "/__workflow_impl/for_profile_content/{resp0_profile.profile_id}",
-                                    "backend": [
-                                        {
-                                            "host": ["http://localhost:8080"],
-                                            "url_pattern": "/__debug/{resp0_profile.profile_id}"
-                                        },
-                                        {
-                                            "url_pattern": "/profile_recommended_movies?q={resp0_profile.profile_id}"
-                                        },
-                                        {
-                                            "url_pattern": "/profile_recommended_actors"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    ]
+        {
+          "url_pattern": "/__workflow/customized_dashboard/",
+          "group": "custom_content",
+          "extra_config": {
+            "workflow": {
+              "endpoint": "/__workflow_impl/customized_dashboard/",
+              "input_query_strings": [
+                "customer",
+                "profile"
+              ],
+              "ignore_errors": true,
+              "extra_config": {
+                "proxy": {
+                  "sequential": true,
+                  "sequential_propagated_params": [
+                    "resp0_profile"
+                  ]
                 }
+              },
+              "backend": [
+                {
+                  "host": [
+                    "http://localhost:8080"
+                  ],
+                  "url_pattern": "/__debug/workflow/"
+                },
+                {
+                  "url_pattern": "/__workflow/find_profile_id",
+                  "extra_config": {
+                    "workflow": {
+                      "endpoint": "/__workflow_impl/find_profile_id",
+                      "encoding": "no-op",
+                      "ignore_errors": true,
+                      "backend": [
+                        {
+                          "url_pattern": "/default_profile",
+                          "extra_config": {
+                            "validation/cel": [
+                              {
+                                "check_expr": "('profile' in req_querystring) == false || size(req_querystring.profile) == 0 || size(req_querystring.profile[0]) == 0"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "host": [
+                            "http://localhost:8080"
+                          ],
+                          "url_pattern": "/__debug/profile_from_query_param/",
+                          "extra_config": {
+                            "modifier/response-body-generator": {
+                              "content_type": "application/json",
+                              "debug": true,
+                              "path": "./profile_id.tmpl"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "url_pattern": "/__workflow/for_profile_content/{resp0_profile.profile_id}",
+                  "group": "recommended",
+                  "extra_config": {
+                    "workflow": {
+                      "endpoint": "/__workflow_impl/for_profile_content/{resp0_profile.profile_id}",
+                      "backend": [
+                        {
+                          "host": [
+                            "http://localhost:8080"
+                          ],
+                          "url_pattern": "/__debug/{resp0_profile.profile_id}"
+                        },
+                        {
+                          "url_pattern": "/profile_recommended_movies?q={resp0_profile.profile_id}"
+                        },
+                        {
+                          "url_pattern": "/profile_recommended_actors"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
             }
+          }
         }
       ]
     }
