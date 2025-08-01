@@ -1,0 +1,322 @@
+{
+  "@$schema": "https://www.krakend.io/schema/krakend.json",
+  "name": "KrakenD",
+  "version": 3,
+  "host": [
+    "http://localhost:8080"
+  ],
+  "debug_endpoint": true,
+  "echo_endpoint": true,
+  "extra_config": {
+    "auth/api-keys": {
+      "propagate_role": "X-Krakend-Role",
+      "keys": [
+        {
+          "key": "bart",
+          "roles": [
+            "premium"
+          ]
+        },
+        {
+          "key": "homer",
+          "roles": [
+            "freemium"
+          ]
+        }
+      ]
+    },
+    "redis": {
+      "connection_pools": [
+        {
+          "name": "my_single_redis",
+          "address": "redis:6379"
+        }
+      ],
+      "clusters": [
+        {
+          "name": "my_redis_cluster",
+          "addresses": [
+            "redis001:7001",
+            "redis002:7002",
+            "redis003:7003"
+          ]
+        }
+      ]
+    },
+    "governance/processors": {
+      "quotas": [
+        {
+          "name": "weapon_power_up",
+          "connection_name": "my_single_redis",
+          "on_failure_allow": false,
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1E-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
+            {
+              "name": "ultra",
+              "limits": [
+                {
+                  "amount": 3,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 9,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "regular",
+              "limits": [
+                {
+                  "amount": 2,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 6,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "low",
+              "limits": [
+                {
+                  "amount": 1,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 5,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "bomb_reload",
+          "connection_name": "my_single_redis",
+          "on_failure_allow": true,
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1E-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
+            {
+              "name": "easy",
+              "limits": [
+                {
+                  "amount": 4,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 8,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "hard",
+              "limits": [
+                {
+                  "amount": 2,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 4,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "credits",
+          "connection_name": "my_redis_cluster",
+          "@connection_name": "my_single_redis",
+          "hash_keys": true,
+          "on_failure_allow": false,
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1E-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
+            {
+              "name": "paid",
+              "limits": [
+                {
+                  "amount": 10,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 150,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "free",
+              "limits": [
+                {
+                  "amount": 5,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 15,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/request_weapon_power_up",
+      "input_headers": [
+        "Authorization",
+        "X-Krakend-Role",
+        "X-Ship"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/__debug/dbg_request_weapon_power_up/"
+        }
+      ],
+      "extra_config": {
+        "auth/api-keys": {
+          "roles": [
+            "freemium",
+            "premium"
+          ]
+        },
+        "governance/quota": {
+          "quota_name": "weapon_power_up",
+          "tier_key": "X-Ship",
+          "tiers": [
+            {
+              "rule_name": "ultra",
+              "tier_value": "ala-x",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "low",
+              "tier_value": "ala-y",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "regular",
+              "tier_value": "value.matches('.*')",
+              "tier_value_as": "policy",
+              "strategy": "header",
+              "key": "Authorization"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "/request_bomb_reload",
+      "input_headers": [
+        "Authorization",
+        "X-Krakend-Role",
+        "X-Ship"
+      ],
+      "backend": [
+        {
+          "host": [
+            "http://localhost:8080"
+          ],
+          "url_pattern": "/consume.json",
+          "encoding": "json",
+          "extra_config": {
+            "backend/static-filesystem": {
+              "path": "/etc/krakend/fake_backend/data"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "auth/api-keys": {
+          "roles": [
+            "freemium",
+            "premium"
+          ]
+        },
+        "governance/quota": {
+          "quota_name": "bomb_reload",
+          "tier_key": "X-Ship",
+          "weight_key": "consumed",
+          "weight_strategy": "body",
+          "tiers": [
+            {
+              "rule_name": "hard",
+              "tier_value": "ala-x",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "easy",
+              "tier_value": "value.matches('.*')",
+              "tier_value_as": "policy",
+              "strategy": "header",
+              "key": "Authorization"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "/consume_credit",
+      "input_headers": [
+        "Authorization",
+        "X-Krakend-Role"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/__debug/dbg_consume_credit/"
+        }
+      ],
+      "extra_config": {
+        "auth/api-keys": {
+          "roles": [
+            "premium",
+            "freemium"
+          ]
+        },
+        "governance/quota": {
+          "quota_name": "credits",
+          "tier_key": "X-Krakend-Role",
+          "tiers": [
+            {
+              "rule_name": "paid",
+              "tier_value": "premium",
+              "tier_value_as": "literal",
+              "strategy": "header",
+              "key": "Authorization"
+            },
+            {
+              "rule_name": "free",
+              "tier_value": "value.matches('free.*')",
+              "tier_value_as": "policy",
+              "strategy": "header",
+              "key": "Authorization"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
