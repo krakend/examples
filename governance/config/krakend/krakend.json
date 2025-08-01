@@ -210,7 +210,7 @@
             },
             {
               "rule_name": "low",
-              "tier_value": "ala-b",
+              "tier_value": "ala-y",
               "tier_value_as": "literal",
               "strategy": "header",
               "key": "Authorization"

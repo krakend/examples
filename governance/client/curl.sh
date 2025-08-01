@@ -16,8 +16,8 @@ QUOTAS_USER=homer
 
 # Select the game to use;
 QUOTAS_GAME_SHIP=ala-x
-# QUOTAS_GAME_SHIP=ala-y
 # QUOTAS_GAME_SHIP=ala-b
+# QUOTAS_GAME_SHIP=ala-y
 
 echo "Making ${NUM_REQUESTS} request(s), showing headers..."
 
