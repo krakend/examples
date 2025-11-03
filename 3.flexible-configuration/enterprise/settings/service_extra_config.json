@@ -1,5 +1,5 @@
 {
-    "$schema": "https://www.krakend.io/schema/v2.7/service_extra_config.json",
+    "$schema": "https://www.krakend.io/schema/v2.12/service_extra_config.json",
     "security/cors": {
         "allow_methods": [
             "POST",
