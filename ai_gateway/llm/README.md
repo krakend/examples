@@ -1,6 +1,6 @@
 # KrakenD AI Gateway: Role-Based Multi-LLM Routing Demo
 
-This demo showcases KrakenD's AI Gateway capabilities through a practical implementation of **role-based multi-LLM routing**. It demonstrates how to use KrakenD as a unified interface to route requests to different AI providers (Gemini vs OpenAI) based on user authentication and roles.
+This demo showcases KrakenD's AI Gateway capabilities through a practical implementation of **role-based multi-LLM routing**. It demonstrates how to use KrakenD `ai/llm` feature as an unified interface to route requests to different AI providers (Gemini vs OpenAI) based on user authentication and roles.
 
 An AI Gateway provides secure, scalable access to Large Language Models while abstracting vendor-specific APIs, controlling costs, and enforcing governance policies. This example shows how to implement these concepts in practice.
 
@@ -10,6 +10,7 @@ An AI Gateway provides secure, scalable access to Large Language Models while ab
 
 **Key capabilities**:
 - JWT-based authentication and routing
+- LLM provider selector using conditional backend
 - Unified API for multiple AI providers  
 - [Request](https://www.krakend.io/docs/enterprise/backends/body-generator/) and [response](https://www.krakend.io/docs/enterprise/backends/response-body-generator/) transformation using templates
 - [Quota management](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) per user type
@@ -56,7 +57,7 @@ docker-compose up -d
 ## How It Works
 
 1. **Authentication**: Keycloak issues JWTs with user position claims
-2. **Routing Logic**: KrakenD reads the `position` claim and routes accordingly:
+2. **Routing using conditional backends**: KrakenD reads the `position` claim and routes accordingly using [conditional backends](https://www.krakend.io/docs/enterprise/backends/conditional/#content):
    - `developer` → `POST` to Gemini API
    - `support` → `POST` to OpenAI API
 3. **Templates**: [Request](https://www.krakend.io/docs/enterprise/backends/body-generator/) and [response](https://www.krakend.io/docs/enterprise/backends/response-body-generator/) bodies are transformed using Go templates
