@@ -1,4 +1,0 @@
-{{ $embedding := (.req_params.Resp0 | fromJson) }}
-{
-    "query": "{Get {Document (nearVector:{vector: {{ $embedding.embedding.values | toJson }} }, limit: 10) { text }}}"
-}
