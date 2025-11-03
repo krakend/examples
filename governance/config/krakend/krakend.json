@@ -1,5 +1,5 @@
 {
-  "$schema": "https://www.krakend.io/schema/v2.12/krakend.json",
+  "$schema": "https://www.krakend.io/schema/krakend.json",
   "name": "KrakenD",
   "version": 3,
   "host": [
