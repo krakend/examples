@@ -1,5 +1,5 @@
 {
-    "$schema": "https://www.krakend.io/schema/v2.7/flexible_config.json",
+    "$schema": "https://www.krakend.io/schema/flexible_config.json",
     "settings": {
         "paths": [
             "./environment/common",

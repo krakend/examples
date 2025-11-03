@@ -1,5 +1,5 @@
 {
-    "$schema": "https://www.krakend.io/schema/v2.5/krakend.json",
+    "$schema": "https://www.krakend.io/schema/krakend.json",
     "version": 3,
     "extra_config": {
         "@comment": "The $ref attribute works when Extended Flexible Config is enabled",
