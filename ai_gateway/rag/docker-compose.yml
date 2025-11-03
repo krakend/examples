@@ -1,0 +1,30 @@
+services:
+  krakend_ee:
+    image: krakend/krakend-ee:2.10.4-watch
+    init: true
+    volumes:
+      - ./config/krakend:/etc/krakend
+      - ./LICENSE:/etc/krakend/LICENSE
+    env_file:
+      - ./config/krakend/.env
+    ports:
+      - "8080:8080"
+    command: ["run", "-d", "-c", "krakend.tmpl"]
+  weaviate:
+    command:
+    - --host
+    - 0.0.0.0
+    - --port
+    - '9035'
+    - --scheme
+    - http
+    image: cr.weaviate.io/semitechnologies/weaviate:1.30.8
+    ports:
+    - 9035:9035
+    - 50051:50051
+    restart: on-failure:0
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+      CLUSTER_HOSTNAME: 'node1'
