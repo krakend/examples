@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Gateway demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+
+    <script type="module" src="./js/main.js"></script>
+    <link rel=icon type=image/png href=https://www.krakend.io/favicon/favicon-196x196.png sizes=196x196>
+    <link rel=icon type=image/png href=https://www.krakend.io/favicon/favicon-96x96.png sizes=96x96>
+    <link rel=icon type=image/png href=https://www.krakend.io/favicon/favicon-32x32.png sizes=32x32>
+    <link rel=icon type=image/png href=https://www.krakend.io/favicon/favicon-16x16.png sizes=16x16>
+    <link rel=icon type=image/png href=https://www.krakend.io/favicon/favicon-128.png sizes=128x128>
+</head>
+
+<body class="bg-gray-900 text-gray-100">
+    <header class="container flex justify-between items-center py-4">
+        <h1 class="text-xl font-bold">
+            <a href="/" class="flex items-center no-underline">
+                <img src=https://www.krakend.io/images/logo-krakend.svg width=157 height=31 alt="KrakenD API Gateway">
+                <span class="ml-3">AI Gateway Demo</span>
+            </a>
+        </h1>
+    </header>
+
+    <nav class="bg-gradient-to-r from-violet-500 to-blue-500 py-2">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-white">
+                <a href="#" id="__menu-home" class="text-white font-bold hover:underline no-underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                        class="inline align-bottom h-6 w-6">
+                        <path fill-rule="evenodd"
+                            d="M9.293 2.293a1 1 0 0 1 1.414 0l7 7A1 1 0 0 1 17 11h-1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6H3a1 1 0 0 1-.707-1.707l7-7Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Home
+                </a>
+            </span>
+            <span class="text-white">
+                <span id="__menu-not-logged-in"><a id="__menu-login"
+                        class="hover:underline no-underline text-blue-100 font-bold" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            class="inline align-bottom h-6 w-6">
+                            <path fill-rule="evenodd"
+                                d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                                clip-rule="evenodd" />
+                        </svg> Login
+                    </a></span>
+                <span id="__menu-logged-in">Hi,
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="inline align-bottom h-6 w-6">
+                        <path fill-rule="evenodd"
+                            d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <a id="__menu-profile" href="#profile" class="hover:underline no-underline text-white font-bold">
+                        <span id="__menu-profile-username">{{ username }}</span></a>
+                    <span class="text-blue-100">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                    <span id="__menu-position" class="text-green-200 font-semibold"></span>
+                    <span class="text-blue-100">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
+                    <a id="__menu-logout" href="#" class="text-red-200 hover:underline no-underline">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                            class="inline align-middle h-4 w-4">
+                            <path fill-rule="evenodd"
+                                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm2.78-4.22a.75.75 0 0 1-1.06 0L8 9.06l-1.72 1.72a.75.75 0 1 1-1.06-1.06L6.94 8 5.22 6.28a.75.75 0 0 1 1.06-1.06L8 6.94l1.72-1.72a.75.75 0 1 1 1.06 1.06L9.06 8l1.72 1.72a.75.75 0 0 1 0 1.06Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Logout
+                    </a></span>
+            </span>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-4 px-3">
+        <div id="__section-info" class="w-full mb-8">
+            <div class="rounded-md bg-gray-800 p-4">
+                <div class="flex">
+                    <div class="shrink-0">
+                        <svg class="size-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-300">This demo showcases KrakenD's AI Gateway with role-based routing - your user position determines which AI model processes requests.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full" id="__alert-not-logged-in">
+            <div class="rounded-md bg-gray-800 p-4 my-4">
+                <div class="flex">
+                    <div class="shrink-0">
+                        <svg class="size-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                            data-slot="icon">
+                            <path fill-rule="evenodd"
+                                d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-200"><strong>You are not logged in!</strong> Please <a
+                                id="__section-login" href="#" class="underline text-orange-300 hover:text-orange-200">log in</a> to interact with the AI
+                            Gateway.</p>
+                        <div class="mt-4 text-sm text-gray-300">
+                            <p class="font-semibold mb-2 text-gray-200">Available Test Users:</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <p class="font-medium text-green-400">Developer Users → Gemini AI:</p>
+                                    <ul class="list-disc list-inside ml-2 space-y-1">
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">ana</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">ana</code> - Ana Armendariz</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">daisi</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">daisi</code> - Daisi Varieur</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">tony</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">tony</code> - Tony Stark</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-blue-400">Support Users → OpenAI:</p>
+                                    <ul class="list-disc list-inside ml-2 space-y-1">
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">holly</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">holly</code> - Holly Golightly</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">john</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">john</code> - John Doe</li>
+                                        <li><code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">matteo</code> / <code class="bg-gray-600 text-gray-100 px-2 py-0.5 rounded text-xs">matteo</code> - Matteo Rossi</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="__section-ai" class="w-full mb-8">
+            <h3 class="text-lg font-semibold mb-3">AI Interaction</h3>
+            <div class="space-y-4">
+                <div>
+                    <label for="question" class="block text-sm font-medium mb-2">Question</label>
+                    <textarea id="__ai-question" rows="3"
+                        class="w-full rounded-md bg-gray-800 border-gray-700 text-white p-2"
+                        placeholder="Enter your question..."></textarea>
+                </div>
+                <div>
+                    <label for="instructions" class="block text-sm font-medium mb-2">Instructions (optional)</label>
+                    <textarea id="__ai-instructions" rows="1" readonly
+                        class="w-full rounded-md bg-gray-800 border-gray-700 text-white p-2 opacity-50 cursor-pointer"
+                        placeholder="Click here to add custom instructions..."></textarea>
+                </div>
+                <button id="__btn-submit-ai"
+                    class="bg-gradient-to-r from-violet-500 to-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 inline align-bottom">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                    </svg>
+                    <span>Submit</span>
+                </button>
+            </div>
+            <div id="__call-response" class="w-full hidden">
+                <hr class="my-8 border-gray-300">
+                <h4 class="text-lg font-semibold mb-3">Request</h4>
+                <pre class="bg-gray-800 text-white p-4 rounded" id="__call-response-req"><code class="language-json"></code></pre>
+                <h4 class="text-lg font-semibold mb-3">Response</h4>
+                <pre class="bg-gray-800 text-white p-4 rounded" id="__call-response-res"><code class="language-json"></code></pre>
+                <div class="w-full mt-4 prose prose-invert max-w-none">
+                    <div class="bg-gray-800 rounded p-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="__section-profile" class="w-full hidden">
+            <h3 class="text-lg font-semibold">Profile</h3>
+            <table class="w-full text-left border-collapse mb-4">
+                <tbody></tbody>
+            </table>
+            <h5 class="text-lg font-semibold">Full profile</h5>
+            <pre class="bg-gray-800 text-white p-4 rounded"><code class="language-json"></code></pre>
+        </div>
+    </div>
+
+    <hr class="my-8 border-gray-300">
+
+    <footer class="text-center text-gray-600">
+        <p>Made with <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                class="text-red-500 inline align-bottom h-5 w-5">
+                <path
+                    d="m9.653 16.915-.005-.003-.019-.01a20.759 20.759 0 0 1-1.162-.682 22.045 22.045 0 0 1-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 0 1 8-2.828A4.5 4.5 0 0 1 18 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 0 1-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 0 1-.69.001l-.002-.001Z" />
+            </svg>
+            by KrakenD team</p>
+        <p>
+            <a href="https://www.krakend.io/" target="_blank" class="hover:underline">Website</a> | <a
+                href="https://www.krakend.io/docs/enterprise/ai-gateway/" target="_blank"
+                class="hover:underline">Docs</a>
+        </p>
+    </footer>
+</body>
+
+</html>
