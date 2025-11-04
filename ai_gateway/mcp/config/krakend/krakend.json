@@ -1,0 +1,160 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD Enterprise MCP Server",
+  "port": 8080,
+  "timeout": "60000ms",
+  "endpoints": [
+    {
+      "endpoint": "/mcp",
+      "method": "POST",
+      "timeout": "15s",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": [
+            "http://ignore"
+          ]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "country-weather"
+        }
+      }
+    }
+  ],
+  "extra_config": {
+    "security/cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "allow_methods": [
+        "POST",
+        "GET"
+      ],
+      "allow_headers": [
+        "Origin",
+        "Authorization",
+        "Content-Type"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h"
+    },
+    "telemetry/logging": {
+      "#access_log_format": "json",
+      "#level": "WARNING",
+      "#format": "logstash",
+      "level": "DEBUG",
+      "stdout": true
+    },
+    "ai/mcp": {
+      "servers": [
+        {
+          "name": "country-weather",
+          "title": "Country Weather info",
+          "version": "1.0.0",
+          "stateless": true,
+          "instructions": "Provides unified country data by aggregating REST and GraphQL APIs. Use this to retrieve comprehensive information about countries including geography, demographics, cultural data and weather details.",
+          "tools": [
+            {
+              "name": "get_country_info",
+              "title": "Get Country Information",
+              "description": "Retrieves comprehensive country data by aggregating multiple public APIs (REST + GraphQL). Returns unified information including capital, population, area, languages, currency, flag, bordering countries and weather details.",
+              "type": "text",
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "country_code": {
+                    "type": "string",
+                    "description": "Two-letter ISO 3166-1 alpha-2 country code (e.g., ES for Spain, FR for France, US for United States)",
+                    "pattern": "^[A-Z]{2}$"
+                  }
+                },
+                "required": [
+                  "country_code"
+                ]
+              },
+              "return_error_msg": true,
+              "workflow": {
+                "endpoint": "/__mcp/country-info/{country_code}",
+                "backend": [
+                  {
+                    "@comment": "REST Countries API - provides geography, population, borders, flags",
+                    "host": [
+                      "https://restcountries.com"
+                    ],
+                    "url_pattern": "/v3.1/alpha/{country_code}",
+                    "encoding": "safejson",
+                    "is_collection": true,
+                    "group": "rest_data",
+                    "mapping": {
+                      "collection": "countries"
+                    },
+                    "extra_config": {
+                      "modifier/lua-backend": {
+                        "allow_open_libs": true,
+                        "sources": [
+                          "./lua/append-capital-info.lua"
+                        ],
+                        "post": "flatten_capital_lat_lng(response.load())"
+                      },
+                      "modifier/jmespath": {
+                        "expr": "{rest_data: rest_data.countries[0]}"
+                      }
+                    }
+                  },
+                  {
+                    "@comment": "GraphQL Countries API - provides currency, native name, emoji, languages",
+                    "host": [
+                      "https://countries.trevorblades.com"
+                    ],
+                    "url_pattern": "/",
+                    "encoding": "json",
+                    "target": "data.country",
+                    "group": "graphql_data",
+                    "extra_config": {
+                      "backend/graphql": {
+                        "type": "query",
+                        "query": "query GetCountry($code: ID!) { country(code: $code) { name native capital currency emoji languages { code name } } }",
+                        "variables": {
+                          "code": "{country_code}"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "@comment": "Open-Meteo Weather API - provides current weather for the capital city",
+                    "host": [
+                      "https://api.open-meteo.com"
+                    ],
+                    "url_pattern": "/v1/forecast?latitude={resp0_rest_data.capitalLat}&longitude={resp0_rest_data.capitalLng}&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m",
+                    "group": "weather_data",
+                    "extra_config": {
+                      "modifier/lua-backend": {
+                        "allow_open_libs": true,
+                        "pre": "debug.dump(request.load())"
+                      }
+                    }
+                  }
+                ],
+                "extra_config": {
+                  "modifier/jmespath": {
+                    "@comment": "Simplified merge - take info from REST response and combine with GraphQL",
+                    "expr": "{country: rest_data.name.common, native_name: graphql_data.native, capital: rest_data.capital[0], capitalLat: rest_data.capitalLat, capitalLng: rest_data.capitalLng, population: rest_data.population, area_km2: rest_data.area, currency: graphql_data.currency, languages: graphql_data.languages[*].name, flag_emoji: graphql_data.emoji, borders: rest_data.borders, weather_forecast: {units: weather_data.hourly_units, hourly: weather_data.hourly}}"
+                  },
+                  "proxy": {
+                    "sequential": true,
+                    "sequential_propagated_params": ["resp0_rest_data.capitalLat", "resp0_rest_data.capitalLng"]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
