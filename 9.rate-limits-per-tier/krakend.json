@@ -1,5 +1,5 @@
 {
-  "@$schema": "https://www.krakend.io/schema/krakend.json",
+  "$schema": "https://www.krakend.io/schema/krakend.json",
   "name": "KrakenD PoC to implement rate_limit per tiers when using API Keys",
   "version": 3,
   "host": ["http://localhost:8080"],
