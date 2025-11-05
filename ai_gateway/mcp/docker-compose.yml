@@ -1,0 +1,10 @@
+services:
+  krakend_ee:
+    image: krakend/krakend-ee:2.12.0-watch
+    init: true
+    volumes:
+      - ./config/krakend:/etc/krakend
+      - ./LICENSE:/etc/krakend/LICENSE
+    ports:
+      - "8080:8080"
+    command: ["run", "-d", "-c", "krakend.json"]

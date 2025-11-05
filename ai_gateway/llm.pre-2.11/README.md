@@ -68,8 +68,6 @@ The main routing logic is in `config/krakend/krakend.tmpl`. Templates for each p
 
 ## Additional Features
 
-**RAG endpoints**: Add documents and query with context using `/rag/add` and `/rag/query`
-
 **[Quota management](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/)**: Different token limits for admin vs regular users
 
 **Monitoring**: Request/response logging and token usage tracking

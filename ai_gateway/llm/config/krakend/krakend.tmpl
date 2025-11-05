@@ -1,0 +1,209 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD Enterprise AI Gateway",
+  "port": 8080,
+  "timeout": "60000ms",
+  "endpoints": [
+    {
+      "endpoint": "/",
+      "method": "POST",
+      "input_headers": [
+        "Content-Type",
+        "X-Position",
+        "X-Name",
+        "X-Roles",
+        "X-User-Id",
+        "X-Locale"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v1beta/models/gemini-2.0-flash:generateContent",
+          "method": "POST",
+          "host": [
+            "https://generativelanguage.googleapis.com/"
+          ],
+          "extra_config": {
+            "backend/conditional": {
+              "strategy": "policy",
+              "value": "req_headers['X-Position'][0] == 'developer'"
+            },
+            "ai/llm": {
+              "gemini": {
+                "v1beta": {
+                  "credentials": "{{ env "GEMINI_API_KEY" }}",
+                  "variables": {
+                    "candidate_count": 1
+                  }
+                }
+              }
+            },
+            "telemetry/logging": {
+              "custom_format": "{\"ts\":\"%{time:rfc3339}\", \"vendor\": \"gemini\", \"tokenUsage\": %{resp.usageMetadata.totalTokenCount}}\n"
+            }
+          }
+        },
+        {
+          "url_pattern": "/v1/responses",
+          "method": "POST",
+          "host": [
+            "https://api.openai.com/"
+          ],
+          "extra_config": {
+            "backend/conditional": {
+              "strategy": "policy",
+              "value": "req_headers['X-Position'][0] == 'support'"
+            },
+            "ai/llm": {
+              "openai": {
+                "v1": {
+                  "credentials": "{{ env "OPENAI_API_KEY" }}",
+                  "variables": {
+                    "model": "gpt-5-nano"
+                  }
+                }
+              }
+            },
+            "telemetry/logging": {
+              "custom_format": "{\"ts\":\"%{time:rfc3339}\", \"vendor\": \"openai\", \"tokenUsage\": %{resp.usage.total_tokens}}\n"
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "governance/quota": {
+          "quota_name": "llm",
+          "tier_key": "X-Roles",
+          "weight_key": "usage",
+          "weight_strategy": "body",
+          "tiers": [
+            {
+              "tier_value": "value.matches('admin')",
+              "tier_value_as": "policy",
+              "rule_name": "poweruser",
+              "key": "X-User-Id",
+              "strategy": "header"
+            },
+            {
+              "tier_value_as": "*",
+              "rule_name": "user",
+              "key": "X-User-Id",
+              "strategy": "header"
+            }
+          ]
+        },
+        "validation/json-schema": {
+          "type": "object",
+          "required": [
+            "contents"
+          ],
+          "properties": {
+            "instructions": {
+              "type": "string"
+            },
+            "contents": {
+              "type": "string"
+            }
+          }
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": [
+            "playground"
+          ],
+          "jwk_url": "http://keycloak:8080/realms/krakend/protocol/openid-connect/certs",
+          "disable_jwk_security": true,
+          "propagate_claims": [
+            [
+              "email",
+              "X-User-Id"
+            ],
+            [
+              "position",
+              "X-Position"
+            ],
+            [
+              "given_name",
+              "X-Name"
+            ],
+            [
+              "locale",
+              "X-Locale"
+            ],
+            [
+              "resource_access.playground.roles",
+              "X-Roles"
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "extra_config": {
+    "security/cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "allow_methods": [
+        "POST",
+        "GET"
+      ],
+      "allow_headers": [
+        "Origin",
+        "Authorization",
+        "Content-Type"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h"
+    },
+    "telemetry/logging": {
+      "access_log_format": "json",
+      "level": "WARNING",
+      "format": "logstash",
+      "stdout": true
+    },
+    "redis": {
+      "connection_pools": [
+        {
+          "name": "default",
+          "address": "redis:6379"
+        }
+      ]
+    },
+    "governance/processors": {
+      "quotas": [
+        {
+          "name": "llm",
+          "connection_name": "default",
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1e-8,
+            "hash_name": "optimal"
+          },
+          "rules": [
+            {
+              "name": "poweruser",
+              "limits": [
+                {
+                  "amount": 10000,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "user",
+              "limits": [
+                {
+                  "amount": 5000,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
