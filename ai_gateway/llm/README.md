@@ -20,7 +20,7 @@ An AI Gateway provides secure, scalable access to Large Language Models while ab
 ### Prerequisites
 
 - Docker and Docker Compose
-- KrakenD Enterprise license
+- KrakenD Enterprise license (need a trial license? [Contact us](https://www.krakend.io/contact-sales/))
 - API keys for Gemini and OpenAI
 
 ### Setup
