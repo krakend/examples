@@ -36,10 +36,15 @@ docker-compose up -d
 curl -X POST http://localhost:8080/mcp \
   -H "Content-Type: application/json" \
   -d '{
-    "tool": "get_country_info",
-    "arguments": {
-      "country_code": "ES"
-    }
+    "jsonrpc": "2.0",
+    "method": "tools/call",
+    "params": {
+      "name": "get_country_info",
+      "arguments": {
+        "country_code": "ES"
+      }
+    },
+    "id": 1
   }'
 ```
 
