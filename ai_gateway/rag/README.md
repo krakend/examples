@@ -11,7 +11,7 @@ This demo showcases a RAG server abstraction layer using KrakenD built-in capabi
 ### Prerequisites
 
 - Docker and Docker Compose
-- KrakenD Enterprise license
+- KrakenD Enterprise license (need a trial license? [Contact us](https://www.krakend.io/contact-sales/))
 - API key for Gemini
 
 ### Setup
