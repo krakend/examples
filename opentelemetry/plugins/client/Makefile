@@ -1,9 +1,10 @@
 # KrakenD Version
-VERSION := latest
+VERSION := 2.12.1
 PLUGINAME := plugins/client
 
 # Build KrakenD plugin using the KrakenD docker builder (for running inside docker)
 amd64:
+	docker pull krakend/builder-ee:${VERSION}
 	mkdir -p ./plugins
 	docker run --rm -it \
 		-e CGO_ENABLED=1 \
@@ -11,11 +12,12 @@ amd64:
 		-e ARCH=amd64 \
 		-e FOR_USER=$$(id -u) \
 		-v "${PWD}:/app" \
-		-w /app krakend/builder:${VERSION} sh -c "make -e plugin"
+		-w /app krakend/builder-ee:${VERSION} sh -c "make -e plugin"
 	mkdir -p ../../config/krakend/plugins
 	mv ./${PLUGINAME}.so ../../config/krakend/plugins
 
 arm64:
+	docker pull krakend/builder-ee:${VERSION}
 	mkdir -p ./plugins
 	docker run --rm -it \
 		-e CGO_ENABLED=1 \
@@ -26,7 +28,7 @@ arm64:
 		-e FOR_USER=$$(id -u) \
 		-e EXTRA_LDFLAGS='-extld=aarch64-linux-musl-gcc' \
 		-v "${PWD}:/app" \
-		-w /app krakend/builder:${VERSION} sh -c "make -e plugin"
+		-w /app krakend/builder-ee:${VERSION} sh -c "make -e plugin"
 	mkdir -p ../../config/krakend/plugins
 	mv ./${PLUGINAME}.so ../../config/krakend/plugins
 
@@ -37,3 +39,11 @@ plugin:
 		-ldflags="${EXTRA_LDFLAGS}" \
 		-o ${PLUGINAME}.so . \
 		&& chown ${FOR_USER}:${FOR_USER} ${PLUGINAME}.so
+
+
+check:
+	docker run --rm -it \
+		-e FOR_USER=$$(id -u) \
+		-v "${PWD}:/app" \
+		-w /app \
+		krakend/krakend-ee:${VERSION} sh -c "krakend check-plugin -s /app/plugins/client/go.sum -f"
