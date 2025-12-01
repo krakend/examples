@@ -33,6 +33,7 @@ arm64:
 	mv ./plugin/${PLUGINANME} ../../config/krakend/plugins
 
 plugin:
+	@go get ./...
 	@go build -buildmode=plugin \
 		-ldflags="${EXTRA_LDFLAGS}" \
 		-o ${PLUGINAME}.so . \

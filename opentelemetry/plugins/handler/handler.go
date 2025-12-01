@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/krakend/krakend-otel/state"
 	"go.opentelemetry.io/otel/attribute"
@@ -76,8 +77,9 @@ func (r registerer) registerHandlers(_ context.Context, extra map[string]interfa
 
 		// fake doing something:
 		rnd := rand.New(rand.NewSource(time.Now().UnixMicro()))
-		fakeDoSomethingDurationInstrument.Record(ctx, 
-            ((5 + (rnd.Int63() % 150)) * time.Millisecond)
+		// rndVal in seconds
+		rndVal := float64(5+(rnd.Int63()%150)) / 1000.0
+		fakeDurationInstrument.Record(ctx, rndVal)
 
 		h.ServeHTTP(w, req)
 
