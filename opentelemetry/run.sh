@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 
-export VERSION=2.12.0
+export VERSION=2.12.1
 docker pull krakend/krakend-ee:${VERSION}
 
 if [ -z $DD_API_KEY ]; then

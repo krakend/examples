@@ -46,4 +46,4 @@ check:
 		-e FOR_USER=$$(id -u) \
 		-v "${PWD}:/app" \
 		-w /app \
-		krakend/krakend-ee:${VERSION} sh -c "krakend check-plugin -s /app/plugins/client/go.sum -f"
+		krakend/krakend-ee:${VERSION} sh -c "krakend check-plugin -s /app/go.sum -f"
