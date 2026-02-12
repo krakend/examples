@@ -1,0 +1,35 @@
+apiVersion: 1
+
+datasources:
+- access: proxy
+  id: 1
+  orgId: 1
+  name: Prometheus
+  type: prometheus
+  typeName: Prometheus
+  url: http://prometheus:9090
+  user: ""
+  database: ""
+  basicAuth: false
+  isDefault: true
+  jsonData:
+    httpMethod: POST
+  readOnly: false
+  editable: true
+  # This UID matches the one used in the dashboard settings file
+  uid: krakend_prometheus_datasource
+- access: proxy
+  id: 2
+  orgId: 1
+  name: Tempo
+  type: tempo
+  typeName: Tempo
+  url: http://tempo:3200
+  user: ""
+  database: ""
+  basicAuth: false
+  isDefault: false
+  jsonData: {}
+  readOnly: false
+  editable: true
+  uid: krakend_tempo_datasource
