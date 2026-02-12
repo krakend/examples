@@ -1,0 +1,84 @@
+services:
+  kafkabroker:
+    image: apache/kafka:latest
+    hostname: kafkabroker
+    container_name: messaging-kafkabroker
+    ports:
+      - 9092:9092
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafkabroker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafkabroker:29093
+      KAFKA_LISTENERS: PLAINTEXT://kafkabroker:29092,CONTROLLER://kafkabroker:29093,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+      CLUSTER_ID: KRAKENDKAFKACLUSTERID
+  seckafkabroker:
+    image: apache/kafka:latest
+    hostname: seckafkabroker
+    container_name: messaging-seckafkabroker
+    volumes:
+      - ./config/certs:/etc/kafka/secrets
+    ports:
+      - 49092:49092
+    environment:
+      KAFKA_SSL_KEYSTORE_FILENAME: keystore.jks
+      KAFKA_SSL_KEYSTORE_CREDENTIALS: keystore.credentials.txt
+      KAFKA_SSL_KEY_CREDENTIALS: keystore.credentials.txt
+      KAFKA_SSL_TRUSTSTORE_FILENAME: keystore.jks
+      KAFKA_SSL_TRUSTSTORE_CREDENTIALS: keystore.credentials.txt
+      KAFKA_SSL_CLIENT_AUTH: required
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: SSL:SSL,SSL-INTERNAL:SSL,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: SSL://localhost:49092,SSL-INTERNAL://localhost:59092,PLAINTEXT://seckafkabroker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@seckafkabroker:29093
+      KAFKA_LISTENERS: SSL://0.0.0.0:49092,SSL-INTERNAL://localhost:59092,PLAINTEXT://seckafkabroker:29092,CONTROLLER://seckafkabroker:29093,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+      CLUSTER_ID: KRAKENDSECKAFKACLUSTERID
+  grafana:
+    image: grafana/grafana:latest
+    container_name: messaging-grafana
+    ports:
+      - "4000:3000"
+    volumes:
+      - "./config/telemetry-dashboards/grafana/datasources/prometheus-tempo.yml:/etc/grafana/provisioning/datasources/prometheus-tempo.yml"
+      - "./config/telemetry-dashboards/grafana/krakend/for-prometheus.json:/var/lib/grafana/dashboards/krakend/for-prometheus.json"
+      - "./config/telemetry-dashboards/grafana/dashboards/all.yml:/etc/grafana/provisioning/dashboards/all.yml"
+    environment:
+      - GF_SECURITY_ADMIN_USER=krakend
+      - GF_SECURITY_ADMIN_PASSWORD=krakend
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./config/telemetry-dashboards/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+  tempo:
+    image: grafana/tempo:latest
+    domainname: tempo
+    container_name: messaging-tempo
+    command: [ "-config.file=/etc/tempo.yaml" ]
+    volumes:
+      - "./config/telemetry-dashboards/tempo/tempo.yaml:/etc/tempo.yaml"
+    ports:
+      - "3200:3200"     # tempo
+      - "9095:9095"     # tempo grpc
+      - "54317:4317"    # otlp grpc
+      - "54318:4318"    # otlp http
