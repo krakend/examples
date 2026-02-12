@@ -171,5 +171,5 @@ This example requires a valid KrakenD Enterprise Edition license. Place your `LI
 ## References
 
 - [KrakenD Plugins Documentation](https://www.krakend.io/docs/enterprise/extending/)
-- [KrakenD Quota Management](https://www.krakend.io/docs/governance/quota/)
+- [KrakenD Quota Management](https://www.krakend.io/docs/enterprise/governance/quota/)
 - [OpenAI Streaming Format](https://platform.openai.com/docs/api-reference/streaming)
