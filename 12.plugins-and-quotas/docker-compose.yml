@@ -1,0 +1,22 @@
+services:
+  krakend_ee:
+    build:
+      context: .
+      args:
+        - KRAKEND_BUILDER=2.12
+        - KRAKEND_VERSION=2.13.0-sc1082-alpha1
+    init: true
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+
+  redis:  
+    image: "redis:7"
+    ports:
+      - "6379:6379"
