@@ -175,7 +175,3 @@ ports:
 - [Injecting Redis in plugins](https://www.krakend.io/docs/enterprise/extending/injecting-redis-in-plugins/)
 - [KrakenD Redis Service configuration](https://www.krakend.io/docs/enterprise/service-settings/redis-connection-pools/)
 - [Go Redis Client](https://github.com/redis/go-redis)
-
-## License
-
-See [LICENSE](LICENSE) file for details.
