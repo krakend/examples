@@ -59,7 +59,7 @@ emailAddress_default = admin@certikrakend.dev
 [ ca_extensions ]
 
 subjectKeyIdentifier   = hash
-authorityKeyIdentifier = keyid:always, issuer
+authorityKeyIdentifier = keyid:always, issuer:always
 basicConstraints       = critical, CA:true
 keyUsage               = keyCertSign, cRLSign
 
