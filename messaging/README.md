@@ -25,6 +25,11 @@ In order to produce messages you will need to have installed the
 `kaf` tool: [https://github.com/birdayz/kaf](https://github.com/birdayz/kaf).
 
 
+
+### Kaf to produce message with SSL TLS
+
+https://github.com/birdayz/kaf/blob/master/examples/ssl_keys.yaml
+
 ## "Story Telling"
 
 The `kafkabroker` is a source of information for different market 
