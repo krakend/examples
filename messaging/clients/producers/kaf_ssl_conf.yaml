@@ -1,0 +1,9 @@
+clusters:
+  - name: seckafkabroker
+    brokers:
+      - localhost:49092
+    TLS:
+      cafile: "../../config/ca/cacert.pem"
+      clientfile: "../../config/certs/client/client.signed.pem"
+      clientkeyfile: "../../config/certs/client/client.passwordless.key"
+      insecure: false

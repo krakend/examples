@@ -76,6 +76,8 @@ emailAddress           = optional
 ####################################################################
 [ signing_req ]
 subjectKeyIdentifier   = hash
-authorityKeyIdentifier = keyid,issuer
+authorityKeyIdentifier = keyid:always,issuer:always
 basicConstraints       = CA:FALSE
-keyUsage               = digitalSignature, keyEncipherment
+keyUsage               = digitalSignature, keyEncipherment, dataEncipherment, nonRepudiation, keyCertSign, keyAgreement
+subjectAltName         = DNS:localhost, DNS:seckafkabroker
+issuerAltName          = issuer:copy
