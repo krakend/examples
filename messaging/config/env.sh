@@ -1,6 +1,7 @@
 #/bin/bash
 
 export SERVER_CERT_SIGN_REQUEST=${PWD}/certs/server/localhost.csr
+export SERVER_SIGNED_CERT=${PWD}/certs/server/localhost.signed.pem
 export SERVER_FQDN=localhost
 export SERVER_IPADDRESS=127.0.0.1
 

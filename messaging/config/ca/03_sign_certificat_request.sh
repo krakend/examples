@@ -12,6 +12,12 @@ openssl \
     -out ${CLIENT_SIGNED_CERT} \
     -infiles ${CLIENT_CERT_SIGN_REQUEST} 
 
+openssl \
+    ca -config openssl-ca.cnf \
+    -policy signing_policy \
+    -extensions signing_req \
+    -out ${SERVER_SIGNED_CERT} \
+    -infiles ${SERVER_CERT_SIGN_REQUEST} 
 #subjectKeyIdentifier   = hash
 #     -keystore ${KEYSTORE_FILE} \
 #     -alias localhost \
