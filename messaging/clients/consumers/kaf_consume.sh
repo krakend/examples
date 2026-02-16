@@ -1,7 +1,5 @@
 #/bin/bash
-
-export KTOPIC=stockprices
-
+export KTOPIC=stockprice
 kaf consume \
     ${KTOPIC} \
     -v \

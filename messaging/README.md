@@ -22,9 +22,8 @@ Along with services for telemetry:
 [##](##) Producing messages
 
 In order to produce messages you will need to have installed the 
-`kaf` tool.
+`kaf` tool: [https://github.com/birdayz/kaf](https://github.com/birdayz/kaf).
 
-# TODO: explain how to install the kaf tool
 
 ## "Story Telling"
 

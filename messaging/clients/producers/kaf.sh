@@ -8,7 +8,6 @@ echo -e "Producing: $KKEY into '$KTOPIC' topic\n"
 SLEEP_PERIOD=5
 PRICES=("309.28", "312.59", "315.7", "314.68", "311.9", "309.70", "319.00")
 
-
 for p in ${PRICES[@]}; do
     echo  "producing price ${p}" 
     export PRICE=$p
