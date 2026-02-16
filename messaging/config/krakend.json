@@ -1,0 +1,92 @@
+{
+    "version": 3,
+    "debug_endpoint": true,
+    "host": ["http://localhost:8080"],
+    "async_agent": [
+        {
+            "name": "stocksconsumer",
+            "extra_config": {
+                "async/kafka": {
+                    "group_id": "my_group_id",
+                    "topics": [
+                        "krafka"
+                    ],
+                    "connection": {
+                        "brokers": [
+                            "localhost:9092"
+                        ],
+                        "client_id": "bartolo"
+                    },
+                    "consumer": {}
+                }
+            },
+            "connection": {
+                "max_retries": 2,
+                "backoff_strategy": "linear",
+                "health_interval": "30s"
+            },
+            "consumer": {
+                "topic": "*",
+                "workers": 1,
+                "timeout": "1s"
+            },
+            "backend": [
+                {
+                    "url_pattern": "/__debug/hi"
+                },
+                {
+                    "extra_config": {
+                        "backend/pubsub/publisher/kafka": {
+
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "portfolioupdatesconsumer",
+            "extra_config": {
+                "async/kafka": {
+                    "group_id": "my_group_id",
+                    "topics": [
+                        "krafka"
+                    ],
+                    "connection": {
+                        "brokers": [
+                            "shrimp.ln:9092",
+                            "localhost:49092"
+                        ],
+                        "client_id": "bartolo"
+                    },
+                    "consumer": {}
+                }
+            },
+            "connection": {
+                "max_retries": 2,
+                "backoff_strategy": "linear",
+                "health_interval": "30s"
+            },
+            "consumer": {
+                "topic": "*",
+                "workers": 1,
+                "timeout": "1s"
+            },
+            "backend": [
+                {
+                    "url_pattern": "/__debug/hi"
+                }
+            ]
+        }
+    ],
+    "endpoint": [
+        {
+            "path"
+            "backend": [
+                {
+
+                    "extra_config": 
+                }
+            ]
+        }
+    ]
+}
