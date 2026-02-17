@@ -1,6 +1,0 @@
-subjectKeyIdentifier   = hash
-authorityKeyIdentifier = keyid:always,issuer:always
-basicConstraints       = CA:FALSE
-keyUsage               = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment, keyAgreement, keyCertSign
-subjectAltName         = DNS:localhost, DNS:seckafkabroker
-issuerAltName          = issuer:copy

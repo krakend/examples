@@ -2,7 +2,12 @@
 
 ## Environment
 
-To launch the test environment, just execute:
+First of all, enter the `config` dir, and follow the 
+[README.md](./config/README.md) instructions to generate a self
+signed certificate for the client and the `seckafkabroker` service,
+to be able to use `mTLS`
+
+Once done that, launchthe  test  environment with:
 
 ```
 docker compose up -d 
@@ -24,11 +29,19 @@ Along with services for telemetry:
 In order to produce messages you will need to have installed the 
 `kaf` tool: [https://github.com/birdayz/kaf](https://github.com/birdayz/kaf).
 
+Under the [`clients/producer`](./clients/producer) folder you will find
+two scripts:
 
+- [`kaf.sh`](./clients/producer/kaf.sh): to generate fake data for the 
+    `stockprice` topic on the `kafkabroker` server.
+- [`kaf_ssh.sh`](./clients/producer/kaf_ssl.sh): to generate fake data for the 
+    `portfolioupdates` topic on the `seckafkaborker`.
+    
 
 ### Kaf to produce message with SSL TLS
 
 https://github.com/birdayz/kaf/blob/master/examples/ssl_keys.yaml
+
 
 ## "Story Telling"
 
