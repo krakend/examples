@@ -4,55 +4,117 @@ mkdir -p ./certs/server
 mkdir -p ./certs/client
 
 . env.sh
-# export SERVER_CERT_SIGN_REQUEST=${PWD}/certs/server/localhost.csr
-# export SERVER_FQDN=localhost
-# export SERVER_IPADDRESS=127.0.0.1
-# 
-# export CLIENT_CERT_KEYPAIR=${PWD}/certs/client/client.key
-# export CLIENT_CERT_SIGN_REQUEST=${PWD}/certs/client/client.csr
-# export CLIENT_SIGNED_CERT=${PWD}/certs/client/client.signed.pem
-# export CLIENT_CERT_KEYPAIR_PASSWORDLESS=${PWD}/certs/client/client.passwordless.key
-# 
-# export KEYSTORE_FILE=${PWD}/certs/keystore.jks
-# export VALIDITY=3650
 
-echo "              "
-echo "--------------"
-echo "Creating CA:"
-echo "--------------"
+echo ${KEYSTORE_PASS} > ./certs/keystore.credentials.txt
 
 cd ca
-. ./01_gen_ca.sh
-. ./02_add_ca_to_keystore.sh
-cd ..
+echo "              "
+echo "--------------"
+echo " Creating CA Cert:"
+echo "--------------"
+openssl \
+    req -x509 \
+    -config openssl-ca.cnf \
+    -newkey rsa:4096 \
+    -sha256 \
+    -nodes \
+    -out cacert.pem \
+    -outform PEM
+
+# . ./01_gen_ca.sh
+# . ./02_add_ca_to_keystore.sh
+echo "              "
+echo "--------------"
+echo " Importing CA Cert to Keystore file:"
+echo "   ${KEYSTORE_FILE}"
+echo "--------------"
+keytool \
+    -keystore ${KEYSTORE_FILE} \
+    -storepass ${KEYSTORE_PASS} \
+    -alias KrakenDCARoot \
+    -import \
+    -file cacert.pem
 
 echo "              "
 echo "--------------"
-echo "Creating Server Certificate"
+echo " Generating Secure Kafka Server Key: "
 echo "--------------"
-
-cd cert_gen
-. ./01_gen_key_pairs.sh
-echo "              "
-echo "--------------"
-echo "Creating Client Certificate"
-echo "--------------"
-. ./03_gen_client_keypair.sh
-cd ..
-
-echo "              "
-echo "--------------"
-echo "Signing Client Certificate"
-echo "--------------"
-cd ca
-. ./03_sign_certificat_request.sh $CLIENT_CERT_SIGN_REQUEST
-cd ..
-
+keytool \
+    -keystore ${KEYSTORE_FILE} \
+    -storepass ${KEYSTORE_PASS} \
+    -alias localhost \
+    -validity ${VALIDITY} \
+    -genkey \
+    -keyalg RSA \
+    -storetype pkcs12
 
 echo "              "
 echo "--------------"
-echo "Remove password from client key"
+echo " Generating Secure Kafka Server SIGNING REQUEST: "
 echo "--------------"
-cd cert_gen
-. ./04_remove_password_from_client_key.sh
+keytool \
+    -keystore ${KEYSTORE_FILE} \
+    -storepass ${KEYSTORE_PASS} \
+    -certreq \
+    -alias localhost \
+    -keyalg RSA \
+    -storetype pkcs12 \
+    -file ${SERVER_CERT_SIGN_REQUEST} \
+    -ext SAN=DNS:${SERVER_FQDN},IP:${SERVER_IPADDRESS}
+
+echo "              "
+echo "--------------"
+echo " Generating Client Key Pair and SIGNING REQUEST: "
+echo "--------------"
+openssl \
+    req -newkey rsa:2048 \
+    -subj '/CN=localhost/OU=TEST/O=KrakenD/L=Girona/ST=Girona/C=ES' \
+    -config ./san.cnf \
+    -nodes \
+    -keyout ${CLIENT_CERT_KEYPAIR} \
+    -out ${CLIENT_CERT_SIGN_REQUEST} 
+
+
+echo "              "
+echo "--------------"
+echo " Checking CA DB exists: "
+echo "--------------"
+if [ ! -f "ca_database_index.txt" ]; then
+    touch ca_database_index.txt
+    echo "0001" > ca_serial.txt
+fi
+
+echo "              "
+echo "--------------"
+echo " Signing Server CERT: "
+echo "--------------"
+openssl \
+    ca -config openssl-ca.cnf \
+    -policy signing_policy \
+    -extensions signing_req \
+    -out ${SERVER_SIGNED_CERT} \
+    -infiles ${SERVER_CERT_SIGN_REQUEST} 
+
+echo "              "
+echo "--------------"
+echo " Import Server CERT into keystore:"
+echo "--------------"
+keytool \
+    -importcert \
+    -keystore ${KEYSTORE_FILE} \
+    -storepass ${KEYSTORE_PASS} \
+    -alias localhost \
+    -file ${SERVER_SIGNED_CERT}
+
+echo "              "
+echo "--------------"
+echo " Signing Client CERT: "
+echo "--------------"
+openssl \
+    ca -config openssl-ca.cnf \
+    -policy signing_policy \
+    -extensions signing_req \
+    -out ${CLIENT_SIGNED_CERT} \
+    -infiles ${CLIENT_CERT_SIGN_REQUEST} 
+
 cd ..

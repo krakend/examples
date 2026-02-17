@@ -18,6 +18,7 @@ openssl \
     -extensions signing_req \
     -out ${SERVER_SIGNED_CERT} \
     -infiles ${SERVER_CERT_SIGN_REQUEST} 
+
 #subjectKeyIdentifier   = hash
 #     -keystore ${KEYSTORE_FILE} \
 #     -alias localhost \
