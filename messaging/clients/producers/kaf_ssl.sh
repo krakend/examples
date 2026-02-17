@@ -1,7 +1,7 @@
 #/bin/bash
 
 kaf produce \
-    krafka \
+    portfolioupdates \
     --config ./kaf_ssl_conf.yaml \
     --cluster seckafkabroker \
     -H Content-Type:application/json \
