@@ -9,13 +9,13 @@
                 "async/kafka": {
                     "group_id": "my_group_id",
                     "topics": [
-                        "krafka"
+                        "stockprice"
                     ],
                     "connection": {
                         "brokers": [
                             "localhost:9092"
                         ],
-                        "client_id": "bartolo"
+                        "client_id": "cid_stocksconsumer"
                     },
                     "consumer": {}
                 }
@@ -33,13 +33,6 @@
             "backend": [
                 {
                     "url_pattern": "/__debug/hi"
-                },
-                {
-                    "extra_config": {
-                        "backend/pubsub/publisher/kafka": {
-
-                        }
-                    }
                 }
             ]
         },
@@ -47,16 +40,27 @@
             "name": "portfolioupdatesconsumer",
             "extra_config": {
                 "async/kafka": {
-                    "group_id": "my_group_id",
+                    "group_id": "k_async_updates",
                     "topics": [
-                        "krafka"
+                        "portfolioupdates"
                     ],
                     "connection": {
                         "brokers": [
-                            "shrimp.ln:9092",
                             "localhost:49092"
                         ],
-                        "client_id": "bartolo"
+                        "client_id": "cid_portfolioupdateconsumer",
+                        "client_tls": {
+                            "allow_insecure_connections": false,
+                            "ca_certs": [
+                                "./config/ca/cacert.pem"
+                            ],
+                            "client_certs": [
+                                {
+                                    "certificate": "./config/certs/client/client.signed.pem",
+                                    "private_key": "./config/certs/client/client.key"
+                                }
+                            ]
+                        }
                     },
                     "consumer": {}
                 }
@@ -80,11 +84,45 @@
     ],
     "endpoint": [
         {
-            "path"
+            "path": "/portfolio/order",
+            "method": "POST",
+            "input_headers": [
+                "X-Idempotency-Key",
+                "Some-Meta"
+            ],
             "backend": [
                 {
-
-                    "extra_config": 
+                    "url_pattern": "/_publisher/",
+                    "extra_config": {
+                        "backend/pubsub/publisher/kafka": {
+                            "success_status_code": 201,
+                            "writer": {
+                                "topic": "orderplacement",
+                                "key_meta": "X-Idempotency-Key",
+                                "connection": {
+                                    "brokers": [
+                                        "localhost:49092"
+                                    ],
+                                    "client_id": "krakend_async_agent",
+                                    "client_tls": {
+                                        "allow_insecure_connections": false,
+                                        "ca_certs": [
+                                            "./config/ca/cacert.pem"
+                                        ],
+                                        "client_certs": [
+                                            {
+                                                "certificate": "./config/certs/client/client.signed.pem",
+                                                "private_key": "./config/certs/client/client.key"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "producer": {
+                                    "idempotent": true
+                                }
+                            }
+                        }
+                    }
                 }
             ]
         }
