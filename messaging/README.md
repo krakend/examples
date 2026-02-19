@@ -201,10 +201,10 @@ All of these matrics have these attributes set:
         writen to.
         
 - For reading: 
-	`messaging.read.body.size`: histogram of body sizes in bytes (does not include the size of metadata)
-	`messaging.read.body.duration`: histogram of the duration taken to read a message
-	`messaging.read.ack.duration`
-	`messaging.read.failure.count`
+	- `messaging.read.body.size`: histogram of body sizes in bytes (does not include the size of metadata)
+	- `messaging.read.body.duration`: histogram of the duration taken to read a message
+	- `messaging.read.ack.duration`
+	- `messaging.read.failure.count`
   
 - For writing:
     - `messaging.write.body.size`: histogram of body sizes in bytes (does not include the size of metadata)

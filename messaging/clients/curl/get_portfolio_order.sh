@@ -1,3 +1,3 @@
 #!/bin/bash
 
-curl http://localhost:8080/portfolio/order
+curl -v http://localhost:8080/portfolio/order

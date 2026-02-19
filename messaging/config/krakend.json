@@ -32,7 +32,7 @@
             },
             "backend": [
                 {
-                    "url_pattern": "/__debug/hi"
+                    "url_pattern": "/__debug/stocksconsumer/received"
                 }
             ]
         },
@@ -77,7 +77,7 @@
             },
             "backend": [
                 {
-                    "url_pattern": "/__debug/hi"
+                    "url_pattern": "/__debug/portfolioupdates/received"
                 }
             ]
         }
