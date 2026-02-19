@@ -125,6 +125,100 @@
                     }
                 }
             ]
+        },
+        {
+            "endpoint": "/portfolio/order",
+            "method": "GET",
+            "backend": [
+                {
+                    "url_pattern": "/_consumer/",
+                    "extra_config": {
+                        "backend/pubsub/subscriber/kafka": {
+                            "reader": {
+                                "topics": ["orderplacement"],
+                                "key_meta": "X-Idempotency-Key",
+                                "group_id": "k_endpoint_read",
+                                "connection": {
+                                    "brokers": [
+                                        "localhost:49092"
+                                    ],
+                                    "client_id": "krakend_async_agent",
+                                    "client_tls": {
+                                        "allow_insecure_connections": false,
+                                        "ca_certs": [
+                                            "./config/ca/cacert.pem"
+                                        ],
+                                        "client_certs": [
+                                            {
+                                                "certificate": "./config/certs/client/client.signed.pem",
+                                                "private_key": "./config/certs/client/client.key"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "consumer": {
+                                    "isolation_level": "read_commited"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
         }
-    ]
+    ],
+    "extra_config": {
+        "telemetry/opentelemetry": {
+          "service_name": "krakend_prometheus_service",
+          "metric_reporting_period": 1,
+          "trace_sample_rate": 1,
+          "exporters": {
+            "otlp": [
+              {
+                "disable_metrics": true,
+                "disable_traces": false,
+                "host": "localhost",
+                "name": "tempo",
+                "port": 54317,
+                "use_http": false
+              }
+            ],
+            "prometheus": [
+              {
+                "name": "local_prometheus",
+                "port": 9099,
+                "process_metrics": true,
+                "go_metrics": true
+              }
+            ]
+          },
+          "layers": {
+            "global": {
+              "disable_metrics": false,
+              "disable_propagation": false,
+              "disable_traces": false,
+              "report_headers": true
+            },
+            "proxy": {
+              "disable_metrics": false,
+              "disable_traces": true,
+              "report_headers": true
+            },
+            "backend": {
+              "metrics": {
+                "detailed_connection": true,
+                "disable_stage": false,
+                "read_payload": false,
+                "round_trip": false
+              },
+              "traces": {
+                "detailed_connection": false,
+                "disable_stage": false,
+                "read_payload": false,
+                "report_headers": false,
+                "round_trip": false
+              }
+            }
+          }
+        }
+    }
 }
