@@ -2,64 +2,63 @@
 
 ## Environment
 
-First of all, enter the `config` dir, and follow the
-[README.md](./config/README.md) instructions to generate a self
-signed certificate for the client and the `seckafkabroker` service,
-to be able to use `mTLS`
-
-Once done that, launchthe  test  environment with:
-
-```
-docker compose up -d
-```
+The first you running, you will need to generate the CA and the
+self signed certificates. Run `make setup` and fill the required fields
+and accept signing the  certificates. (see [config's README.md](./confit/README.md)).
 
 It will bring up the following services:
 
 - `kafkabroker`: a single node kafka broker
-- `seckafkabroker`: a single node
+- `seckafkabroker`: a single node kafka broker configured to use
+    mTLS for its connections
 
 Along with services for telemetry:
 
-- `grafana`
-- `tempo`
 - `prometheus`
+- `grafana`
+- `jaeger`
 
-[##](##) Producing messages
+## The example "use case"
+
+Imagine we want to automate some stocks buying and selling, based on
+some custom logic that is implemented in some of our backends. 
+
+We have a source of public reliable information that publishes stock
+prices updates using a kafka service: that is `kafkabroker`. This service
+has a `stockprice` topic, where we can subscribe to receive the updates.
+
+We also have a service that allows to manage our portfolio and execute
+buy an sell order. To identify ourselves we are given a client certificate
+that we will use to connect using `mTLS` to the service. That is 
+`seckafkabroker`. This service exposes a topic where we can place our
+orders : `orderplacement`, and also offers us a topic `portfolioupdates` so we 
+get status updates on the executed orders.
+
+
+### Producing messages
 
 In order to produce messages you will need to have installed the
 `kaf` tool: [https://github.com/birdayz/kaf](https://github.com/birdayz/kaf).
 
-Under the [`clients/producer`](./clients/producer) folder you will find
-two scripts:
 
-- [`kaf.sh`](./clients/producer/kaf.sh): to generate fake data for the
-    `stockprice` topic on the `kafkabroker` server.
-- [`kaf_ssh.sh`](./clients/producer/kaf_ssl.sh): to generate fake data for the
-    `portfolioupdates` topic on the `seckafkaborker`.
+Under the [`clients/kak/producer`](./clients/kaf/producer) folder you will find
+scripts to generate data:
+
+- [`generate_ticker_data.sh`](./clients/kaf/producers/generate_ticker_data.sh): will
+    emit messages for ticker from the `prices.txt` file every 1 second.
+    (we can change the period by changing the `SLEEP_PERIOD` variable).
+- [`send_portfolio_update.sh`](./clients/producer/kaf_ssl.sh): to emit a fake
+    message in the `portfolioupdates` topic.
+- [`kaf.sh`](./clients/producer/kaf.sh): to emit a single ticker value
+    to `stockprice` topic on the `kafkabroker` server.
+
+### Consumig message
+
+To chck the messages that are in the queues there are some scripts
+in the `clients/kaf/consumers` directory.
 
 
-### Kaf to produce message with SSL TLS
-
-https://github.com/birdayz/kaf/blob/master/examples/ssl_keys.yaml
-
-
-## "Story Telling"
-
-The `kafkabroker` is a source of information for different market
-prices updates, so, we create a couple of topics where we will
-publish some data:
-
-- `stockprice`: some stock we are tracking
-
-The `seckafkabroker` is our secure connection to the bank to place
-market orders, and get updates of the status of our portfolio, so,
-we secure it with a mTLS connection: a certificate is required to
-connect to it.
-
-- `orderplacement`
-- `portfolioupdates`
-
-# Improved Kafka support
+# Improved Kafka support (Documentation)
 
 ## Async Agent
 
