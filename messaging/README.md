@@ -154,9 +154,10 @@ The configuration has the following properties:
 - `required_acks`: (string, optional) The level of acknowledgement reliability 
     needed from the broker (defaults to WaitForLocal). Equivalent to 
     the `request.required.acks` setting of the  JVM producer.
-	- "no_response" -> NoResponse RequiredAcks = 0
-	- "wait_for_local" -> waits for only the local commit to succeed before responding.
-	- "wait_for_all" -> waits for all in-sync replicas to commit before responding.
+	- `"no_response"`: no requied acks (same as `"0"`)
+	- `"wait_for_local"`: waits for only the local commit to succeed before responding.
+        (same as `"1"`).
+	- `"wait_for_all"`: waits for all in-sync replicas to commit before responding.
 	The minimum number of in-sync replicas is configured on the broker via
 	the `min.insync.replicas` configuration key. The string can also contain
     a number > 0 to set a given number of expected acks.
@@ -184,4 +185,30 @@ The configuration has the following properties:
     setting of the JVM producer.
 
 
-### Consumer
+### Consumer config
+
+
+## OpenTelemery
+
+If OTEL is enabled these metrics will be reported by default for all messages
+read (either in the async agent, or a subscriber backend) and written (by
+a publisher backend).
+
+All of these matrics have these attributes set:
+    - `kind`: that helps identify the kind of queue systemthe message is
+        using (for example `kafka`).
+    - `topic`: the topic where the message is read from or going to be 
+        writen to.
+        
+- For reading: 
+	`messaging.read.body.size`: histogram of body sizes in bytes (does not include the size of metadata)
+	`messaging.read.body.duration`: histogram of the duration taken to read a message
+	`messaging.read.ack.duration`
+	`messaging.read.failure.count`
+  
+- For writing:
+    - `messaging.write.body.size`: histogram of body sizes in bytes (does not include the size of metadata)
+    - `messaging.write.body.duration`:  histogram of duration taken to write a message
+    - `messaging.write.failure.count`: count of messages failed to be written
+
+

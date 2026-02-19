@@ -13,6 +13,6 @@ scrape_configs:
         labels:
           app: krakend
       - targets:
-        - '192.168.1.12:9099'
+        - '192.168.1.22:9099'
         labels:
           app: lokrakend
