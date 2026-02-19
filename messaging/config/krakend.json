@@ -82,9 +82,9 @@
             ]
         }
     ],
-    "endpoint": [
+    "endpoints": [
         {
-            "path": "/portfolio/order",
+            "endpoint": "/portfolio/order",
             "method": "POST",
             "input_headers": [
                 "X-Idempotency-Key",
