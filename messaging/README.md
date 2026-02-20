@@ -31,7 +31,7 @@ We also have a service that allows to manage our portfolio and execute
 buy an sell order. To identify ourselves we are given a client certificate
 that we will use to connect using `mTLS` to the service. That is 
 `seckafkabroker`. This service exposes a topic where we can place our
-orders : `orderplacement`, and also offers us a topic `portfolioupdates` so we 
+orders: `orderplacement`, and also offers us a topic `portfolioupdates` so we 
 get status updates on the executed orders.
 
 
@@ -52,10 +52,14 @@ scripts to generate data:
 - [`kaf.sh`](./clients/producer/kaf.sh): to emit a single ticker value
     to `stockprice` topic on the `kafkabroker` server.
 
-### Consumig message
+### Consuming messages
 
 To chck the messages that are in the queues there are some scripts
-in the `clients/kaf/consumers` directory.
+in the `clients/kaf/consumers` directory:
+
+- `kaf_consume.sh`: to see the `stockprice` topic 
+- `seckaf_consume.sh`: to see what is in the seckafkabroker topics
+    (edit the script to select the topic to read from).
 
 
 # Improved Kafka support (Documentation)
@@ -66,9 +70,14 @@ The `async_agent` section in the main config contains an array of objects that
 define the configuration of a given async agent. By using the `async/kafka`
 namespace under the `extra_config` key, we select the Kafka driver.
 
+The driver fields are the same that can be found in the kafka pubsub 
+subscriber config `reader` field:
+
 - `group_id`: the name of the consumer group to use
-- `topics`: a list of topics to read from 
-- `connection`: details 
+- `key_meta`: the name of the header where the kafka message key value is written
+- `topics`: a list of topics to read from.
+- `connection`: details to connect to the kafka service
+- `consumer`: details about to read from the topic
 
 
 #### The `connection` config
@@ -117,7 +126,46 @@ namespace under the `extra_config` key, we select the Kafka driver.
 Since the `topic` to consume from is already defines at the general async
 agent config level, here we define properties specific for the kafka driver.
 
+- `group_session_timeout`: The timeout used to detect consumer failures when using Kafka's group management facility.
+	The consumer sends periodic heartbeats to indicate its liveness to the broker.
+	If no heartbeats are received by the broker before the expiration of this session timeout,
+	then the broker will remove this consumer from the group and initiate a rebalance.
+	Note that the value must be in the allowable range as configured in the broker configuration
+	by `group.min.session.timeout.ms` and `group.max.session.timeout.ms` (default 10s)
+    
+    
+- `group_heartbeat_interval`: The expected time between heartbeats to the consumer coordinator when using Kafka's group
+	management facilities. Heartbeats are used to ensure that the consumer's session stays active and
+	to facilitate rebalancing when new consumers join or leave the group.
+	The value must be set lower than Consumer.Group.Session.Timeout, but typically should be set no
+	higher than 1/3 of that value.
+	It can be adjusted even lower to control the expected time for normal rebalances (default 3s)
 
+
+- `group_rebalance_strategies`: the priority-ordered list of client-side consumer group
+	balancing strategies that will be offered to the coordinator. The first
+	strategy that all group members support will be chosen by the leader.
+	default: [ NewBalanceStrategyRange() ]
+	can be :
+	range -> RangeBalanceStrategyName
+	roundrobin -> RoundRobinBalanceStrategyName
+	sticky -> StickyBalanceStrategyName
+- `group_rebalance_timeout`: The maximum allowed time for each worker to join the 
+    group once a rebalance has begun.
+	This is basically a limit on the amount of time needed for all tasks to flush any pending
+	data and commit offsets. If the timeout is exceeded, then the worker will be removed from
+	the group, which will cause offset commit failures (default 60s).
+- `group_instance_id`: support KIP-345
+
+- `fetch_default`: The default number of message bytes to fetch from the broker in each
+	request (default 1MB). This should be larger than the majority of
+	your messages, or else the consumer will spend a lot of time
+	negotiating sizes and not actually consuming. Similar to the JVM's
+	`fetch.message.max.bytes`.
+
+- `isolation_level`: IsolationLevel support 2 mode:
+	- use `read_commited` (default) to consume and return all messages in message channel
+	- use `read_uncommited` to hide messages that are part of an aborted transaction
 
 ## Pub Sub
 
@@ -186,6 +234,10 @@ The configuration has the following properties:
 
 ### Consumer config
 
+It only contains a  `reader` field, that corresponds to the same configuration
+that the async kafka driver uses.
+
+- `reader`:  same configuration that the async kafka driver uses.
 
 ## OpenTelemery
 
@@ -211,3 +263,6 @@ All of these matrics have these attributes set:
     - `messaging.write.failure.count`: count of messages failed to be written
 
 
+## **ACK** behaviour in Kafka
+
+TODO: put here the explanation of not acking a message, bug acking the one that comes after it
