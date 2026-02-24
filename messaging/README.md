@@ -223,6 +223,18 @@ The configuration has the following properties:
 - `compression_level`: (int, optional) The level of compression to use on 
     messages. The meaning depends on the actual compression type used and 
     defaults to default compression level for the codec.
+- `partitioner`: (string, optional) defines how to select the partition to send 
+    messages to (defaults to `standard`). Similar to the `partitioner.class`
+	setting for the JVM producer. Have the following options:
+	- `standard` is like `sarama` except that it handles absolute values
+	in the same way as the reference Java implementation. `sarama` was supposed to do
+	that but it had a mistake and now there are people depending on both behaviours.
+	- `sarama`: behaves as follows: If the message's key is nil then a
+	random partition is chosen. Otherwise the FNV-1a hash of the encoded bytes 
+    of the message key is used, modulus the number of partitions. This ensures 
+    that messages with the same key always end up on the same partition.
+	- `random` chooses a random partition each time.
+	- `roundrobin` walks through the available partitions one at a time.
 - `idempotent`: (boolean, optional) If enabled, the producer will ensure 
     that exactly one copy of each message is written.
 - `retry_max`: (int, optional) The total number of times to retry sending a message (default 3).
