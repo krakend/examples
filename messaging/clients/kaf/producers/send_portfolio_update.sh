@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 kaf produce \
     portfolioupdates \

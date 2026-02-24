@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 export SERVER_CERT_SIGN_REQUEST=${PWD}/certs/server/localhost.csr
 export SERVER_SIGNED_CERT=${PWD}/certs/server/localhost.signed.pem

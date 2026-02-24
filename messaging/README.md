@@ -62,6 +62,19 @@ in the `clients/kaf/consumers` directory:
     (edit the script to select the topic to read from).
 
 
+# Troubleshooting
+
+### cannot find certificates
+
+In case you have your certificates in a custom directory (probably because
+you are running a local instance of KrakenD), and you cannot connect
+to a mTLS kafka broker, you will get a `connection refused` error, like this one:
+
+```
+[KRAKEND] 2026/02/23 - 16:54:02.222 :arrow_forward: ERROR [BACKEND: /_consumer/][backend/pubsub/subscriber/kafka](GET /portfolio/order) cannot instantiate: cannot initialize kafka reader: "cannot open subscription: kafka: client has run out of available brokers to talk to: dial tcp [::1]:49092: connect: connection refused"
+```
+
+In that case, check 
 # Improved Kafka support (Documentation)
 
 ## Async Agent

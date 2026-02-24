@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 export KTOPIC=stockprice
 kaf consume \
     ${KTOPIC} \
