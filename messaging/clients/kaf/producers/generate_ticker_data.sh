@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 # this script produces fake ticker prices, using the `prices.txt` data
 # with each line for each of the list of tickers

@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 export KTOPIC=portfolioupdates
 export KTOPIC=orderplacement
 kaf consume \

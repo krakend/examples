@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 mkdir -p ./certs/server
 mkdir -p ./certs/client
