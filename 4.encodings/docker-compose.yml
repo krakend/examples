@@ -4,14 +4,7 @@ services:
     image: devopsfaith/krakend:watch
     volumes:
       - .:/etc/krakend
+      - ./mime.types:/etc/mime.types
     ports:
       - "8080:8080"
     command: [ "run", "-dc", "krakend.json", "" ]
-    depends_on:
-      - fake_api
-  fake_api:
-    image: jaxgeller/lwan
-    volumes:
-      - ./data:/lwan/wwwroot
-    ports:
-      - "8000:8080"
