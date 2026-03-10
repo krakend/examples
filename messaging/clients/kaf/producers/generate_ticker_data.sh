@@ -3,7 +3,7 @@
 # this script produces fake ticker prices, using the `prices.txt` data
 # with each line for each of the list of tickers
 KTOPIC=stockprice
-KADDRESS=shrimp.ln:9092
+KADDRESS=localhost:9092
 
 echo -e "Producing: $KKEY into '$KTOPIC' topic\n" 
 
