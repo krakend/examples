@@ -7,17 +7,15 @@
             "name": "stocksconsumer",
             "extra_config": {
                 "async/kafka": {
-                    "group_id": "my_group_id",
-                    "topics": [
-                        "stockprice"
-                    ],
-                    "connection": {
+                    "cluster": {
                         "brokers": [
                             "localhost:9092"
                         ],
                         "client_id": "cid_stocksconsumer"
                     },
-                    "consumer": {}
+                    "group": {
+                        "id": "my_group_id"
+                    }
                 }
             },
             "connection": {
@@ -26,7 +24,7 @@
                 "health_interval": "30s"
             },
             "consumer": {
-                "topic": "*",
+                "topic": "stockprice",
                 "workers": 1,
                 "timeout": "1s"
             },
@@ -40,11 +38,7 @@
             "name": "portfolioupdatesconsumer",
             "extra_config": {
                 "async/kafka": {
-                    "group_id": "k_async_updates",
-                    "topics": [
-                        "portfolioupdates"
-                    ],
-                    "connection": {
+                    "cluster": {
                         "brokers": [
                             "localhost:49092"
                         ],
@@ -62,7 +56,9 @@
                             ]
                         }
                     },
-                    "consumer": {}
+                    "group": {
+                        "id": "k_async_updates"
+                    }
                 }
             },
             "connection": {
@@ -71,7 +67,7 @@
                 "health_interval": "30s"
             },
             "consumer": {
-                "topic": "*",
+                "topic": "portfolioupdates",
                 "workers": 1,
                 "timeout": "1s"
             },
@@ -99,7 +95,7 @@
                             "writer": {
                                 "topic": "orderplacement",
                                 "key_meta": "X-Idempotency-Key",
-                                "connection": {
+                                "cluster": {
                                     "brokers": [
                                         "localhost:49092"
                                     ],
@@ -137,8 +133,7 @@
                             "reader": {
                                 "topics": ["orderplacement"],
                                 "key_meta": "X-Idempotency-Key",
-                                "group_id": "k_endpoint_read",
-                                "connection": {
+                                "cluster": {
                                     "brokers": [
                                         "localhost:49092"
                                     ],
@@ -156,8 +151,37 @@
                                         ]
                                     }
                                 },
-                                "consumer": {
+                                "group": {
+                                    "id": "k_endpoint_read",
                                     "isolation_level": "read_commited"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "endpoint": "/ticker/publish",
+            "method": "POST",
+            "input_headers": [ "X-Ticker", "X-Time" ],
+            "backend": [
+                {
+                    "url_pattern": "/_publish/stock/prices",
+                    "extra_config": {
+                        "backend/pubsub/publisher/kafka": {
+                            "success_status_code": 201,
+                            "writer": {
+                                "topic": "stockprice",
+                                "key_meta": "X-Ticker",
+                                "cluster": {
+                                    "brokers": [
+                                        "localhost:9092"
+                                    ],
+                                    "client_id": "krakend_ticker_generator"
+                                },
+                                "producer": {
+                                    "idempotent": true
                                 }
                             }
                         }

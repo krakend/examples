@@ -1,11 +1,11 @@
 setup:
-	cd ./config && source ./setup.sh
+	cd ./config && bash ./setup.sh
 	docker compose up -d
 .PHONY: setup
 
 cleanup:
 	docker compose down
-	cd ./config && source ./cleanup.sh
+	cd ./config && bash ./cleanup.sh
 .PHONY: cleanup
 
 up:
