@@ -1,6 +1,6 @@
-#/bin/bash
+#!/bin/bash
 KTOPIC=stockprice
-KADDRESS=shrimp.ln:9092
+KADDRESS=localhost:9092
 SLEEP_PERIOD=5
 PRICES=("309.28", "312.59", "315.7", "314.68", "311.9", "309.70", "319.00")
 
