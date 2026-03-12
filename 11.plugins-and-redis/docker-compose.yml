@@ -3,8 +3,8 @@ services:
     build:
       context: .
       args:
-        - KRAKEND_BUILDER=2.12
-        - KRAKEND_VERSION=2.13.0-alpha3
+        - KRAKEND_BUILDER=2.13
+        - KRAKEND_VERSION=2.13.0
     init: true
     ports:
       - "8080:8080"
