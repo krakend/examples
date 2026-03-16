@@ -1,0 +1,21 @@
+{
+    "movies": [
+        {
+            "title": "The Fantastic Four: First Steps",
+            "genre": "Action",
+            "cast": [
+                "Pedro Pascal",
+                "Vanessa Kirby"
+            ],
+            "year": 2025    
+        },
+        {
+            "title": "Billy Joel: And So It Goes",
+            "genre": "Documentary",
+            "cast": [
+                "Billy Joel"
+            ],
+            "year": 2025
+        }
+    ]
+}
