@@ -11,7 +11,9 @@
                         "brokers": [
                             "localhost:9092"
                         ],
-                        "client_id": "cid_stocksconsumer"
+                        "client_id": "cid_stocksconsumer",
+                        "metadata_retry_max": 999999,
+                        "metadata_retry_backoff": "1s"
                     },
                     "group": {
                         "id": "my_group_id"
@@ -19,7 +21,7 @@
                 }
             },
             "connection": {
-                "max_retries": 2,
+                "max_retries": -1,
                 "backoff_strategy": "linear",
                 "health_interval": "30s"
             },
@@ -43,6 +45,8 @@
                             "localhost:49092"
                         ],
                         "client_id": "cid_portfolioupdateconsumer",
+                        "metadata_retry_max": 999999,
+                        "metadata_retry_backoff": "1s",
                         "client_tls": {
                             "allow_insecure_connections": false,
                             "ca_certs": [
@@ -99,6 +103,8 @@
                                     "brokers": [
                                         "localhost:49092"
                                     ],
+                                    "metadata_retry_max": 999999,
+                                    "metadata_retry_backoff": "1s",
                                     "client_id": "krakend_async_agent",
                                     "client_tls": {
                                         "allow_insecure_connections": false,
@@ -137,6 +143,8 @@
                                     "brokers": [
                                         "localhost:49092"
                                     ],
+                                    "metadata_retry_max": 999999,
+                                    "metadata_retry_backoff": "1s",
                                     "client_id": "krakend_async_agent",
                                     "client_tls": {
                                         "allow_insecure_connections": false,
@@ -178,6 +186,8 @@
                                     "brokers": [
                                         "localhost:9092"
                                     ],
+                                    "metadata_retry_max": 999999,
+                                    "metadata_retry_backoff": "1s",
                                     "client_id": "krakend_ticker_generator"
                                 },
                                 "producer": {
@@ -192,7 +202,7 @@
     ],
     "extra_config": {
         "telemetry/opentelemetry": {
-          "service_name": "krakend_prometheus_service",
+          "service_name": "krakend_promie",
           "metric_reporting_period": 1,
           "trace_sample_rate": 1,
           "exporters": {
