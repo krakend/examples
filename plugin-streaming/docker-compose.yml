@@ -1,0 +1,17 @@
+services:
+  krakend_ee:
+    image: krakend/krakend-ee:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./plugins/streaming-modifier/streaming-modifier.so:/etc/krakend/plugins/streaming-modifier.so
+      - ./config/krakend/LICENSE:/etc/krakend/LICENSE
+      - ./config/krakend/krakend.json:/etc/krakend/krakend.json
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8090:8090"
