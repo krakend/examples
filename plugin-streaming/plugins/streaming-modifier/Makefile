@@ -1,13 +1,23 @@
 # KrakenD Version
-VERSION := latest
 PLUGINAME := streaming-modifier
+CROSSCOMPILER := aarch64-linux-musl-gcc
+# Uncomment if using the linux-generic builder
+#CROSSCOMPILER := aarch64-linux-gnu-gcc
 
-# Build KrakenD plugin using the KrakenD docker builder (for running inside docker)
+go.mod:
+	go mod init quota-control-mw
+	go mod tidy
+
 amd64:
-	docker run --rm -it --platform=linux/amd64 -e CGO_ENABLED=1 -e GOARCH=amd64 -e ARCH=amd64 -v "${PWD}:/app" -w /app krakend/builder:${VERSION} sh -c "make -C plugins/streaming-modifier -e plugin"
+	GOARCH=amd64 \
+	ARCH=amd64 \
+	CGO_ENABLED=1 \
+	go build -buildmode=plugin -o ../${PLUGINAME}-amd64.so .
 
 arm64:
-	docker run --rm -it --platform=linux/amd64 -e CGO_ENABLED=1 -e CC=aarch64-linux-musl-gcc -e GOHOSTARCH=amd64 -e GOARCH=arm64 -e ARCH=arm64 -e EXTRA_LDFLAGS='-extld=aarch64-linux-musl-gcc' -v "${PWD}:/app" -w /app krakend/builder:${VERSION} sh -c "make -C plugins/streaming-modifier -e plugin"
-
-plugin:
-	@go build -buildmode=plugin -ldflags="${EXTRA_LDFLAGS}" -o ${PLUGINAME}.so .
+	CC=${CROSSCOMPILER} \
+	GOHOSTARCH=amd64 \
+	GOARCH=arm64 \
+	ARCH=arm64 \
+	CGO_ENABLED=1 \
+	go build -buildmode=plugin -ldflags="-extld=${CROSSCOMPILER}" -o ../${PLUGINAME}-arm64.so .

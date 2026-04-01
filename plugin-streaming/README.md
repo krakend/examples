@@ -10,16 +10,10 @@ The example showcases how to manipulate stream responses. It does so by adding a
 
 1. **Ensure you have a KrakenD EE license file** named `LICENSE` in the `config/krakend` directory
 
-2. **build the plugin**
-
-   ```bash
-   make build
-   ```
-
 2. **Start all services**:
 
    ```bash
-   docker compose up
+   docker compose up --build
    ```
 
    This will start:
@@ -48,9 +42,9 @@ Response modifier plugin:
 
 ## Troubleshooting
 
-**Plugin not loading**: Check KrakenD logs for plugin-related errors. Ensure the `.so` is in `plugins/streaming-modifier` folder after running `make build`
+**Plugin not loading**: Check KrakenD logs for plugin-related errors. Ensure the `.so` file is in `/opt/krakend/plugins/` inside the container.
 
-**unsupported relocation type 7**: This is most likely a mismatch between your architecture and the one the plugin is built for. If running on arm64, change the Makefile to use `arm64` target instead of `amd64`
+**unsupported relocation type 7**: If this error appears in krakend startup logs, this is most likely a mismatch between your architecture and the one the plugin is built for. If running on arm64, change the `make amd64` command in `Dockerfile` to `make arm64` instead.
 
 ## License
 
