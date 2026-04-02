@@ -6,7 +6,7 @@ FROM --platform=linux/amd64 krakend/builder-ee:latest AS builder
 WORKDIR /app
 COPY --chown=krakend:nogroup plugins /app
 
-RUN cd streaming-modifier && make arm64
+RUN cd streaming-modifier && make amd64
 
 FROM krakend/krakend-ee:latest
 
