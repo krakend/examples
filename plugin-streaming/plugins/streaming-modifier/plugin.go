@@ -28,6 +28,9 @@ func handleResponseStream(respw ResponseWrapper) interface{} {
 		for {
 			line, err := in.ReadString('\n')
 			if err != nil {
+				if err == io.EOF {
+					return
+				}
 				pw.CloseWithError(err)
 				return
 			}
@@ -63,9 +66,6 @@ func handleResponseStream(respw ResponseWrapper) interface{} {
 
 			err = json.Unmarshal([]byte(data), &m)
 			if err != nil {
-				if err == io.EOF {
-					return
-				}
 				pw.CloseWithError(err)
 				return
 			}
