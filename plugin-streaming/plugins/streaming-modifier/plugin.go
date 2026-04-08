@@ -11,8 +11,6 @@ import (
 	"time"
 )
 
-var Registerer = registerer("streaming-modifier")
-
 var (
 	errUnkownRequestType  = errors.New("unknown request type")
 	errUnkownResponseType = errors.New("unknown response type")
