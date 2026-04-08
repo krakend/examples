@@ -20,8 +20,18 @@ type registerer string
 
 func handleResponseStream(respw ResponseWrapper) interface{} {
 	pr, pw := io.Pipe()
+	ctx := respw.Context()
+	done := make(chan struct{})
 	go func() {
-		defer pw.Close()
+		select {
+		case <-ctx.Done():
+			pw.CloseWithError(ctx.Err())
+		case <-done:
+			pw.Close()
+		}
+	}()
+	go func() {
+		defer close(done)
 		in := bufio.NewReader(respw.Io())
 		for {
 			line, err := in.ReadString('\n')
