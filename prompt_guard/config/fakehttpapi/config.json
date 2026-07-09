@@ -1,0 +1,19 @@
+{
+    "port": 8088,
+    "endpoints": [
+        {
+            "method": "GET",
+            "path_pattern": "/",
+            "behaviour": [],
+            "content": {
+                "source": "directory",
+                "config": {
+                    "dir": "/etc/reqstatsrv/config/data",
+                    "attempt_extensions": [
+                        "json"
+                    ]
+                }
+            }
+        }
+    ]
+}
