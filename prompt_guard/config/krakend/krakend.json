@@ -1,0 +1,138 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD - Prompt Guard",
+  "port": 8080,
+  "host": ["http://fakeapi:8088"],
+  "debug_endpoint": true,
+  "plugin": {
+     "pattern": ".so",
+     "folder": "/etc/krakend/plugins"
+  },
+  "extra_config": { 
+    "ai/prompt-guard": {
+      "guards": [
+        {
+          "name": "reguloides",
+          "kind": "regex",
+          "severity": "high",
+          "config": {
+            "patterns": [
+              "foo.*bar",
+              "tupu.*supu"
+            ]
+          }
+        },
+        {
+          "name": "reguleras",
+          "kind": "regex",
+          "severity": "medium",
+          "config": {
+            "patterns": [
+              "medium_foo",
+              "medium_bar"
+            ]
+          }
+        },
+        {
+          "name": "my_scorer",
+          "kind": "classifier",
+          "severity": "high",
+          "config": {
+            "score_threshold": 0.6,
+            "on_failure_block": false,
+            "url": "https://nonexistinglongdomainexample.com"
+          }
+        },
+        {
+          "name": "my_policy",
+          "kind": "policy",
+          "severity": "medium",
+          "config": {
+            "expressions": [
+              "meta.something in [\"BENIGN\"]",
+              "size(body) > 256"
+            ]
+          }
+        }
+      ]
+    },
+    "telemetry/opentelemetry": {
+      "service_name": "krakend_prompt_guard",
+      "metric_reporting_period": 5,
+      "trace_sample_rate": 1,
+      "exporters": {
+        "prometheus": [
+          {
+            "name": "local_promoetheus",
+            "port": 9090,
+            "process_metrics": true,
+            "go_metrics": true
+          }
+        ],
+        "otlp": [
+          {
+            "name": "eleven_seconds",
+            "host": "jaeger",
+            "port": 54317,
+            "disable_metrics": true,
+            "disable_traces": false,
+            "use_http": false,
+            "custom_metric_reporting_period": 11
+          }
+        ]
+      },
+      "layers": {
+        "global": {
+          "disable_metrics": false,
+          "disable_propagation": false,
+          "disable_traces": false,
+          "report_headers": true
+        },
+        "proxy": {
+          "disable_metrics": false,
+          "disable_traces": false,
+          "report_headers": true
+        },
+        "backend": {
+          "metrics": {
+            "detailed_connection": true,
+            "disable_stage": false,
+            "read_payload": true,
+            "round_trip": true
+          },
+          "traces": {
+            "detailed_connection": true,
+            "disable_stage": false,
+            "read_payload": true,
+            "report_headers": true,
+            "round_trip": true
+          }
+        }
+      }
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/block_at_endpoint",
+      "method": "POST",
+      "input_headers": ["*"],
+      "input_query_strings": ["*"],
+      "backend": [
+        { 
+            "method": "POST",
+            "url_pattern": "/result_payload.json" 
+        }
+      ],
+      "extra_config": {
+        "ai/prompt-guard": {
+          "guards": [
+            "reguloides",
+            "!medium",
+            "!unicode_steganography"
+          ]
+        }
+      }
+    }
+  ]
+}
