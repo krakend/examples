@@ -1,0 +1,62 @@
+{
+    "port": 8088,
+    "endpoints": [
+        {
+            "method": "GET",
+            "path_pattern": "/timeouter/",
+            "behaviour": [
+                {
+                    "name": "delayer",
+                    "config": {
+                        "delay_millis_distribution": [
+                            {"key": 0, "val": 0.0},
+                            {"key": 600000, "val": 0.0},
+                            {"key": 900000, "val": 100.0}
+                        ],
+                        "seed": 1
+                    }
+                }
+            ],
+            "content": {
+                "source": "directory",
+                "config": {
+                    "dir": "/etc/reqstatsrv/config/data",
+                    "dunder_querystrings": true,
+                    "attempt_extensions": [
+                        "json"
+                    ]
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path_pattern": "/regular/",
+            "behaviour": [],
+            "content": {
+                "source": "directory",
+                "config": {
+                    "dir": "/etc/reqstatsrv/config/data",
+                    "dunder_querystrings": true,
+                    "attempt_extensions": [
+                        "json"
+                    ]
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path_pattern": "/",
+            "behaviour": [],
+            "content": {
+                "source": "directory",
+                "config": {
+                    "dir": "/etc/reqstatsrv/config/data",
+                    "dunder_querystrings": true,
+                    "attempt_extensions": [
+                        "json"
+                    ]
+                }
+            }
+        }
+    ]
+}
