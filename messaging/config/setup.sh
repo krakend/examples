@@ -8,6 +8,7 @@ mkdir -p ./certs/client
 echo ${KEYSTORE_PASS} > ./certs/keystore.credentials.txt
 
 cd ca
+
 echo "              "
 echo "--------------"
 echo " Creating CA Cert:"
@@ -59,6 +60,7 @@ keytool \
     -alias localhost \
     -keyalg RSA \
     -storetype pkcs12 \
+    -validity ${VALIDITY} \
     -file ${SERVER_CERT_SIGN_REQUEST} \
     -ext SAN=DNS:${SERVER_FQDN},IP:${SERVER_IPADDRESS}
 
@@ -103,6 +105,7 @@ keytool \
     -importcert \
     -keystore ${KEYSTORE_FILE} \
     -storepass ${KEYSTORE_PASS} \
+    -validity ${VALIDITY} \
     -alias localhost \
     -file ${SERVER_SIGNED_CERT}
 

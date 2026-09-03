@@ -2,6 +2,7 @@
     "version": 3,
     "debug_endpoint": true,
     "host": ["http://localhost:8080"],
+    "port": 8080,
     "async_agent": [
         {
             "name": "stocksconsumer",
@@ -12,7 +13,7 @@
                             "localhost:9092"
                         ],
                         "client_id": "cid_stocksconsumer",
-                        "metadata_retry_max": 999999,
+                        "metadata_retry_max": 3,
                         "metadata_retry_backoff": "1s"
                     },
                     "group": {
@@ -45,7 +46,7 @@
                             "localhost:49092"
                         ],
                         "client_id": "cid_portfolioupdateconsumer",
-                        "metadata_retry_max": 999999,
+                        "metadata_retry_max": 3,
                         "metadata_retry_backoff": "1s",
                         "client_tls": {
                             "allow_insecure_connections": false,
@@ -211,7 +212,7 @@
                 "disable_metrics": true,
                 "disable_traces": false,
                 "host": "localhost",
-                "name": "tempo",
+                "name": "jaeger",
                 "port": 54317,
                 "use_http": false
               }

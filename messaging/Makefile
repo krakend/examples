@@ -1,6 +1,5 @@
 setup:
 	cd ./config && bash ./setup.sh
-	docker compose up -d
 .PHONY: setup
 
 cleanup:
