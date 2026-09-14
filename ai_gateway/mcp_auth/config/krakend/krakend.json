@@ -1,0 +1,118 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD Enterprise MCP Server",
+  "port": 8080,
+  "timeout": "60000ms",
+  "endpoints": [
+    {
+      "endpoint": "/fakeapi/*",
+      "method": "GET",
+      "timeout": "15s",
+      "backend": [
+        {
+          "url_pattern": "/",
+          "host": [ "http://ignore" ],
+          "extra_config": {
+             "backend/static-filesystem": {
+                "path": "/etc/krakend/fakeapi"
+             }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/auth_mcp",
+      "method": "POST",
+      "timeout": "15s",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": [
+            "http://ignore"
+          ]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "country-weather"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": [
+          ],
+          "disable_jwk_security": true,
+          "jwk_url": "http://keycloak:8080/realms/krakend/protocol/openid-connect/certs",
+          "roles": [
+            "moderator"
+          ],
+          "roles_key": "realm_access.roles",
+          "operation_debug": true,
+          "roles_key_is_nested": true
+        }
+      }
+    },
+    {
+      "endpoint": "/.well-known/*",
+      "method": "GET",
+      "timeout": "15s",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/",
+          "host": [ "http://ignore" ],
+          "extra_config": {
+             "backend/static-filesystem": {
+                "path": "/etc/krakend/well_known"
+             }
+          }
+        }
+      ]
+    }
+  ],
+  "extra_config": {
+    "ai/mcp": {
+      "servers": [
+        {
+          "name": "country-weather",
+          "title": "Country Weather info",
+          "version": "1.0.0",
+          "stateless": true,
+          "instructions": "Provides unified country data by aggregating REST and GraphQL APIs. Use this to retrieve comprehensive information about countries including geography, demographics, cultural data and weather details.",
+          "tools": [
+            {
+              "name": "get_country_info",
+              "title": "Get Country Information",
+              "description": "Retrieves comprehensive country data by aggregating multiple public APIs (REST + GraphQL). Returns unified information including capital, population, area, languages, currency, flag, bordering countries and weather details.",
+              "type": "text",
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "country_code": {
+                    "type": "string",
+                    "description": "Two-letter ISO 3166-1 alpha-2 country code (e.g., ES for Spain, FR for France, US for United States)",
+                    "pattern": "^[A-Z]{2}$"
+                  }
+                },
+                "required": [
+                  "country_code"
+                ]
+              },
+              "return_error_msg": true,
+              "workflow": {
+                "endpoint": "/__mcp/country-info",
+                "backend": [
+                  {
+                    "@comment": "REST Countries API",
+                    "url_pattern": "/fakeapi/es",
+                    "host": [ "http://localhost:8080" ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
