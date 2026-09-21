@@ -1,0 +1,80 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD Enterprise MCP Server",
+  "port": 8080,
+  "timeout": "60000ms",
+  "endpoints": [
+    {
+      "endpoint": "/fantasy",
+      "input_headers": ["*"],
+      "method": "POST",
+      "timeout": "15s",
+      "backend": [
+        {
+          "url_pattern": "/ignore/",
+          "host": [
+            "http://ignore"
+          ]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "fantasy_planet"
+        }
+      }
+    }
+   ],
+  "extra_config": {
+    "ai/mcp": {
+      "servers": [
+        {
+          "name": "fantasy_planet",
+          "title": "Know the fantasy planet you are on",
+          "version": "1.0.0",
+          "stateless": true,
+          "instructions": "Given the landscape you are seeing, discover on what fantasy planet you are",
+          "tools": [
+            {
+              "name": "get_fantasy_planet",
+              "title": "Get Fantasy Planet Information",
+              "description": "Retrieves the fantasy planet you are located in.",
+              "type": "text",
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "landscape": {
+                    "type": "string",
+                    "description": "The description of what you can see"
+                  }
+                },
+                "required": [
+                  "landscape"
+                ]
+              },
+              "return_error_msg": true,
+              "input_headers": ["Host", "Hostport"],
+              "workflow": {
+                "endpoint": "/__mcp/fantasy_planet/{Landscape}/{input_headers.Host}/{input_headers.Hostport}",
+                "input_headers": ["*"],
+                "backend": [
+                  {
+                    "@comment": "Planet",
+                    "url_pattern": "/__debug/{Landscape}/{input_headers.Host}/{input_headers.Hostport}",
+                    "host": [ "http://localhost:8080" ]
+                  },
+                  {
+                    "@comment": "Planet",
+                    "url_pattern": "/{input_headers.Host}:8085/index.json",
+                    "disable_host_sanitize": true,
+                    "host": [ "http:/" ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
