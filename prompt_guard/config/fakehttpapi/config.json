@@ -1,0 +1,58 @@
+{
+    "port": 8088,
+    "endpoints": [
+        {
+            "method": "GET",
+            "path_pattern": "/data/",
+            "behaviour": [],
+            "content": {
+                "source": "file",
+                "name": "file",
+                "config": {
+                    "path": "/etc/reqstatsrv/config/data/result_payload.json"
+                }
+            }
+        },
+        {
+            "method": "POST",
+            "path_pattern": "/scorer/",
+            "behaviour": [
+                {
+                    "name": "status_distributor",
+                    "config": {
+                        "code_distribution": [
+                            {"key": 200, "val": 0.6},
+                            {"key": 201, "val": 0.4}
+                        ]
+                    }
+                }
+            ],
+            "content": {
+                "source": "status_content_selector",
+                "name": "status_content_selector",
+                "config": {
+                    "default_content": {
+                        "source": "file",
+                        "name": "file",
+                        "config": {
+                            "path": "/etc/reqstatsrv/config/data/scorer/pass.json"
+                        }
+                    },
+                    "status_contents": [
+                        {
+                            "from": 201,
+                            "to": 300,
+                            "content": {
+                                "source": "file",
+                                "name": "file",
+                                "config": {
+                                    "path": "/etc/reqstatsrv/config/data/scorer/block.json"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
