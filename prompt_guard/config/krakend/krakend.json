@@ -1,41 +1,52 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "KrakenD - Prompt Guard",
   "port": 8080,
-  "host": ["http://fakeapi:8088"],
+  "host": [
+    "http://fakeapi:8088"
+  ],
   "debug_endpoint": true,
   "plugin": {
-     "pattern": ".so",
-     "folder": "/etc/krakend/plugins"
+    "pattern": ".so",
+    "folder": "/etc/krakend/plugins"
   },
-  "extra_config": { 
+  "extra_config": {
     "ai/prompt-guard": {
       "guards": [
         {
-          "name": "reguloides",
+          "name": "email",
           "kind": "regex",
           "severity": "high",
           "config": {
             "patterns": [
-              "foo.*bar",
-              "tupu.*supu"
+              "(\\s+|'|\"|^)[\\w\\+-\\.]+@[\\w-]+\\.\\w+(\\s+|'|\"|$)"
             ]
           }
         },
         {
-          "name": "reguleras",
+          "name": "id_card",
           "kind": "regex",
           "severity": "medium",
           "config": {
             "patterns": [
-              "medium_foo",
-              "medium_bar"
+              "(\\s+|'|\"|^)\\d{6,8}-?\\w(\\s+|'|\"|$)",
+              "(\\s+|'|\"|^)X\\d{6,8}-?\\w(\\s+|'|\"|$)"
             ]
           }
         },
         {
-          "name": "my_scorer",
+          "name": "random_scorer",
+          "kind": "classifier",
+          "severity": "high",
+          "config": {
+            "score_threshold": 0.6,
+            "on_failure_block": true,
+            "url": "http://fakeapi/scorer/"
+          }
+        },
+        {
+          "name": "failing_scorer",
           "kind": "classifier",
           "severity": "high",
           "config": {
@@ -45,7 +56,7 @@
           }
         },
         {
-          "name": "my_policy",
+          "name": "max_size_policy",
           "kind": "policy",
           "severity": "medium",
           "config": {
@@ -114,23 +125,122 @@
   },
   "endpoints": [
     {
-      "endpoint": "/block_at_endpoint",
+      "endpoint": "/regex/personal/at_endpoint/",
       "method": "POST",
-      "input_headers": ["*"],
-      "input_query_strings": ["*"],
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "*"
+      ],
       "backend": [
-        { 
-            "method": "POST",
-            "url_pattern": "/result_payload.json" 
+        {
+          "method": "POST",
+          "url_pattern": "/data/"
         }
       ],
       "extra_config": {
         "ai/prompt-guard": {
           "guards": [
-            "reguloides",
-            "!medium",
-            "!unicode_steganography"
+            "!all_defaults",
+            "email",
+            "id_card"
           ]
+        }
+      }
+    },
+    {
+      "endpoint": "/personal/at_backend",
+      "method": "POST",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "*"
+      ],
+      "backend": [
+        {
+          "method": "POST",
+          "url_pattern": "/data/",
+          "extra_config": {
+            "ai/prompt-guard": {
+              "guards": [
+                "!all_defaults",
+                "email",
+                "id_card"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/classifier/random",
+      "method": "POST",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "*"
+      ],
+      "backend": [
+        {
+          "method": "POST",
+          "url_pattern": "/data/"
+        }
+      ],
+      "extra_config": {
+        "ai/prompt-guard": {
+          "guards": [
+            "!all_defaults",
+            "random_scorer",
+            "failing_scorer"
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "/policy/max_size",
+      "method": "POST",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "*"
+      ],
+      "backend": [
+        {
+          "method": "POST",
+          "url_pattern": "/data/"
+        }
+      ],
+      "extra_config": {
+        "ai/prompt-guard": {
+          "guards": [
+            "!all_defaults",
+            "max_size_policy"
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "/default_guards/",
+      "method": "POST",
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "*"
+      ],
+      "backend": [
+        {
+          "method": "POST",
+          "url_pattern": "/data/"
+        }
+      ],
+      "extra_config": {
+        "ai/prompt-guard": {
+          "guards": []
         }
       }
     }
