@@ -29,6 +29,29 @@ at the `"ai/prompt_guard"` service level
 
 ## External classifier Prompt Guard
 
+There is an endpoint that produces random results with the payload 
+of a classifier in the "fake api" server. 
+
+I can be tested directly with this request:
+
+```bash
+curl -i http://localhost:8088/scorer/
+```
+
+So at the service level configuration, there is prompt guard of type 
+`classifier` named `random_scorer` that uses that server to 
+decide if a payload should be served or not.
+
 ## Policy Prompt Guard
 
+At the service level there is a definition of a guard named `max_size_policy`
+that uses CEL expressions to block payloads that are too big or that 
+
+
 ## The metrics
+
+Traces can be checked at [http://localhost:16686](http://localhost:16686).
+
+And metrics at [http://localhost:4000](http://localhost:4000) with user: `krakend`
+and password `krakend`. 
+
