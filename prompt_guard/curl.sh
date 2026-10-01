@@ -142,3 +142,33 @@ echo "                                    Random classifier"
 echo "-----------------------------------------------------"
 echo ""
 echo ""
+
+
+ENDPT="/policy/max_size"
+URL=${SCHEMA}://${HOST}${ENDPT}
+echo "-----------------------------------------------------"
+echo "Policy Max Size"
+echo $URL
+echo "-----------------------------------------------------"
+echo " * short payload should pass"
+echo ""
+curl -i -X POST \
+    -d '{"fo": "bar"}' \
+    ${URL}
+echo ""
+echo "---"
+echo " * long payload should not pass"
+echo ""
+curl -i -X POST \
+    -d '{ "generated": "You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I dont know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I am breaking now. We said we would say it was the snow that killed the other two, but it wasnot. Nature is lethal but it does not hold a candle to man." }' \
+    ${URL}
+echo ""
+echo "---"
+echo " * Whatever randomness decides"
+echo ""
+echo ""
+echo "-----------------------------------------------------"
+echo "                                      Policy Max Size"
+echo "-----------------------------------------------------"
+echo ""
+echo ""
