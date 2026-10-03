@@ -1,0 +1,22 @@
+{
+    "movies": [
+        {
+            "title": "Sinners",
+            "genre": "Horror",
+            "cast": [
+                "Michael B. Jordan",
+                "Miles Caton"
+            ],
+            "year": 2025
+        },
+        {
+            "title": "The Report",
+            "genre": "Drama",
+            "cast": [
+                "Adam Driver",
+                "Annette Benning"
+            ],
+            "year": 2019
+        }
+    ]
+}
