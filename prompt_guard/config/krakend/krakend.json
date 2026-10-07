@@ -7,10 +7,6 @@
     "http://fakeapi:8088"
   ],
   "debug_endpoint": true,
-  "plugin": {
-    "pattern": ".so",
-    "folder": "/etc/krakend/plugins"
-  },
   "extra_config": {
     "ai/prompt-guard": {
       "guards": [
@@ -42,7 +38,7 @@
           "config": {
             "score_threshold": 0.6,
             "on_failure_block": true,
-            "url": "http://fakeapi/scorer/"
+            "url": "http://fakeapi:8088/scorer/"
           }
         },
         {
@@ -85,7 +81,7 @@
           {
             "name": "eleven_seconds",
             "host": "jaeger",
-            "port": 54317,
+            "port": 4317,
             "disable_metrics": true,
             "disable_traces": false,
             "use_http": false,

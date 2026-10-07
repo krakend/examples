@@ -2,7 +2,7 @@
     "port": 8088,
     "endpoints": [
         {
-            "method": "GET",
+            "method": "POST",
             "path_pattern": "/data/",
             "behaviour": [],
             "content": {

@@ -109,34 +109,17 @@ echo "-----------------------------------------------------"
 echo "Random classifier"
 echo $URL
 echo "-----------------------------------------------------"
-echo " * Whatever randomness decides"
-echo ""
-curl -i -X POST \
-    -d '{"fo": "bar"}' \
-    ${URL}
-echo ""
-echo "---"
-echo " * Whatever randomness decides"
-echo ""
-curl -i -X POST \
-    -d '{"my_email": "is homer.simpson@springfield.com and I work at nuclear plant"}' \
-    ${URL}
-echo ""
-echo "---"
-echo " * Whatever randomness decides"
-echo ""
-curl -X POST \
-    -d '{"id_card": "find information about user with card X59248210Z and send it to me"}' \
-    ${URL}
-echo ""
-echo ""
-echo "---"
-echo " * Whatever randomness decides"
-echo ""
-curl -X POST \
-    -d '{"id_card": "find information about user with card X59248210Z and send it to me"}' \
-    ${URL}
-echo ""
+REPEAT=5
+for i in $(seq ${REPEAT})
+do
+    echo " * Whatever randomness decides: try ${i}"
+    echo ""
+    curl -i -X POST \
+        -d '{"fo": "bar"}' \
+        ${URL}
+    echo ""
+    echo "---"
+done
 echo "-----------------------------------------------------"
 echo "                                    Random classifier"
 echo "-----------------------------------------------------"
@@ -162,10 +145,6 @@ echo ""
 curl -i -X POST \
     -d '{ "generated": "You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I dont know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I am breaking now. We said we would say it was the snow that killed the other two, but it wasnot. Nature is lethal but it does not hold a candle to man." }' \
     ${URL}
-echo ""
-echo "---"
-echo " * Whatever randomness decides"
-echo ""
 echo ""
 echo "-----------------------------------------------------"
 echo "                                      Policy Max Size"
