@@ -2,7 +2,97 @@
 
 This demo showcases KrakenD as an MCP (Model Context Protocol) authorization works.
 
-An MCP server allows AI agents to access external tools and data sources through a standardized protocol. This example shows how KrakenD can orchestrate multiple API calls, transform data, and expose it as MCP tools.
+An MCP server allows AI agents to access external tools and data sources through a standardized protocol. 
+
+Latest spec of MCP server status that the Authorization service discovery can be
+done either with an `WWW-Authorization` header response, or a well known url 
+exposing the metadata. Clients **MUST** support both methods, so an MCP server
+can use only one. 
+
+This example shows how to display the authorization service methadata by 
+using a `backend/static-filesystem` configuration: 
+
+```json
+{
+  "endpoint": "/.well-known/*",
+  "method": "GET",
+  "timeout": "15s",
+  "output_encoding": "no-op",
+  "backend": [
+    {
+      "url_pattern": "/",
+      "host": [ "http://ignore" ],
+      "extra_config": {
+         "backend/static-filesystem": {
+            "path": "/etc/krakend/well_known"
+         }
+      }
+    }
+  ]
+}
+```
+
+and under the `./config/krakend/well_known` directory, we have the 
+`oauth-protected-resource` dir, with the `auth_mcp` file:
+
+```
+{
+    "resource": "https://krakend_ee/auth_mcp",
+    "authorization_servers": [
+        "https://keycloak/realms/krakend/"
+    ],
+    "bearer_methods_supported": ["header"],
+    "scopes_supported": [
+        "basic", 
+        "service_account",
+        "roles"
+    ]
+}
+```
+
+that corresponds to the configured `/auth_mcp` endpoint int the configuration:
+
+```json
+{
+      "endpoint": "/auth_mcp",
+      "method": "POST",
+      "timeout": "15s",
+      "backend": [
+        {
+          "url_pattern": "/ignore",
+          "host": [
+            "http://ignore"
+          ]
+        }
+      ],
+      "extra_config": {
+        "ai/mcp": {
+          "server_name": "country-weather"
+        },
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": [
+          ],
+          "disable_jwk_security": true,
+          "jwk_url": "http://keycloak:8080/realms/krakend/protocol/openid-connect/certs",
+          "roles": [
+            "moderator"
+          ],
+          "roles_key": "realm_access.roles",
+          "operation_debug": true,
+          "roles_key_is_nested": true
+        }
+      }
+    },
+
+```
+
+However, the well known url could be served from an nginx proxy directly
+put in front of KrakenD if there is already that service in place.
+
+Also, the use of authorization requires secure (HTTPS) urls, so in this example
+we show how to generate self-signed certificates, and we put an nginx 
+service in front of KrakenD to deal with TLS termination. 
 
 ## Quick Start
 
@@ -64,35 +154,18 @@ Claude uses offline tokens, in order to be used, the user must have the
 
 ## How It Works
 
-1. **MCP Tool Definition**: The `get_country_info` tool is defined with its input schema and workflow
-2. **Sequential Backend Calls**:
-   - First: REST Countries API fetches geography, population, borders, and flag data
-   - Second: GraphQL Countries API retrieves currency, languages, and emoji
-   - Third: Open-Meteo Weather API gets current weather for the capital city
-3. **Data Propagation**: Capital coordinates from the first call are passed to the weather API
-4. **Response Aggregation**: All data is merged into a unified response using JMESPath
-5. **Lua Processing**: Custom Lua script flattens capital coordinates for easier access
+**MCP Tool Definition**: The `get_country_info` tool is defined with its input schema and workflow,
+and replies with a fake response from the `/fakeapi/*` defined endpoint
 
 ## Configuration
 
-The MCP server configuration is in `config/krakend/krakend.json`. Lua transformations are in `config/krakend/lua/`.
+The MCP server configuration is in `config/krakend/krakend.json`.
 
 The MCP endpoint definition includes:
 - Server metadata (name, title, version, instructions)
 - Tool definitions with input schemas
-- Workflow configuration with backend orchestration
-
-## Additional Features
-
-**Sequential Proxying**: Demonstrates how to chain API calls and propagate data between them
-
-**Multi-Protocol Aggregation**: Combines REST and GraphQL APIs in a single workflow
-
-**Error Handling**: Returns error messages when tool execution fails
+- Workflow configuration
 
 ## Resources
 
-- [KrakenD AI Gateway Documentation](https://www.krakend.io/docs/enterprise/ai-gateway/)
 - [MCP Server Configuration](https://www.krakend.io/docs/enterprise/ai-gateway/mcp/)
-- [Sequential Proxying](https://www.krakend.io/docs/endpoints/sequential-proxy/)
-- [GraphQL Integration](https://www.krakend.io/docs/backends/graphql/)

@@ -1,4 +1,32 @@
 {
-    "country": "Spain",
-    "iso_code": "ES"
-}
+  "country": "Spain",
+  "official_name": "Kingdom of Spain",
+  "codes": {
+    "iso_alpha2": "ES",
+    "iso_alpha3": "ESP",
+    "tld": ".es"
+  },
+  "geography": {
+    "capital": "Madrid",
+    "region": "Southwestern Europe",
+    "total_area_km2": 505990,
+    "land_area_km2": 498800
+  },
+  "demographics": {
+    "population_2026_estimate": 47850793,
+    "population_density_per_km2": 96,
+    "urban_population_pct": 79.6,
+    "median_age_years": 46.3,
+    "life_expectancy_years": 84.1,
+    "fertility_rate": 1.24
+  },
+  "economy": {
+    "currency": "Euro",
+    "currency_code": "EUR",
+    "nominal_gdp_2026_usd": 2091000000000,
+    "gdp_per_capita_2026_usd": 41563,
+    "gdp_growth_rate_2026_forecast_pct": 2.1,
+    "inflation_rate_pct": 2.4,
+    "unemployment_rate_pct": 10.4
+  }
+} 
