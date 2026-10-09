@@ -1,0 +1,51 @@
+{
+  "country": "France",
+  "official_name": "French Republic",
+  "codes": {
+    "iso_alpha_2": "FR",
+    "iso_alpha_3": "FRA",
+    "iso_numeric": "250"
+  },
+  "geography": {
+    "capital": "Paris",
+    "region": "Western Europe",
+    "total_area_km2": 643801,
+    "metropolitan_area_km2": 543908,
+    "border_countries": [
+      "Andorra",
+      "Belgium",
+      "Germany",
+      "Italy",
+      "Luxembourg",
+      "Monaco",
+      "Spain",
+      "Switzerland"
+    ]
+  },
+  "demographics": {
+    "total_population": 69081996,
+    "population_density_per_km2": 124.3,
+    "urban_population_percentage": 81.78,
+    "median_age_years": 42.5,
+    "life_expectancy_years": 83.1,
+    "fertility_rate_births_per_woman": 1.56,
+    "official_language": "French"
+  },
+  "economy": {
+    "currency_code": "EUR",
+    "currency_name": "Euro",
+    "currency_symbol": "€",
+    "nominal_gdp_usd_trillion": 3.366,
+    "gdp_per_capita_nominal_usd": 52083,
+    "gdp_per_capita_ppp_usd": 68563,
+    "unemployment_rate_percentage": 7.4
+  },
+  "infrastructure": {
+    "time_zones": [
+      "UTC+01:00 (CET)",
+      "UTC+02:00 (CEST)"
+    ],
+    "calling_code": "+33",
+    "tld": ".fr"
+  }
+}

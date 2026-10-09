@@ -1,0 +1,42 @@
+{
+  "name": "United Kingdom",
+  "alpha2Code": "GB",
+  "alpha3Code": "GBR",
+  "numericCode": "826",
+  "capital": "London",
+  "region": "Europe",
+  "subregion": "Northern Europe",
+  "currency": {
+    "code": "GBP",
+    "name": "British Pound Sterling",
+    "symbol": "£"
+  },
+  "phoneCode": "+44",
+  "tld": [".uk"],
+  "constituventCountries": [
+    {
+      "name": "England",
+      "capital": "London",
+      "code": "ENG"
+    },
+    {
+      "name": "Scotland",
+      "capital": "Edinburgh",
+      "code": "SCT"
+    },
+    {
+      "name": "Wales",
+      "capital": "Cardiff",
+      "code": "WLS"
+    },
+    {
+      "name": "Northern Ireland",
+      "capital": "Belfast",
+      "code": "NIR"
+    }
+  ],
+  "sources": {
+    "officialStatisticsApi": "https://otwarteapi.pl/en/ons-uk",
+    "boundaryData": "https://ckan.publishing.service.gov.uk/dataset/?tags=Countries&res_format=GeoJSON"
+  }
+} 
