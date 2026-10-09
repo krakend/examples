@@ -21,7 +21,7 @@ services:
       start_period: 30s
     stop_grace_period: 2s
   krakend_ee:
-    image: krakend/krakend-ee:2.13.9-watch
+    image: krakend/krakend-ee:3.0.0-watch
     init: true
     volumes:
       - ./config/krakend:/etc/krakend

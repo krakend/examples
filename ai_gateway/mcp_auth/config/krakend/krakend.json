@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "KrakenD Enterprise MCP Server",
   "port": 8080,
   "timeout": "60000ms",
