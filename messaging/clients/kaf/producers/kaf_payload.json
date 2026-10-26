@@ -1,0 +1,5 @@
+{
+    "ticker": "AAPL",
+    "price": "${PRICE}",
+    "name": "Apple Inc"
+}
