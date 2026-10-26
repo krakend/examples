@@ -6,11 +6,16 @@
   "timeout": "3000ms",
   "cache_ttl": "300s",
   "debug_endpoint": true,
-  "plugin": {
-    "pattern": ".so",
-    "folder": "/opt/krakend/plugins/"
-  },
   "endpoints": [
+    {
+       "endpoint": "/data",
+       "backend": [
+           {
+                "url_pattern": "/__debug/data",
+                "host": ["localhost:8080"]
+           }
+       ]
+    },
     {
       "endpoint": "/ws",
       "backend": [
