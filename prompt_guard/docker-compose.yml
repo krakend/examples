@@ -1,10 +1,9 @@
 services:
   krakend_ee:
-    image: krakend/krakend-ee:3.0.0
+    image: krakend/krakend-ee:3.0
     volumes:
       - ./config/krakend:/etc/krakend
     ports:
-      - "1234:1234"
       - "8080:8080"
     command: ["run", "-d", "-c", "krakend.json"]
   fakeapi:
@@ -30,8 +29,8 @@ services:
     ports:
       - "4000:3000"
     volumes:
-      - "./config/telemetry-dashboards/grafana/datasources/prometheus-tempo.yml:/etc/grafana/provisioning/datasources/prometheus-tempo.yml"
-      - "./config/telemetry-dashboards/grafana/krakend/for-prometheus.json:/var/lib/grafana/dashboards/krakend/for-prometheus.json"
+      - "./config/telemetry-dashboards/grafana/datasources/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml"
+      - "./config/telemetry-dashboards/grafana/krakend:/var/lib/grafana/dashboards/krakend"
       - "./config/telemetry-dashboards/grafana/dashboards/all.yml:/etc/grafana/provisioning/dashboards/all.yml"
     environment:
       - GF_SECURITY_ADMIN_USER=krakend

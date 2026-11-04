@@ -1,107 +1,127 @@
 # KrakenD Prompt Guard Example
 
-This is an example about how to use the [AI Gateway Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/)
-component.
+This example shows how to use the [AI Gateway Prompt Guard](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/)
+to inspect request bodies and block prompt injections, jailbreaks, personal
+data, or any payload that breaks your own rules.
 
-Despite the fact this component is targeted at AI body payloads,
-it can used on any `POST` / `PUT` endpoints.
+Although Prompt Guard is designed for AI payloads, it works on any endpoint
+that receives a body (`POST`, `PUT`, ...), so you can use it in front of
+regular APIs too.
 
-## Run the example.
+## Requirements
 
-Start the environment with:
+- Docker and Docker Compose
+- A KrakenD Enterprise license. Save it as `config/krakend/LICENSE` (need a
+  trial license? [Contact us](https://www.krakend.io/contact-sales/))
 
-```
+## Run the example
+
+Start the environment:
+
+```bash
 docker compose up -d
 ```
 
-It will bring up the KrakenD instance runing the [`config/krakend/krakend.json`](./config/krakend/krakend.json)
-config file, along with a fakepi server on port `8088`, and the other
-services to view metrics and traces.
+This starts the following services:
 
-### The fake api
+| Service      | URL                                              | Purpose                                                         |
+|--------------|--------------------------------------------------|-----------------------------------------------------------------|
+| KrakenD EE   | [http://localhost:8080](http://localhost:8080)   | The gateway, running [`config/krakend/krakend.json`](./config/krakend/krakend.json) |
+| Fake API     | [http://localhost:8088](http://localhost:8088)   | Backend and fake classifier used by KrakenD                    |
+| Jaeger       | [http://localhost:16686](http://localhost:16686) | Traces                                                          |
+| Grafana      | [http://localhost:4000](http://localhost:4000)   | Dashboards (user `krakend`, password `krakend`)                 |
+| Prometheus   | [http://localhost:9090](http://localhost:9090)   | Metrics storage                                                 |
 
-It exposes two endpoints:
+When you are done, stop everything with `docker compose down`.
 
-- `http://localhost:8088/data/`: that serves the body used as a succesful
-    response
-- `http://localhost:8088/scorer/`: that randomly serves either a "block" or
-    pass result.
+### The fake API
 
-There is a [test_fakeapi.sh](./client/test_fakeapi.sh) script under the client
-directory to test those endpoints (that are used inside the krakend config).
+The fake API exposes two `POST` endpoints:
 
-### Run the tests
+- `/data/`: returns a fixed JSON body, used as the backend response when a
+  request is not blocked.
+- `/scorer/`: a fake classifier that randomly returns a low score (`0.1`, the
+  request passes) about 60% of the time, or a high score (`0.99`, the request
+  is blocked) the other 40%.
 
-In the `client` directory, there is the `curl.sh` script that makes different
-requests to see the behaviour of the prompt guards.
+You can call them directly with [`client/test_fakeapi.sh`](./client/test_fakeapi.sh).
+
+### Send the test requests
+
+The [`client/curl.sh`](./client/curl.sh) script sends a set of requests to
+every endpoint, each one labeled with the expected outcome:
 
 ```bash
 bash ./client/curl.sh
 ```
 
-## The config
+A blocked request returns an empty `500 Internal Server Error`, and the
+KrakenD log shows `prompt guard blocked` for that endpoint.
 
-### Defined Guards.
+## The configuration
 
-At the service level `extra_config` we define a set of extra guards
-that can be applied to endpoints:
+Prompt Guard is configured in two places:
 
-- `email:` a regex to match emails (**not ready for production**, is only an example)
-- `id_card`: a regex to match a simple type of ID numbers
-- `random_scorer`: a guard that points to the fakeapi random scorer
-- `failing_scorer`: a guard that points at not existing scorer, just to show
-    the `on_failure_block` option that lets request pass if service is not
-    available
-- `max_size_policy`: an guard policy that checks the size of the body
+1. The service level `extra_config` declares your custom guards.
+2. Each endpoint or backend lists, in its own `extra_config`, which guards
+   apply to it.
 
+KrakenD also ships a set of default guards. They are active on every endpoint
+or backend that includes the `ai/prompt-guard` namespace, unless you disable
+them with `!all_defaults` (or by severity or group, see the
+[documentation](https://www.krakend.io/docs/enterprise/ai-gateway/prompt-guard/)).
+
+### Custom guards
+
+The service level declares these guards:
+
+- `email` (`regex`): matches email addresses. The pattern is a simple example,
+  not production ready.
+- `id_card` (`regex`): matches a simple ID card number format.
+- `random_scorer` (`classifier`): sends the body to the fake `/scorer/`
+  endpoint and blocks the request when the score is `0.6` or higher.
+- `failing_scorer` (`classifier`): points to a classifier that does not exist.
+  Because `on_failure_block` is `false`, requests pass when the classifier
+  cannot be reached.
+- `max_size_policy` (`policy`): a CEL expression that blocks bodies bigger
+  than 256 bytes.
+
+Policy expressions describe what to **block**: a request is rejected when any
+of the expressions evaluates to `true`.
 
 ### Endpoints
 
-#### Default Prompt Guards
+| Endpoint                  | Guards                                | What it shows                                                                    |
+|---------------------------|---------------------------------------|----------------------------------------------------------------------------------|
+| `/default_guards/`        | Defaults only                         | An empty `guards` list keeps only the built-in guards                            |
+| `/personal/at_endpoint`   | `email`, `id_card`                    | Guards applied at the endpoint level                                             |
+| `/personal/at_backend`    | `email`, `id_card`                    | The same guards applied at the backend level                                     |
+| `/classifier/random`      | `random_scorer`, `failing_scorer`     | External classifiers, and what happens when one of them is unavailable           |
+| `/policy/max_size`        | `max_size_policy`                     | A CEL policy that rejects large payloads                                         |
 
-The `/defult_guards/` endpoint configuration example, with a list of empty guards,
-that means only defaults will be applied.
+All endpoints except `/default_guards/` use `!all_defaults`, so only the
+listed guards run.
 
-In the `curl.sh` there are 3 requests made that shows how no poisoned data
-can get the result back, while some other prompts / bodies will be
-blocked by the default set of guards.
+Expected results when running `curl.sh`:
 
-#### Regex Prompt Guard
-
-There are 2 endpoints, for the custom regex guards, to showcase that
-the filtering can be put at the endpoint level or at the backend level:
-
-- `/personal/at_backend`
-- `/personal/at_endpoint`
-
-Both make use of the `email` and `id_card` regex guards defined
-at the `"ai/prompt_guard"` service level
-
-#### External classifier Prompt Guard
-
-- `/classifier/random`
-
-This endpoint has default prompt guards disabled, and uses two custom
-classifiers:
-
-- `failing_scorer`: a non existing url one with the flag of `on_failure_block` set
-to true, to showcase that if it cannot connect it lets the request pass,
-and
-- `random_scorer`: that randomly blocks or lets the prompt pass
-
-#### Policy Prompt Guard
-
-This endpoint blocks in case of size of the payload is too big.
-
-- `/policy/max_size`
-
+- `/default_guards/`: a harmless body passes, while a prompt asking to forget
+  previous instructions and a jailbreak attempt are blocked.
+- `/personal/*`: a body without personal data passes, while bodies containing
+  an email address or an ID card number are blocked.
+- `/classifier/random`: each request passes or is blocked at random,
+  depending on the score returned by the fake classifier. The unreachable
+  `failing_scorer` never blocks.
+- `/policy/max_size`: a short body passes, while the long body in
+  [`client/payload/samuel.json`](./client/payload/samuel.json) is blocked.
 
 ## Observability
 
+Every time a prompt guard runs, KrakenD records it in both metrics and traces:
 
-
-Traces can be checked at [http://localhost:16686](http://localhost:16686).
-
-And metrics at [http://localhost:4000](http://localhost:4000) with user: `krakend`
-and password `krakend`.
-
+- **Metrics**: the `krakend_promptguard_check_requests_total` counter in
+  Prometheus, with the `http_route` and `krakend_promptguard_blocked`
+  (`true` or `false`) labels. Grafana includes a **KrakenD - Prompt Guard**
+  dashboard with these numbers, next to the general KrakenD dashboard.
+- **Traces**: open Jaeger, select the `krakend_prompt_guard` service, and look
+  for the `krakend.promptguard.blocker` attribute, which tells you which guard
+  (or default guard group) blocked the request.

@@ -12,11 +12,3 @@ scrape_configs:
         - 'krakend_ee:9090'
         labels:
           app: krakend
-  - job_name: krakend_local_scrapper
-    scrape_interval: 5s
-    metrics_path: '/metrics'
-    static_configs:
-      - targets:
-        - '192.168.1.22:9099'
-        labels:
-          app: local_krakend

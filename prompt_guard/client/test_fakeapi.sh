@@ -3,7 +3,7 @@
 echo "------------------------------------------"
 echo " Show Fake API successful payload:"
 echo "------------------------------------------"
-curl -i http://localhost:8088/data/
+curl -i -X POST http://localhost:8088/data/
 echo ""
 echo "******************************************"
 echo ""

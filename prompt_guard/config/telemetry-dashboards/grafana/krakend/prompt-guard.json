@@ -1,41 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROMETHEUS",
-      "label": "Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "11.5.2"
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -61,7 +24,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "krakend_prometheus_datasource"
       },
       "description": "Total number of blocked prompt guard requests.",
       "fieldConfig": {
@@ -114,12 +77,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "krakend_prometheus_datasource"
           },
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(krakend_promptguard_check_total{app=\"$app\"})",
+          "expr": "sum(krakend_promptguard_check_requests_total{app=~\"$app\", http_route=~\"$endpoint\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -135,7 +98,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "krakend_prometheus_datasource"
       },
       "description": "Total number of blocked prompt guard requests.",
       "fieldConfig": {
@@ -188,12 +151,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "krakend_prometheus_datasource"
           },
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(krakend_promptguard_check_total{app=\"$app\", krakend_promptguard_blocker!=\"\"})",
+          "expr": "sum(krakend_promptguard_check_requests_total{app=~\"$app\", http_route=~\"$endpoint\", krakend_promptguard_blocked=\"true\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": false,
           "instant": false,
@@ -209,7 +172,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "krakend_prometheus_datasource"
       },
       "fieldConfig": {
         "defaults": {
@@ -291,14 +254,14 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
+            "uid": "krakend_prometheus_datasource"
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "krakend_promptguard_check_total{krakend_promptguard_blocker!=\"\"}\n",
+          "expr": "sum by (http_route) (krakend_promptguard_check_requests_total{app=~\"$app\", http_route=~\"$endpoint\", krakend_promptguard_blocked=\"true\"})",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
-          "legendFormat": "__auto",
+          "legendFormat": "{{http_route}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -353,7 +316,7 @@
       },
       {
         "current": {},
-        "definition": "label_values(krakend_promptguard_check_total,http_route)",
+        "definition": "label_values(krakend_promptguard_check_requests_total,http_route)",
         "description": "KrakenD exposed endpoint",
         "includeAll": true,
         "label": "Endpoint",
@@ -362,12 +325,13 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(krakend_promptguard_check_total,http_route)",
+          "query": "label_values(krakend_promptguard_check_requests_total,http_route)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
-        "type": "query"
+        "type": "query",
+        "allValue": ".*"
       },
       {
         "current": {
@@ -463,8 +427,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "New dashboard",
-  "uid": "ffrllg1xrehoge",
+  "title": "KrakenD - Prompt Guard",
+  "uid": "krakend_prompt_guard",
   "version": 8,
   "weekStart": ""
 }

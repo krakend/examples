@@ -48,7 +48,7 @@
           "config": {
             "score_threshold": 0.6,
             "on_failure_block": false,
-            "url": "https://nonexistinglongdomainexample.com"
+            "url": "http://classifier.invalid/score"
           }
         },
         {
@@ -57,7 +57,6 @@
           "severity": "medium",
           "config": {
             "expressions": [
-              "meta.something in [\"BENIGN\"]",
               "size(body) > 256"
             ]
           }
@@ -71,7 +70,7 @@
       "exporters": {
         "prometheus": [
           {
-            "name": "local_promoetheus",
+            "name": "local_prometheus",
             "port": 9090,
             "process_metrics": true,
             "go_metrics": true
@@ -79,13 +78,12 @@
         ],
         "otlp": [
           {
-            "name": "eleven_seconds",
+            "name": "jaeger",
             "host": "jaeger",
             "port": 4317,
             "disable_metrics": true,
             "disable_traces": false,
-            "use_http": false,
-            "custom_metric_reporting_period": 11
+            "use_http": false
           }
         ]
       },
@@ -121,7 +119,7 @@
   },
   "endpoints": [
     {
-      "endpoint": "/regex/personal/at_endpoint/",
+      "endpoint": "/personal/at_endpoint",
       "method": "POST",
       "input_headers": [
         "*"
