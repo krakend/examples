@@ -21,14 +21,16 @@ Just run the included docker-compose and try the endpoints below:
 $ docker-compose up
 ```
 
-### Fake API Endpoints
+### Static content
+
+Static content in directory `data` is served using the [`server/static-filesystem`](https://www.krakend.io/docs/enterprise/endpoints/serve-static-content/#configuration-as-a-static-service) component.
 
 | Response format | Endpoint                                                                           |
 |-----------------|------------------------------------------------------------------------------------|
-| JSON            | [`http://localhost:8000/response.json`](http://localhost:8000/response.json)       |
-| XML             | [`http://localhost:8000/response.xml`](http://localhost:8000/response.xml)         |
-| RSS             | [`http://localhost:8000/response-rss.xml`](http://localhost:8000/response-rss.xml) |
-| Text            | [`http://localhost:8000/response.txt`](http://localhost:8000/response.txt)         |
+| JSON            | [`http://localhost:8080/media/response.json`](http://localhost:8080/media/response.json)       |
+| XML             | [`http://localhost:8080/media/response.xml`](http://localhost:8080/media/response.xml)         |
+| RSS             | [`http://localhost:8080/media/response.rss`](http://localhost:8080/media/response.rss) |
+| Text            | [`http://localhost:8080/media/response.txt`](http://localhost:8080/media/response.txt)         |
 
 ### Consolidated KrakenD Endpoints
 

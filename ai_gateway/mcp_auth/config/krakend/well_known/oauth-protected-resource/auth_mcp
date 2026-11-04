@@ -1,0 +1,12 @@
+{
+    "resource": "https://krakend_ee/auth_mcp",
+    "authorization_servers": [
+        "https://keycloak/realms/krakend/"
+    ],
+    "bearer_methods_supported": ["header"],
+    "scopes_supported": [
+        "basic", 
+        "service_account",
+        "roles"
+    ]
+}

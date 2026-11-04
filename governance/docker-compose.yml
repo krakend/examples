@@ -1,0 +1,53 @@
+services:
+  redis:
+    image: "redis:7"
+    ports:
+      - "7000:6379"
+  redis001:
+    image: "redis:7"
+    volumes:
+      - "./config/redis/redis001/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis002:
+    image: "redis:7"
+    volumes:
+      - "./config/redis/redis002/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis003:
+    image: "redis:7"
+    volumes:
+      - "./config/redis/redis003/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+  redis-cluster-creator:
+    image: "redis:7"
+    command: [
+      "redis-cli", "--cluster" , "create", 
+      "redis001:7001",
+      "redis002:7002",
+      "redis003:7003",
+      "--cluster-yes"
+    ]
+    depends_on:
+      - redis001
+      - redis002
+      - redis003
+  redis-haproxy:
+    image: "haproxytech/haproxy-alpine"
+    depends_on:
+      - redis001
+      - redis002
+      - redis003
+    ports:
+      - "8404:8404"
+      - "7001-7003:9001-9003"
+    volumes:
+      - "./config/haproxy:/usr/local/etc/haproxy:ro"
+  krakend:
+    image: krakend/krakend-ee:2.10.0
+    depends_on:
+      - redis-haproxy
+    volumes:
+      - "./config/krakend:/etc/krakend"
+    ports:
+      - "8080:8080"
+    command: [ "run", "-dc", "krakend.json", "" ]

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://krakend.io/schema/krakend.json",
+  "version": 3,
+  "timeout": "300s",
+  "plugin": {
+    "folder": "/opt/krakend/plugins/",
+    "pattern": ".so"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/middleware",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "method": "POST",
+          "encoding": "no-op",
+          "url_pattern": "/v1/responses",
+          "host": [
+            "http://backend:8090"
+          ],
+          "extra_config": {
+            "plugin/middleware": {
+              "name": [
+                "streaming-middleware"
+              ]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "endpoint": "/response",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "method": "POST",
+          "url_pattern": "/v1/responses",
+          "host": [
+            "http://backend:8090"
+          ]
+        }
+      ],
+      "extra_config": {
+        "plugin/req-resp-modifier": {
+          "name": ["streaming-modifier"]
+        }
+      }
+    }
+  ]
+}

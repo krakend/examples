@@ -1,0 +1,104 @@
+{
+  "$schema": "https://krakend.io/schema/krakend.json",
+  "version": 3,
+  "timeout": "300s",
+  "plugin": {
+    "folder": "/opt/krakend/plugins/",
+    "pattern": ".so"
+  },
+  "endpoints": [
+    {
+      "endpoint": "/",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "method": "POST",
+          "encoding": "no-op",
+          "url_pattern": "/v1/responses",
+          "host": [
+            "http://backend:8090"
+          ],
+          "extra_config": {
+            "plugin/middleware": {
+              "name": [
+                "quota-control-mw"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "extra_config": {
+    "redis": {
+      "connection_pools": [
+        {
+          "name": "local",
+          "address": "redis:6379"
+        }
+      ]
+    },
+    "governance/processors": {
+      "quotas": [
+        {
+          "name": "llm_control",
+          "connection_name": "local",
+          "hash_keys": true,
+          "on_failure_allow": true,
+          "on_failure_max_retries": 2,
+          "deny_queue_size": 10,
+          "deny_queue_flush_interval": "2s",
+          "deny_queue_flush_threshold": 5,
+          "rejecter_cache": {
+            "N": 10000000,
+            "P": 1e-8,
+            "hash_name": "optimal"
+          },
+          "on_failure_backoff_strategy": "linear",
+          "rules": [
+            {
+              "name": "gold",
+              "limits": [
+                {
+                  "amount": 1000,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 5000,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "silver",
+              "limits": [
+                {
+                  "amount": 500,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 2000,
+                  "unit": "day"
+                }
+              ]
+            },
+            {
+              "name": "bronze",
+              "limits": [
+                {
+                  "amount": 200,
+                  "unit": "hour"
+                },
+                {
+                  "amount": 1000,
+                  "unit": "day"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

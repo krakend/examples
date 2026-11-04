@@ -1,0 +1,16 @@
+{{ $embeddings := (.req_params.Resp0 | fromJson) }}
+{
+    "fields": ["ALL"],
+    "objects": [
+    {{- range $index, $doc := .req_body.documents -}}
+        {{ if $index }},{{ end }}
+        {
+            "class": "Document",
+            "properties": {
+                "text": {{ $doc.text | toJson }}
+            },
+            "vector": {{ (index (index $embeddings.embeddings $index) "values") | toJson }}
+        }
+    {{- end -}}
+    ]
+}

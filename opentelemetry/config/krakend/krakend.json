@@ -1,5 +1,5 @@
 {
-  "$schema": "https://www.krakend.io/schema/v3.json",
+  "$schema": "https://www.krakend.io/schema/krakend.json",
   "version": 3,
   "name": "My first API Gateway - KrakenD",
   "port": 8080,
@@ -37,8 +37,7 @@
             "disable_metrics": true,
             "disable_traces": false,
             "use_http": false,
-            "custom_metric_reporting_period": 11,
-            "custom_reporting_period": 11
+            "custom_metric_reporting_period": 11
           }
         ]
       },

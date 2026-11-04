@@ -1,0 +1,44 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.7.3
+    ports:
+      - "8085:8080"
+      - "8086:9000"
+    volumes:
+      - ./config/keycloak/realms:/opt/keycloak/data/import
+    environment:
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    # Enable the built-in health endpoints on the management port (9000) so
+    # other services can wait for Keycloak to be actually ready (realm
+    # imported, JWKS served) — not just for the process to be up.
+    command: ["start-dev", "--import-realm", "--health-enabled=true", "--proxy-headers=xforwarded"]
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /health/ready HTTP/1.0\\r\\n\\r\\n' >&3 && grep -q '\"status\": \"UP\"' <&3"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 30s
+    stop_grace_period: 2s
+  krakend_ee:
+    image: krakend/krakend-ee:3.0.0-watch
+    init: true
+    volumes:
+      - ./config/krakend:/etc/krakend
+      - ./LICENSE:/etc/krakend/LICENSE
+    ports:
+      - "8080:8080"
+    command: ["run", "-d", "-c", "krakend.json"]
+    depends_on:
+      keycloak:
+        condition: service_healthy
+  nginx:
+    image: nginx:1.31.6
+    volumes:
+      - ./certs/server:/etc/nginx/ssl
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "443:443"
+    depends_on:
+      - krakend_ee
+      - keycloak

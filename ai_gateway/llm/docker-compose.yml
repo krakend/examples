@@ -1,0 +1,34 @@
+services:
+  krakend_ee:
+    image: krakend/krakend-ee:2.12.0-watch
+    init: true
+    volumes:
+      - ./config/krakend:/etc/krakend
+      - ./LICENSE:/etc/krakend/LICENSE
+    environment:
+      - FC_OUT=/etc/krakend/out.json
+      - FC_ENABLE=1
+    env_file:
+      - ./config/krakend/.env
+    ports:
+      - "8080:8080"
+    command: ["run", "-d", "-c", "krakend.tmpl"]
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.2
+    ports:
+      - "8085:8080"
+    volumes:
+      - ./config/keycloak/realms:/opt/keycloak/data/import
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: ["start-dev", "--import-realm"]
+  redis:  
+    image: "redis:7"
+    ports:
+      - "6379:6379"
+  web:
+    build:
+      context: images/app
+    ports:
+      - "3000:3000"
