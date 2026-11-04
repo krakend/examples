@@ -20,7 +20,8 @@ openssl \
     -sha256 \
     -nodes \
     -out cacert.pem \
-    -outform PEM
+    -outform PEM \
+    -batch
 
 # . ./01_gen_ca.sh
 # . ./02_add_ca_to_keystore.sh
@@ -34,6 +35,7 @@ keytool \
     -storepass ${KEYSTORE_PASS} \
     -alias KrakenDCARoot \
     -import \
+    -noprompt \
     -file cacert.pem
 
 echo "              "
@@ -47,7 +49,8 @@ keytool \
     -validity ${VALIDITY} \
     -genkey \
     -keyalg RSA \
-    -storetype pkcs12
+    -storetype pkcs12 \
+    -dname "CN=seckafkabroker, OU=TEST, O=KrakenD, L=Girona, ST=Girona, C=ES"
 
 echo "              "
 echo "--------------"
@@ -94,8 +97,9 @@ openssl \
     ca -config openssl-ca.cnf \
     -policy signing_policy \
     -extensions signing_req \
+    -batch \
     -out ${SERVER_SIGNED_CERT} \
-    -infiles ${SERVER_CERT_SIGN_REQUEST} 
+    -infiles ${SERVER_CERT_SIGN_REQUEST}
 
 echo "              "
 echo "--------------"
@@ -107,6 +111,7 @@ keytool \
     -storepass ${KEYSTORE_PASS} \
     -validity ${VALIDITY} \
     -alias localhost \
+    -noprompt \
     -file ${SERVER_SIGNED_CERT}
 
 echo "              "
@@ -117,7 +122,8 @@ openssl \
     ca -config openssl-ca.cnf \
     -policy signing_policy \
     -extensions signing_req \
+    -batch \
     -out ${CLIENT_SIGNED_CERT} \
-    -infiles ${CLIENT_CERT_SIGN_REQUEST} 
+    -infiles ${CLIENT_CERT_SIGN_REQUEST}
 
 cd ..

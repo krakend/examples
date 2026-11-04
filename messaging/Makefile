@@ -1,21 +1,18 @@
+# The certificates are generated inside the apache/kafka image, which ships
+# keytool and openssl, so you don't need Java installed locally.
 setup:
-	cd ./config && bash ./setup.sh
+	docker run --rm --user "$$(id -u):$$(id -g)" -v "$(CURDIR)/config:/config" -w /config --entrypoint bash apache/kafka:latest ./setup.sh
 .PHONY: setup
 
 cleanup:
 	docker compose down
-	cd ./config && bash ./cleanup.sh
+	bash ./config/cleanup.sh
 .PHONY: cleanup
 
 up:
-	docker compose up -d
+	sh ./startup.sh
 .PHONY: up
 
 down:
 	docker compose down
 .PHONY: down
-
-run: 
-	./krakend run -c ./config/krakend.json
-.PHONY: run
-

@@ -2,9 +2,10 @@
 
 # this script produces fake ticker prices, using the `prices.txt` data
 # with each line for each of the list of tickers
+cd "$(dirname "$0")" || exit 1
 KRAKEND_ADDRESS=localhost:8080
 SLEEP_PERIOD=1
-TICKERS=('NVDA', 'AAPL', 'AMZN')
+TICKERS=(NVDA AAPL AMZN)
 
 export idx=0
 while read -r line

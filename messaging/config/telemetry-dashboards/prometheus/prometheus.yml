@@ -12,7 +12,3 @@ scrape_configs:
         - 'krakend_ee:9090'
         labels:
           app: krakend
-      - targets:
-        - '192.168.1.22:9099'
-        labels:
-          app: local_krakend

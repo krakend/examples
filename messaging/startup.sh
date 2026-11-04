@@ -1,40 +1,36 @@
 #!/bin/sh
 
-docker compose up -d 
-echo "waiting for startup ..."
-echo "5"
-sleep 1
-echo "4"
-sleep 1
-echo "3"
-sleep 1
-echo "2"
-sleep 1
-echo "1"
-sleep 1
+# Starts the Kafka brokers first and creates the topics with 3 partitions
+# before KrakenD starts. Otherwise KrakenD would connect first and Kafka
+# would auto-create the topics with a single partition.
 
-echo "creating topics:"
+KAFKA_TOPICS=/opt/kafka/bin/kafka-topics.sh
 
-echo "creating 'stockprice' topic"
-docker exec messaging-kafkabroker \
-    /opt/kafka/bin/kafka-topics.sh \
-    --bootstrap-server localhost:9092 \
-    --create \
-    --topic stockprice \
-    --partitions 3 
+docker compose up -d kafkabroker seckafkabroker
 
-echo "creating 'orderplacement' topic\n"
-docker exec messaging-seckafkabroker \
-    /opt/kafka/bin/kafka-topics.sh \
-    --bootstrap-server localhost:9092 \
-    --create \
-    --topic orderplacement \
-    --partitions 3 
+wait_for_broker() {
+    echo "waiting for $1 ..."
+    until docker exec "$1" ${KAFKA_TOPICS} --bootstrap-server localhost:9092 --list > /dev/null 2>&1
+    do
+        sleep 1
+    done
+}
 
-echo "creating 'portfolioupdates' topic\n"
-docker exec messaging-seckafkabroker \
-    /opt/kafka/bin/kafka-topics.sh \
-    --bootstrap-server localhost:9092 \
-    --create \
-    --topic portfolioupdates \
-    --partitions 3 
+create_topic() {
+    echo "creating '$2' topic in $1"
+    docker exec "$1" ${KAFKA_TOPICS} \
+        --bootstrap-server localhost:9092 \
+        --create \
+        --if-not-exists \
+        --topic "$2" \
+        --partitions 3
+}
+
+wait_for_broker messaging-kafkabroker
+wait_for_broker messaging-seckafkabroker
+
+create_topic messaging-kafkabroker stockprice
+create_topic messaging-seckafkabroker orderplacement
+create_topic messaging-seckafkabroker portfolioupdates
+
+docker compose up -d

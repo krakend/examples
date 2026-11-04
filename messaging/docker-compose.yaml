@@ -1,4 +1,17 @@
 services:
+  krakend_ee:
+    image: krakend/krakend-ee:3.0
+    container_name: messaging-krakend
+    volumes:
+      - ./config:/etc/krakend/config
+      - ./LICENSE:/etc/krakend/LICENSE
+    ports:
+      - "8080:8080"
+    command: ["run", "-d", "-c", "config/krakend.json"]
+    depends_on:
+      - kafkabroker
+      - seckafkabroker
+      - jaeger
   kafkabroker:
     image: apache/kafka:latest
     hostname: kafkabroker
@@ -39,7 +52,7 @@ services:
       KAFKA_SSL_CLIENT_AUTH: required
       KAFKA_BROKER_ID: 1
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: SSL:SSL,SSL-INTERNAL:SSL,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: SSL://localhost:49092,SSL-INTERNAL://localhost:59092,PLAINTEXT://seckafkabroker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: SSL://localhost:49092,SSL-INTERNAL://seckafkabroker:59092,PLAINTEXT://seckafkabroker:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
@@ -47,7 +60,7 @@ services:
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_NODE_ID: 1
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@seckafkabroker:29093
-      KAFKA_LISTENERS: SSL://0.0.0.0:49092,SSL-INTERNAL://localhost:59092,PLAINTEXT://seckafkabroker:29092,CONTROLLER://seckafkabroker:29093,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_LISTENERS: SSL://0.0.0.0:49092,SSL-INTERNAL://0.0.0.0:59092,PLAINTEXT://seckafkabroker:29092,CONTROLLER://seckafkabroker:29093,PLAINTEXT_HOST://0.0.0.0:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LOG_DIRS: /tmp/kraft-combined-logs

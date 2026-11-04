@@ -2,13 +2,14 @@
 
 # this script produces fake ticker prices, using the `prices.txt` data
 # with each line for each of the list of tickers
+cd "$(dirname "$0")" || exit 1
 KTOPIC=stockprice
 KADDRESS=localhost:9092
 
-echo -e "Producing: $KKEY into '$KTOPIC' topic\n" 
+echo -e "Producing into '$KTOPIC' topic\n"
 
 SLEEP_PERIOD=1
-TICKERS=('NVDA', 'AAPL', 'AMZN')
+TICKERS=(NVDA AAPL AMZN)
 
 export idx=0
 while read -r line

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd "$(dirname "$0")" || exit 1
 export REPEAT=100
 
 echo "Getting $REPEAT messages" 

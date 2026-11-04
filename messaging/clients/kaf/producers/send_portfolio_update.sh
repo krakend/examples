@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd "$(dirname "$0")" || exit 1
 kaf produce \
     portfolioupdates \
     --config ./kaf_ssl_conf.yaml \

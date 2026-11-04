@@ -1,5 +1,5 @@
 {
-    "version": 3,
+    "version": 4,
     "debug_endpoint": true,
     "host": ["http://localhost:8080"],
     "port": 8080,
@@ -10,7 +10,7 @@
                 "async/kafka": {
                     "cluster": {
                         "brokers": [
-                            "localhost:9092"
+                            "kafkabroker:29092"
                         ],
                         "client_id": "cid_stocksconsumer",
                         "metadata_retry_max": 3,
@@ -43,7 +43,7 @@
                 "async/kafka": {
                     "cluster": {
                         "brokers": [
-                            "localhost:49092"
+                            "seckafkabroker:59092"
                         ],
                         "client_id": "cid_portfolioupdateconsumer",
                         "metadata_retry_max": 3,
@@ -102,7 +102,7 @@
                                 "key_meta": "X-Idempotency-Key",
                                 "cluster": {
                                     "brokers": [
-                                        "localhost:49092"
+                                        "seckafkabroker:59092"
                                     ],
                                     "metadata_retry_max": 999999,
                                     "metadata_retry_backoff": "1s",
@@ -142,7 +142,7 @@
                                 "key_meta": "X-Idempotency-Key",
                                 "cluster": {
                                     "brokers": [
-                                        "localhost:49092"
+                                        "seckafkabroker:59092"
                                     ],
                                     "metadata_retry_max": 999999,
                                     "metadata_retry_backoff": "1s",
@@ -185,7 +185,7 @@
                                 "key_meta": "X-Ticker",
                                 "cluster": {
                                     "brokers": [
-                                        "localhost:9092"
+                                        "kafkabroker:29092"
                                     ],
                                     "metadata_retry_max": 999999,
                                     "metadata_retry_backoff": "1s",
@@ -203,7 +203,7 @@
     ],
     "extra_config": {
         "telemetry/opentelemetry": {
-          "service_name": "krakend_promie",
+          "service_name": "krakend_messaging",
           "metric_reporting_period": 1,
           "trace_sample_rate": 1,
           "exporters": {
@@ -211,16 +211,16 @@
               {
                 "disable_metrics": true,
                 "disable_traces": false,
-                "host": "localhost",
+                "host": "jaeger",
                 "name": "jaeger",
-                "port": 54317,
+                "port": 4317,
                 "use_http": false
               }
             ],
             "prometheus": [
               {
                 "name": "local_prometheus",
-                "port": 9099,
+                "port": 9090,
                 "process_metrics": true,
                 "go_metrics": true
               }
