@@ -1,15 +1,15 @@
 # KrakenD AI Gateway: MCP Auth
 
-This demo showcases KrakenD as an MCP (Model Context Protocol) authorization works.
+This demo showcases how MCP (Model Context Protocol) authorization works with KrakenD.
 
 An MCP server allows AI agents to access external tools and data sources through a standardized protocol. 
 
-Latest spec of MCP server status that the Authorization service discovery can be
-done either with an `WWW-Authorization` header response, or a well known url 
+The latest MCP spec states that the authorization server discovery can be
+done either with a `WWW-Authenticate` header response, or a well known url
 exposing the metadata. Clients **MUST** support both methods, so an MCP server
 can use only one. 
 
-This example shows how to display the authorization service methadata by 
+This example shows how to display the authorization service metadata by 
 using a `backend/static-filesystem` configuration: 
 
 ```json
@@ -50,7 +50,7 @@ and under the `./config/krakend/well_known` directory, we have the
 }
 ```
 
-that corresponds to the configured `/auth_mcp` endpoint int the configuration:
+that corresponds to the configured `/auth_mcp` endpoint in the configuration:
 
 ```json
 {
@@ -83,8 +83,7 @@ that corresponds to the configured `/auth_mcp` endpoint int the configuration:
           "roles_key_is_nested": true
         }
       }
-    },
-
+    }
 ```
 
 However, the well known url could be served from an nginx proxy directly
@@ -110,10 +109,10 @@ service in front of KrakenD to deal with TLS termination.
 ```
 cd certs
 make all
-cd ...
+cd ..
 ```
 
-Then, add the created CA to the trusted certifificates folder, and update the 
+Then, add the created CA to the trusted certificates folder, and update the 
 certificates:
 
 ```
@@ -132,14 +131,14 @@ have the ports exposed:
 127.0.0.1 krakend_ee keycloak
 ```
 
-3. Start services:
+4. Start services:
 ```bash
 docker-compose up -d
 ```
 
-4. Test the protected MCP server, by adding it to your mcp client. 
-   
-For example, for claude, you can run:
+5. Test the protected MCP server by adding it to your MCP client.
+
+For example, for Claude Code, you can run:
 
 ```
 claude mcp add --transport http krakend_auth_example https://krakend_ee/auth_mcp 
@@ -148,8 +147,12 @@ claude mcp add --transport http krakend_auth_example https://krakend_ee/auth_mcp
 
 ### Warning
 
-Claude uses offline tokens, in order to be used, the user must have the 
-`offline_token` role. Also the client must have the `offline_token` scope.
+Claude uses offline tokens. In order to use them, the user must have the
+`offline_access` role, and the client must have the `offline_access` scope.
+
+The `/auth_mcp` endpoint only accepts users with the `moderator` realm role.
+The imported realm includes the `sarahconnor` user, which has both the
+`moderator` and `offline_access` roles.
 
 
 ## How It Works
