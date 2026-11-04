@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "KrakenD Enterprise MCP Server",
   "port": 8080,
   "timeout": "60000ms",
@@ -53,21 +53,14 @@
                 ]
               },
               "return_error_msg": true,
-              "input_headers": ["Host", "Hostport"],
+              "input_headers": ["Host"],
               "workflow": {
-                "endpoint": "/__mcp/fantasy_planet/{Landscape}/{input_headers.Host}/{input_headers.Hostport}",
-                "input_headers": ["*"],
+                "endpoint": "/__mcp/fantasy_planet",
                 "backend": [
                   {
-                    "@comment": "Planet",
-                    "url_pattern": "/__debug/{Landscape}/{input_headers.Host}/{input_headers.Hostport}",
-                    "host": [ "http://localhost:8080" ]
-                  },
-                  {
-                    "@comment": "Planet",
-                    "url_pattern": "/{input_headers.Host}:8085/index.json",
-                    "disable_host_sanitize": true,
-                    "host": [ "http:/" ]
+                    "url_pattern": "/{input_headers.Host}/index.json",
+                    "host": ["http:/"],
+                    "disable_host_sanitize": true
                   }
                 ]
               }

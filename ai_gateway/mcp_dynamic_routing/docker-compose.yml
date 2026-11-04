@@ -1,6 +1,6 @@
 services:
   krakend_ee:
-    image: krakend/krakend-ee:3.0.0-sc1458-alpha1
+    image: krakend/krakend-ee:3.0
     init: true
     volumes:
       - ./config/krakend:/etc/krakend
@@ -8,6 +8,8 @@ services:
     ports:
       - "8080:8080"
     command: ["run", "-d", "-c", "krakend.json"]
+    depends_on:
+      - nginx
   nginx:
     image: nginx:1.31.6
     volumes:
@@ -15,5 +17,8 @@ services:
       - ./config/nginx/html:/usr/share/nginx/html
     ports:
       - "8085:8080"
-    depends_on:
-      - krakend_ee
+    networks:
+      default:
+        aliases:
+          - vegeta
+          - namek
