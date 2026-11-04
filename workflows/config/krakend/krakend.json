@@ -1,34 +1,30 @@
 {
-  "$schema": "https://www.krakend.io/schema/v3.json",
-  "version": 3,
-  "name": "My first API Gateway - KrakenD",
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 4,
+  "name": "KrakenD - Workflows",
   "port": 8080,
   "host": [
     "http://fakeapi:8088"
   ],
-  "echo_endpoint": true,
   "debug_endpoint": true,
   "endpoints": [
     {
       "endpoint": "/home_dashboard",
-      "input_headers": [
-        "*"
-      ],
       "input_query_strings": [
         "customer",
         "profile"
       ],
       "backend": [
         {
+          "url_pattern": "/header_banner",
+          "group": "header"
+        },
+        {
           "url_pattern": "/__workflow/customized_dashboard/",
           "group": "custom_content",
           "extra_config": {
             "workflow": {
               "endpoint": "/__workflow_impl/customized_dashboard/",
-              "input_query_strings": [
-                "customer",
-                "profile"
-              ],
               "ignore_errors": true,
               "extra_config": {
                 "proxy": {
@@ -40,17 +36,10 @@
               },
               "backend": [
                 {
-                  "host": [
-                    "http://localhost:8080"
-                  ],
-                  "url_pattern": "/__debug/workflow/"
-                },
-                {
                   "url_pattern": "/__workflow/find_profile_id",
                   "extra_config": {
                     "workflow": {
                       "endpoint": "/__workflow_impl/find_profile_id",
-                      "encoding": "no-op",
                       "ignore_errors": true,
                       "backend": [
                         {
@@ -71,7 +60,6 @@
                           "extra_config": {
                             "modifier/response-body-generator": {
                               "content_type": "application/json",
-                              "debug": true,
                               "path": "./profile_id.tmpl"
                             }
                           }
@@ -88,13 +76,7 @@
                       "endpoint": "/__workflow_impl/for_profile_content/{resp0_profile.profile_id}",
                       "backend": [
                         {
-                          "host": [
-                            "http://localhost:8080"
-                          ],
-                          "url_pattern": "/__debug/{resp0_profile.profile_id}"
-                        },
-                        {
-                          "url_pattern": "/profile_recommended_movies?q={resp0_profile.profile_id}"
+                          "url_pattern": "/profile_recommended_movies/{resp0_profile.profile_id}"
                         },
                         {
                           "url_pattern": "/profile_recommended_actors"
@@ -106,6 +88,10 @@
               ]
             }
           }
+        },
+        {
+          "url_pattern": "/footer_promoted_movies",
+          "group": "footer"
         }
       ]
     }

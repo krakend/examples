@@ -1,0 +1,22 @@
+{
+    "movies": [
+        {
+            "title": "Hackers",
+            "genre": "Crime",
+            "cast": [
+                "Jonny Lee Miller",
+                "Angelina Jolie"
+            ],
+            "year": 1995
+        },
+        {
+            "title": "Sneakers",
+            "genre": "Thriller",
+            "cast": [
+                "Robert Redford",
+                "Sidney Poitier"
+            ],
+            "year": 1992
+        }
+    ]
+}
