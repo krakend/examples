@@ -1,0 +1,7 @@
+{
+    {{ if and .req_querystring.profile (index .req_querystring.profile 0) }}
+    "profile": {
+        "profile_id": "{{index .req_querystring.profile 0}}"
+    }
+    {{ end }}
+}
