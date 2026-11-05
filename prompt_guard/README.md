@@ -104,8 +104,11 @@ listed guards run.
 
 Expected results when running `curl.sh`:
 
-- `/default_guards/`: a harmless body passes, while a prompt asking to forget
-  previous instructions and a jailbreak attempt are blocked.
+- `/default_guards/`: a harmless body passes, while a prompt asking to ignore
+  previous instructions (blocked by the `instruction_override` group) and a
+  jailbreak attempt (blocked by the `jailbreak` group) are blocked. The
+  Jaeger trace of each request shows the blocking group in the
+  `krakend.promptguard.blocker` attribute.
 - `/personal/*`: a body without personal data passes, while bodies containing
   an email address or an ID card number are blocked.
 - `/classifier/random`: each request passes or is blocked at random,
