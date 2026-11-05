@@ -1,0 +1,4 @@
+ca/*.pem
+ca/ca_database_index.txt*
+ca/ca_serial.txt*
+certs

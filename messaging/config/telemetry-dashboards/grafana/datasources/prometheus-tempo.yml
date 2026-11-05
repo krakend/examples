@@ -1,0 +1,20 @@
+apiVersion: 1
+
+datasources:
+- access: proxy
+  id: 1
+  orgId: 1
+  name: Prometheus
+  type: prometheus
+  typeName: Prometheus
+  url: http://prometheus:9090
+  user: ""
+  database: ""
+  basicAuth: false
+  isDefault: true
+  jsonData:
+    httpMethod: POST
+  readOnly: false
+  editable: true
+  # This UID matches the one used in the dashboard settings file
+  uid: krakend_prometheus_datasource
