@@ -18,7 +18,7 @@ This repo contains a basic implementation for flexible configuration, including 
 - `docker-compose.yml` an example docker compose definition file to be able to execute KrakenD enabling Flexible Configuration.
 - `config/partials/*`: some code snippets referenced from base file
 - `config/templates/*`: a template referenced from base file
-- `config/settings/{dev|prod}/endpoint.json`: a collection of endpoints
+- `config/settings/{dev|prod}/endpoints.json`: a collection of endpoints
 - `config/settings/{dev|prod}/service.json`: basic configuration parameters for the service
 
 ## Running this test
@@ -35,7 +35,7 @@ $ docker run \
 -e FC_TEMPLATES=config/templates \
 -e FC_OUT=out.json \
 -e SERVICE_NAME="KrakenD API Gateway" \
-devopsfaith/krakend check -tdc "krakend.tmpl"
+krakend:3.0 check -tdc "krakend.tmpl"
 ```
 
 ### Using Docker Compose
@@ -43,7 +43,7 @@ devopsfaith/krakend check -tdc "krakend.tmpl"
 Based on the definition included in the [docker-compose.yml](docker-compose.yml) definition.
 
 ```shell
-$ docker-compose up
+$ docker compose up
 ```
 
 ### Using the binary locally

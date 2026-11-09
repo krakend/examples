@@ -1,4 +1,4 @@
-FROM krakend/krakend-ee AS builder
+FROM krakend/krakend-ee:3.0 AS builder
 
 # This is an Enterprise feature, make sure to have the LICENSE in the krakend dir
 COPY krakend /etc/krakend
@@ -12,7 +12,7 @@ COPY --from=builder /tmp/openapi.json /spec/swagger.json
 # Outputs under /spec/redoc-static.html
 RUN /usr/local/bin/redocly build-docs swagger.json
 
-FROM krakend/krakend-ee AS production
+FROM krakend/krakend-ee:3.0 AS production
 COPY krakend/LICENSE /etc/krakend/LICENSE
 # Copy the final configuration and the documentation
 # which will be served from KrakenD itself under /docs/

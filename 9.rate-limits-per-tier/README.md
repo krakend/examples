@@ -20,7 +20,7 @@ inside the endpoint's `extra_config` -> `auth/api-keys`.
 ### Setup Instructions
 1. **Install & Run KrakenD using Docker**:
    ```shell
-   docker run -p "8080:8080" -v "$PWD:/etc/krakend" krakend/krakend-ee:2 run -dc krakend.json
+   docker run -p "8080:8080" -v "$PWD:/etc/krakend" krakend/krakend-ee:3.0 run -dc krakend.json
    ```
    Ensure Docker is installed and the `krakend.json` file is in the current working directory.
 

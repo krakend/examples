@@ -5,16 +5,14 @@
 Place your license file under the `config/krakend` directory before starting 
 docker compose.
 
-You must have installed the [Protocol Buffer Compiler](https://grpc.io/docs/protoc-installation/) 
-to have `protoc` command available.
-
-Then run:
+The `.proto` definitions are compiled with `protoc` inside a container, so you
+only need Docker. Then run:
 
 ```
 $ make docker_up
 ```
 
-Use the clients under the `client` dir to test different request to the
+Use the clients under the `clients` dir to test different request to the
 krakend service.
 
 
@@ -44,8 +42,22 @@ will be traversed looking for `.pb` files, or also add filenames. In case of
 conflict (finding different files with the same definition, the first found one
 prevails).
 
-In the backends we use `/flight_finder.Flights/FindFlights` and 
+In the backends we use `/flight_finder.Flights/FindFlight` and 
 `/train_finder.Trains/FindTrains`. 
+
+### `/grpc/travel/client_tls`
+
+The same as `/grpc/travel`, adding the `trains` service, which only accepts
+TLS connections. Its backend sets `client_tls` inside `backend/grpc`. The
+trains server uses a self-signed certificate generated when building its
+image, so the example sets `allow_insecure_connections`; in production, pass
+your CA in `ca_certs` instead.
+
+The trains request requires an origin, so pass the coordinates:
+
+```
+$ curl "localhost:8080/grpc/travel/client_tls?lat=41.38&lon=2.17"
+```
 
 ## gRPC services
 

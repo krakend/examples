@@ -45,11 +45,7 @@ To use the plugin in your KrakenD configuration, add it under the `extra_config`
 
 ```json
 {
-   "version": 3,
-   "plugin": {
-      "pattern": ".so",
-      "folder": "/etc/krakend/plugins"
-   },
+   "version": 4,
    "host": ["http://localhost:8080/"],
    "debug_endpoint": true,
    "endpoints": [
@@ -63,11 +59,19 @@ To use the plugin in your KrakenD configuration, add it under the `extra_config`
       }
    ],
    "extra_config": {
+      "plugin": {
+         "pattern": ".so",
+         "folder": "/etc/krakend/plugins"
+      },
       "plugin/http-server": {
-         "name": ["otel-handler"],
-         "otel-handler": {
-            "someOption": "some-value"
-         }
+         "plugins": [
+            {
+               "name": "otel-handler",
+               "config": {
+                  "option": "some-value"
+               }
+            }
+         ]
       }
    }
 }

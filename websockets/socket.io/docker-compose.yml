@@ -1,0 +1,16 @@
+services:
+  krakend:
+    image: krakend/krakend-ee:3.0
+    volumes:
+      - .:/etc/krakend
+    ports:
+      - "8080:8080"
+    command: [ "run", "-dc", "krakend.json" ]
+    depends_on:
+      - socketio_server
+  socketio_server:
+    build: ./server/
+    volumes:
+      - ./index.html:/app/index.html:ro
+    ports:
+      - "3000:3000"

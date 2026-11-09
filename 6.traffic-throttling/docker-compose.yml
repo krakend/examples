@@ -1,4 +1,3 @@
-version: "3"
 services:
   fake_api:
     image: php:8-apache
@@ -7,7 +6,7 @@ services:
     ports:
       - "8001:80"
   krakend:
-    image: devopsfaith/krakend:2
+    image: krakend:3.0
     volumes:
       - ./krakend.json:/etc/krakend/krakend.json
     command: ["run", "-c", "krakend.json", "-d"]

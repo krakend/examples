@@ -20,8 +20,10 @@
         {
             {{ if hasKey . "url_pattern" }}
             "url_pattern": "{{ .url_pattern }}",
+            {{ else }}
+            "url_pattern": "{{ .endpoint }}",
             {{ end }}
-            {{ if hasKey . "custom_host" }}
+            {{ if and (hasKey . "custom_host") .custom_host }}
             "host": ["{{ .custom_host }}"]
             {{else}}
             "host": ["{{ index .global_settings.infra.hosts .team }}"]

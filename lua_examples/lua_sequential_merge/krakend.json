@@ -1,5 +1,5 @@
 {
-	"version": 3,
+	"version": 4,
 	"name": "ecommerce-gateway",
 	"port": 8080,
 	"host": ["http://my_service"],

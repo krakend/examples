@@ -36,7 +36,7 @@ To test it, just clone this repo and run KrakenD from this `2.debug` folder. You
 $ docker run \
 --rm -it -p "8080:8080" \
 -v "$PWD:/etc/krakend" \
-devopsfaith/krakend run -dc "krakend.json"
+krakend:3.0 run -dc "krakend.json"
 ```
 
 Once KrakenD is up & running, you can send a test request from other terminal tab:

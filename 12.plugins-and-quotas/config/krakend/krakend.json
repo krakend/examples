@@ -1,11 +1,7 @@
 {
   "$schema": "https://krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "timeout": "300s",
-  "plugin": {
-    "folder": "/opt/krakend/plugins/",
-    "pattern": ".so"
-  },
   "endpoints": [
     {
       "endpoint": "/",
@@ -21,8 +17,10 @@
           ],
           "extra_config": {
             "plugin/middleware": {
-              "name": [
-                "quota-control-mw"
+              "plugins": [
+                {
+                  "name": "quota-control-mw"
+                }
               ]
             }
           }
@@ -31,6 +29,10 @@
     }
   ],
   "extra_config": {
+    "plugin": {
+      "folder": "/opt/krakend/plugins/",
+      "pattern": ".so"
+    },
     "redis": {
       "connection_pools": [
         {
@@ -52,7 +54,7 @@
           "deny_queue_flush_threshold": 5,
           "rejecter_cache": {
             "N": 10000000,
-            "P": 1e-8,
+            "P": 1e-08,
             "hash_name": "optimal"
           },
           "on_failure_backoff_strategy": "linear",

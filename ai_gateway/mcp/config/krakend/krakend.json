@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "KrakenD Enterprise MCP Server",
   "port": 8080,
   "timeout": "60000ms",
@@ -82,9 +82,9 @@
                 "endpoint": "/__mcp/country-info/{country_code}",
                 "backend": [
                   {
-                    "@comment": "REST Countries API - provides geography, population, borders, flags",
+                    "@comment": "REST Countries API v3.1 (mocked in this example, see images/restcountries-mock) - provides geography, population, borders",
                     "host": [
-                      "https://restcountries.com"
+                      "http://restcountries:8080"
                     ],
                     "url_pattern": "/v3.1/alpha/{country_code}",
                     "encoding": "safejson",
@@ -147,7 +147,10 @@
                   },
                   "proxy": {
                     "sequential": true,
-                    "sequential_propagated_params": ["resp0_rest_data.capitalLat", "resp0_rest_data.capitalLng"]
+                    "sequential_propagated_params": [
+                      "resp0_rest_data.capitalLat",
+                      "resp0_rest_data.capitalLng"
+                    ]
                   }
                 }
               }

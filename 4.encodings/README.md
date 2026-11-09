@@ -13,12 +13,12 @@
 
 One of the main objectives of an API Gateway is help up to deal with complexity in our internal services. Eventually we must deal with APIs or services returning different formats and encodings, and our API Gateway can help us acting as a consolidation layer in front of the data consumers.
 
-In this example you find a fake API that implements responses in multiple formats, running a LWAN server in a docker compose. KrakenD will expose two endpoints that will aggregate all that responses, one consolidating the answer in JSON and another consolidating in XML.
+In this example you find a fake API that implements responses in multiple formats, served by KrakenD itself as static content. KrakenD will expose two endpoints that will aggregate all that responses, one consolidating the answer in JSON and another consolidating in XML.
 
-Just run the included docker-compose and try the endpoints below:
+The static content is served with an Enterprise component, so you need a KrakenD Enterprise license: save your `LICENSE` file in this folder (need a trial license? [Contact us](https://www.krakend.io/contact-sales/)). Then run the included docker compose and try the endpoints below:
 
 ```bash
-$ docker-compose up
+$ docker compose up
 ```
 
 ### Static content
@@ -43,7 +43,7 @@ We will combine the `enconding` parameter at backends scope, allowing KrakenD to
 
 _Note: you'll see that in our XML endpoint, to prevent repeating the full endpoint definition, we've just pointed our previous endpoint as a backend, modifying the `output_enconding`_
 
-You can run this example by just executing a `docker-compose up` from the root folder.
+You can run this example by just executing a `docker compose up` from this folder.
 
 You will find detailed information in our documentation:
 - Output enconding: https://www.krakend.io/docs/endpoints/content-types/

@@ -2,8 +2,10 @@
 
 {
     "endpoint": "/healthz",
-    "backend": {
-        "url_pattern": "/__health",
-        "host": "http://localhost:8080"
-    }
+    "backend": [
+        {
+            "url_pattern": "/__health",
+            "host": ["http://localhost:8080"]
+        }
+    ]
 }

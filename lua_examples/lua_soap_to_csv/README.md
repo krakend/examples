@@ -12,6 +12,14 @@ This KrakenD configuration exposes three endpoints, each presenting continent da
    This endpoint retrieves the JSON data from the /continents.json endpoint and uses a Lua script (./json-to-csv.lua) to convert the JSON object into a CSV format. The output is a CSV file with a Content-Type header set to text/csv.
 
 ### Usage
+This example needs KrakenD Enterprise, because the SOAP integration is an Enterprise feature. Replace the placeholder `LICENSE` file in this folder with yours, and start KrakenD from this folder:
+
+```bash
+docker run --rm -p 8080:8080 -v "$PWD:/etc/krakend" krakend/krakend-ee:3.0 run -dc krakend.json
+```
+
+The backend is the public [CountryInfoService](http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso), so you need internet access.
+
 You can query the endpoints using any HTTP client, such as curl or a web browser, to obtain the data in the desired format:
 
 - JSON: http://localhost:8080/continents.json

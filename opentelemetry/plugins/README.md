@@ -3,7 +3,9 @@
 This folder contains examples about how to use configured opentelemetry exporters
 in your own custom plugins. 
 
-These examples cover two types of plugins: Handler/Server, and Request/Response Modifier.
+These examples cover three types of plugins: Client, Handler/Server, and Request/Response Modifier.
+
+The plugins use `github.com/krakend/krakend-otel/v2`, the same version that KrakenD Enterprise 3.0 uses, so they share its OpenTelemetry state. Build them with the `krakend/builder-ee` image matching your KrakenD version, and check their dependencies with `make check` (it needs your license, see the `LICENSE_PATH` variable in each Makefile).
 
 ## Limitations
 
@@ -18,7 +20,7 @@ These examples cover two types of plugins: Handler/Server, and Request/Response 
     
 ## Overview
 
-There are two main directories, each containing a specific type of plugin:
+There are three directories, each containing a specific type of plugin:
 
 ### 1. Client Plugin
 
@@ -46,7 +48,7 @@ that sets custom attributes in the incoming / exisint trace span. his plugin can
 
 For more information on extending KrakenD with plugins, refer to the official documentation:
 
-- [HTTP Client Plugins](https://www.krakend.io/docs/extending/http-client-plugins/)
-- [HTTP Server Plugins](https://www.krakend.io/docs/extending/http-server-plugins/)
-- [Request/Response Modifier Plugins](https://www.krakend.io/docs/extending/plugin-modifiers/)
+- [HTTP Client Plugins](https://www.krakend.io/docs/enterprise/extending/http-client-plugins/)
+- [HTTP Server Plugins](https://www.krakend.io/docs/enterprise/extending/http-server-plugins/)
+- [Request/Response Modifier Plugins](https://www.krakend.io/docs/enterprise/extending/plugin-modifiers/)
 

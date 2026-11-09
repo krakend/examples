@@ -26,6 +26,6 @@ do
     echo -e "\n${i}:\n"
     curl -v \
         -H "Authorization: ${QUOTAS_USER}" \
-        -H "X-Game: ${QUOTAS_GAME_SHIP}" \
+        -H "X-Ship: ${QUOTAS_GAME_SHIP}" \
         "${KRAKEND_ADDRESS}${QUOTAS_ENDPOINT}"
 done

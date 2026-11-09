@@ -1,9 +1,11 @@
 {
     "$schema": "https://www.krakend.io/schema/krakend.json",
-    "version": 3,
+    "version": 4,
     "name": "KrakenD Enterprise API Gateway",
     "port": 8080,
-    "host": ["http://localhost:8080"],
+    "host": [
+        "http://localhost:8080"
+    ],
     "extra_config": {
         "grpc": {
             "catalog": [
@@ -24,15 +26,15 @@
                                 },
                                 "backend": [
                                     {
-                                      "host": [
-                                        "grpc_flights:4242"
-                                      ],
-                                      "url_pattern": "/flight_finder.Flights/FindFlight",
-                                      "extra_config": {
-                                        "backend/grpc": {
-                                          "use_request_body": true
+                                        "host": [
+                                            "grpc_flights:4242"
+                                        ],
+                                        "url_pattern": "/flight_finder.Flights/FindFlight",
+                                        "extra_config": {
+                                            "backend/grpc": {
+                                                "use_request_body": true
+                                            }
                                         }
-                                      }
                                     }
                                 ]
                             }
@@ -73,7 +75,9 @@
                 },
                 {
                     "group": "hotels",
-                    "host": ["fakeapi:8088"],
+                    "host": [
+                        "fakeapi:8088"
+                    ],
                     "url_pattern": "/hotels"
                 }
             ]
@@ -107,8 +111,7 @@
                     }
                 },
                 {
-                    
-                    "host" : [
+                    "host": [
                         "grpc_trains:4243"
                     ],
                     "group": "trains",
@@ -123,13 +126,19 @@
                             "response_naming_convention": "camelCase",
                             "output_enum_as_string": true,
                             "output_timestamp_as_string": true,
-                            "output_duration_as_string": true
+                            "output_duration_as_string": true,
+                            "client_tls": {
+                                "@comment": "The trains server uses a self-signed certificate generated when building its image. In production, set ca_certs instead",
+                                "allow_insecure_connections": true
+                            }
                         }
                     }
                 },
                 {
                     "group": "hotels",
-                    "host": ["fakeapi:8088"],
+                    "host": [
+                        "fakeapi:8088"
+                    ],
                     "url_pattern": "/hotels"
                 }
             ]

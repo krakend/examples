@@ -1,20 +1,26 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "My first API Gateway - KrakenD",
   "port": 8080,
-  "host": ["http://fakeapi:8088"],
+  "host": [
+    "http://fakeapi:8088"
+  ],
   "debug_endpoint": true,
-  "plugin": {
-     "pattern": ".so",
-     "folder": "/etc/krakend/plugins"
-  },
-  "extra_config": { 
+  "extra_config": {
+    "plugin": {
+      "pattern": ".so",
+      "folder": "/etc/krakend/plugins"
+    },
     "plugin/http-server": {
-        "name": ["otel-handler"],
-        "otel-handler": {
+      "plugins": [
+        {
+          "name": "otel-handler",
+          "config": {
             "option": "server_option"
+          }
         }
+      ]
     },
     "telemetry/opentelemetry": {
       "service_name": "krakend_my_service",
@@ -74,23 +80,39 @@
   "endpoints": [
     {
       "endpoint": "/dashboard",
-      "input_headers": ["*"],
-      "input_query_strings": ["*"],
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "*"
+      ],
       "backend": [
-        { "url_pattern": "/customer.json" },
-        { "url_pattern": "/sales.json" }
+        {
+          "url_pattern": "/customer.json"
+        },
+        {
+          "url_pattern": "/sales.json"
+        }
       ]
     },
     {
       "endpoint": "/otelplugins",
-      "input_headers": ["*"],
-      "input_query_strings": ["*"],
+      "input_headers": [
+        "*"
+      ],
+      "input_query_strings": [
+        "*"
+      ],
       "extra_config": {
         "plugin/req-resp-modifier": {
-            "name": ["otel-modifier-request"],
-            "otel-modifier-request": {
+          "plugins": [
+            {
+              "name": "otel-modifier-request",
+              "config": {
                 "option": "endpoint_option"
+              }
             }
+          ]
         }
       },
       "backend": [
@@ -98,10 +120,14 @@
           "url_pattern": "/customer.json",
           "extra_config": {
             "plugin/req-resp-modifier": {
-                "name": ["otel-modifier-response"],
-                "otel-modifier-response": {
+              "plugins": [
+                {
+                  "name": "otel-modifier-response",
+                  "config": {
                     "option": "backend_option"
+                  }
                 }
+              ]
             }
           }
         },
@@ -110,7 +136,7 @@
           "extra_config": {
             "plugin/http-client": {
               "name": "otel-client",
-              "otel-client": {
+              "config": {
                 "option": "something"
               }
             }

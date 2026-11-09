@@ -1,5 +1,10 @@
 # KrakenD Plugin Examples
 
+> [!WARNING]
+> **Deprecated: Go plugins are no longer supported in the Community Edition.**
+> KrakenD CE 3.0 [dropped custom Go plugins](https://www.krakend.io/blog/dropping-plugins-support-on-community/), so this example only works with KrakenD CE 2.x, and is pinned to `krakend:2.13.11` and `krakend/builder:2.13.11`, the last release supporting them.
+> To keep using Go plugins on 3.0, move to [KrakenD Enterprise](https://www.krakend.io/docs/enterprise/extending/), which also changes the plugin configuration format (see the [`opentelemetry`](../opentelemetry/plugins) example for working 3.0 plugins). For custom logic on the Community Edition, use [Lua scripting](https://www.krakend.io/docs/endpoints/lua/).
+
 This repository contains examples demonstrating how to build and inject custom plugins into the KrakenD API Gateway. These examples cover three types of plugins: HTTP Client, Handler/Server, and Request/Response Modifier.
 
 ## Overview

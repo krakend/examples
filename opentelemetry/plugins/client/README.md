@@ -40,10 +40,12 @@ To use the plugin in your KrakenD configuration, add it under the `extra_config`
 
 ```json
 {
-  "version": 3,
-  "plugin": {
-    "pattern": ".so",
-    "folder": "/etc/krakend/plugins"
+  "version": 4,
+  "extra_config": {
+    "plugin": {
+      "pattern": ".so",
+      "folder": "/etc/krakend/plugins"
+    }
   },
   "host": ["http://localhost:8080/"],
   "debug_endpoint": true,
@@ -56,7 +58,7 @@ To use the plugin in your KrakenD configuration, add it under the `extra_config`
           "extra_config": {
             "plugin/http-client": {
               "name": "otel-client",
-              "otel-client": {
+              "config": {
                 "option": "/some-path"
               }
             }

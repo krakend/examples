@@ -1,0 +1,62 @@
+{
+    "ES": {
+        "name": { "common": "Spain", "official": "Kingdom of Spain" },
+        "cca2": "ES",
+        "cca3": "ESP",
+        "capital": ["Madrid"],
+        "capitalInfo": { "latlng": [40.4, -3.68] },
+        "region": "Europe",
+        "subregion": "Southern Europe",
+        "population": 47351567,
+        "area": 505992,
+        "borders": ["AND", "FRA", "GIB", "PRT", "MAR"]
+    },
+    "FR": {
+        "name": { "common": "France", "official": "French Republic" },
+        "cca2": "FR",
+        "cca3": "FRA",
+        "capital": ["Paris"],
+        "capitalInfo": { "latlng": [48.87, 2.33] },
+        "region": "Europe",
+        "subregion": "Western Europe",
+        "population": 67391582,
+        "area": 551695,
+        "borders": ["AND", "BEL", "DEU", "ITA", "LUX", "MCO", "ESP", "CHE"]
+    },
+    "US": {
+        "name": { "common": "United States", "official": "United States of America" },
+        "cca2": "US",
+        "cca3": "USA",
+        "capital": ["Washington, D.C."],
+        "capitalInfo": { "latlng": [38.89, -77.05] },
+        "region": "Americas",
+        "subregion": "North America",
+        "population": 329484123,
+        "area": 9372610,
+        "borders": ["CAN", "MEX"]
+    },
+    "JP": {
+        "name": { "common": "Japan", "official": "Japan" },
+        "cca2": "JP",
+        "cca3": "JPN",
+        "capital": ["Tokyo"],
+        "capitalInfo": { "latlng": [35.68, 139.75] },
+        "region": "Asia",
+        "subregion": "Eastern Asia",
+        "population": 125836021,
+        "area": 377930,
+        "borders": []
+    },
+    "AR": {
+        "name": { "common": "Argentina", "official": "Argentine Republic" },
+        "cca2": "AR",
+        "cca3": "ARG",
+        "capital": ["Buenos Aires"],
+        "capitalInfo": { "latlng": [-34.58, -58.67] },
+        "region": "Americas",
+        "subregion": "South America",
+        "population": 45376763,
+        "area": 2780400,
+        "borders": ["BOL", "BRA", "CHL", "PRY", "URY"]
+    }
+}

@@ -37,6 +37,12 @@ Assuming you have KrakenD installed, you can run it with this configuration usin
 krakend run -c krakend.json
 ```
 
+Or with Docker, from this folder:
+
+```bash
+docker run --rm -p 8080:8080 -v "$PWD:/etc/krakend" krakend:3.0 run -c krakend.json
+```
+
 Once KrakenD is running, you can retrieve the aggregated country information using the following CURL command:
 
 ```bash
