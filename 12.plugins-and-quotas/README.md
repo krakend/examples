@@ -61,7 +61,7 @@ The example showcases:
 
    This will start:
    - KrakenD EE on port `8080`
-   - Mock backend on port `8090`
+   - Mock backend, reachable by KrakenD inside the Docker network on port `8090`
    - Supporting services (quota storage)
 
 3. **Test the endpoint**:

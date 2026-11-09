@@ -10,6 +10,7 @@
         "dir_field_prefix": "",
         "allowed_suffixes": [
             ".yaml",
+            ".yml",
             ".json",
             ".toml"
         ]

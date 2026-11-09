@@ -1,4 +1,4 @@
-FROM devopsfaith/krakend as builder
+FROM krakend:3.0 as builder
 ARG ENV=prod
 
 COPY krakend.tmpl .
@@ -15,7 +15,7 @@ RUN FC_ENABLE=1 \
 # The linting needs the final krakend.json file
 RUN krakend check -c /tmp/krakend.json --lint
 
-FROM devopsfaith/krakend
+FROM krakend:3.0
 COPY --from=builder --chown=krakend /tmp/krakend.json .
 
 EXPOSE 8080

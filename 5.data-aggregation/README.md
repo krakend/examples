@@ -13,7 +13,7 @@ In this repository, you will find the example code for the video tutorial on how
 
 ## Getting Started
 
-To get started with the example code, you will need to have KrakenD installed on your system. You can follow the instructions in the [KrakenD documentation](hhttps://www.krakend.io/docs/overview/) to install it.
+To get started with the example code, you will need to have KrakenD installed on your system. You can follow the instructions in the [KrakenD documentation](https://www.krakend.io/docs/overview/) to install it.
 
 Once you have KrakenD installed, you can clone this repository to your local machine and navigate to the examples directory.
 
@@ -37,26 +37,27 @@ This will start the KrakenD API gateway and you will be able to access the endpo
 In the configuration file krakend.json, you can find the definition of the endpoint `/dashboard` that aggregates data from three different services concurrently.
 
 ```json
+"host": ["http://my_service:8080"],
 "endpoints": [
   {
     "endpoint": "/dashboard",
     "backend": [
       {
-        "url_pattern": "/customers",
-        "host": "http://my-service:8080"
+        "url_pattern": "/customer.json"
       },
       {
-        "url_pattern": "/sales",
-        "host": "http://my-service:8080"
+        "url_pattern": "/sales.json"
       },
       {
-        "url_pattern": "/inventory",
-        "host": "http://my-service:8080"
+        "url_pattern": "/inventory.json"
       }
     ]
   }
 ]
 ```
+
+The three backends share the root `host`, a small static server (`my_service`)
+that serves the JSON files in the [`data`](./data) folder.
 
 This is a simple example, but you can find more advanced configurations in the KrakenD documentation.
 

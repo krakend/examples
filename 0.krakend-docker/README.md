@@ -24,10 +24,10 @@ To test this configuration you can simply run KrakenD in Docker with the followi
 $ docker run \
 --rm -it -p "8080:8080" \
 -v "$PWD:/etc/krakend" \
-devopsfaith/krakend run -dc "krakend.json"
+krakend:3.0 run -dc "krakend.json"
 ```
 
-This will map the port `8080` and mount the local folder as a volume on `/etc/krakend` on Docker, using the latest version of the `devopsfaith/krakend` docker image, executing the `run` command with the debug parameter (`-d`),  defining `krakend.json` as the config file (`-c "krakend.json"`)
+This will map the port `8080` and mount the local folder as a volume on `/etc/krakend` on Docker, using the latest version of the `krakend:3.0` docker image, executing the `run` command with the debug parameter (`-d`),  defining `krakend.json` as the config file (`-c "krakend.json"`)
 
 Once your docker container is running, you can test your new endpoint from a new terminal session with a simple curl command:
 

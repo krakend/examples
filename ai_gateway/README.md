@@ -26,7 +26,7 @@ Shows how to build a RAG server using KrakenD's sequential proxying capabilities
 
 ### [MCP - Model Context Protocol Server](./mcp)
 
-Demonstrates KrakenD as an MCP server that aggregates multiple APIs (REST and GraphQL) to provide unified data access for AI agents. Combines country information from multiple sources with real-time weather data.
+Demonstrates KrakenD as an MCP server that aggregates multiple APIs (REST and GraphQL) to provide unified data access for AI agents. Combines country information from multiple sources with real-time weather data, and shows how tool errors reach the agent.
 
 **Key features**: MCP protocol implementation, multi-API aggregation, data propagation between calls, JMESPath and Lua transformations
 
@@ -34,13 +34,23 @@ Demonstrates KrakenD as an MCP server that aggregates multiple APIs (REST and Gr
 
 ---
 
-### [LLM (Pre-2.11)](./llm.pre-2.11)
+### [MCP Server with OAuth Authorization](./mcp_auth)
 
-Legacy version of the role-based routing example for KrakenD versions before 2.11. Maintained for compatibility with older KrakenD installations.
+Protects a KrakenD MCP server with OAuth, using Keycloak as the authorization server. MCP clients discover the authorization server through the protected resource metadata and send the access token that KrakenD validates.
 
-**Key features**: Similar to the main LLM example but compatible with earlier KrakenD versions
+**Key features**: MCP server, JWT validation with roles, OAuth protected resource metadata, TLS termination with nginx
 
-**Use case**: Organizations running KrakenD versions prior to 2.11
+**Use case**: Exposing MCP tools only to authenticated and authorized AI agents
+
+---
+
+### [MCP Server with Dynamic Routing by Host](./mcp_dynamic_routing)
+
+Shows how a single MCP tool can reach a different backend depending on the hostname the client connected to, combining the tool `input_headers` with dynamic routing.
+
+**Key features**: MCP tool `input_headers`, dynamic routing on the `Host` header
+
+**Use case**: Several tenants or environments sharing one MCP server, each one reaching its own backend
 
 ## Common Prerequisites
 

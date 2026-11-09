@@ -63,7 +63,7 @@ details:
 - in order to identify a unique user, we directly use the `Authorization` header
     but a user id could be extracted from a JWT claim.
 - in endpoint `/request_bomb_reload` we put a backend that serves static
-    files from the `./confing/krakend/fake_backend/data/` directory: 
+    files from the `./config/krakend/fake_backend/data/` directory: 
     by changing the `consume.json` file there, we can change how many
     **tokens to consume** are in the response.
 
@@ -75,11 +75,11 @@ Place your `LICENSE` in the `./config/krakend` directory an execute:
 docker compose up -d
 ```
 
-In the `clients` dir there is a `curl.sh` script, that you can edit to
+In the `client` dir there is a `curl.sh` script, that you can edit to
 tweak the variables before making a request:
 
 - NUM_REQUESTS: number of sequential requests to make
 - QUOTAS_ENDPOINT: endpoint to call
 - QUOTAS_USER: the player to use
-- QUOTAS_SHIP: the game to play
+- QUOTAS_GAME_SHIP: the ship to use (sent in the `X-Ship` header)
 

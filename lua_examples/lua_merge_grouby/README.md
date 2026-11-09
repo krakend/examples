@@ -55,3 +55,18 @@ Final JSON Collection
 ```
 
 This workflow demonstrates how the API Gateway combines and manipulates data from two different collections into a single JSON collection, where each item includes all the fields from the original items with the same ID.
+
+## Run the example
+
+You need a KrakenD Enterprise license, because JMESPath is an Enterprise feature. Replace the placeholder `LICENSE` file in this folder with yours, and start the stack:
+
+```bash
+docker compose up
+```
+
+Then compare the raw merged data with the grouped result:
+
+```bash
+curl http://localhost:8080/__internal-endpoint-raw-components
+curl http://localhost:8080/components
+```

@@ -1,22 +1,20 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "My KrakenD API Gateway",
   "port": 8080,
   "host": [
     "http://my_service:8080"
   ],
-  "plugin": {
-    "pattern": ".so",
-    "folder": "/opt/krakend/plugins/"
-  },
   "endpoints": [
     {
       "endpoint": "/list/{page}",
       "output_encoding": "no-op",
       "backend": [
         {
-          "host": ["http://localhost:8080"],
+          "host": [
+            "http://localhost:8080"
+          ],
           "url_pattern": "/__internal-endpoint-list",
           "encoding": "no-op"
         }
@@ -53,29 +51,44 @@
           "expr": "[agents,users][] | { users_list: @ }"
         },
         "plugin/req-resp-modifier": {
-          "name": ["ip-filter"],
-          "ip-filter": {
-            "allow": true,
-            "CIDR": [
-              "192.168.0.0/24",
-              "172.0.0.0/8",
-              "10.0.0.0/16",
-              "127.0.0.1",
-              "::1"
-            ]
-          }
+          "plugins": [
+            {
+              "name": "ip-filter",
+              "config": {
+                "allow": true,
+                "CIDR": [
+                  "192.168.0.0/24",
+                  "172.0.0.0/8",
+                  "10.0.0.0/16",
+                  "127.0.0.1",
+                  "::1"
+                ]
+              }
+            }
+          ]
         }
       }
     }
   ],
   "extra_config": {
+    "plugin": {
+      "pattern": ".so",
+      "folder": "/opt/krakend/plugins/"
+    },
     "plugin/http-server": {
-      "name": ["url-rewrite"],
-      "url-rewrite": {
-        "regexp": [
-          ["/list\/?$", "/list/1"]
-        ]
-      }
+      "plugins": [
+        {
+          "name": "url-rewrite",
+          "config": {
+            "regexp": [
+              [
+                "/list/?$",
+                "/list/1"
+              ]
+            ]
+          }
+        }
+      ]
     }
   }
 }

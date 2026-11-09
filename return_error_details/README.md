@@ -38,17 +38,19 @@ http://localhost:8080/ko 👈 Gives you an incomplete answer coming from two bac
   "a": {
     "message": "Hello world"
   },
-  "error_backend_GetSubscriptionBalanceResponse": {
-    "http_status_code": 500
+  "error_b": {
+    "http_status_code": 500,
+    "http_body": "{\"error\":\"There was an error: HTTP\\/1.1 500 Internal Server Error\"}",
+    "http_body_encoding": "application/json"
   }
 }
 ```
 
 **Headers**
 ```ini
-Content-Length: 103
+Content-Length: 193
 Content-Type: application/json; charset=utf-8
-Date: Thu, 10 Mar 2022 21:38:10 GMT
-X-Krakend: Version 2.0.0
+Date: Fri, 06 Nov 2026 14:37:30 GMT
+X-Krakend: Version 3.0.3
 X-Krakend-Completed: false
 ```

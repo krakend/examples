@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "My first API Gateway - KrakenD",
   "port": 8080,
   "host": ["http://my_service:8080"],

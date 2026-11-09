@@ -30,7 +30,7 @@ The `krakend.json` in this repository is configured for integration with Moesif.
 Run KrakenD with Moesif integration using Docker:
 
 ```bash
-docker run -p "8080:8080" -v "$PWD:/etc/krakend" krakend/krakend-ee:2.5
+docker run -p "8080:8080" -v "$PWD:/etc/krakend" krakend/krakend-ee:3.0
 ```
 
 ## Example Usage
@@ -61,4 +61,4 @@ curl -H 'X-Tenant: Customer5' -H 'X-Company: YourCompany' 'http://localhost:8080
 - **`event_queue_size`**: In-memory event queue size.
 - **`identify_company`**: Methods to identify companies (header, JWT claim, query string).
 
-For detailed configuration options, refer to the [Moesif Schema](https://www.krakend.io/schema/v2.5/telemetry/moesif.json).
+For detailed configuration options, refer to the [Moesif Schema](https://www.krakend.io/schema/v3.0/telemetry/moesif.json).

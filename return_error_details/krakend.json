@@ -1,6 +1,6 @@
 {
   "name": "KrakenD API Gateway",
-  "version": 3,
+  "version": 4,
   "port": 8080,
   "endpoints": [
     {

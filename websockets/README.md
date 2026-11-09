@@ -36,12 +36,10 @@ To use this repository, follow these steps:
 2. Navigate to the project directory.
 3. Run the docker compose command to start the services.
 
-```
-bash
+```bash
 $ git clone https://github.com/krakend/examples
 $ cd websockets
-$ docker-compose up
-
+$ docker compose up
 ```
 
 Once the services are up and running, you can access the WebSocket service through KrakenD API Gateway using **`ws://localhost:8080/ws`**.

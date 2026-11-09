@@ -1,11 +1,11 @@
-# KrakenD - Return error details
+# KrakenD - Traffic throttling
 
 Test environment to test some traffic throttling features of KrakenD.
 
-You can run the environment with `docker-compose up`. To follow KrakenD logs on terminal you can run `docker-compose logs -f krakend`
+You can run the environment with `docker compose up`. To follow KrakenD logs on terminal you can run `docker compose logs -f krakend`
 
 ```bash
-$ docker-compose up
+$ docker compose up
 ```
 
 ### Root Endpoint
@@ -56,6 +56,8 @@ Content-Length: 0
 ```
 
 The first call is correctly served. The second call has been blocked, and a 503 Service Unavailable status code has been returned.
+
+Right after KrakenD starts, the token bucket is full, so the first burst of requests might let two or three calls through before the limit kicks in. After that, the endpoint serves one request per second.
 
 ### Endpoint with circuit breaker
 

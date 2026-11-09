@@ -1,13 +1,9 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "My KrakenD API Gateway",
   "port": 8080,
   "host": ["http://webservices.oorsprong.org"],
-  "plugin": {
-    "pattern": ".so",
-    "folder": "/opt/krakend/plugins/"
-  },
   "endpoints": [
     {
       "endpoint": "/continents.json",

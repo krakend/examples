@@ -1,14 +1,10 @@
 services:
   krakend_ee:
-    # The :watch image restarts the service automatically when the configuration files change.
-    # Do not use this image in production, it's meant to speed up your testing and development.
-    image: krakend/krakend-ee:2.9.1-watch
+    image: krakend/krakend-ee:3.0
     volumes:
       - ./config/krakend:/etc/krakend
-      - ./dumps:/tmp/krakend-http-logger
       - ./images/grpc/defs:/etc/krakend/grpc_catalog
     ports:
-      - "1234:1234"
       - "8080:8080"
     command: ["run", "-d", "-c", "krakend.json"]
   grpc_flights:

@@ -1,7 +1,6 @@
-version: "3"
 services:
   krakend:
-    image: devopsfaith/krakend
+    image: krakend:3.0
     volumes:
       - .:/etc/krakend
     ports:
@@ -13,4 +12,4 @@ services:
       - FC_TEMPLATES=config/templates
       - FC_OUT=out.json
       - SERVICE_NAME=KrakenD API Gateway
-    command: [ "run", "-dc", "krakend.tmpl", "" ]
+    command: [ "run", "-dc", "krakend.tmpl" ]

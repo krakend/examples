@@ -43,11 +43,14 @@ services:
     volumes:
       - "./config/haproxy:/usr/local/etc/haproxy:ro"
   krakend:
-    image: krakend/krakend-ee:2.10.0
+    image: krakend/krakend-ee:3.0
     depends_on:
-      - redis-haproxy
+      redis-haproxy:
+        condition: service_started
+      redis-cluster-creator:
+        condition: service_completed_successfully
     volumes:
       - "./config/krakend:/etc/krakend"
     ports:
       - "8080:8080"
-    command: [ "run", "-dc", "krakend.json", "" ]
+    command: [ "run", "-dc", "krakend.json" ]

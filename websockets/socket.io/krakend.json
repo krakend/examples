@@ -1,12 +1,12 @@
 {
-	"version": 3,
+	"version": 4,
 	"port": 8080,
 	"endpoints": [{
 		"endpoint": "/",
 		"output_encoding": "no-op",
 		"backend": [{
 			"url_pattern": "/",
-			"host": ["localhost:3000"],
+			"host": ["socketio_server:3000"],
 			"encoding": "no-op"
 		}]
 	}, {
@@ -14,7 +14,7 @@
 		"output_encoding": "no-op",
 		"backend": [{
 			"url_pattern": "/socket.io/socket.io.js",
-			"host": ["localhost:3000"],
+			"host": ["socketio_server:3000"],
 			"encoding": "no-op"
 		}]
 	}, {
@@ -25,7 +25,7 @@
 			"url_pattern": "/socket.io/?EIO=4&transport=websocket",
 			"disable_host_sanitize": true,
 			"host": [
-				"ws://localhost:3000"
+				"ws://socketio_server:3000"
 			]
 		}],
 		"extra_config": {

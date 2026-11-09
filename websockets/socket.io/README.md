@@ -3,6 +3,18 @@
 This repository provides an example of how to integrate KrakenD with Socket.IO. 
 Please see the documentation here: https://www.krakend.io/docs/enterprise/websockets/#integrating-krakend-with-socketio
 
+## Run the example
+
+The example includes a minimal Socket.IO chat server (in [`server`](./server)) that serves the chat page and broadcasts every message. KrakenD sits in front of it, serving the page and the Socket.IO client library, and relaying the WebSocket connection in direct communication mode.
+
+You need a KrakenD Enterprise license, because WebSockets are an Enterprise feature. Save your `LICENSE` file in this folder, and start the stack:
+
+```bash
+docker compose up --build
+```
+
+Then open [http://localhost:8080](http://localhost:8080) in two browser windows and send messages: every window receives them through KrakenD.
+
 > [Socket.IO](https://socket.io/) is a popular library to use bidirectional communication. Although Socket.IO name might sound as a WebSockets implementation, the reality is that Socket.IO operates on a **custom protocol** layered over WebSockets that is incompatible with plain WebSockets clients using the [WebSockets API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications) (the one native in the JS standard lib). To connect to a Sockets.IO server you cannot use a WebSockets client, you must use a Sockets.IO client.
 
 > KrakenD uses a pure WebSocket Protocol (RFC-6455) to connect to servers, but the Socket.IO protocol requires specific signaling to establish and maintain connections. By default, it attempts to **use the same endpoint for both HTTP and WebSocket communication**, and the connection details passed on a query string (e.g., `?EIO=4&transport=websocket`). This design can cause confusion when integrating with KrakenD, which manages HTTP and WebSocket traffic separately. Make sure to use `websockets` only when passing through KrakenD.
