@@ -1,0 +1,8 @@
+{
+  "policy": {
+    "phases": {
+      "hot":    { "actions": { "rollover": { "max_primary_shard_size": "10gb", "max_age": "1d" } } },
+      "delete": { "min_age": "30d", "actions": { "delete": {} } }
+    }
+  }
+}

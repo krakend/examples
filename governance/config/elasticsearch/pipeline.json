@@ -1,0 +1,99 @@
+{
+  "description": "Normalizes KrakenD quota events (quota.limit.increment / quota.limit.reached) for the Earth vs Aliens dashboard",
+  "processors": [
+    {
+      "set": {
+        "field": "@timestamp",
+        "copy_from": "data.timestamp",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "@timestamp",
+        "value": "{{{_ingest.timestamp}}}",
+        "override": false
+      }
+    },
+    {
+      "set": {
+        "field": "event",
+        "copy_from": "name",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "user",
+        "copy_from": "data.key",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "processor",
+        "copy_from": "data.processor",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "level",
+        "copy_from": "data.level",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "tier",
+        "copy_from": "data.rule.rule",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "limit",
+        "copy_from": "data.rule.limit",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "unit",
+        "copy_from": "data.rule.unit",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "set": {
+        "field": "weight",
+        "copy_from": "data.weight",
+        "ignore_empty_value": true
+      }
+    },
+    {
+      "script": {
+        "description": "Earth vs Aliens: derive the ship (X-Ship), the player plan and the pilot loadout from the quota tier, as policy tiers do not carry the literal value",
+        "lang": "painless",
+        "ignore_failure": true,
+        "source": "String lv = ctx.level == null ? '' : ctx.level; String lit = lv.startsWith('literal:') ? lv.substring(8) : null; if (ctx.processor == 'credits') { ctx.plan = lit != null ? lit : 'freemium'; return; } if (lit != null && lit.startsWith('ala-')) { ctx.ship = lit; } else if (ctx.processor == 'weapon_power_up' && ctx.tier == 'regular') { ctx.ship = 'ala-b'; } else if (ctx.processor == 'bomb_reload' && ctx.tier == 'easy') { ctx.ship = 'ala-b/ala-y'; } if (ctx.ship != null && ctx.user != null) { ctx.loadout = ctx.user + ' · ' + ctx.ship; }"
+      }
+    },
+    {
+      "script": {
+        "description": "Go time.Duration.String() -> refill_seconds, and reset_at = timestamp + nextRefill",
+        "lang": "painless",
+        "ignore_failure": true,
+        "source": "def d = ctx.data; if (d == null || d.rule == null || !(d.rule.nextRefill instanceof String)) { return; } String s = d.rule.nextRefill; boolean neg = s.startsWith('-'); if (neg || s.startsWith('+')) { s = s.substring(1); } double total = 0; int i = 0; int n = s.length(); while (i < n) { int st = i; while (i < n && (Character.isDigit(s.charAt(i)) || s.charAt(i) == (char)'.')) { i++; } if (st == i) { return; } double v = Double.parseDouble(s.substring(st, i)); int us = i; while (i < n && !(Character.isDigit(s.charAt(i)) || s.charAt(i) == (char)'.')) { i++; } String u = s.substring(us, i); double m; if (u == 'h') { m = 3600; } else if (u == 'm') { m = 60; } else if (u == 's') { m = 1; } else if (u == 'ms') { m = 0.001; } else if (u == 'us' || u == 'µs' || u == 'μs') { m = 0.000001; } else if (u == 'ns') { m = 0.000000001; } else if (u == '' && v == 0) { m = 0; } else { return; } total += v * m; } if (neg) { total = -total; } ctx.refill_seconds = total; if (d.timestamp != null) { ZonedDateTime t = ZonedDateTime.parse(d.timestamp); ctx.reset_at = t.plusNanos((long)(total * 1000000000L)).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME); }"
+      }
+    }
+  ],
+  "on_failure": [
+    {
+      "set": {
+        "field": "ingest_error",
+        "value": "{{ _ingest.on_failure_message }}"
+      }
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
   "name": "KrakenD",
-  "version": 3,
+  "version": 4,
   "host": [
     "http://localhost:8080"
   ],
@@ -19,6 +19,36 @@
         },
         {
           "key": "homer",
+          "roles": [
+            "freemium"
+          ]
+        },
+        {
+          "key": "lisa",
+          "roles": [
+            "premium"
+          ]
+        },
+        {
+          "key": "marge",
+          "roles": [
+            "premium"
+          ]
+        },
+        {
+          "key": "milhouse",
+          "roles": [
+            "freemium"
+          ]
+        },
+        {
+          "key": "nelson",
+          "roles": [
+            "freemium"
+          ]
+        },
+        {
+          "key": "ralph",
           "roles": [
             "freemium"
           ]
@@ -43,15 +73,27 @@
         }
       ]
     },
+    "governance/event-recorders": {
+      "recorders": [
+        {
+          "name": "game_events",
+          "type": "mem",
+          "config": {
+            "topic": "quota-events"
+          }
+        }
+      ]
+    },
     "governance/processors": {
       "quotas": [
         {
           "name": "weapon_power_up",
           "connection_name": "my_single_redis",
           "on_failure_allow": false,
+          "event_recorder": "game_events",
           "rejecter_cache": {
             "N": 10000000,
-            "P": 1E-8,
+            "P": 1e-08,
             "hash_name": "optimal"
           },
           "rules": [
@@ -100,9 +142,10 @@
           "name": "bomb_reload",
           "connection_name": "my_single_redis",
           "on_failure_allow": true,
+          "event_recorder": "game_events",
           "rejecter_cache": {
             "N": 10000000,
-            "P": 1E-8,
+            "P": 1e-08,
             "hash_name": "optimal"
           },
           "rules": [
@@ -140,9 +183,10 @@
           "@connection_name": "my_single_redis",
           "hash_keys": true,
           "on_failure_allow": false,
+          "event_recorder": "game_events",
           "rejecter_cache": {
             "N": 10000000,
-            "P": 1E-8,
+            "P": 1e-08,
             "hash_name": "optimal"
           },
           "rules": [
@@ -316,6 +360,40 @@
             }
           ]
         }
+      }
+    }
+  ],
+  "async_agent": [
+    {
+      "name": "quota-events-to-elasticsearch",
+      "consumer": {
+        "topic": "quota-events",
+        "workers": 2,
+        "timeout": "2s"
+      },
+      "backend": [
+        {
+          "host": [
+            "http://elasticsearch:9200"
+          ],
+          "url_pattern": "/quota-events/_doc",
+          "method": "POST",
+          "encoding": "json",
+          "extra_config": {
+            "modifier/martian": {
+              "header.Modifier": {
+                "scope": [
+                  "request"
+                ],
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            }
+          }
+        }
+      ],
+      "extra_config": {
+        "async/mem": {}
       }
     }
   ]
