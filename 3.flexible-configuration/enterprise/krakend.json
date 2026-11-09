@@ -1,5 +1,5 @@
 {
-    "version": 3,
+    "version": 4,
     "name": "Your KrakenD API",
     "timeout": "3s",
     "endpoints": [
@@ -12,6 +12,6 @@
       {{ template "infra_endpoints.tmpl" . }}
     ],
     "extra_config": {
-      "$ref": "settings/service_extra_config.json"
+      "$ref": "partials/service_extra_config.json"
     }
 }

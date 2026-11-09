@@ -1,6 +1,6 @@
 # KrakenD AI Gateway: RAG server demo
 
-This demo showcases a RAG server abstraction layer using KrakenD built-in capabilities. It uses Weviate as a VectorDB to store the documents and Gemini as the LLM and text embeddings provider.
+This demo showcases a RAG server abstraction layer using KrakenD built-in capabilities. It uses Weaviate as a VectorDB to store the documents and Gemini as the LLM and text embeddings provider.
 
 **Key capabilities**:
 - Sequential proxying and data propagation between backends
@@ -25,7 +25,7 @@ GEMINI_API_KEY=your_gemini_api_key
 
 3. Start services:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 4. Add documents and query with context using `/rag/add` and `/rag/query`

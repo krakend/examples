@@ -1,18 +1,17 @@
-version: "3"
 services:
   krakend:
-    image: devopsfaith/krakend:watch
+    image: krakend:3.0
     volumes:
       - .:/etc/krakend
     ports:
       - "8080:8080"
-    command: [ "run", "-dc", "krakend.json", "" ]
+    command: [ "run", "-dc", "krakend.json" ]
     depends_on:
       - fake_api
   fake_api:
-    image: lipanski/docker-static-website
+    image: busybox:1.37
     volumes:
       - ./data:/web
-    command: ["/busybox", "httpd", "-f", "-v", "-p", "8080", "-c", "/web/httpd.conf", "-h", "/web"]
+    command: ["httpd", "-f", "-v", "-p", "8080", "-c", "/web/httpd.conf", "-h", "/web"]
     ports:
       - "8000:8080"

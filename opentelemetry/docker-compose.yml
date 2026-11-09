@@ -1,10 +1,9 @@
 services:
   krakend_ee:
-    image: krakend/krakend-ee:2.12.1
+    image: krakend/krakend-ee:3.0.3
     volumes:
       - ./config/krakend:/etc/krakend
     ports:
-      - "1234:1234"
       - "8080:8080"
     command: ["run", "-d", "-c", "krakend.json"]
   fakeapi:

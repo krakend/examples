@@ -1,5 +1,10 @@
 # KrakenD - HTTP Handler Plugin Example
 
+> [!WARNING]
+> **Deprecated: Go plugins are no longer supported in the Community Edition.**
+> KrakenD CE 3.0 [dropped custom Go plugins](https://www.krakend.io/blog/dropping-plugins-support-on-community/), so this example only works with KrakenD CE 2.x, and is pinned to `krakend:2.13.11` and `krakend/builder:2.13.11`, the last release supporting them.
+> To keep using Go plugins on 3.0, move to [KrakenD Enterprise](https://www.krakend.io/docs/enterprise/extending/), which also changes the plugin configuration format (see the [`opentelemetry`](../../opentelemetry/plugins) example for working 3.0 plugins). For custom logic on the Community Edition, use [Lua scripting](https://www.krakend.io/docs/endpoints/lua/).
+
 This repository provides an example of how to build and inject a Handler Plugin into the KrakenD API Gateway. Follow the steps below to understand how to set up and use the handler plugin.
 
 ## Overview
@@ -116,7 +121,7 @@ The `my-handler-plugin` adds custom logic by wrapping the default HTTP handler. 
 1. **Build the plugin** using the appropriate make target. The plugin will be generated under the `plugins` folder.
 2. **Test your KrakenD using Docker**, for instance:
 ```bash
-docker run --rm -it --name krakend -p 8080:8080 -v "$PWD:/etc/krakend" devopsfaith/krakend
+docker run --rm -it --name krakend -p 8080:8080 -v "$PWD:/etc/krakend" krakend:2.13.11
 ```
 3. **Send an example call**
 ```bash

@@ -71,14 +71,14 @@ type config struct {
 	KeyPrefix string `json:"key_prefix"`
 }
 
+// parseConfig receives the content of the plugin "config" object
 func (r registerer) parseConfig(extra map[string]interface{}) (*config, error) {
-	cfgRaw, ok := extra[string(r)].(map[string]interface{})
-	if !ok {
+	if extra == nil {
 		return nil, errRegistererNotFound
 	}
 
 	cfg := config{}
-	b, err := json.Marshal(cfgRaw)
+	b, err := json.Marshal(extra)
 	if err != nil {
 		return nil, err
 	}

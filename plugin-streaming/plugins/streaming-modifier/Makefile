@@ -5,7 +5,7 @@ CROSSCOMPILER := aarch64-linux-musl-gcc
 #CROSSCOMPILER := aarch64-linux-gnu-gcc
 
 go.mod:
-	go mod init quota-control-mw
+	go mod init streaming-modifier
 	go mod tidy
 
 amd64:

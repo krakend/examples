@@ -40,7 +40,7 @@ We'll implement a single GET endpoint in KrakenD that:
 1. **Start the Services**:
 
     ```bash
-    docker-compose up
+    docker compose up
     ```
 
 2. **Make a GET Request**:

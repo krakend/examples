@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "name": "Multiple POST example with SOAP backends - KrakenD",
   "port": 8080,
   "host": ["http://webservices.oorsprong.org"],

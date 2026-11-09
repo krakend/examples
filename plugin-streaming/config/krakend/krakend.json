@@ -1,10 +1,12 @@
 {
   "$schema": "https://krakend.io/schema/krakend.json",
-  "version": 3,
+  "version": 4,
   "timeout": "300s",
-  "plugin": {
-    "folder": "/opt/krakend/plugins/",
-    "pattern": ".so"
+  "extra_config": {
+    "plugin": {
+      "folder": "/opt/krakend/plugins/",
+      "pattern": ".so"
+    }
   },
   "endpoints": [
     {
@@ -21,15 +23,16 @@
           ],
           "extra_config": {
             "plugin/middleware": {
-              "name": [
-                "streaming-middleware"
+              "plugins": [
+                {
+                  "name": "streaming-middleware"
+                }
               ]
             }
           }
         }
       ]
     },
-
     {
       "endpoint": "/response",
       "method": "POST",
@@ -45,7 +48,11 @@
       ],
       "extra_config": {
         "plugin/req-resp-modifier": {
-          "name": ["streaming-modifier"]
+          "plugins": [
+            {
+              "name": "streaming-modifier"
+            }
+          ]
         }
       }
     }

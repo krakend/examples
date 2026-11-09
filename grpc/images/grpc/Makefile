@@ -43,29 +43,7 @@ trains_server:
 	cd trains; go build -o ../trains_server ../trains/cmd/server
 .PHONY: trains_server
 
-generate_trains_cert:
-	# create CA for signing client:
-	openssl req -newkey rsa:2048 \
-		-new -nodes -x509 \
-		-days 3650 \
-		-out ./trains/certs/ca.crt \
-		-keyout ./trains/certs/ca.key \
-		-config ./trains/certs/openssl.cnf 
-	# create server private key
-	openssl genrsa -out ./trains/certs/server.key 2048
-	# create a signing request
-	openssl req -new -key \
-		./trains/certs/server.key \
-		-out ./trains/certs/server.csr \
-		-config ./trains/certs/openssl.cnf
-	# create SSL certificate:
-	openssl x509 -req -in ./trains/certs/server.csr \
-		-extfile ./trains/certs/cert.cnf \
-		-CA ./trains/certs/ca.crt \
-	    -CAkey ./trains/certs/ca.key \
-		-out ./trains/certs/server.cert \
-		-days 3650 -sha256 -CAcreateserial
-.PHONY: generate_trains_cert
+# The trains server TLS certificate is generated when building its Docker image (see trains/Dockerfile)
 
 
 flights_docker_image:
@@ -76,16 +54,15 @@ trains_docker_image:
 	cd trains && docker build -t krakend/grpc_trains_fake:latest .
 .PHONY: trains_docker_image
 
+# Runs protoc inside a container, so you don't need to install it locally
 bin_proto_multiple_files:
-	cd contracts && bash ./compile.sh
+	docker run --rm -v "$(CURDIR):/work" -w /work/contracts alpine:3.22 \
+		sh -c 'apk add --no-cache bash protobuf protobuf-dev > /dev/null && bash ./compile.sh && chown -R $(shell id -u):$(shell id -g) ../defs'
 .PHONY: defs
 
 bin_proto_single_file:
-	mkdir -p ./defs
-	cd contracts && \
-		protoc \
-		--descriptor_set_out=../fullcatalog.pb \
-		$$(find . -name '*.proto')
+	docker run --rm -v "$(CURDIR):/work" -w /work/contracts alpine:3.22 \
+		sh -c 'apk add --no-cache protobuf protobuf-dev > /dev/null && protoc --descriptor_set_out=../fullcatalog.pb $$(find . -name "*.proto") && chown $(shell id -u):$(shell id -g) ../fullcatalog.pb'
 .PHONY: fullcatalog
 
 all_images: generate_grpc_flights_lib generate_grpc_trains_lib flights_docker_image trains_docker_image

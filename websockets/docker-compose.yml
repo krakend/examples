@@ -1,12 +1,11 @@
-version: "3"
 services:
   krakend:
-    image: krakend/krakend-ee:watch
+    image: krakend/krakend-ee:3.0
     volumes:
       - .:/etc/krakend
     ports:
       - "8080:8080"
-    command: [ "run", "-dc", "krakend.json", "" ]
+    command: [ "run", "-dc", "krakend.json" ]
     depends_on:
       - ws_service
   ws_service:

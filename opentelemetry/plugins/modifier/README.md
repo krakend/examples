@@ -45,10 +45,12 @@ To use the plugin in your KrakenD configuration, add it under the `extra_config`
 
 ```json
 {
-   "version": 3,
-   "plugin": {
-      "pattern": ".so",
-      "folder": "/etc/krakend/plugins"
+   "version": 4,
+   "extra_config": {
+      "plugin": {
+         "pattern": ".so",
+         "folder": "/etc/krakend/plugins"
+      }
    },
    "host": ["http://localhost:8080/"],
    "debug_endpoint": true,
@@ -58,13 +60,20 @@ To use the plugin in your KrakenD configuration, add it under the `extra_config`
          "method": "GET",
          "extra_config": {
             "plugin/req-resp-modifier": {
-               "name": ["otel-modifier-request", "otel-modifier-response"],
-               "otel-modifier-request": {
-                  "option": "value"
-               },
-               "otel-modifier-response": {
-                  "option": "value"
-               }
+               "plugins": [
+                  {
+                     "name": "otel-modifier-request",
+                     "config": {
+                        "option": "value"
+                     }
+                  },
+                  {
+                     "name": "otel-modifier-response",
+                     "config": {
+                        "option": "value"
+                     }
+                  }
+               ]
             }
          },
          "backend": [

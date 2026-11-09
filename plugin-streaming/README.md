@@ -1,4 +1,4 @@
-# KrakenD Plugins and Quotas Example
+# KrakenD Streaming Plugins Example
 
 This example demonstrates how to implement streaming manipulation using KrakenD Enterprise Edition with a middleware plugin and a response modifier plugin.
 

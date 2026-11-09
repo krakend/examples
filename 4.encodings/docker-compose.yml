@@ -1,10 +1,9 @@
-version: "3"
 services:
   krakend:
-    image: devopsfaith/krakend:watch
+    image: krakend/krakend-ee:3.0
     volumes:
       - .:/etc/krakend
       - ./mime.types:/etc/mime.types
     ports:
       - "8080:8080"
-    command: [ "run", "-dc", "krakend.json", "" ]
+    command: [ "run", "-dc", "krakend.json" ]

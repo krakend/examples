@@ -1,12 +1,13 @@
 # KrakenD Version
-VERSION := 2.12.1
+VERSION := 3.0.3
+LICENSE_PATH ?= $(abspath ../../config/krakend/LICENSE)
 PLUGINAME := plugins/client
 
 # Build KrakenD plugin using the KrakenD docker builder (for running inside docker)
 amd64:
 	docker pull krakend/builder-ee:${VERSION}
 	mkdir -p ./plugins
-	docker run --rm -it \
+	docker run --rm \
 		-e CGO_ENABLED=1 \
 		-e GOARCH=amd64 \
 		-e ARCH=amd64 \
@@ -19,7 +20,7 @@ amd64:
 arm64:
 	docker pull krakend/builder-ee:${VERSION}
 	mkdir -p ./plugins
-	docker run --rm -it \
+	docker run --rm \
 		-e CGO_ENABLED=1 \
 		-e CC=aarch64-linux-musl-gcc \
 		-e GOHOSTARCH=amd64 \
@@ -42,8 +43,10 @@ plugin:
 
 
 check:
-	docker run --rm -it \
+	docker run --rm \
 		-e FOR_USER=$$(id -u) \
+		-e KRAKEND_LICENSE_PATH=/LICENSE \
+		-v "$(LICENSE_PATH):/LICENSE:ro" \
 		-v "${PWD}:/app" \
 		-w /app \
-		krakend/krakend-ee:${VERSION} sh -c "krakend check-plugin -s /app/go.sum -f"
+		krakend/krakend-ee:${VERSION} sh -c "krakend plugin check -s /app/go.sum -f"

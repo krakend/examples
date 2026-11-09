@@ -18,7 +18,7 @@ To test this configuration, you can use Docker for a straightforward setup:
 1. **Clone the Repository**: Ensure the `krakend.json` is in your working directory.
 2. **Run KrakenD in Docker**:
    ```sh
-   docker run -it -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend:watch run -d -c krakend.json
+   docker run -it -p 8080:8080 -v $PWD:/etc/krakend/ krakend:3.0 run -d -c krakend.json
    ```
 
 This command runs KrakenD in a Docker container, mapping port 8080 and using the configuration file from your current directory.

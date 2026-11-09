@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/krakend/krakend-otel/state"
+	"github.com/krakend/krakend-otel/v2/state"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 )
@@ -146,15 +146,15 @@ type config struct {
 
 // parseConfig parses the configuration marshaling and unmarshaling into a struct.
 // you can also manually check for fields in the extra config map
-func parseConfig(namespace string, extra map[string]interface{}) (*config, error) {
-	ns := fmt.Sprintf("%s-%s", pluginName, namespace)
-	cfgRaw, ok := extra[ns].(map[string]interface{})
-	if !ok {
+// KrakenD passes the content of the plugin "config" object as extra,
+// so the namespace is no longer needed to find it
+func parseConfig(_ string, extra map[string]interface{}) (*config, error) {
+	if extra == nil {
 		return nil, errRegistererNotFound
 	}
 
 	cfg := config{}
-	b, err := json.Marshal(cfgRaw)
+	b, err := json.Marshal(extra)
 	if err != nil {
 		return nil, err
 	}

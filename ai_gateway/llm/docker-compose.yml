@@ -1,6 +1,6 @@
 services:
   krakend_ee:
-    image: krakend/krakend-ee:2.12.0-watch
+    image: krakend/krakend-ee:3.0
     init: true
     volumes:
       - ./config/krakend:/etc/krakend

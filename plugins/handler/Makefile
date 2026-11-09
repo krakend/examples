@@ -1,5 +1,5 @@
 # KrakenD Version
-VERSION := latest
+VERSION := 2.13.11
 PLUGINAME := plugins/handler
 
 # Build KrakenD plugin using the KrakenD docker builder (for running inside docker)

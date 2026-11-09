@@ -12,7 +12,7 @@ An AI Gateway provides secure, scalable access to Large Language Models while ab
 - JWT-based authentication and routing
 - LLM provider selector using conditional backend
 - Unified API for multiple AI providers  
-- [Request](https://www.krakend.io/docs/enterprise/backends/body-generator/) and [response](https://www.krakend.io/docs/enterprise/backends/response-body-generator/) transformation using templates
+- Vendor adaptation with the [Unified LLM interface](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/) (`ai/llm`)
 - [Quota management](https://www.krakend.io/docs/enterprise/ai-gateway/budget-control/) per user type
 
 ## Quick Start
@@ -35,7 +35,7 @@ OPENAI_API_KEY=your_openai_api_key
 
 3. Start services:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 **Important: It may take up to 2 minutes for all the services to properly start**
@@ -60,12 +60,12 @@ docker-compose up -d
 2. **Routing using conditional backends**: KrakenD reads the `position` claim and routes accordingly using [conditional backends](https://www.krakend.io/docs/enterprise/backends/conditional/#content):
    - `developer` → `POST` to Gemini API
    - `support` → `POST` to OpenAI API
-3. **Templates**: [Request](https://www.krakend.io/docs/enterprise/backends/body-generator/) and [response](https://www.krakend.io/docs/enterprise/backends/response-body-generator/) bodies are transformed using Go templates
+3. **Vendor adaptation**: The [`ai/llm`](https://www.krakend.io/docs/enterprise/ai-gateway/unified-llm-interface/) component translates the request and response for each provider
 4. **Unified Response**: Both providers return the same JSON structure
 
 ## Configuration
 
-The main routing logic is in `config/krakend/krakend.tmpl`. Templates for each provider are in `config/krakend/templates/vendors/`.
+The main routing logic and the `ai/llm` settings for each provider are in `config/krakend/krakend.tmpl`.
 
 ## Additional Features
 

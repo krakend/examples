@@ -1,14 +1,16 @@
 {
   "$schema": "https://krakend.io/schema/krakend.json",
-  "version": 3,
-  "host": ["http://localhost:8080"],
+  "version": 4,
+  "host": [
+    "http://localhost:8080"
+  ],
   "echo_endpoint": true,
   "debug_endpoint": true,
-  "plugin": {
-    "folder": "/opt/krakend/plugins/",
-    "pattern": ".so"
-  },
   "extra_config": {
+    "plugin": {
+      "folder": "/opt/krakend/plugins/",
+      "pattern": ".so"
+    },
     "redis": {
       "connection_pools": [
         {
@@ -29,10 +31,14 @@
       ],
       "extra_config": {
         "plugin/middleware": {
-          "name": ["counter-example-mw"],
-          "counter-example-mw": {
-            "key_prefix": "foo-counter"
-          }
+          "plugins": [
+            {
+              "name": "counter-example-mw",
+              "config": {
+                "key_prefix": "foo-counter"
+              }
+            }
+          ]
         }
       }
     }

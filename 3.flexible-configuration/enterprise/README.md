@@ -19,10 +19,12 @@ docker run --rm -it -p "8080:8080" \
     -e "KRAKEND_LICENSE_PATH=/LICENSE" \
     -e "FC_CONFIG=flexible_config.json" \
     -v "$PWD/LICENSE:/LICENSE:ro" \
-    -v "$PWD:/etc/krakend" krakend/krakend-ee:watch
+    -v "$PWD:/etc/krakend" krakend/krakend-ee:3.0-watch run -dc krakend.json
 ```
 
 When you save files, the API is reloaded on the fly. The generated file is under `out.json`
+
+The service applies a rate limit per `Authorization` header (see `partials/service_extra_config.json`), so send one in your requests, for instance `curl -H "Authorization: Bearer test" http://localhost:8080/healthz`. Requests without it get a `429`.
 
 This is an illustrative example of mixing templates. While **maintaining one file per endpoint is not necessarily the best choice**, it demonstrates how to work with templates.
 
@@ -76,6 +78,7 @@ The code tree has the following meaning:
 ├── flexible_config.json <-- Defines where to take the data from
 ├── krakend.json <-- The initial template
 ├── partials
+│   └── service_extra_config.json <-- Service extra_config, included with $ref
 ├── settings
 │   ├── endpoints <-- All the endpoints under this gateway
 │   │   ├── A-team <-- This folder belongs to a specific team
@@ -84,7 +87,6 @@ The code tree has the following meaning:
 │   │   └── Knight-Rider
 │   │       ├── devon.toml
 │   │       └── michael.json
-│   └── service_extra_config.json
 └── templates <-- The templates definition that render the final config
     ├── infra_endpoints.tmpl <-- endpoints specific to the Infra team
     ├── jwt_validation.tmpl <-- A template to validate JWT
