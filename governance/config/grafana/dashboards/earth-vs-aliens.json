@@ -1,0 +1,1612 @@
+{
+  "uid": "earth-vs-aliens",
+  "title": "Earth vs Aliens: Mission Control",
+  "description": "Quota consumption of the Earth vs Aliens game, built from KrakenD quota events",
+  "tags": [
+    "krakend",
+    "quota",
+    "governance"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "refresh": "5s",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "window",
+        "label": "Window",
+        "type": "custom",
+        "query": "hour,day",
+        "current": {
+          "text": "hour",
+          "value": "hour"
+        },
+        "options": [
+          {
+            "text": "hour",
+            "value": "hour",
+            "selected": true
+          },
+          {
+            "text": "day",
+            "value": "day",
+            "selected": false
+          }
+        ],
+        "description": "Each quota limit emits its own events: pick which limit window to count"
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "",
+      "transparent": true,
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 4
+      },
+      "options": {
+        "mode": "html",
+        "content": "<div style=\"text-align:center;font-family:'Courier New',monospace;background:radial-gradient(ellipse at center,#1a0040 0%,#07001a 75%);border:2px solid #ff2bd6;box-shadow:0 0 14px #ff2bd6,inset 0 0 24px #2a0066;padding:10px 8px;border-radius:8px\">\n<div style=\"font-size:36px;font-weight:900;letter-spacing:8px;color:#00e5ff;text-shadow:0 0 6px #00e5ff,0 0 18px #00e5ff\">EARTH <span style=\"color:#ff2bd6;text-shadow:0 0 6px #ff2bd6,0 0 18px #ff2bd6\">vs</span> ALIENS</div>\n<div style=\"margin-top:4px;color:#ffe600;letter-spacing:4px;font-size:13px;text-shadow:0 0 6px #ffe600\">★ MISSION CONTROL ★ LIVE QUOTA EVENTS FROM KRAKEND ★ INSERT COIN ★</div>\n</div>"
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "🪙 Coins inserted",
+      "description": "Credits consumed (quota: credits)",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 5,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window AND processor:credits",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "2",
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#ffe600"
+          },
+          "unit": "short",
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "🚀 Pilots in action",
+      "description": "Distinct pilots that used power-ups or bombs",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 5,
+        "y": 4,
+        "w": 5,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window AND (processor:weapon_power_up OR processor:bomb_reload)",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "cardinality",
+              "field": "user"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "3",
+              "type": "terms",
+              "field": "event",
+              "settings": {
+                "size": "1",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#39ff14"
+          },
+          "unit": "short",
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "⚡ Power-ups fired",
+      "description": "Weapon power-ups granted (quota: weapon_power_up)",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 10,
+        "y": 4,
+        "w": 5,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window AND processor:weapon_power_up",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "2",
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#00e5ff"
+          },
+          "unit": "short",
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "💣 Bombs delivered",
+      "description": "Bombs loaded by support ships (quota: bomb_reload, weighted by the backend response)",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 15,
+        "y": 4,
+        "w": 5,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window AND processor:bomb_reload",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "2",
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#ff2bd6"
+          },
+          "unit": "short",
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "☠ GAME OVER",
+      "description": "quota.limit.reached events: a pilot exhausted a resource (all windows)",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 20,
+        "y": 4,
+        "w": 4,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.reached\"",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "2",
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#ff3131"
+          },
+          "unit": "short",
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "type": "timeseries",
+      "title": "🛸 Battle activity",
+      "description": "Resources consumed over time",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 16,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "3",
+              "type": "terms",
+              "field": "processor",
+              "settings": {
+                "size": "10",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            },
+            {
+              "id": "2",
+              "type": "date_histogram",
+              "field": "@timestamp",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 80,
+            "lineWidth": 1,
+            "stacking": {
+              "mode": "normal"
+            }
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weapon_power_up"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "⚡ Power-ups"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#00e5ff"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "bomb_reload"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "💣 Bombs"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ff2bd6"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "credits"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "🪙 Credits"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ffe600"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "type": "piechart",
+      "title": "🪙 Coins by plan",
+      "description": "Credits by player plan. The credits quota uses hash_keys: true, so pilots are anonymous here",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 9,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window AND processor:credits",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "3",
+              "type": "terms",
+              "field": "plan",
+              "settings": {
+                "size": "5",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "premium"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "💎 premium"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ffe600"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "freemium"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "🎟 freemium"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#39ff14"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "displayLabels": [
+          "name"
+        ]
+      },
+      "transformations": [
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "plan",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "Sum",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "table",
+      "title": "🏆 High scores",
+      "description": "Pilots ranked by resources consumed (power-ups + bombs)",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 17,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window AND (processor:weapon_power_up OR processor:bomb_reload)",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "3",
+              "type": "terms",
+              "field": "user",
+              "settings": {
+                "size": "10",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            },
+            {
+              "id": "5",
+              "type": "terms",
+              "field": "processor",
+              "settings": {
+                "size": "5",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "center"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Pilot"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#39ff14"
+                }
+              },
+              {
+                "id": "custom.align",
+                "value": "left"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "★ Score"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge",
+                  "mode": "lcd",
+                  "valueDisplayMode": "text"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlYlRd"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "⚡ Power-ups"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#00e5ff"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "💣 Bombs"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ff2bd6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "md",
+        "footer": {
+          "show": false
+        }
+      },
+      "transformations": [
+        {
+          "id": "groupingToMatrix",
+          "options": {
+            "columnField": "processor",
+            "rowField": "user",
+            "valueField": "Sum",
+            "emptyValue": "zero"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "alias": "Score",
+            "reduce": {
+              "reducer": "sum",
+              "include": [
+                "weapon_power_up",
+                "bomb_reload"
+              ]
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "sort": [
+              {
+                "field": "Score",
+                "desc": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "user\\processor": 0,
+              "Score": 1,
+              "weapon_power_up": 2,
+              "bomb_reload": 3
+            },
+            "renameByName": {
+              "user\\processor": "Pilot",
+              "weapon_power_up": "⚡ Power-ups",
+              "bomb_reload": "💣 Bombs",
+              "Score": "★ Score"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "barchart",
+      "title": "🚀 Hangar: resources by ship",
+      "description": "Which ships burn more resources (ship comes from the X-Ship tier)",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 17,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:$window AND (processor:weapon_power_up OR processor:bomb_reload)",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "3",
+              "type": "terms",
+              "field": "ship",
+              "settings": {
+                "size": "5",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            },
+            {
+              "id": "5",
+              "type": "terms",
+              "field": "processor",
+              "settings": {
+                "size": "5",
+                "order": "desc",
+                "orderBy": "1",
+                "min_doc_count": "1"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "fillOpacity": 85,
+            "lineWidth": 0
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ship"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "ala-x": {
+                        "text": "Ala-X",
+                        "index": 0
+                      },
+                      "ala-b": {
+                        "text": "Ala-B",
+                        "index": 1
+                      },
+                      "ala-y": {
+                        "text": "Ala-Y",
+                        "index": 2
+                      },
+                      "ala-b/ala-y": {
+                        "text": "Ala-B / Ala-Y",
+                        "index": 3
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "weapon_power_up"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "⚡ Power-ups"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#00e5ff"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "bomb_reload"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "💣 Bombs"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ff2bd6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "stacking": "normal",
+        "showValue": "auto",
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "xTickLabelRotation": 0,
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "transformations": [
+        {
+          "id": "groupingToMatrix",
+          "options": {
+            "columnField": "processor",
+            "rowField": "ship",
+            "valueField": "Sum",
+            "emptyValue": "null"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "renameByName": {
+              "ship\\processor": "Ship"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "bargauge",
+      "title": "🔥 Weapon heat (current hour)",
+      "description": "Power-ups used / hourly limit per pilot and ship. 100% = overheated (quota exhausted)",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:hour AND processor:weapon_power_up AND reset_at:[now TO *]",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            },
+            {
+              "id": "4",
+              "type": "max",
+              "field": "limit"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "3",
+              "type": "terms",
+              "field": "loadout",
+              "settings": {
+                "size": "12",
+                "order": "desc",
+                "orderBy": "_term",
+                "min_doc_count": "1"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0,
+          "max": 1,
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#39ff14",
+                "value": null
+              },
+              {
+                "color": "#ffe600",
+                "value": 0.5
+              },
+              {
+                "color": "#ff8c00",
+                "value": 0.75
+              },
+              {
+                "color": "#ff3131",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "showUnfilled": true,
+        "valueMode": "color",
+        "namePlacement": "left",
+        "sizing": "manual",
+        "minVizHeight": 16,
+        "maxVizHeight": 22,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false,
+          "fields": ""
+        }
+      },
+      "timeFrom": "1h",
+      "hideTimeOverride": true,
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "binary",
+            "alias": "Used",
+            "binary": {
+              "left": "Sum",
+              "operator": "/",
+              "right": "Max"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "sort": [
+              {
+                "field": "Used",
+                "desc": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "loadout",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "Used",
+                "handlerKey": "field.value"
+              },
+              {
+                "fieldName": "Sum",
+                "handlerKey": "__ignore"
+              },
+              {
+                "fieldName": "Max",
+                "handlerKey": "__ignore"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "bargauge",
+      "title": "💣 Bomb bay load (current hour)",
+      "description": "Bombs reloaded / hourly limit per pilot and ship. Can exceed 100%: the weight comes from the backend response, so the last reload may overshoot",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 27,
+        "w": 12,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.increment\" AND unit:hour AND processor:bomb_reload AND reset_at:[now TO *]",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "sum",
+              "field": "weight"
+            },
+            {
+              "id": "4",
+              "type": "max",
+              "field": "limit"
+            }
+          ],
+          "bucketAggs": [
+            {
+              "id": "3",
+              "type": "terms",
+              "field": "loadout",
+              "settings": {
+                "size": "12",
+                "order": "desc",
+                "orderBy": "_term",
+                "min_doc_count": "1"
+              }
+            }
+          ],
+          "timeField": "@timestamp"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0,
+          "max": 1,
+          "decimals": 0,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#39ff14",
+                "value": null
+              },
+              {
+                "color": "#ffe600",
+                "value": 0.5
+              },
+              {
+                "color": "#ff8c00",
+                "value": 0.75
+              },
+              {
+                "color": "#ff3131",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "displayMode": "lcd",
+        "orientation": "horizontal",
+        "showUnfilled": true,
+        "valueMode": "color",
+        "namePlacement": "left",
+        "sizing": "manual",
+        "minVizHeight": 16,
+        "maxVizHeight": 22,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false,
+          "fields": ""
+        }
+      },
+      "timeFrom": "1h",
+      "hideTimeOverride": true,
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "binary",
+            "alias": "Used",
+            "binary": {
+              "left": "Sum",
+              "operator": "/",
+              "right": "Max"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "sort": [
+              {
+                "field": "Used",
+                "desc": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "loadout",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "Used",
+                "handlerKey": "field.value"
+              },
+              {
+                "fieldName": "Sum",
+                "handlerKey": "__ignore"
+              },
+              {
+                "fieldName": "Max",
+                "handlerKey": "__ignore"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "type": "table",
+      "title": "☠ GAME OVER feed",
+      "description": "Latest quota.limit.reached events: who ran out of what, and when they can continue",
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "quota-es"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 37,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "quota-es"
+          },
+          "query": "event:\"quota.limit.reached\"",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "raw_data",
+              "settings": {
+                "size": "100"
+              }
+            }
+          ],
+          "bucketAggs": [],
+          "timeField": "@timestamp"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left"
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "weapon_power_up": {
+                  "text": "⚡ Power-up",
+                  "color": "#00e5ff",
+                  "index": 0
+                },
+                "bomb_reload": {
+                  "text": "💣 Bomb reload",
+                  "color": "#ff2bd6",
+                  "index": 1
+                },
+                "credits": {
+                  "text": "🪙 Credits",
+                  "color": "#ffe600",
+                  "index": 2
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "ala-x": {
+                  "text": "Ala-X",
+                  "index": 0
+                },
+                "ala-b": {
+                  "text": "Ala-B",
+                  "index": 1
+                },
+                "ala-y": {
+                  "text": "Ala-Y",
+                  "index": 2
+                },
+                "ala-b/ala-y": {
+                  "text": "Ala-B / Ala-Y",
+                  "index": 3
+                }
+              }
+            },
+            {
+              "type": "value",
+              "options": {
+                "hour": {
+                  "text": "hourly",
+                  "index": 0
+                },
+                "day": {
+                  "text": "daily",
+                  "index": 1
+                }
+              }
+            }
+          ]
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Continue at"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeAsIso"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#39ff14"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ran out of"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Pilot"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#ff3131"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        }
+      },
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "@timestamp",
+                "user",
+                "processor",
+                "ship",
+                "plan",
+                "unit",
+                "reset_at"
+              ]
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "sort": [
+              {
+                "field": "@timestamp",
+                "desc": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {
+              "@timestamp": 0,
+              "user": 1,
+              "processor": 2,
+              "ship": 3,
+              "plan": 4,
+              "unit": 5,
+              "reset_at": 6
+            },
+            "renameByName": {
+              "@timestamp": "Time",
+              "user": "Pilot",
+              "processor": "Ran out of",
+              "ship": "Ship",
+              "plan": "Plan",
+              "unit": "Window",
+              "reset_at": "Continue at"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

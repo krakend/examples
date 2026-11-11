@@ -43,7 +43,7 @@ services:
     volumes:
       - "./config/haproxy:/usr/local/etc/haproxy:ro"
   krakend:
-    image: krakend/krakend-ee:3.0
+    image: krakend/krakend-ee:${KRAKEND_VERSION:-3.1}
     depends_on:
       redis-haproxy:
         condition: service_started
@@ -53,4 +53,41 @@ services:
       - "./config/krakend:/etc/krakend"
     ports:
       - "8080:8080"
-    command: [ "run", "-dc", "krakend.json" ]
+    command: [ "run", "-dc", "krakend.json", "" ]
+  # Stores the quota events that KrakenD emits (governance/event-recorders + async_agent)
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs localhost:9200/_cluster/health >/dev/null"]
+      interval: 5s
+      retries: 30
+  # One-shot: creates the "quota-events" data stream template, ingest pipeline and retention policy
+  elasticsearch-setup:
+    image: curlimages/curl:latest
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    volumes:
+      - "./config/elasticsearch:/setup:ro"
+    entrypoint: ["sh", "/setup/setup.sh", "http://elasticsearch:9200"]
+  grafana:
+    image: grafana/grafana:12.3.1
+    depends_on:
+      - elasticsearch
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_PANELS_DISABLE_SANITIZE_HTML: "true"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/earth-vs-aliens.json
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./config/grafana/provisioning:/etc/grafana/provisioning:ro"
+      - "./config/grafana/dashboards:/var/lib/grafana/dashboards:ro"

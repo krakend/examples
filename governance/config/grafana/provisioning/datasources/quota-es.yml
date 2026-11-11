@@ -1,0 +1,12 @@
+apiVersion: 1
+datasources:
+  - name: quota-events
+    uid: quota-es
+    type: elasticsearch
+    access: proxy
+    url: http://elasticsearch:9200
+    isDefault: true
+    jsonData:
+      index: quota-events
+      timeField: "@timestamp"
+      maxConcurrentShardRequests: 5

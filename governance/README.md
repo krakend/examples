@@ -83,3 +83,52 @@ tweak the variables before making a request:
 - QUOTAS_USER: the player to use
 - QUOTAS_GAME_SHIP: the ship to use (sent in the `X-Ship` header)
 
+
+## Mission Control: quota events dashboard
+
+> **Note:** quota events are available since KrakenD Enterprise **3.1**.
+
+Every quota in this example also emits **events** that end up in a Grafana dashboard:
+
+```
+KrakenD quotas ──(governance/event-recorders, "mem")──► async_agent ──► Elasticsearch ──► Grafana
+```
+
+- `governance/event-recorders` declares an in-memory recorder (`game_events`), and every quota
+    processor points to it with `"event_recorder": "game_events"`.
+- The quotas emit `quota.limit.increment` (every time a resource is consumed) and
+    `quota.limit.reached` (when a pilot exhausts a resource). Rejected requests are not emitted.
+- The `quota-events-to-elasticsearch` async agent consumes the recorder topic and indexes
+    each event into the `quota-events` data stream.
+- The `elasticsearch-setup` container installs an ingest pipeline (`config/elasticsearch`) that
+    flattens the events and adds some game context: the `ship`, the player `plan`, and when the
+    pilot can play again (`reset_at`, computed from the event's `nextRefill`).
+
+For production you would replace the `mem` recorder with a `kafka` one, and run the async agent
+in a separate KrakenD.
+
+Start everything and play some games:
+
+```
+docker compose up -d
+./client/play.sh 50        # or ./client/play.sh 0 to play until Ctrl+C
+```
+
+Then open [http://localhost:3000](http://localhost:3000) (no login needed) to see **Earth vs Aliens: Mission Control**:
+
+- **Coins inserted, pilots in action, power-ups fired, bombs delivered, GAME OVER** counters.
+- **Battle activity**: resources consumed over time.
+- **Coins by plan**: credits per `premium` / `freemium`. The `credits` quota uses `"hash_keys": true`,
+    so pilots are anonymous in that quota's events.
+- **High scores**: pilots ranked by power-ups and bombs.
+- **Hangar**: which ships burn more resources.
+- **Weapon heat / Bomb bay load**: how much of the current hourly window each pilot and ship has used.
+    The bomb bay can go over 100% because the weight comes from the backend response, so the last
+    reload is accounted after it is served.
+- **GAME OVER feed**: who ran out of what, and when they can continue.
+
+Each limit (`hour`, `day`) emits its own events, so the **Window** selector picks the limit to count.
+
+> Keep in mind that the quota key in this example is the API key itself (the `Authorization` header).
+> Without `hash_keys` it is stored in clear in the events. In a real setup use a user id (e.g. from a
+> JWT claim) or enable `hash_keys`.

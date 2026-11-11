@@ -1,0 +1,94 @@
+{
+  "index_patterns": [
+    "quota-events*"
+  ],
+  "data_stream": {},
+  "priority": 500,
+  "template": {
+    "settings": {
+      "number_of_replicas": 0,
+      "index.lifecycle.name": "quota-events",
+      "index.default_pipeline": "quota-events"
+    },
+    "mappings": {
+      "dynamic_templates": [
+        {
+          "strings_as_keyword": {
+            "match_mapping_type": "string",
+            "mapping": {
+              "type": "keyword",
+              "ignore_above": 1024
+            }
+          }
+        }
+      ],
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "event": {
+          "type": "keyword"
+        },
+        "user": {
+          "type": "keyword"
+        },
+        "processor": {
+          "type": "keyword"
+        },
+        "level": {
+          "type": "keyword"
+        },
+        "tier": {
+          "type": "keyword"
+        },
+        "unit": {
+          "type": "keyword"
+        },
+        "limit": {
+          "type": "long"
+        },
+        "weight": {
+          "type": "long"
+        },
+        "refill_seconds": {
+          "type": "double"
+        },
+        "reset_at": {
+          "type": "date"
+        },
+        "ingest_error": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "data": {
+          "properties": {
+            "timestamp": {
+              "type": "date"
+            },
+            "rule": {
+              "properties": {
+                "limit": {
+                  "type": "long"
+                },
+                "nextRefill": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        },
+        "ship": {
+          "type": "keyword"
+        },
+        "plan": {
+          "type": "keyword"
+        },
+        "loadout": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
